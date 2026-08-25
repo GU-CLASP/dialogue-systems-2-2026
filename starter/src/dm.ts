@@ -2,8 +2,14 @@ import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
+import OpenAI from "openai";
 
 const REGION = "<YOUR_REGION>";
+const openai = new OpenAI({
+  apiKey: GROQ_KEY,
+  dangerouslyAllowBrowser: true,
+  baseURL: "https://api.groq.com/openai/v1",
+});
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,

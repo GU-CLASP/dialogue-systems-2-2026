@@ -1,0 +1,230 @@
+Image
+The model may serve as support for your independent work. It briefly describes the three stages of a structured search process.
+
+
+Browse databases
+
+
+Planning
+Defining quieries
+Approaching and understanding a field or topic is done in stages. Your query will help you to delimit and define a problem area, which is done while working with the different source materials of the subject.
+The question determines your
+information needs
+because it points towards one or more subjects. You probably won’t need to find sources on everything within these topics, but you need to select the aspects that are relevant to you. Consider your target audience and whether there is a particular time period that is important to include in your search.
+Select discovery services
+Which search service, such as a search engine, library catalog, database or AI tool should you choose? Your subject area obviously plays a role in the choice, but also the purpose of using the sources.
+Discovery services can be subject-specific or cover several fields. This is why you need to know what kind of information you are looking for. You will probably have to use several types of discovery services to find enough quality sources. The services commonly used for scholarly material are different in nature and give you access to different types and amounts of resources. They all have their strengths and weaknesses. This means the choice of discovery services is an important step in your search process.
+
+
+Supersearch
+is a discovery service available through the university library, which provides access to many of our materials, such as books, dissertations and reports.
+Supersearch frequently returns a lot of results, but these can be filtered by using the bar to the right on the page. Supersearch works as a general point of entry to the library collections, and is a good way to get an overview of what is available within a certain field.
+
+
+A
+scientific database
+is a digital collection of scientific material - such as articles, books, theses, conference papers, reports or data - that is organized and searchable to facilitate research and study.
+The library subscribes to a large number of databases containing scientific journals, dissertations, statistics and business data. Most databases offer access to full-text resources.
+When looking for research within a specific field, choose a subject-specific database to avoid getting off-topic search results. Choosing the right database will also allow you to use customised features such as metadata field searches and specialised lists of subject terms (thesauri).
+Database search (ub.gu.se)
+
+
+Google Scholar
+is a
+freely available search engine
+from Google that specializes in finding
+scientific source material
+- such as articles, theses, books, conference papers and reports. Peer review cannot be assessed by the search engine, so anything that resembles a scientific source in appearance is included in the search results. Google Scholar therefore gives you a large number of results and it can thus be difficult to both get an overview and to assess the degree of relevance and scientificity
+Access journal articles of the library via Google Scholar
+Add Gothenburg University Library via the menu icon followed by Settings.
+Select library links
+Use the search bar to find Gothenburg University Library. The result is added below the search bar
+Ensure that Gothenburg University Library is selected
+Save
+Google Scholar will add a link to your results. Access full text articles by clicking this link and by logging in with your GU account details.
+
+
+Find and select terms
+If you are searching within a new area or research field, it is wise to identify important key terms used in that particular field.
+Most search engines will only retrieve results for the exact word you use. For example, if you enter “environment” you will miss “environmental issues”. For this reason, consider your search terms carefully before you start searching. Keep in mind
+possible synonyms
+singular/plural
+correct spelling
+spelling varieties (particularly US vs UK terms; such as color and colour)
+inflections
+Tip!
+AI tools can help with search terms. You can write a prompt about your query and ask for search terms for it or list the words you have come up with and ask for more suggestions.
+
+
+Example query:
+didactics
+for teaching English in upper secondary school
+1. Part of your query: didactics
+2. Synonym: teaching methods
+4. Related concept: lesson planning
+5. Abbreviations or full terms: didactic method
+You may find it useful to work with a thesaurus (sometimes found under alternative names such as MeSH terms etc.) to find the correct, related terms.
+Encyclopedias
+– for definitions and facts
+Supersearch
+– to find textbooks
+Dictionaries
+– for translating search terms if needed
+
+
+Search/retrieve – advanced strategies
+Once you have defined your query, identified the best discovery services and selected your search terms, it is time to make a more
+systematic
+search effort.
+At this stage, you may benefit from having made a few quick searches. The simpler and more general ones are a way to quickly get your bearings within a particular field. Finding the information needed for an in-depth search within a specific research area is often time-consuming. To save time and frustration, it is a good idea to document your searches:
+Write down where you have been searching, and which combinations of search terms you have used.
+Reference management software can be helpful when gathering and organising your finds.
+Try different combinations of search terms
+Combinations of search terms with AND/OR, phrase searches, truncation and metadata field searches are known as
+search strings
+. Build these using a couple of your search terms together. Depending on how happy you are with the results, you can change the search terms you used, to get different results, or add additional search terms to reduce the number of results.
+Below are some of the most common and useful techniques to direct and refine your search. Asking an AI to help build search strings based on "boolean search logic" can help. However, AI tools tend to generate very long search strings, sometimes with terms that do not contribute significantly to the result. As a user, you need to read and edit the search strings.
+Combine search terms with AND/OR
+By combining your search terms in different ways, you can narrow or expand your search. You can do this by using AND/OR:
+didactics AND “teaching methods”
+AND
+limits your results. All search terms must be included in the results. Most search engines automatically perform an AND search. For this reason, avoid using too many search terms at once. Instead, start with one or two and then add one search term at a time.
+didactics OR “teaching methods”
+OR
+expands your search and yields more results. It is enough if one of the search terms is present in the results. This is useful when you want to include synonyms for your search term.
+Truncation – one way of expanding your search results
+Truncation means searching for a word stem, with different endings. Truncation is often done with an asterisk (*). Some search engines offer automatic truncation. Search engines such as Google and Google Scholar do not allow truncation. In library catalogues and databases, you decide whether the search term should be truncated or not. Keep in mind that unwanted endings and combinations may also be included in the results.
+Example:
+teach* = teach, teaches, teaching, teacher, teachers…
+Truncation can yield a lot of results, but in combination with other search terms, truncation can be useful to broaden one or more terms. Try it out!
+Phrase search – for compound terms
+When searching for compound terms, you need to use phrase searching. Put the words in quotation marks, i.e. “lesson planning” to keep them together. Phrase searching limits the number of results to materials that are actually about lesson planning. Avoid irrelevant results where “lesson” and “planning” occur separately in the text, which may be about something completely different.
+Fields search – advanced search
+Many discovery services offer an advanced search mode. By entering your search terms in various fields in the advanced search interface, you may choose to search for a title, an author, a subject term or something else. Through an advanced search, you control where in the results your search terms should appear. An advanced search will limit your results.
+Citation search – find later research
+A citation search means that you start from a publication you have found, and find out if some other scholar has referred to it in their own research. Searching in this way uncovers more recent research in the same field. To track citations, use a search service that records references.
+Citation searches are currently available through the article databases
+Scopus
+and
+Web of Science
+(available to users affiliated with Gothenburg University) and the
+Google Scholar
+search engine (freely available).
+
+
+When you can't find what you're looking for, it's a good idea to review the search service you're using, perhaps also your query and your search terms. If you haven’t found enough sources, your query may be too narrow, or your search terms may be too specific. If you have found too much material – consider whether the question is too broad, or the search terms too general.
+
+
+Too many results:
+Narrow the search by adding more search terms, such as a geographical area or a time frame.
+Narrow the search by using more specific search terms, e.g. replace the term “sustainable development” with the narrower term “ecological sustainability”.
+Try an advanced search. By entering your search terms in different fields in the advanced search interface, you can choose to search by title, author or subject. In this way, you control where your search terms should appear in the results and narrow them down.
+Too few results:
+Ensure all words are spelled correctly
+Expand your search by using more general search terms.
+Expand your search by using fewer search terms.
+You may be able to find more and better results via another discovery service. For example, search for books in all Swedish college and university libraries in the Swedish national library catalogue LIBRIS.
+Irrelevant results:
+Are there any synonyms you can use? For Swedish synonyms and related concepts, consult the online service
+synonymer.se
+. English synonyms can be found through the online service
+thesaurus.com
+.
+Try to find better subject terms. Many discovery services offer a thesaurus which might provide tips on which search terms work best for that particular database or discovery service.
+Expand your search. Perhaps you can find more and better results via another discovery service?
+AI is a good complement - not a replacement.
+AI does not have access to all scientific articles and cannot guarantee that the information you ask for comes from peer-reviewed sources even if you ask for it in a prompt. You are often not provided with direct links to original material, making it more difficult to source-check and even if you ask for references, these are often incorrect or incomplete. In contrast. However, AI tools can provide a summary of a subject or explain complex concepts in a simple way.
+
+
+Source assessment
+When writing texts as part of your education, you will use different types of sources as a starting point for your work. These may include books, scientific articles or information found on websites. Whatever the source, it is important that you examine it critically and evaluate its relevance to your topic.
+Source critical questions
+When reviewing printed and digital sources, there are a few questions you can ask yourself to assess their reliability:
+Is there a named author or editor, and can you confirm their authority in the field?
+What is the purpose of the contents? Is the author aiming to inform, impact, provoke, or maybe sell?
+Who is the intended target audience, and does the difficulty level match your purpose?
+When was the material compiled, and has it been recently updated? Are there any newer editions?
+How trustworthy are the contents? How well does the source cover the subject? Do you perceive the text as objective? If there are any references in the text and the reading list, are they relevant?
+Do you get the impression that the text could be AI-generated? If so, is that a problem in this case?
+Focus: Online source criticism
+Reviewing websites is essentially about trying to determine whether the content is credible and whether you can trust the author or publisher. One way to get an idea of reliability is to check the information in certain parts of the website.
+The criteria for reviewing online material are the same as for printed material, but there are some additional things you should check:
+
+
+This is frequently found in the Contact, Help or About pages.
+
+
+Reputable organisations usually present themselves clearly and ensure they are easy to contact. Commercial actors may have financial interests that influence how they present themselves and what information they provide. The author's or organization's background, expertise and connection to the subject matter affect the credibility and relevance of the source. Is the author a researcher, an expert or an organization with recognized expertise in the field?
+
+
+To find who owns a domain in Sweden, you can use the
+Search domain service (only available in Swedish)
+.
+At
+www.whois.net
+you can browse domains worldwide.
+
+
+An indication of when a page was last updated can often be found at the bottom of the page. The update date is an indication of how often the author checks that the facts are still correct, and that links to other websites still work. The author often does not indicate exactly what was changed, but only the date of the last change. It can be difficult to know how much the material has changed compared to previous updates. The
+Wayback Machine
+archives web pages from 1996 onwards. Here, you can search for a web address to see how the content of a site has changed over time.
+
+
+You should always consider whether the source is relevant to your subject.
+
+
+Test your skills: Assess different types of sources
+
+
+Assess the journal article
+The sensitivity of long-term yield targets to changes in fishery age-selectivity
+by trying to answer the following questions:
+Click the link above to see in which journal the article is published. Is the journal scientific?
+When was the article published?
+Who is the author? What are their qualifications?
+Who is this article written for? Which is the target audience?
+Skim the introduction. Is there a plain purpose?
+Check the discussion part. Is it evident whether the study achieved its purpose?
+What kind of study is this? Does reading the method section make it plain?
+
+
+Assess the book
+Environmental movements in minority and majority world
+by trying to answer the following questions:
+Click the link above and start by reading under Contens. When was this book published?
+Who is the publisher? Does the publisher say anything about this title?
+Who is the author? What are their qualifications?
+Skim the preface. What does it say about the author’s purpose with their book?
+Which is the target audience?
+Check the table of contents. Does it mention the subject you are working with?
+Use the index to look up the terms relevant to your field.
+Skim the list of references to see what sources the author used.
+Could this book be considered a primary source?
+
+
+Assess the website
+www.gov.uk/topic/environmental-management/flooding-coastal-change
+by trying to answer the following questions:
+Look at the main and top domain in the above address. Can any conclusions be drawn from the address itself? Sometimes, it is visible in plain text in the main domain who is reponsible for the page. The top domain may sometimes provide hints about what kind of website you are dealing with.
+Click the link above. Who is the publisher/author? Is it a private individual, an organisation, an institution? Are there any contact details? What sort of authority does the publisher/author have in the field?
+What is the purpose of the text? What does the author wish to achieve with it? Do they want to inform, provoke, impact, or sell a product?
+Who is the intended audience? Scholars, students, or the general public?
+Is the material up to date?
+
+
+The article
+The three-dimensional porous mesh structure of Cu-based metal-organic-framework
+has been withdrawn due to a number of shortcomings, as described on the publisher's website. Among other things, AI has been used in a dishonest way.
+Review the journal article by considering the following questions:
+Look at the full text - what signs do you find that the text is AI-generated?
+If you didn't know in advance that the article has been withdrawn - would you have reacted to anything suspicious in the article?
+Problems with AI cheating in research are likely to increase - what do you think you can do to avoid the worst pitfalls?
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings
