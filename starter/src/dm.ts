@@ -6,7 +6,7 @@ import { DMContext, DMEvents } from "./types";
 const REGION = "<YOUR_REGION>";
 
 const azureCredentials = {
-  endpoint: "https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+  endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
 
