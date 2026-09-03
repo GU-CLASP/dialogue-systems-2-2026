@@ -1,0 +1,16 @@
+#+TITLE: Dialogue Systems 2
+
+This repository contains:
+- ~starter/~ :: code for SpeechState that you can start with 
+- ~labs/~ :: (TBA) assignments for the course
+- ~tutorials/~ :: tutorials and their source code  
+
+#+begin_quote
+[!CAUTION]
+Never commit any API keys to the repository. Never deploy front-end application that uses API keys on a public resource.
+#+end_quote
+  
+* Useful information
+** TBD Tunnel ollama
+** TBD Azure Speech proxy
+
