@@ -1,7 +1,7 @@
 #+TITLE: Dialogue Systems 2
 
 This repository contains:
-- ~starter/~ :: (TBA) code for SpeechState that you can start with 
+- ~starter/~ :: code for SpeechState that you can start with 
 - ~labs/~ :: (TBA) assignments for the course
 - ~tutorials/~ :: tutorials and their source code  
 

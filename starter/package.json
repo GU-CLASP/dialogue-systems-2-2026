@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "openai": "^7.5.0",
-    "speechstate": "^2.16.1-pr30-1-32970452779.0",
+    "speechstate": "^2.16.0",
     "xstate": "^5.19.2"
   }
 }

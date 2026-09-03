@@ -1,28 +1,25 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
-import { KEY, GROQ_KEY } from "./credentials";
+import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
-import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: GROQ_KEY,
-  dangerouslyAllowBrowser: true,
-  baseURL: "https://api.groq.com/openai/v1",
-});
+const REGION = "<YOUR_REGION>";
 
 const azureCredentials = {
-  endpoint: "https://<REGION>.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+  endpoint: "https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   key: KEY,
 };
 
+/** backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
   proxyUrl: "https://rndserv.flov.gu.se:4000/api/token",
   key: "",
-};
+  };
+*/
 
 const settings: Settings = {
-  azureCredentials: azureProxyCredentials,
-  azureRegion: "northeurope",
+  azureCredentials: azureCredentials,
+  azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
@@ -72,33 +69,9 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    groqChatRequest: fromPromise(async ({ input }) => {
-      const response = await openai.chat.completions.create({
-        messages: [
-          {
-            role: "system",
-            content: "Be friendly and brief, and never use emojis.",
-          },
-          {
-            role: "assistant",
-            content: "How can I help you?",
-          },
-          {
-            role: "user",
-            content: "What's your favourite emoji?",
-          },
-        ],
-        model: "openai/gpt-oss-20b",
-        temperature: 1,
-        max_completion_tokens: 2048,
-        top_p: 1,
-        stream: false,
-        reasoning_effort: "medium",
-        stop: null,
-      });
-
-      return response
-    }),
+    /**
+    Your LLM actors go here.
+     */
   },
 }).createMachine({
   context: ({ spawn }) => ({
@@ -113,11 +86,6 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      invoke: {
-        src: "groqChatRequest",
-        input: null,
-        onDone: { actions: ({ event }) => console.log(event.output) },
-      },
       on: { CLICK: "Greeting" },
     },
     Greeting: {

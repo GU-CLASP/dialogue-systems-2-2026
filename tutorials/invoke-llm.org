@@ -172,5 +172,24 @@ https://github.com/user-attachments/assets/cc805614-2180-4a53-8545-07f51d71ae92
 3. Start your dialogue with this greeting.
 
 * Exercise 2
-Instead of using ~fetch~, use the OpenAI library and modify your code, so that it uses Chat Completion API. 
+Instead of using ~fetch~, use the OpenAI library and modify your code, so that it uses Chat Completion API. If you have already used Groq, you can use it via this API too.
 
+OpenAI chat completions API documentation:
+  - [[https://developers.openai.com/api/reference/typescript/resources/chat/subresources/completions/methods/create][OpenAI reference]] 
+  - [[https://docs.ollama.com/api/openai-compatibility][ollama's OpenAI-compatible API]]
+  - [[https://console.groq.com/docs/openai][Groq's OpenAI-compatible API]]
+
+Starter code for creating OpenAI API client instance, for ollama (goes
+on the top level, outside of the state machine).
+
+#+begin_src typescript
+  import OpenAI from "openai";
+   
+  const openai = new OpenAI({
+    baseURL: "http://localhost:11434/v1/",
+    apiKey: "ollama",
+    dangerouslyAllowBrowser: true
+  });
+#+end_src
+
+The chat completion code (`await openai.chat.completions.create({...`) will go into the actor definition.
