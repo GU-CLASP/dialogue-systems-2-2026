@@ -36,7 +36,7 @@ program
     await client.createCollection(name, {
       vectors: { size: 384, distance: "Cosine" },
     });
-    console.log(`Successully created collection: ${name}`);
+    console.log(`Successfully created collection: ${name}`);
   });
 
 const embed = async (input: string) =>
