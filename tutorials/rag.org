@@ -1,0 +1,209 @@
+#+TITLE: RAG tutorial notes
+
+Qdrant documentation:
+- https://qdrant.tech/documentation/
+
+Qdrant terminology:
+- collections
+- points
+  - id
+  - vector
+  - payload
+- distance metrics
+- inference
+
+* Imports
+#+begin_src typescript
+import { Command } from "commander";
+import { QdrantClient } from "@qdrant/js-client-rest";
+import OpenAI from "openai";
+#+end_src
+
+* Commander ([[https://github.com/tj/commander.js][docs]])
+#+begin_src typescript
+  export function hello(name: string, options: any) {
+    const message = `Hello, ${name}!`;
+    return options.uppercase ? message.toUpperCase() : message;
+  }
+
+  program
+    .command("hello")
+    .argument("<name>")
+    .options("--uppercase")
+    .action((name, options) => {
+      console.log(hello(name, options));
+    });
+#+end_src
+
+
+* Run Qdrant using docker-compose
+You will first need to install [[https://www.docker.com/products/docker-desktop/][Docker Desktop]]. 
+
+In ~docker-compose.yml~:
+
+#+begin_src yaml
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    container_name: qdrant
+    ports:
+      - 6333:6333
+      - 6334:6334
+    expose:
+      - 6333
+      - 6334
+      - 6335
+    configs:
+      - source: qdrant_config
+        target: /qdrant/config/production.yaml
+    volumes:
+      - ./qdrant_data:/qdrant/storage
+
+configs:
+  qdrant_config:
+    content: |
+      log_level: INFO
+      enable_cors: true  
+#+end_src
+
+Then:
+#+begin_src sh
+docker-compose up  
+#+end_src
+* Tunnel ollama
+#+begin_src sh
+ssh -f -N -L 11434:127.0.0.1:11434 mltgpu-2  
+#+end_src
+
+(you can also create an [[https://en.wikipedia.org/wiki/Alias_(command)][alias]])
+
+* Connect to a database
+#+begin_src typescript
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+#+end_src
+
+* Create a collection ([[https://qdrant.tech/documentation/manage-data/collections/][docs]])
+#+begin_src typescript
+await client.createCollection("foodItems", {
+  vectors: { size: 384, distance: "Cosine" },
+});
+#+end_src
+
+collections support:
+- different distance metrics (Dot, Cosine, Euclid, Manhattan)
+- sparse vectors 
+- multiple vectors for every point
+
+* Calculate the embeddings using Ollama
+
+Test it on mltgpu-2 (on other servers you need to ~pull~ the model first):
+#+begin_src sh
+ollama run qwen3-embedding "Hello"  
+#+end_src
+
+Or, in Typescript:
+#+begin_src typescript
+const embed = async (input: string) =>
+  openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: input,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
+#+end_src
+
+* Populate the collection
+#+begin_src typescript
+    const points = await Promise.all(
+      menu.map(async (item, index) => {
+        const embedding = await embed(item.join(" "));
+        return {
+          id: index,
+          vector: embedding,
+          payload: {
+            name: item[0],
+            note: item[1],
+          },
+        };
+      }),
+    );
+    await client.upsert(name, { points });
+#+end_src
+
+- payload
+- vector inference
+  
+* Query the collection
+#+begin_src typescript
+    const embedding = await embed(query);
+    const result = await client.query(name, {
+      query: embedding,
+      with_payload: true,
+      limit: 5,
+    });
+#+end_src
+
+* Integrating RAG into a dialogue system
+
+Structure:
+|                 | Subsection          |
+|-----------------+---------------------|
+| SYSTEM PROMPT   | General instruction |
+|                 | Relevant Data       |
+|-----------------+---------------------|
+| MESSAGE HISTORY | Assistant           |
+|                 | User                |
+|                 | Assistant           |
+|                 | User                |
+
+#+begin_src typescript
+    const gptresult = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: `
+          You are a helpful restaurant assistant who helps selecting a menu item.
+          Here are menu items selected specifically for user query:
+          
+          MENU START
+
+          ${menuItems.join("\n")}
+          
+          MENU END
+
+          Please be brief and do not mention anything which is not on the menu.
+`,
+        },
+        {
+          role: "assistant",
+          content: "Hi, I am here to help! What do you fancy today?",
+        },
+        { role: "user", content: query },
+      ],
+      model: "llama3.2:latest",
+    });  
+#+end_src
+
+
+In XState, you can create an actor:
+
+    #+begin_src typescript
+    queryRAG: fromPromise(async () => {
+      const embedding = await openai.embeddings
+        .create({
+          model: "qwen3-embedding",
+          input: "tofu",
+          dimensions: 384,
+        })
+        .then((result) => result.data[0].embedding);
+      return await client.query("foodItems", {
+        with_payload: true,
+        query: embedding,
+      });
+    }),
+    #+end_src
+
+and then use the collected /points'/ payloads to form a system prompt
+(you will do this in Lab 1).
