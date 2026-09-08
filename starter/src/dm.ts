@@ -74,11 +74,7 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {
-    /**
-    Your LLM actors go here.
-     */
-  },
+  actors: {},
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
