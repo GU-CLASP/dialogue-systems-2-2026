@@ -4,12 +4,15 @@ import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { readFile } from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
-import { QDRANT_KEY } from "./credentials.ts";
 import { v4 as uuidv4 } from "uuid";
+import OpenAI from "openai";
 
-const client = new QdrantClient({
-  url: "https://b9834eb7-389d-4d47-81df-25cbfda28d57.eu-central-1-0.aws.cloud.qdrant.io",
-  apiKey: QDRANT_KEY,
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+
+const openai = new OpenAI({
+  baseURL: "http://localhost:11434/v1/",
+  apiKey: "ollama",
+  dangerouslyAllowBrowser: true,
 });
 
 const program = new Command();
@@ -19,6 +22,15 @@ export function hello(name: string, options: any) {
   const message = `Hello, ${name}!`;
   return options.uppercase ? message.toUpperCase() : message;
 }
+
+const embed = async (input: string) =>
+  openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: input,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
 
 /** Commander demonstration */
 program
@@ -68,14 +80,16 @@ program
   .argument("<path>", "file path")
   .action(async (collection, path) => {
     const chunks = await makeChunksFromFile(path);
-    const points = chunks.map((chunk) => ({
-      id: uuidv4(),
-      payload: { text: chunk },
-      vector: {
-        text: chunk,
-        model: "sentence-transformers/all-minilm-l6-v2",
-      },
-    }));
+    const points = await Promise.all(
+      chunks.map(async (chunk) => {
+        const embedding = await embed(chunk);
+        return {
+          id: uuidv4(),
+          vector: embedding,
+          payload: { text: chunk },
+        };
+      }),
+    );
     console.log(
       `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
     );
@@ -91,12 +105,11 @@ program
   .argument("<collection>", "collection name")
   .argument("<query>", "text of the query")
   .action(async (collection, query) => {
+    const embedding = await embed(query);
     const results = await client.query(collection, {
       with_payload: true,
-      query: {
-        text: query,
-        model: "sentence-transformers/all-minilm-l6-v2",
-      },
+      query: embedding,
+      limit: 5,
     });
     console.log(results.points);
   });

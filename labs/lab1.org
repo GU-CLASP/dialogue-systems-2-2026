@@ -1,23 +1,28 @@
 #+TITLE: LLMs  and RAG
 
-In this lab you will explore how LLMs in combination with Retrieval-Augumented Generation (RAG) can be used in XState and SpeechState. You will be using Chroma as infrustructure for RAG.
+#+begin_quote
+[!WARNING]
+Contents of this lab are subject to change. We will inform you about all the changes.
+#+end_quote
+
+In this lab you will explore how LLMs in combination with Retrieval-Augumented Generation (RAG) can be used in XState and SpeechState. You will be using Qdrant as infrustructure for RAG.
 
 Relevant documentation:
 - XState docs: https://stately.ai/docs/xstate
 - SpeechState docs (under construction): https://speechstate.maraev.me/
-- Chroma docs: https://docs.trychroma.com/docs/overview/introduction
+- Qdrant docs: https://qdrant.tech/documentation/ 
 - OpenAI chat completions API:
   - [[https://developers.openai.com/api/reference/typescript/resources/chat/subresources/completions/methods/create][OpenAI reference]] 
   - [[https://console.groq.com/docs/openai][Groq's OpenAI-compatible API]]
   - [[https://docs.ollama.com/api/openai-compatibility][ollama's OpenAI-compatible API]]
-
+    
 * Part 1: Chit-chat with SpeechState
 
 In this part you will create a voice-enabled chatbot. 
 
 1. Fork and clone this repository.
 2. In your code implement an information state update pattern which will help you maintain the history of your dialogue. This will make the chat less repetitive.
-   - Intoduce ~messages: Message[]~ into your context, where ~Message~ is:
+   - Intoduce ~messages: Message[]~ into your context, where the type ~Message~ is:
      #+begin_src typescript
      type Message = {
        role: "assistant" | "user" | "system";
@@ -63,7 +68,9 @@ After this is done you should be able to have a chat with your LLM!
 
 ** Starting point
 
-1. Ask your dialogue system a question about something only relevant for GU students (e.g., "what's Feelgood phone number") and you'll run into trouble.
+1. Ask your dialogue system a question about something only relevant
+   for GU students (e.g., "What is the phone number for Feelgood") and
+   you'll run into trouble.
 2. We scraped the "Service and support" portal for you. You can find
    the scraper written in Python in a [[lab1/]] folder. It work like this:
    - It takes pages URLs from the ~urls.txt~ file.
@@ -77,26 +84,21 @@ After this is done you should be able to have a chat with your LLM!
 3. The resulting documents are in the [[lab1/data]] folder.
 4. Feel free to modify this code and adjust it to your needs.
     
-** Working with ChromaDB
+** Working with Qdrant
 
-In ~./chroma~  folder you will find our implementation of a command-line interface as well as the server which you can run locally.
+In ~./rag~ folder you will find our implementation of a command-line
+interface as well as the docker-compose file for server which you can run locally.
 
 *** Running the server
-1. Go to the ~/chroma/~ folder.
-2. Install the dependencies:
-  #+begin_src sh
-  npm i
-  #+end_src
-3. To run the server, run:
-   #+begin_src sh
-   npx chroma run --path ./db  
-   #+end_src
 
-The data will be stored locally, in the ~/chroma/db/~ folder.
+See in the [[file:~/Teaching/ds-2/dialogue-systems-2-2026/tutorials/rag.org][RAG tutorial]].  There is also a ~/rag/docker-compose.yml~ file
+that you can use.
+
+The data will be stored locally, in the ~/rag/qdrant_data/~ folder.
 
 
-*** Chroma Command-line Client
-We implemented a TypeScript command client for Chroma. To learn how
+*** Qdrant Command-line Client
+We implemented a TypeScript command client for Qdrant. To learn how
 you can use it, follow the documentation:
 #+begin_src sh
   npx tsx src/main.ts --help
@@ -106,9 +108,9 @@ or, for a specific command:
   npx tsx src/main.ts addData --help
 #+end_src
 
+Study the code and to understand what is going on.
 
-
-*** Calling Chroma from SpeechState
+*** Calling Qdrant from SpeechState
 
 This you will need to implement yourself.
 
@@ -123,5 +125,50 @@ database to implement RAG in your speechstate application.
    command-line command that will add data from a given folder all at
    once. Consider adding metadata to your documents which will make
    search faster and easier.
-   - Documentation: https://docs.trychroma.com/docs/collections/add-data
-3. Test if you can query 
+3. Test if you can query the data for something specific for GU
+   students (based on information from
+   https://studentportal.gu.se/index%2ephp/en/service-and-support)
+
+*** 2. Implement RAG for SpeechState
+1. Take the chit-chat application that you developed for Part 1 as
+   starting point.
+2. Implement the simplest version of RAG for SpeechState, enabling
+   your dialogue system to answer specific questions (e.g., "What is
+   the phone number for Feelgood"). In order to do this, you will
+   need:
+   - Retrieval :: to query Qdrant using ~invoke~ 
+   - Augmentation :: to interpret the response and include it in the system prompt  
+   - Generation :: to use this prompt to generate a relevant response
+     
+* VG Part (1 extra point) 
+For VG part you will need to do the following two items:
+- VG-1 :: Implement handling of ~ASR_NOINPUT~
+- VG-RAG :: *Further experiments with RAG*. Provide a short report (~2
+  A4 page; PDF, Markdown or org-mode
+format), covering your reflections and "proof-of-concept" tests. Here
+  is /a tentative list of questions/ to reflect on or try to
+  implement. 
+  - Does the RAG works well in case if the dialogue unfolds, and not
+    just for one-shot queries?
+  - Are there better ways to prepare, structure and chunk the data
+    that you are storing in RAG database?
+  - Should you use only the latest utterance to query the database?
+  - Are there better ways to create embeddings for your /points/? Consider:
+    - sparse vectors 
+    - different embedding models and their parameters
+    - different prompts for embedding models
+  - Should you return different number of query results (currently it
+    is limited to 5 results)?
+  - Can you implement filtering and re-ranking for query results?
+
+    There is no requirement of the number of questions needed
+  for completion of VG part, because you can go quite deep with
+  addressing just one of them. Think about your project while working
+  on these questions and don't forget to consult [[https://qdrant.tech/documentation/][Qdrant documentation]]. Commit the report in ~/labs/lab1~ folder.
+
+* Submission
+
+Report the lab by:
+- submitting a link to a pull request containing your solution (~/rag~ and ~/starter~ folders)  and a short report (for VG part).
+- attaching your RAG data folder (~/rag/qdrant_data~, zipped) to the
+  Canvas assignment.

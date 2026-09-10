@@ -5,10 +5,11 @@ import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
 
 const REGION = "<YOUR_REGION>";
+
 const openai = new OpenAI({
-  apiKey: GROQ_KEY,
+  baseURL: "http://localhost:11434/v1/",
+  apiKey: "ollama",
   dangerouslyAllowBrowser: true,
-  baseURL: "https://api.groq.com/openai/v1",
 });
 
 const azureCredentials = {
