@@ -34,8 +34,8 @@ In this part you will create a voice-enabled chatbot.
 3. You can add a starting ~system~ message that will act as initial
    prompt to the LLM, for instance, instructing it to provide very
    brief chat-like responses.
-4. Modify the ~fetch~ actor from exercise to provide chat completions on
-   the basis of the ~messages~.
+4. Use ~openai.chat.completions~ function to provide chat
+   completions on the basis of the ~messages~.
 5. Invoke this actor in order to implement an infinite completion
    loop. You can refer to the diagram below (some details omitted) or
    modify it according to your own perspective.
@@ -144,10 +144,9 @@ database to implement RAG in your speechstate application.
 For VG part you will need to do the following two items:
 - VG-1 :: Implement handling of ~ASR_NOINPUT~
 - VG-RAG :: *Further experiments with RAG*. Provide a short report (~2
-  A4 page; PDF, Markdown or org-mode
-format), covering your reflections and "proof-of-concept" tests. Here
-  is /a tentative list of questions/ to reflect on or try to
-  implement. 
+  A4 page; PDF, Markdown or org-mode format), covering your
+  reflections and "proof-of-concept" tests. Here is /a tentative list
+  of questions/ to reflect on or try to implement.
   - Does the RAG works well in case if the dialogue unfolds, and not
     just for one-shot queries?
   - Are there better ways to prepare, structure and chunk the data
@@ -161,10 +160,12 @@ format), covering your reflections and "proof-of-concept" tests. Here
     is limited to 5 results)?
   - Can you implement filtering and re-ranking for query results?
 
-    There is no requirement of the number of questions needed
-  for completion of VG part, because you can go quite deep with
-  addressing just one of them. Think about your project while working
-  on these questions and don't forget to consult [[https://qdrant.tech/documentation/][Qdrant documentation]]. Commit the report in ~/labs/lab1~ folder.
+
+There is no requirement of the number of questions needed for
+completion of VG part, because you can go quite deep with addressing
+just one of them. Think about your project while working on these
+questions and don't forget to consult [[https://qdrant.tech/documentation/][Qdrant documentation]]. Commit the
+report in ~/labs/lab1~ folder.
 
 * Submission
 
