@@ -1,0 +1,55 @@
+One way to view this process is as a path, where the parts of the process consist of several different, composite searches. There is rarely a single perfect search string, but usually several smaller attempts that yield a few results each. Along the way you collect information and texts, and together they make up the final material for your essay or assignment.
+A few information search strategies
+Chain search:
+Start out from one relevant source in a database to find more, using subject terms, lists of references, and citations.
+Structured search:
+Plan your search, use a structured approach, and find your materials
+Chain search
+In preparation of an assignment, you will often explore a certain topic after reading an interesting text. This text is often an excellent starting point to continue locating more relevant documents on the topic.
+Based on a good article/book/document, you can use its references and/or possible citations to follow up on further texts from the same field. These are like a chain, where one document leads to the next.
+Under the following headings, we start from an article, which we call (A) for the sake of simplicity.
+Using subject terms
+An
+article database
+is often the starting point for finding articles on a certain topic. If you already have a good article, it is still worth searching for this relevant article (A) in a database by title, to read the article entry, i.e. the information about it. Each article in a database is accompanied by information about the text, including keywords or subject terms (the terminology may differ).
+Subject terms are often a standardised terminology for different topics within the database. Using the subject terms associated with the article (A), you can browse for more articles in the same field by typing the subject term into the search field and make another search. Keywords are often linked in the article entry for (A), and this takes you immediately to other articles tagged with the same keyword, with no need to use the search field.
+If the database has a function called “Related documents” or similar, this is a shortcut to other articles with a similar subject and focus as that of article (A).
+Get search terms through AI tools
+Several AI tools allow you to send the link to an article you have found, or upload it as a PDF, and then prompt the tool to find suitable search terms. This may seem quick and easy compared to doing it manually, but you should always check which terms the tool has selected.
+Example of a prompt that can support the gathering of keywords
+Using reference list
+The reference list of an article provides direct suggestions for further reading. The reference list of (A) supports the text you are working from (A). This means that the documents in the reference list may be of immediate relevance to the work you are gathering material for.
+Assuming that (A) is a scientific text, you will find the reference list at the end of the article. Alternatively, the references are listed in the database itself, depending on the database with the article information, as in the example below.
+References, by their very nature, provide pointers to literature before the time of publication of the text you are using (A). How to find more recent texts instead is explained in the section on article citations.
+Using citations
+The citations of an article are texts that refer in turn to the article you are working from (A). That is, articles that list (A) in
+their
+reference lists. These articles are thus published at a later time than the one you are using (A).
+Some databases can search for documents that cite another. This function is called citation searching, read more about it on the page
+The structured search process
+.
+If you search for your article (A) in one of these databases, it is possible to see if it is cited. The articles citing (A) are provided as links. Click the number where it says
+Times cited/Cited by
+, to find these potentially useful articles.
+An article is more likely to be cited when it has been around for a few years. A large number of citations is an indication that the article has been found interesting by the research community.
+AI tools can support chain searches, especially those tools that include citation analysis. They can show how researchers and articles are connected in different networks, by how they have cited each other.
+
+
+Browse databases
+
+
+Structured searching
+One way of seeing the structured search process is as step-by-step phases leading to your goal. There are three separate phases:
+Plan, Search/Find
+and
+Evaluate
+. After each phase, you should assess your results, to see if you can move forward or if you need to retrace one or more of the previous steps.
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings

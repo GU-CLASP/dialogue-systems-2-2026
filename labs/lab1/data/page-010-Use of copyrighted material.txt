@@ -1,0 +1,59 @@
+Images, music and film footage are different from texts when it comes to copyright.
+For this reason, you are advised to ask permission from the rights holder when you need to use an image in your work. Exceptions include the Creative Commons licenses.
+Making copies as a student
+Students are allowed to copy material for use in teaching.
+The copied material may be distributed within a teaching group at a university or similar institution, for example between student and teacher, or within a class. Dissemination can be digital or analogue.
+As a student, you are allowed to make copies according to the 15/15 rule.
+This states you may copy a maximum of 15 percent from a printed source, up to 15 pages. Meaning out of a 60-page book, you can freely copy 9 pages. From a digital source you can copy up to 15 A4 pages.
+
+
+The conditions for copying at Swedish universities are regulated in agreements between the copyright organisation Bonus Copyright Access and the Association of Swedish Higher Education Institutions. Via Bonus Copyright Access you can read more about specific rules for copying:
+Högskoleavtalet på bonuscopyright.se (only available in Swedish)
+.
+
+
+Using online images
+One way to find images to use without asking permission, i.e. images with a Creative Commons licence, is to browse sites such as:
+Flickr
+Wikimedia Commons
+Creative Commons
+Unsplash
+
+
+Creative Commons is a modern copyright license for digital material on the internet. A CC license is made up of a number of different terms which the author can combine to specify how the material may be used.
+The basic idea is that you may freely distribute, copy and add further to a work without first asking for permission. In other words, you are already authorised to use the work if you comply with the conditions imposed by the author. Of course, you must always refer to the author.
+On the Creative Commons licenses (external page)
+
+
+AI-generated images
+Images created by AI tools are generally free of copyright, unless otherwise stated in the terms of use. Image generation tools can be an option for those who want an illustration for their text, but have not found a suitable image when searching.
+Keep in mind that it can be difficult to get the image to look exactly as you want through prompts, especially when the subject is people. You should always state clearly that the image is AI-generated, and what tool you used.
+Using materials via the e-resources of the university library
+You can use and refer to the resources available through the website of the university library. The selection of resources is made to give you some measure of certainty that they ensure good quality.
+As a student at the University of Gothenburg, you may download and print individual articles and chapters for your own use. However, you may not copy or distribute copyrighted material to just anyone.
+For e-books, terms and conditions differ a lot between individual publishers.
+Terms of use for e-resources
+
+
+Anyone who creates text, music, images, photographs or art automatically holds the rights to their work. This is regulated by the
+Swedish copyright law (onyl available in Swedish)
+.
+The law gives the author the exclusive right to decide what can be done with their work. For copyright to apply, the work must meet the “threshold of originality”. This means the work must be so unique that no one else could have produced the exact same thing.
+Exclusive right involves two things:
+Moral rights
+mean the author has the right to be mentioned if someone uses their work, and how and in what context the work will be used.
+Economic rights
+mean the author has the right to charge others for the use of their work.
+AI and copyright
+For copyright to apply, a natural person must have created the text or image. This means that, as a rule, AI-generated material is not subject to copyright. However, various restrictions may apply to the material, which you can read about in the terms of use for each tool.
+When writing prompts in AI tools, you should be aware of the risk that data may be used for training purposes by the developers. There have been cases of copyrighted material being unlawfully used as training data in AI tools.
+Consider both copyright and personal data before sending a prompt, or see if the tool has a feature to disable the use of prompts as training.
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings

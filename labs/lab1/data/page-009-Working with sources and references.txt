@@ -1,0 +1,94 @@
+Sources in an academic context are for example textbooks, scientific articles and reports. Such sources are a starting point for your writing, and support your line of reasoning. Using sources shows that you are aware of previous research performed within your field of study. It is important that you are able to manage references correctly in the body of your text, and in your list of references, so the reader can see where your knowledge comes from.
+Writing with references
+References are an essential component of any academic text. They appear both in the body of the text, and in a reference list, and are presented according to a specific reference system. There are three main reference systems: parentheses systems, footnote systems and number systems. Within these three systems are various styles, such as Harvard, Oxford and Vancouver. The reference system you use will depend on your field of study. If you are unsure which system or style you are meant to use, ask your teacher.
+There are different ways of providing references in a text, depending on whether the focus lies on the information of a source, or if you wish to particularly highlight the author(s) of a source. When reasoning with the support of sources, you can refer to a source at the end of your sentence, placing your own voice more clearly in focus in your writing. With the parenthesis system, the result may look something like this:
+Writing involves many challenges (Andersson, 2023).
+If you wish to highlight the author of a source, you can state their name in the running text. This can be done in different ways. With the parenthesis system, the result may look something like the examples below:
+According to Andersson (2023) writing involves many challenges.
+Andersson (2023) discusses the many challenges of writing.
+Summarising sources
+Referencing refers to using and relating things you have learned from the texts of other people by summarising and rephrasing the content in your own words. This requires that you have read the sources closely enough to understand what the authors want to say. It is important to consider the purpose of your summary, since this determines what you will choose to include.
+When you refer to sources in your text you may use certain referencing verbs. Referencing verbs can be used to give the reader an indication of how you view the cited source, and how it ties into your reasoning.
+Below are a few examples of verbs that indicate a reference, with different approaches:
+means, writes, signal that you are neutral
+holds, claims, signal that you disagree
+shows, indicates, signal that you agree
+Your choice of verb is also a way of showing what an author is doing in their text and what it is that you wish to highlight. Is it a discussion by the author, or a particular point that you wish to stress? In this case, you can use a phrase to signal just that, along with making your wording as clear and precise as possible.
+Andersson discusses how …
+Andersson makes the point …
+Andersson problematises …
+When summarising ideas, you will also have to cite the reference, with the name and year, regardless of which reference system you are using. With the parenthesis system, the result may be something like this:
+Andersson discusses how … (Andersson, 2023).
+In Andersson (2023) it is discussed how …
+Quoting sources
+A quotation is a portion of a text which you are citing – repeating it in-text word-for-word. A frequent recommendation is to avoid using too many, or too long, quotations. However, they can be useful, for example when you wish to define a certain concept, or discuss a particular claim. Another reason to quote other texts is that the source text is so well written that its effect would be entirely lost if you were to rephrase and summarise it in your own words.
+Be mindful that any quotation you use should add something to the reasoning in your text, and that it must not be used without further comment. You must explain to the reader what you wish to express with the quotation, and you can use phrases like the following:
+This quotation is an example of …
+This quotation shows …
+The quotation indicates how …
+Quotations can be used in the text in three ways: as a run-in quotation, a standalone quotation, or a block quotation. When you wish to cite just a few words, or no more than two or three lines of text, the quotation can be worked into your text surrounded by quotation marks (“…”). Below is one example of a quotation worked into a text:
+Andersson means that writing involves “many challenges” (2023, p. 55).
+A standalone quotation can be used in the text in this way:
+Andersson (2023, p. 55) says: “Writing involves many challenges.”
+If the quotation you want to use is more than three lines long, block quotations are recommended instead. A block quotation is a stand-alone paragraph that you separate from the rest of the text by indenting the left margin, and sometimes the right margin too. Often, the line spacing and font size are reduced to further emphasise that it is a quotation. For block quotations, no quotation marks are used.
+All quotations should be followed by a reference to the source, along with a page reference.
+Quoting verbatim means that you cannot change anything in the text you are quoting, not even spelling mistakes. One way to show that the error is found in the text you are quoting is to write [sic] after the word that includes an error. It might look like this:
+Andersson (2023, p. 55) says: “Writign [sic] involves many challenges.”
+Compiling a list of references
+All sources used and referred to should be presented in a reference list (sometimes known as a bibliography) at the end of your text. The format of the bibliography depends on what reference system and style you use.
+Guides to reference styles
+APA: a quick manual (guide) from the Faculty of Education (only available in Swedish)
+Chicago
+Harvard (only available in Swedish)
+MLA Modern Language Association
+Oxford
+Vancouver
+Contact the University Library
+if you have questions about information searching and reference management.
+AI tools for reference management
+The range and quality of AI tools for reference management has increased significantly in recent years. Many tools help you with different parts of the reference writing process, such as formatting references in the right style and organizing reference lists.
+Keep in mind that the work done in the tools is automated, and that errors can occur. It is always you as a student who is responsible for how the references are written.
+
+
+What does an honest and independent
+approach mean in the context of academic writing? This online course will introduce you to these concepts as they are used at the Swedish university and provide guidance with a particular focus on writing as supported through the use of sources.
+Go to the course Academic Honesty
+
+
+Learn more about generative AI by these recorded webinars on GU Play:
+Generative AI and university studies
+Generative AI and academic writing
+Generative AI and academic reading
+Generative AI and critical thinking
+Three reasons not to use generative AI
+
+
+Reference management software
+There are reference management programmes that can be used to collect and organise references and reference lists. These programs can help you organise the references in your text according to the reference system and style you use.
+The University Library offers demonstrations and information on how to get started with the reference management programmes Endnote and Zotero.
+Help with Endnote and Zotero
+
+
+Plagiarism – What does it mean?
+Plagiarism in an academic context refers to using someone else's text or other material as if it were your own without acknowledging the source of that text or material.
+Examples of plagiarism include:
+the use of phrases from someone else’s work, where only a few words are replaced with synonyms, whether or not the source is cited.
+paraphrasing and reproducing the content of someone else's work without acknowledging the source.
+translating something verbatim from another language without showing that it is a quotation that has been translated.
+copying and reproducing tables, diagrams or images from someone else's work without acknowledging the source.
+Plagiarism is serious and seen as a breach of good academic practices.
+If a student is suspected of plagiarism the case is reported to the
+University
+Disciplinary Board.
+More information can be found on the page,
+Cheating and plagiarism
+.
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings
