@@ -1,11 +1,10 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
-import { KEY } from "./credentials";
+import { KEY, REGION, TOKEN_ENDPOINT } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
-
+/** 连本地/隧道上的 Ollama（OpenAI 兼容接口） */
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
@@ -13,7 +12,7 @@ const openai = new OpenAI({
 });
 
 const azureCredentials = {
-  endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
+  endpoint: TOKEN_ENDPOINT,
   key: KEY,
 };
 
@@ -34,35 +33,13 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
-
 const dmMachine = setup({
   types: {
-    /** you might need to extend these */
     context: {} as DMContext,
     events: {} as DMEvents,
   },
   actions: {
-    /** define your actions here */
+    /** 让 SpeechState 朗读一段文字 */
     "spst.speak": ({ context }, params: { utterance: string }) =>
       context.spstRef.send({
         type: "SPEAK",
@@ -70,79 +47,183 @@ const dmMachine = setup({
           utterance: params.utterance,
         },
       }),
+
+    /** 让 SpeechState 开始听麦克风 */
     "spst.listen": ({ context }) =>
       context.spstRef.send({
         type: "LISTEN",
       }),
+
+    /**
+     * 点按钮进入对话时：往 messages 追加一句开场白（assistant）
+     * Speaking 状态会朗读 messages 里的最后一条
+     */
+    appendGreeting: assign(({ context }) => ({
+      messages: [
+        ...context.messages,
+        { role: "assistant" as const, content: "Hi! I'm Altlas. How can I help you?" },
+      ],
+    })),
+
+    /**
+     * 听完用户说话后：把识别结果追加为 user 消息
+     * 这样下一轮 LLM 能看到完整对话历史
+     */
+    appendUserFromSpeech: assign(({ context }) => {
+      const utterance = context.lastResult?.[0]?.utterance ?? "";
+      return {
+        messages: [
+          ...context.messages,
+          { role: "user" as const, content: utterance },
+        ],
+      };
+    }),
+
+    /**
+     * LLM 调用成功后：把回复追加为 assistant 消息
+     * event.output 来自下面 chatCompletion actor 的 return 值
+     */
+    appendAssistantFromLLM: assign(({ context, event }) => {
+      const message = (
+        event as { output: { role: "assistant"; content: string } }
+      ).output;
+      return {
+        messages: [...context.messages, message],
+      };
+    }),
   },
-  actors: {},
+  actors: {
+    /**
+     * 异步调用 Ollama 做 chat completion
+     * input.messages = 当前全部对话历史（含 system）
+     * 返回一条 assistant 消息，供 onDone 写入 context
+     */
+    chatCompletion: fromPromise(
+      async ({
+        input,
+      }: {
+        input: { messages: DMContext["messages"] };
+      }) => {
+        console.log("[LLM] calling ollama with messages:", input.messages);
+        try {
+          const response = await openai.chat.completions.create({
+            model: "llama3.2", // 必须是 curl /api/tags 里有的模型名
+            messages: input.messages,
+          });
+          const content = response.choices[0]?.message?.content ?? "";
+          console.log("[LLM] reply:", content);
+          return { role: "assistant" as const, content };
+        } catch (err) {
+          console.error("[LLM] failed:", err);
+          throw err;
+        }
+      },
+    ),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    /** 一开始就放一条 system，约束 LLM 回复要短（适合语音） */
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a friendly voice assistant. Keep replies very short.",
+      },
+    ],
   }),
   id: "DM",
   initial: "Prepare",
   states: {
+    /** 初始化 Azure 语音；就绪后才能点按钮 */
     Prepare: {
       entry: ({ context }) => context.spstRef.send({ type: "PREPARE" }),
       on: { ASRTTS_READY: "WaitToStart" },
     },
+
+    /** 等待用户点击页面按钮 */
     WaitToStart: {
-      on: { CLICK: "Greeting" },
-    },
-    Greeting: {
-      initial: "Prompt",
       on: {
-        LISTEN_COMPLETE: [
-          {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
-          },
-          { target: ".NoInput" },
-        ],
-      },
-      states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
+        CLICK: {
+          target: "Loop",
+          actions: "appendGreeting", // 先写入开场白，再进入循环
         },
-        NoInput: {
+      },
+    },
+
+    /**
+     * Part 1 核心循环（对照 lab 图）:
+     * Speaking → Ask → ChatCompletion → Speaking → ...
+     */
+    Loop: {
+      initial: "Speaking",
+      states: {
+        /** 朗读 messages 的最后一条（开场白或 LLM 回复） */
+        Speaking: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+            params: ({ context }) => ({
+              utterance:
+                context.messages[context.messages.length - 1].content,
+            }),
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
+
+        /** 听用户说话；有结果就进 ChatCompletion */
         Ask: {
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
-              }),
+              actions: assign(({ event }) => ({
+                lastResult: event.value,
+              })),
             },
             ASR_NOINPUT: {
+              // 暂时清空；VG-1 可以在这里做更友好的处理
               actions: assign({ lastResult: null }),
+            },
+            LISTEN_COMPLETE: [
+              {
+                guard: ({ context }) => !!context.lastResult,
+                target: "ChatCompletion",
+                actions: "appendUserFromSpeech",
+              },
+              {
+                // 没听清：重新进入 Ask，才会再次执行 listen
+                target: "Ask",
+                reenter: true,
+              },
+            ],
+          },
+        },
+
+        /** 调用 LLM；成功则追加回复并回到 Speaking */
+        ChatCompletion: {
+          invoke: {
+            src: "chatCompletion",
+            input: ({ context }) => ({
+              messages: context.messages,
+            }),
+            onDone: {
+              target: "Speaking",
+              actions: "appendAssistantFromLLM",
+            },
+            onError: {
+              target: "Speaking",
+              actions: assign(({ context }) => ({
+                messages: [
+                  ...context.messages,
+                  {
+                    role: "assistant" as const,
+                    content: "Sorry, I had a problem answering.",
+                  },
+                ],
+              })),
             },
           },
         },
-      },
-    },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
-    },
-    Done: {
-      on: {
-        CLICK: "Greeting",
       },
     },
   },
@@ -151,10 +232,10 @@ const dmMachine = setup({
 const dmActor = createActor(dmMachine, {}).start();
 
 dmActor.subscribe((state) => {
-  console.group("State update");
-  console.log("State value:", state.value);
-  console.log("State context:", state.context);
-  console.groupEnd();
+  // 看这里：浏览器 Console（不是下面跑 vite 的终端）
+  console.log(">>> state:", JSON.stringify(state.value));
+  console.log(">>> messages:", state.context.messages);
+  console.log(">>> lastResult:", state.context.lastResult);
 });
 
 export function setupButton(element: HTMLButtonElement) {
