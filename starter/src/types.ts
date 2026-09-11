@@ -10,7 +10,8 @@ export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
   messages: Message[];
-  // nextUtterance: string;
+  /** 本轮从 Qdrant 检索到的文档片段（Augmentation 用） */
+  ragContext: string;
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};
