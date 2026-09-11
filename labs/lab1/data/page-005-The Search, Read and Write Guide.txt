@@ -1,0 +1,22 @@
+Artificial intelligence (AI) is an umbrella term for technologies that can perform tasks that normally require human intelligence, such as analysing information, solving problems and making decisions.
+One particular branch of AI is generative AI, which can create new content - such as texts, images or music - from patterns it learns from large amounts of data. Generative AI works by first being trained on large collections of text, image or other data, and then using these patterns to generate new material similar to what it learned.
+There is an important difference between AI that uses existing data and AI that actively searches the web:
+AI models that rely on existing data have been trained on a large but limited set of material and can compile information from this, without having direct access to current web information.
+AI services that combine generative AI with web search. These can retrieve updated information directly from the web and present a summary based on both trained knowledge and current sources.
+Limitations in access to materials
+Many AI systems do not have access to the full texts of scientific articles, books, or other materials that are protected behind paywalls or license agreements. This means that the AI often bases its answers on openly available information and summaries, which can limit the depth and quality of the information generated.
+Critical thinking when using AI
+While AI can produce compelling and useful information, it is important to always critically review the results. AI may contain inaccuracies, speculative claims or reproduce biased patterns from its training material.
+
+
+Contact us
+Gothenburg University Library
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings

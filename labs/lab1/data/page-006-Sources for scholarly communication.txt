@@ -1,0 +1,175 @@
+Scholarly communication
+A great portion of any scholar’s work involves spreading the results of the studies they conduct. This communication is primarily aimed at other scholars, to ultimately generate further research. The target group may also include other recipients, such as professionals, decision-makers, or the general public.
+Research results are published through various channels, depending on field and intended audience. Within STEM fields, scholars publish their work mainly through scientific journals, while scholars within humanities and social sciences are published to a greater extent in monographs or conference papers. An individual scholar might also disseminate their work across a range of different publication types.
+What is a source?
+A source might be an article, a book, a webpage, a quotation from a lecture, or a fingerprint. Usually a distinction is made between what is known as primary and secondary sources.
+
+
+A primary source provides firsthand information about a subject. This source type includes, among other things, articles or books written by someone who presents their own theory or study. The author might also be a lecturer discussing their own research results.
+Within certain scientific fields, the term primary source refers to the source material that is being studied, such as documents, literary texts, or works of art. Secondary sources then include existing research concerning the primary source.
+
+
+A secondary source relates information already presented by another source.
+For example, the book
+Vetenskaplig teori och metod
+by Maria Henricson (ed.) refers to philosopher of science Karl Popper. If the reader wishes to refer to Popper’s theory of scientific hypotheses, Maria Henricson’s book constitutes a secondary source for this.
+
+
+Types of scholarly publications
+To any student, it is a great advantage to be familiar with different types of scholarly publications. Knowing whether a particular source is scholarly or not is rarely enough;
+you need to get an overview of which publication types are relevant to you in your specific work. In order to assess which publication types are relevant to you, you must first gain some knowledge about the various types.
+It is important to be aware that different publication types carry more or less scholarly weight. Which weight a certain publication type is assigned, depends on the field. A rule of thumb within many fields is that publications that have undergone some form of academic review prior to publication are considered to have the highest scientific value. This review process is known as
+peer review
+, which means that the text is assessed by experts within the field, before it is published. These experts then present their assessment to the publisher, suggesting the text should be accepted for publication, or accepted subject to revision, or rejected.
+Common publication types
+In the publication types outlined below, the author mainly addresses other scholars. One exception is the source type “Book or book chapter”, usually intended for a wider audience.
+
+
+Before an article or paper is published in a scholarly journal, it is reviewed by other academics. This process is known as peer review. The assessment frequently results in recommendations for the author to review and improve their text. The reviewers are experts within their field, and their task is to ensure the paper maintains a high scientific quality. Within STEM fields, the scientific paper is considered the most important type of publication, meaning the one carrying the most scientific weight.
+
+
+A dissertation is written by a doctorate student training to become a researcher. The doctoral studies usually last four years, and during this time the student will carry out an independent research project.
+The result of the project is presented as a dissertation, which is reviewed by a number of experts within the field during a disputation or public defence of the text. If the dissertation is approved, it will be part of the PhD.
+The dissertation is meant to show the general academic competence of the doctorate student, as well as their expertise within the chosen topic.
+Theses come in two different formats:
+1. Monograph
+A cohesive unit with a beginning, middle and end.
+2. Compilation thesis
+This Nordic term refers to a collection of scholarly articles, which constitute a number of studies within a specific, limited field. The articles will have been previously published in academic journals.
+
+
+A licentiate thesis or licentiate paper can be considered either a step towards the PhD, or a final qualification during the education of a researcher. A student can produce a dissertation after the licentiate thesis, but some choose to finish their degree with a licentiate thesis. This thesis is approved by the student’s supervisor, and is generally not presented for public defense.
+
+
+When a scholar has their work accepted for presentation at a scientific conference, they often rework their presentation into a brief article as a written supplement. Within some fields, conferences serve as a platform for presentation of preliminary results, while other fields focus more on highlighting the final results from various studies.
+The two main forms of conference articles are
+papers
+and
+posters
+. The outline of a paper is identical to that of a scholarly article, with all the usual components of articles within the field. A poster is a single large sheet, where the contents of the article are presented as blocks of text, with illustrations. At the conference, posters may be displayed in printed form, or digitally, on screens.
+At conferences, articles in paper format are usually showcased to a higher degree than poster articles. Conference contributions are published in official conference publications, known as conference proceedings or simply proceedings.
+
+
+Scholars may present their research in a book written as a single unit (monograph), or as individual chapters in a collection of works (anthology) compiled by one or several editors. The publishing body behind the work can provide clues to whether the product is scholarly; many publishers issue academic titles only. When publishing an academic title, the author frequently enlists the help of colleagues during the process, as well as that of an editor appointed by the publisher. Scientific books usually do not undergo a peer review process. However, there are examples of peer review when issuing monographs, such as the titles published in collaboration with
+Kriterium
+; a platform for review, publication and dissemination of high-quality academic books.
+
+
+A report is often part of a series, and serves as a current or final statement of a scholar’s ongoing or finished research. Reports are frequently produced at the request of organisations, government bodies or companies, and do not necessarily have any named authors.
+In the public sector, many reports are produced with a pre-established publication frequency. Many authorities issue annual reports on the situation regarding a specific issue which is their responsibility; this includes the report series of the Swedish National Council for Crime Prevention, which lists reported crime on an annual basis. In other cases, reports are frequently produced as a way of gaining insight into a particular, current issue, often as a basis for, or evaluation of, legislation.
+The outline and extent of these reports may vary a great deal. They are not necessarily structured in the same way as a scientific paper, but they sometimes are. A report frequently includes a final chapter with recommendations for some sort of future measures to be taken, such as new legislation. Reports do not undergo peer review, since the issuing body serves as a guarantee of their quality instead.
+
+
+A working paper is an academic text of preliminary character. Working papers can be used as a method for obtaining feedback and work further on a text before it is submitted, for example to a scientific journal or a conference. At this later stage, the text is intended to be a journal article or a conference paper. Scholars who wish to quickly share their ideas or create a debate can achieve this by writing a working paper – many other types of publications are considerably slower.
+Within certain fields, working papers serve as the foundation of presentations held at open conferences. There are many different kinds of working papers, and this type of publication is sometimes called a “discussion paper”, among other terms.
+
+
+The scientific journal and paper
+Scientific journals can be found within all fields, and they mainly contain scientific papers. The scientific papers are reviewed before their potential publication. The process is known as peer review and is carried out by experts within the given field. The experts assess whether the article maintains a high scientific quality, and whether it should be published. Some articles are selected for immediate publication, while others are immediately rejected. In some cases, the author may receive a list of things that must be reviewed before the article can be accepted for publication.
+Scientific journals may contain several different types of papers:
+Original papers (primary publications)
+These describe the result of a research study (in the form of empirical studies) for the first time.
+Review papers
+Critical evaluations of several previously published studies. This includes meta analyses, where the result of several studies can be used (for example) to examine the value of a treatment for a specific illnes.
+Theory papers
+Aims to develop new theories, based on already existing research.
+
+
+This term refers to fraudulent scholarly journals, which are often open access publications. Predatory journals make money from charging publication fees from authors,  but without properly scrutinizing them through a peer review process, where subject matter experts check the quality. These journals often use aggressive marketing to attract researchers who want to disseminate their research results. If you wish to check whether an open access journal is legit, you may start by browsing the
+Directory of Open Access Journals
+and the
+Web of Science's Master Journal List
+– if you find the journal here, the articles in it are very likely to have undergone the quality control of a peer review process.
+
+
+How to identify a scientific paper
+The construction and outline of scientific papers vary depending on the field. Original papers should be structured so that they present the research process in a transparent manner. A frequently recommended structure is the
+IMRaD
+(
+I
+ntroduction,
+M
+aterials & methods,
+R
+esults and
+D
+iscussion). These notions may be used as headings in a paper, but this is not always the case.
+However, the structure can usually be identified by the inclusion of the following:
+Title of the paper
+The title of a scientific article should be clear, informative and specific to give a picture of what the article is about and make it easy to find.
+Image
+Authors
+Those who have contributed actively to the study in various ways are listed as authors of the paper. The names may be either in alphabetical order, or listed with the main contributor first and the research team co-ordinator last. It is vital to promote the right people, in order to ensure fair allocation of future research funding and resources.
+Image
+Affiliation
+The academic affiliation of the authors, meaning where they work, should be plainly stated.
+Image
+Date
+The submission date for a paper, as well as the acceptance date for publication, indicates whether it has undergone peer review or not.
+Image
+Abstract
+A brief overview written by the author, to summarise the contents of the paper as a whole. Apart from “abstract”, this can also be referred to as “summary”. Many AI tools have the functionality to summarize the state of research in a field, based on freely available abstracts. Thus, when the user asks for a summary, it is often only the abstract that the information is based on, which can give a skewed or inadequate picture of the field.
+Image
+Introduction
+A description of the background of the study, and a presentation of previous, relevant research within the field of study. The introduction might include a description of the purpose of the study, and what questions have served as the initial platform, as well as any limitations.
+Materials and methods
+A detailed description of how the study has been carried out, and what materials were used. Sometimes, the authors outline the theoretical perspective(s) on which the study is built.
+Results
+A presentation of the result of the study, frequently grouped as a number of themes, and with the aid of tables or charts. May be worked into the
+Discussion
+.
+Discussion
+An analysis and conclusions made from the results of the study. These are presented in relation to previous research and potential suggestions for further research needs within the field. May be worked into the
+Results
+section.
+References
+List of sources used presented according to a chosen reference style. There are different reference styles used in different subject areas, and they are adapted to the text types most common in the subject.
+
+
+Sources from popular science
+Scholars write not only for the academic world, but for society in general. Such material may include newspaper articles aimed at the public, textbooks for university students and school children, pods, videos, papers written for the interested public, or articles in various specialised journals, for specific groups of professionals. These types of publications are sometimes referred to as popular science, a somewhat simplified term.
+How to identify a paper from a popular science publication
+Popular science articles generally have two things in common: they are secondary sources, and the intended audience is the general public, rather than fellow scholars of the author. The contents may be based on research, but the wording is simplified, the language is easier to understand, and the technical terms are few. If such terms are used, they are frequently followed by an explanation. References and literature lists are not always part of popular science texts. The contents is often written by journalists rather than scholars. Illustrations used within popular science are often appealing and more attractive than those used in scientific publications, where tables and models are sometimes the only graphics.
+
+
+If you are still not sure whether a journal is scientific, you can use the
+Ulrichsweb
+service to browse for it. Here, you can find out if a journal is peer reviewed or not. Look for an icon that looks like a referee shirt (with black and white stripes). If a journal is marked with this icon (a mouseover will reveal the text “Refereed”), it means the papers in this journal have undergone peer review.
+Ulrichsweb (external page)
+
+
+Scholarly publications frequently undergo some form of review to ensure their quality, and can therefore be deemed more trustworthy than sources from popular science. But the relevance of a source does not depend mainly on the type of publication, but on the purpose of your text. In academic writing, sources from scholarly materials do carry a lot of weight, particularly for sections presenting previous research, and connect this research to the text at hand.
+The content of popular science sources is not reviewed in the same way but often has a publisher or editor who is responsible for the content. In many papers, popular science sources, such as newspaper articles, serve as appropriate sources in the background section - perhaps to highlight a current debate in the topic or field..
+It is important to know that AI tools generally cannot access articles that are placed behind subscription walls. If you ask an AI for information about current debates on a topic, the answer will only be based on what the language model is trained on and the material available on the open web.
+Sources from popular science may also serve as data providers for your paper. For a student making a text analysis of local news coverage of the climate crisis, local newspaper articles in particular make up the most relevant source type.
+
+
+Brief glossary
+Below are brief explanations of some words and terms used throughout this page.
+source:
+this can be a paper, a book or a government web page
+scientific source:
+may be a paper aimed at other scholars
+popular science source:
+may be a newspaper article
+scholarly communication:
+disseminating your findings
+scholarly publication types:
+may be a scientific paper, a thesis or a report
+scientific journal:
+found in all fields, and containing mainly scientific papers
+scientific paper/article:
+peer reviewed by experts within the field, who assess the academic quality of the article, and make recommendations regarding publication
+popular science article:
+a secondary source aimed at the general public
+paper vs article:
+usage varies across different disciplines, but the two terms are used mostly interchangeably. Paper refers more often to work written by students, while article is used more often about work intended for submission to a journal.
+
+
+Contact
+Find you way on the University
+Faculties and departments
+Security at the University
+Processing of your personal data
+Accessibility statement
+Cookie settings

@@ -3,7 +3,7 @@
 This repository contains:
 - ~starter/~ :: code for SpeechState that you can start with 
 - ~rag/~ :: code for RAG that you can start with 
-- ~labs/~ :: (TBA) assignments for the course
+- ~labs/~ :: assignments for the course
 - ~tutorials/~ :: tutorials  
 
 #+begin_quote

@@ -1,0 +1,174 @@
+#+TITLE: LLMs  and RAG
+
+#+begin_quote
+[!WARNING]
+Contents of this lab are subject to change. We will inform you about all the changes.
+#+end_quote
+
+In this lab you will explore how LLMs in combination with Retrieval-Augumented Generation (RAG) can be used in XState and SpeechState. You will be using Qdrant as infrustructure for RAG.
+
+Relevant documentation:
+- XState docs: https://stately.ai/docs/xstate
+- SpeechState docs (under construction): https://speechstate.maraev.me/
+- Qdrant docs: https://qdrant.tech/documentation/ 
+- OpenAI chat completions API:
+  - [[https://developers.openai.com/api/reference/typescript/resources/chat/subresources/completions/methods/create][OpenAI reference]] 
+  - [[https://console.groq.com/docs/openai][Groq's OpenAI-compatible API]]
+  - [[https://docs.ollama.com/api/openai-compatibility][ollama's OpenAI-compatible API]]
+    
+* Part 1: Chit-chat with SpeechState
+
+In this part you will create a voice-enabled chatbot. 
+
+1. Fork and clone this repository.
+2. In your code implement an information state update pattern which will help you maintain the history of your dialogue. This will make the chat less repetitive.
+   - Intoduce ~messages: Message[]~ into your context, where the type ~Message~ is:
+     #+begin_src typescript
+     type Message = {
+       role: "assistant" | "user" | "system";
+       content: string;
+     }
+     #+end_src
+   - You will be adding every recognised utterance (user) and every result from the LLM (assistant) as a element to the ~messages~ array. 
+   - You will be using  ~messages~ as a part of your chat completions API calls.
+3. You can add a starting ~system~ message that will act as initial
+   prompt to the LLM, for instance, instructing it to provide very
+   brief chat-like responses.
+4. Modify the ~fetch~ actor from exercise to provide chat completions on
+   the basis of the ~messages~.
+5. Invoke this actor in order to implement an infinite completion
+   loop. You can refer to the diagram below (some details omitted) or
+   modify it according to your own perspective.
+
+  #+begin_src plantuml :results output replace file :file img/completion.svg :exports results :tangle statechart.plantuml
+  @startuml
+  state Loop {
+    [*] -> Speaking
+    ChatCompletion: invoke(chatCompletion)
+    ChatCompletion -> Speaking: onDone\n/append(event.output,messages)
+    Speaking: **entry:** speak(lastMessage)
+    Speaking --> Ask: SPEAK_COMPLETE
+    Ask: **entry:** listen
+    Ask --> Ask: RECOGNISED\n/append(event.result,messages)
+    Ask --> ChatCompletion: LISTEN_COMPLETE
+  }
+  Loop: **entry:** /append("<your_greeting>",messages)
+  #+end_src
+
+  #+RESULTS:
+  [[file:img/completion.svg]]
+  
+    #+begin_quote
+   *** ~/append(...)~ is a shorthand for ~assign~ action which appends a new message to the list of messages.
+    #+end_quote
+
+After this is done you should be able to have a chat with your LLM!
+
+* Part 2. RAG or chat about the documents
+
+** Starting point
+
+1. Ask your dialogue system a question about something only relevant
+   for GU students (e.g., "What is the phone number for Feelgood") and
+   you'll run into trouble.
+2. We scraped the "Service and support" portal for you. You can find
+   the scraper written in Python in a [[lab1/]] folder. It work like this:
+   - It takes pages URLs from the ~urls.txt~ file.
+   - It parses the page title and scrapes the content from HTML elements that look like this (they roughly represent the sections of the document):
+     #+begin_src html
+     <div class="formatted-content">
+     </div>
+     #+end_src
+   - It exports every page into a text file where the sections are
+     divided by ~\n\n\n~ character sequence.
+3. The resulting documents are in the [[lab1/data]] folder.
+4. Feel free to modify this code and adjust it to your needs.
+    
+** Working with Qdrant
+
+In ~./rag~ folder you will find our implementation of a command-line
+interface as well as the docker-compose file for server which you can run locally.
+
+*** Running the server
+
+See in the [[file:~/Teaching/ds-2/dialogue-systems-2-2026/tutorials/rag.org][RAG tutorial]].  There is also a ~/rag/docker-compose.yml~ file
+that you can use.
+
+The data will be stored locally, in the ~/rag/qdrant_data/~ folder.
+
+
+*** Qdrant Command-line Client
+We implemented a TypeScript command client for Qdrant. To learn how
+you can use it, follow the documentation:
+#+begin_src sh
+  npx tsx src/main.ts --help
+#+end_src
+or, for a specific command:
+#+begin_src sh
+  npx tsx src/main.ts addData --help
+#+end_src
+
+Study the code and to understand what is going on.
+
+*** Calling Qdrant from SpeechState
+
+This you will need to implement yourself.
+
+** The Task
+Your task is two-fold: 1) assemble RAG database, 2) use this
+database to implement RAG in your speechstate application.
+
+*** 1. Assemble RAG database
+1. Create a collection where you will store your data. You can use an
+   arbitrary name.
+2. Add data to your collection. It is suggested that you implement a
+   command-line command that will add data from a given folder all at
+   once. Consider adding metadata to your documents which will make
+   search faster and easier.
+3. Test if you can query the data for something specific for GU
+   students (based on information from
+   https://studentportal.gu.se/index%2ephp/en/service-and-support)
+
+*** 2. Implement RAG for SpeechState
+1. Take the chit-chat application that you developed for Part 1 as
+   starting point.
+2. Implement the simplest version of RAG for SpeechState, enabling
+   your dialogue system to answer specific questions (e.g., "What is
+   the phone number for Feelgood"). In order to do this, you will
+   need:
+   - Retrieval :: to query Qdrant using ~invoke~ 
+   - Augmentation :: to interpret the response and include it in the system prompt  
+   - Generation :: to use this prompt to generate a relevant response
+     
+* VG Part (1 extra point) 
+For VG part you will need to do the following two items:
+- VG-1 :: Implement handling of ~ASR_NOINPUT~
+- VG-RAG :: *Further experiments with RAG*. Provide a short report (~2
+  A4 page; PDF, Markdown or org-mode
+format), covering your reflections and "proof-of-concept" tests. Here
+  is /a tentative list of questions/ to reflect on or try to
+  implement. 
+  - Does the RAG works well in case if the dialogue unfolds, and not
+    just for one-shot queries?
+  - Are there better ways to prepare, structure and chunk the data
+    that you are storing in RAG database?
+  - Should you use only the latest utterance to query the database?
+  - Are there better ways to create embeddings for your /points/? Consider:
+    - sparse vectors 
+    - different embedding models and their parameters
+    - different prompts for embedding models
+  - Should you return different number of query results (currently it
+    is limited to 5 results)?
+  - Can you implement filtering and re-ranking for query results?
+
+    There is no requirement of the number of questions needed
+  for completion of VG part, because you can go quite deep with
+  addressing just one of them. Think about your project while working
+  on these questions and don't forget to consult [[https://qdrant.tech/documentation/][Qdrant documentation]]. Commit the report in ~/labs/lab1~ folder.
+
+* Submission
+
+Report the lab by:
+- submitting a link to a pull request containing your solution (~/rag~ and ~/starter~ folders)  and a short report (for VG part).
+- attaching your RAG data folder (~/rag/qdrant_data~, zipped) to the
+  Canvas assignment.
