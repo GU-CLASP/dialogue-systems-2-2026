@@ -12,25 +12,27 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+const azureCredentials = {
+  endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
+  key: KEY,
+};
 
+/** backup: Azure access via FLoV proxy
+const azureProxyCredentials = {
+  proxyUrl: "https://rndserv.flov.gu.se:4000/api/token",
+  key: "",
+  };
+*/
 
 const settings: Settings = {
+  azureCredentials: azureCredentials,
+  azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
+  locale: "en-US",
+  ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
 };
-
-interface GrammarEntry {
-
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
 
 const dmMachine = setup({
   types: {
@@ -57,6 +59,12 @@ const dmMachine = setup({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [
+      {
+      role: "system",
+      content: "You are a voice assistant."
+      },
+    ],
   }),
   id: "DM",
   initial: "Prepare",
@@ -95,8 +103,19 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
+              actions: assign(({ context, event }) => {
+                const utterance = event.value[0].utterance;
+                return { 
+                  lastResult: event.value ,
+                  
+                  messages: [
+                    context.messages,
+                    {
+                      role: "user",
+                      contet: utterance,
+                    }
+                  ],
+                };
               }),
             },
             ASR_NOINPUT: {
@@ -106,17 +125,7 @@ const dmMachine = setup({
         },
       },
     },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
-    },
+    
     Done: {
       on: {
         CLICK: "Greeting",
