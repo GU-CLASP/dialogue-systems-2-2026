@@ -4,7 +4,7 @@ import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "francecentral";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -33,27 +33,6 @@ const settings: Settings = {
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
 };
-
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
 
 const dmMachine = setup({
   types: {

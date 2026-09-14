@@ -5,6 +5,12 @@ export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
   // nextUtterance: string;
+  messages ?: Message[];
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};
+
+export type Message = {
+  role: "assistant" | "user" | "system" ;
+  content: string
+}
