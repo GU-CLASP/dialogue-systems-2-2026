@@ -54,7 +54,16 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    getCompletion: fromPromise(async({ input }: {inout: {messages: Message[] }}) => {
+      const response = await openai.chat.completion.create({
+        model: "ModelName"
+        messages: input.messages,
+        });
+      
+      
+      }),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
@@ -62,7 +71,7 @@ const dmMachine = setup({
     messages: [
       {
       role: "system",
-      content: "You are a voice assistant."
+      content: "You are a voice assistant. Answer in short, helpful and kind responses."
       },
     ],
   }),
