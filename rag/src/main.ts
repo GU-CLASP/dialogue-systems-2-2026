@@ -1,12 +1,14 @@
 #!/usr/bin/env node
+// a samll command-line RAG preparation/search tool
 
 import { Command } from "commander";
-import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
-import { QdrantClient } from "@qdrant/js-client-rest";
-import { v4 as uuidv4 } from "uuid";
-import OpenAI from "openai";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters"; // breaks large documents into smaller chunks
+import { readFile } from "node:fs/promises"; // reads files from disk asynchronously
+import { QdrantClient } from "@qdrant/js-client-rest"; // lets typescript communicate with the Qdrant vector database
+import { v4 as uuidv4 } from "uuid"; // it creates unique IDs
+import OpenAI from "openai"; // to communicate with the local Ollama
 
+// with this u connect to the Qdrant container in docer-compose.yml
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
 const openai = new OpenAI({
@@ -15,14 +17,17 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+// the commander setup
 const program = new Command();
 program.name("npx tsx src/main.ts").description("Qdrant CLI").version("1.0.0");
 
+// a demonstration/test of Commmander and TypeScript
 export function hello(name: string, options: any) {
   const message = `Hello, ${name}!`;
   return options.uppercase ? message.toUpperCase() : message;
 }
 
+// this function: takes text -> convert into array of numbers
 const embed = async (input: string) =>
   openai.embeddings
     .create({
@@ -40,39 +45,48 @@ program
     console.log(hello(name, options));
   });
 
+
 /** Chunking a document */
-const makeChunksFromFile = async (filepath: string) => {
-  const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 500,
-    chunkOverlap: 50,
-    separators: ["\n\n\n", "\n\n", "\n", ". ", " "],
+const makeChunksFromFile = async (filepath: string) => { // takes filepath
+  const splitter = new RecursiveCharacterTextSplitter({ // u are telling LangChain
+    chunkSize: 500, // make 500 chars long
+    chunkOverlap: 50, // adjacent chunks share about 50 chars
+    separators: ["\n\n\n", "\n\n", "\n", ". ", " "], // tells splitter where it should prefer to break text
+    // first try large paragraph boundaries, then smaller paragraph boundaries, then lines, sentences and finally spaces
   });
 
-  const document = await readFile(filepath, "utf8");
-  const chunks = await splitter.splitText(document);
+  const document = await readFile(filepath, "utf8"); // reads the text file
+  const chunks = await splitter.splitText(document); //split it
   return chunks;
 };
 
 program
-  .command("split")
+  .command("split") // create a terminal command called split
   .description("Split file at <path> into chunks and print.")
   .argument("<path>", "file path")
   .action(async (path, _options) => {
-    const chunks = await makeChunksFromFile(path);
-    chunks.forEach((c, ix) => console.log(ix, "\n", c));
+    const chunks = await makeChunksFromFile(path); // splits the file
+    chunks.forEach((c, ix) => 
+      console.log(ix, "\n", c)); // prints every chunk
   });
 
+  // creating the Qdrant collection
 program
   .command("createCollection")
   .description("Create a collection")
   .argument("<name>", "collection name")
   .action(async (name) => {
     await client.createCollection(name, {
-      vectors: { size: 384, distance: "Cosine" },
+      vectors: { 
+        size: 384, 
+        distance: "Cosine" 
+      },
     });
     console.log(`Succesfully created collection: ${name}`);
   });
 
+
+  // adding data
 program
   .command("addData")
   .description("Chunk data at <path> and add it to a collection.")
@@ -80,9 +94,9 @@ program
   .argument("<path>", "file path")
   .action(async (collection, path) => {
     const chunks = await makeChunksFromFile(path);
-    const points = await Promise.all(
-      chunks.map(async (chunk) => {
-        const embedding = await embed(chunk);
+    const points = await Promise.all( // start creating embeddings for all the chunks and wait until they have all finished
+      chunks.map(async (chunk) => { // for every chunk, perform an asynchronous operation
+        const embedding = await embed(chunk); // convert the chunk into vector
         return {
           id: uuidv4(),
           vector: embedding,
@@ -93,21 +107,25 @@ program
     console.log(
       `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
     );
-    await client.upsert(collection, { wait: true, points: points });
+    await client.upsert(collection, { // stores all the points in Qdrant
+      wait: true, 
+      points: points 
+    });
     console.log(
       `Succesfully added ${chunks.length} document into collection: ${collection}`,
     );
   });
 
+  // querycollection
 program
   .command("queryCollection")
   .description("Query the collection")
   .argument("<collection>", "collection name")
   .argument("<query>", "text of the query")
   .action(async (collection, query) => {
-    const embedding = await embed(query);
-    const results = await client.query(collection, {
-      with_payload: true,
+    const embedding = await embed(query); // convert the question into a vector using the same embedding model
+    const results = await client.query(collection, { //find the five stored vectors most similar to this question vector
+      with_payload: true, // also give the stored text, not just the vector and id
       query: embedding,
       limit: 5,
     });
