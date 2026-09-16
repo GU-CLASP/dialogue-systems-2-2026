@@ -34,6 +34,19 @@ const settings: Settings = {
   bargeIn: false,
 };
 
+const chatCompletion = (input: string) => {
+  return openai.chat.completions.create({
+        messages:[
+          {
+            role: 'user',
+            content: input,
+          }
+        ],
+        model:'gpt-oss:20b',
+     })
+
+};
+
 const dmMachine = setup({
   types: {
     /** you might need to extend these */
@@ -54,7 +67,10 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    getCompletion: fromPromise<any, string>(async ({input}) => 
+      await chatCompletion(input)),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
@@ -71,7 +87,7 @@ const dmMachine = setup({
       on: { CLICK: "Greeting" },
     },
     Greeting: {
-      initial: "Prompt",
+      initial: "GetGreeting",
       on: {
         LISTEN_COMPLETE: [
           {
@@ -82,9 +98,23 @@ const dmMachine = setup({
         ],
       },
       states: {
+        GetGreeting: {
+          invoke: {
+            src: "getCompletion",
+            input: "Start the conversation using a short greeting.",
+            onDone: {
+              target: "Prompt",
+              actions: assign({ nextUtterance: ({event}) => event.output.choices[0].message.content
+              })
+            }
+          }
+        },
         Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
+          entry: { 
+            type: "spst.speak", 
+            params: ({context}) => ({ utterance: context.nextUtterance }),
+          },
+          on: { SPEAK_COMPLETE: "#DM.Done" },
         },
         NoInput: {
           entry: {
@@ -112,9 +142,7 @@ const dmMachine = setup({
       entry: {
         type: "spst.speak",
         params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
+          utterance: `You just said: ${context.lastResult![0].utterance}. `,
         }),
       },
       on: { SPEAK_COMPLETE: "Done" },
