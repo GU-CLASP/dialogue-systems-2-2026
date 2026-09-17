@@ -1,7 +1,7 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
 
 const REGION = "francecentral";
@@ -34,15 +34,10 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-const chatCompletion = (input: string) => {
+const chatCompletion = (input: Message[]) => {
   return openai.chat.completions.create({
-        messages:[
-          {
-            role: 'user',
-            content: input,
-          }
-        ],
-        model:'gpt-oss:20b',
+        messages:input,
+        model:'gemma2:2b',
      })
 
 };
@@ -68,13 +63,26 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    getCompletion: fromPromise<any, string>(async ({input}) => 
-      await chatCompletion(input)),
+    getGreeting: fromPromise<any, string>(async ({input}) => {
+      return await openai.chat.completions.create({
+        messages:[
+          {
+            role: 'system',
+            content: input,
+          }
+        ],
+        model:'gemma2:2b',
+     })
+    }),
+    getCompletion: fromPromise<any, Message[]>(async input => 
+      await chatCompletion(input.input)),
   },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages : [{role: 'system', content: 'You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.'}],
+    noInput: false
   }),
   id: "DM",
   initial: "Prepare",
@@ -84,37 +92,45 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { CLICK: "GetGreeting" },
     },
-    Greeting: {
-      initial: "GetGreeting",
+    GetGreeting: {
+          invoke: {
+            src: "getGreeting",
+            input: ( {context}) => context.messages?.[0].content,
+            onDone: {
+              target: "ChitChatLoop",
+              actions: //assign({ nextUtterance: ({event}) => event.output.choices[0].message.content
+              /*(({event, context}) => context.messages?.push({
+                  role: 'assistant',
+                  content: event.output.choices[0].message.content
+              }))*/
+              assign({messages: ({ context, event }) => [... context.messages , {
+                  role: 'assistant',
+                  content: event.output.choices[0].message.content
+                }
+              ]})  
+            }
+          }
+        },
+    ChitChatLoop: {
+      initial: "Speak",
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
+            target: ".GetCompletion",
+            guard: ({ context }) => !context.noInput,
           },
           { target: ".NoInput" },
         ],
       },
       states: {
-        GetGreeting: {
-          invoke: {
-            src: "getCompletion",
-            input: "Start the conversation using a short greeting.",
-            onDone: {
-              target: "Prompt",
-              actions: assign({ nextUtterance: ({event}) => event.output.choices[0].message.content
-              })
-            }
-          }
-        },
-        Prompt: {
+        Speak: {
           entry: { 
             type: "spst.speak", 
-            params: ({context}) => ({ utterance: context.nextUtterance }),
+            params: ( {context}) => ({ utterance: context.messages?.[context.messages.length - 1].content}),
           },
-          on: { SPEAK_COMPLETE: "#DM.Done" },
+          on: { SPEAK_COMPLETE: "Ask" },
         },
         NoInput: {
           entry: {
@@ -127,14 +143,30 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
-              }),
+              actions: assign({messages: ({ context, event }) => [... context.messages , {
+                  role: 'user',
+                  content: event.value[0].utterance
+                }
+              ]})  
             },
             ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
+              actions: assign({ noInput: true }),
             },
           },
+        },
+        GetCompletion: {
+          invoke: {
+            src: "getCompletion",
+            input: ( {context}) => context.messages,
+            onDone: {
+              target: "Speak",
+              actions: assign({messages: ({ context, event }) => [... context.messages , {
+                  role: 'assistant',
+                  content: event.output.choices[0].message.content
+                }
+              ]})  
+            }
+          }
         },
       },
     },
@@ -149,7 +181,7 @@ const dmMachine = setup({
     },
     Done: {
       on: {
-        CLICK: "Greeting",
+        CLICK: "GetGreeting",
       },
     },
   },
