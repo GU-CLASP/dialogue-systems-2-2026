@@ -3,6 +3,7 @@ import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
 const REGION = "francecentral";
 
@@ -11,6 +12,8 @@ const openai = new OpenAI({
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
 });
+
+const client = new QdrantClient({ host: "localhost", port: 6333 });
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
@@ -75,14 +78,30 @@ const dmMachine = setup({
      })
     }),
     getCompletion: fromPromise<any, Message[]>(async input => 
-      await chatCompletion(input.input)),
+      await chatCompletion(input.input)
+    ),
+    queryRAG: fromPromise<any, string>(async ({input}) => {
+      const embedding = await openai.embeddings
+        .create({
+          model: "qwen3-embedding",
+          input: input,
+          dimensions: 384,
+        })
+        .then((result) => result.data[0].embedding);
+      return await client.query("studentPortal", {
+        with_payload: true,
+        query: embedding,
+        limit: 5,
+      });
+    }),
   },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
     messages : [{role: 'system', content: 'You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.'}],
-    noInput: false
+    noInput: false,
+    retrievedPoints: [],
   }),
   id: "DM",
   initial: "Prepare",
@@ -118,7 +137,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: ".GetCompletion",
+            target: ".Retrieval",
             guard: ({ context }) => !context.noInput,
           },
           { target: ".NoInput" },
@@ -154,6 +173,16 @@ const dmMachine = setup({
             },
           },
         },
+        Retrieval: {
+          invoke: {
+            src: "queryRAG",
+            input: ({context}) => context.messages?.[context.messages.length - 1].content,
+            onDone: {
+              target: "#DM.Done",
+              actions: assign({retrievedPoints: ({ event }) => event.output.points})  
+            }
+          }
+        },
         GetCompletion: {
           invoke: {
             src: "getCompletion",
@@ -169,15 +198,6 @@ const dmMachine = setup({
           }
         },
       },
-    },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. `,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
     },
     Done: {
       on: {
