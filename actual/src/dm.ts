@@ -37,7 +37,7 @@ const getChatCompletionsFromLLMLogic = fromPromise(
       });
 
       const outputContent = completion.choices[0]?.message?.content ?? "";
-      const output = outputContent.replace(/^assistant:\s*/i, "").trim();
+      const output = outputContent.replace(/^assistant\s*/i, "").trim();
       console.log(`LLM output: ${output}`);
 
       return output;
