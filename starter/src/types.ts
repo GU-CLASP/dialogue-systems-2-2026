@@ -1,7 +1,7 @@
 import { Hypothesis, SpeechStateExternalEvent } from "speechstate";
 import { AnyActorRef } from "xstate";
 
-export type Point = {
+export type Payload = {
   page: string,
   text: string
 }
@@ -12,6 +12,7 @@ export interface DMContext {
   messages: Message[];
   noInput: boolean ;
   retrievedPoints: any;
+  payloads: Payload[],
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};

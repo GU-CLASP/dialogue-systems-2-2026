@@ -102,6 +102,7 @@ const dmMachine = setup({
     messages : [{role: 'system', content: 'You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.'}],
     noInput: false,
     retrievedPoints: [],
+    payloads: [],
   }),
   id: "DM",
   initial: "Prepare",
@@ -178,17 +179,36 @@ const dmMachine = setup({
             src: "queryRAG",
             input: ({context}) => context.messages?.[context.messages.length - 1].content,
             onDone: {
-              target: "#DM.Done",
+              target: "Augmentation",
               actions: assign({retrievedPoints: ({ event }) => event.output.points})  
             }
           }
         },
+        Augmentation: {
+          entry: 
+            assign({payloads: ({ context }) => {
+            return context.retrievedPoints.map((item) => ({
+              page: item.payload.page,
+              text: item.payload.text,
+            }))
+          }}),
+          always: {
+              target: "GetCompletion",
+              actions: assign({messages: ({ context}) => [... context.messages , {
+                  role: 'system',
+                  content: `Reply to the user based on the following documents:
+                  ${context.payloads.map(item => JSON.stringify(item)).join("\n")}`
+                }
+              ]})  
+            }
+        },
+
         GetCompletion: {
           invoke: {
             src: "getCompletion",
             input: ( {context}) => context.messages,
             onDone: {
-              target: "Speak",
+              target: "#DM.Done",
               actions: assign({messages: ({ context, event }) => [... context.messages , {
                   role: 'assistant',
                   content: event.output.choices[0].message.content
