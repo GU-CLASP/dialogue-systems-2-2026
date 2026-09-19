@@ -29,17 +29,22 @@ const azureProxyCredentials = {
 
 const getChatCompletionsFromLLMLogic = fromPromise(
   async ({ input }: { input: { messages: Message[] } }) => {
-    const completion = await openai.chat.completions.create({
-      messages: input.messages,
-      model: LLM_MODEL,
-      store: true,
-    });
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: input.messages,
+        model: LLM_MODEL,
+        store: true,
+      });
 
-    const outputContent = completion.choices[0]?.message?.content ?? "";
-    const output = outputContent.replace(/^assistant:\s*/i, "").trim();
-    console.log(`output: ${output}`);
+      const outputContent = completion.choices[0]?.message?.content ?? "";
+      const output = outputContent.replace(/^assistant:\s*/i, "").trim();
+      console.log(`output: ${output}`);
 
-    return output;
+      return output;
+    } catch (error) {
+      console.error("LLM error:", error);
+      throw error;
+    }
   },
 );
 
@@ -119,8 +124,7 @@ const dmMachine = setup({
           }),
         },
         onError: {
-          // target: "failure",
-          // actions: assign({ error: ({ event }) => event.error }),
+          target: "Error",
         },
       },
     },
@@ -140,6 +144,13 @@ const dmMachine = setup({
       entry: {
         type: "spst.speak",
         params: { utterance: prompts.cannotHear },
+      },
+      on: { SPEAK_COMPLETE: "Ask" },
+    },
+    Error: {
+      entry: {
+        type: "spst.speak",
+        params: { utterance: prompts.llmError },
       },
       on: { SPEAK_COMPLETE: "Ask" },
     },
