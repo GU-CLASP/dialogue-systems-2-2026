@@ -98,7 +98,7 @@ const dmMachine = setup({
       on: { CLICK: "Greeting" },
     },
     Greeting: {
-      initial: "GetLLMResponse",
+      initial: "GenerateLLMResponse",
       on: {
         LISTEN_COMPLETE: [
           {
@@ -109,7 +109,7 @@ const dmMachine = setup({
         ],
       },
       states: {
-        GetLLMResponse: {
+        GenerateLLMResponse: {
           invoke: {
             id: "getChatCompletionsFromLLMActor",
             src: "getChatCompletionsFromLLMActor",
@@ -159,7 +159,7 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              target: "ChatCompletionsFromLLM",
+              target: "GenerateLLMResponse",
               actions: assign({
                 lastResult: ({ event }) => event.value,
                 messages: ({ context, event }) => {
@@ -176,33 +176,6 @@ const dmMachine = setup({
             },
             ASR_NOINPUT: {
               actions: assign({ lastResult: null }),
-            },
-          },
-        },
-        ChatCompletionsFromLLM: {
-          invoke: {
-            id: "getChatCompletionsFromLLMActor",
-            src: "getChatCompletionsFromLLMActor",
-            input: ({ context: { messages } }) => ({ messages }),
-            onDone: {
-              target: "Prompt",
-              actions: assign({
-                messages: ({ context, event }) => {
-                  console.log(`event.output: ${event.output}`);
-                  const { messages } = context;
-                  return [
-                    ...messages,
-                    {
-                      role: ROLES.Assistant,
-                      content: event.output ?? "",
-                    },
-                  ];
-                },
-              }),
-            },
-            onError: {
-              // target: "failure",
-              // actions: assign({ error: ({ event }) => event.error }),
             },
           },
         },
