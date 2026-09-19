@@ -144,7 +144,10 @@ const dmMachine = setup({
       on: { SPEAK_COMPLETE: "Ask" },
     },
     Ask: {
-      entry: { type: "spst.listen" },
+      entry: [
+        assign({ lastResult: null }),
+        { type: "spst.listen" },
+      ],
       on: {
         RECOGNISED: {
           target: "GenerateLLMResponse",
