@@ -34,36 +34,6 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
-
-/* async function getResponseFromOpenAI(messages: Message[]) {
-  const completion = await openai.chat.completions.create({
-    messages: messages,
-    model: "gemma4",
-    store: true,
-  });
-
-  console.log(completion.choices[0]);
-} */
 
 const startsWithRole = (str: string): boolean =>
   ROLES.some((role) => str.startsWith(role));
@@ -133,10 +103,6 @@ const dmMachine = setup({
       initial: "GetLLMResponse",
       on: {
         LISTEN_COMPLETE: [
-          /* {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
-          }, */
           {
             target: ".NoInput",
             guard: ({ context }) =>
@@ -234,17 +200,6 @@ const dmMachine = setup({
           },
         },
       },
-    },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
     },
     Done: {
       on: {
