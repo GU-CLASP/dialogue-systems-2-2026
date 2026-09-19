@@ -6,8 +6,8 @@ import { KEY } from "./credentials";
 import prompts from "./prompts";
 import { DMContext, DMEvents, Message, ROLES } from "./types";
 
-const REGION = "swedencentral";
-const LLM_MODEL = "llama3.2:latest";
+const REGION = "swedencentral" as const;
+const LLM_MODEL = "llama3.2:latest" as const;
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
