@@ -193,10 +193,12 @@ dmActor.subscribe((state) => {
 });
 
 export function setupButton(element: HTMLButtonElement) {
-  element.addEventListener("click", () => {
+  const clickHandler = () => {
     dmActor.send({ type: "CLICK" });
-  });
-  dmActor.subscribe((snapshot) => {
+  };
+  element.addEventListener("click", clickHandler);
+
+  const subscription = dmActor.subscribe((snapshot) => {
     const meta: { view?: string } = Object.values(
       snapshot.context.spstRef.getSnapshot().getMeta(),
     )[0] || {
@@ -204,4 +206,9 @@ export function setupButton(element: HTMLButtonElement) {
     };
     element.innerHTML = `${meta.view}`;
   });
+
+  return () => {
+    element.removeEventListener("click", clickHandler);
+    subscription.unsubscribe();
+  };
 }
