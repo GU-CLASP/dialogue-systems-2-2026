@@ -149,7 +149,7 @@ const dmMachine = setup({
         NoInput: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+            params: { utterance: prompts.cannotHear },
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
