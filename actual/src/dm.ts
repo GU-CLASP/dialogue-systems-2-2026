@@ -141,7 +141,9 @@ const dmMachine = setup({
           entry: {
             type: "spst.speak",
             params: ({ context }) => ({
-              utterance: context.messages[context.messages.length - 1].content,
+              utterance:
+                context.messages[context.messages.length - 1]?.content ??
+                prompts.defaultGreeting,
             }),
           },
           on: { SPEAK_COMPLETE: "Ask" },
@@ -166,7 +168,7 @@ const dmMachine = setup({
                     ...messages,
                     {
                       role: ROLES.User,
-                      content: event.value[0].utterance,
+                      content: event.value[0]?.utterance ?? "",
                     },
                   ];
                 },
