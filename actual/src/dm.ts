@@ -49,7 +49,7 @@ const settings: Settings = {
   azureCredentials: azureCredentials,
   azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
-  asrDefaultNoInputTimeout: 15000,
+  asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
