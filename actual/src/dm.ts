@@ -34,7 +34,8 @@ const getChatCompletionsFromLLMLogic = fromPromise(
       model: LLM_MODEL,
       store: true,
     });
-    const outputContent = completion.choices[0].message.content ?? "";
+
+    const outputContent = completion.choices[0]?.message?.content ?? "";
     let output = outputContent;
     if (startsWithRole(outputContent)) {
       output = outputContent.split("\n\n")[1];
