@@ -103,7 +103,7 @@ const dmMachine = setup({
         src: "getChatCompletionsFromLLMActor",
         input: ({ context: { messages } }) => ({ messages }),
         onDone: {
-          target: "Prompt",
+          target: "Speak",
           actions: assign({
             messages: ({ context, event }) => {
               console.log(`event.output: ${event.output}`);
@@ -124,7 +124,7 @@ const dmMachine = setup({
         },
       },
     },
-    Prompt: {
+    Speak: {
       // entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
       entry: {
         type: "spst.speak",
