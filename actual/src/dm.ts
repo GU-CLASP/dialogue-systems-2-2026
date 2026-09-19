@@ -1,11 +1,13 @@
-import { assign, createActor, fromPromise, setup } from "xstate";
+import OpenAI from "openai";
 import { Settings, speechstate } from "speechstate";
+import { assign, createActor, fromPromise, setup } from "xstate";
+
 import { KEY } from "./credentials";
 import prompts from "./prompts";
 import { DMContext, DMEvents, Message, ROLES } from "./types";
-import OpenAI from "openai";
 
 const REGION = "swedencentral";
+const LLM_MODEL = "llama3.2:latest";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -25,6 +27,24 @@ const azureProxyCredentials = {
   };
 */
 
+const getChatCompletionsFromLLMLogic = fromPromise(
+  async ({ input }: { input: { messages: Message[] } }) => {
+    const completion = await openai.chat.completions.create({
+      messages: input.messages,
+      model: LLM_MODEL,
+      store: true,
+    });
+    const outputContent = completion.choices[0].message.content ?? "";
+    let output = outputContent;
+    if (startsWithRole(outputContent)) {
+      output = outputContent.split("\n\n")[1];
+    }
+    console.log(`output: ${output}`);
+
+    return output;
+  },
+);
+
 const settings: Settings = {
   azureCredentials: azureCredentials,
   azureRegion: REGION,
@@ -34,7 +54,6 @@ const settings: Settings = {
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
 };
-
 
 const startsWithRole = (str: string): boolean =>
   ROLES.some((role) => str.startsWith(role));
@@ -60,23 +79,7 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    getResponseFromOpenAI: fromPromise(
-      async ({ input }: { input: { messages: Message[] } }) => {
-        const completion = await openai.chat.completions.create({
-          messages: input.messages,
-          model: "llama3.2:latest",
-          store: true,
-        });
-        const outputContent = completion.choices[0].message.content ?? "";
-        let output = outputContent;
-        if (startsWithRole(outputContent)) {
-          output = outputContent.split("\n\n")[1];
-        }
-        console.log(`output: ${output}`);
-
-        return output;
-      },
-    ),
+    getChatCompletionsFromLLMActor: getChatCompletionsFromLLMLogic,
   },
 }).createMachine({
   context: ({ spawn }) => ({
@@ -113,8 +116,8 @@ const dmMachine = setup({
       states: {
         GetLLMResponse: {
           invoke: {
-            id: "getResponseFromOpenAI",
-            src: "getResponseFromOpenAI",
+            id: "getChatCompletionsFromLLMActor",
+            src: "getChatCompletionsFromLLMActor",
             input: ({ context: { messages } }) => ({ messages }),
             onDone: {
               target: "Prompt",
@@ -159,14 +162,19 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              target: "GetResponseFromLLM",
-              actions: assign(({ context, event }) => {
-                const { messages } = context;
-                messages.push({
-                  role: "user",
-                  content: event.value[0].utterance,
-                });
-                return { lastResult: event.value };
+              target: "ChatCompletionsFromLLM",
+              actions: assign({
+                lastResult: ({ event }) => event.value,
+                messages: ({ context, event }) => {
+                  const { messages } = context;
+                  return [
+                    ...messages,
+                    {
+                      role: "user",
+                      content: event.value[0].utterance,
+                    },
+                  ];
+                },
               }),
             },
             ASR_NOINPUT: {
@@ -174,22 +182,24 @@ const dmMachine = setup({
             },
           },
         },
-        GetResponseFromLLM: {
+        ChatCompletionsFromLLM: {
           invoke: {
-            id: "getResponseFromOpenAI",
-            src: "getResponseFromOpenAI",
+            id: "getChatCompletionsFromLLMActor",
+            src: "getChatCompletionsFromLLMActor",
             input: ({ context: { messages } }) => ({ messages }),
             onDone: {
               target: "Prompt",
               actions: assign({
                 messages: ({ context, event }) => {
-                  const { messages } = context;
-                  messages.push({
-                    role: "assistant",
-                    content: event.output ?? "",
-                  });
                   console.log(`event.output: ${event.output}`);
-                  return messages;
+                  const { messages } = context;
+                  return [
+                    ...messages,
+                    {
+                      role: "assistant",
+                      content: event.output ?? "",
+                    },
+                  ];
                 },
               }),
             },
