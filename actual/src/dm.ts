@@ -4,7 +4,7 @@ import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "swedencentral";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -28,7 +28,7 @@ const settings: Settings = {
   azureCredentials: azureCredentials,
   azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
-  asrDefaultNoInputTimeout: 5000,
+  asrDefaultNoInputTimeout: 15000,
   locale: "en-US",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
