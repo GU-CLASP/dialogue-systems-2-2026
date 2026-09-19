@@ -1,7 +1,7 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import { DMContext, DMEvents, Message, ROLES } from "./types";
 import OpenAI from "openai";
 
 const REGION = "swedencentral";
@@ -54,6 +54,19 @@ const grammar: { [index: string]: GrammarEntry } = {
 function isInGrammar(utterance: string) {
   return utterance.toLowerCase() in grammar;
 }
+/* async function getResponseFromOpenAI(messages: Message[]) {
+  const completion = await openai.chat.completions.create({
+    messages: messages,
+    model: "gemma4",
+    store: true,
+  });
+
+  console.log(completion.choices[0]);
+} */
+
+const startsWithRole = (str: string): boolean =>
+  ROLES.some((role) => str.startsWith(role));
+
 
 const dmMachine = setup({
   types: {
@@ -75,11 +88,36 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    getResponseFromOpenAI: fromPromise(
+      async ({ input }: { input: { messages: Message[] } }) => {
+        const completion = await openai.chat.completions.create({
+          messages: input.messages,
+          model: "llama3.2:latest",
+          store: true,
+        });
+        const outputContent = completion.choices[0].message.content ?? "";
+        let output = outputContent;
+        if (startsWithRole(outputContent)) {
+          output = outputContent.split("\n\n")[1];
+        }
+        console.log(`output: ${output}`);
+
+        return output;
+      },
+    ),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are a helpful friend here to chat. You are not an AI model, you are a human. Keep your responses short and friendly! Your response should not include any metadata, role or any other information, just the text of your response.",
+      },
+    ],
   }),
   id: "DM",
   initial: "Prepare",
