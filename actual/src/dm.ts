@@ -130,7 +130,7 @@ const dmMachine = setup({
       on: { CLICK: "Greeting" },
     },
     Greeting: {
-      initial: "Prompt",
+      initial: "GetLLMResponse",
       on: {
         LISTEN_COMPLETE: [
           {
@@ -141,8 +141,41 @@ const dmMachine = setup({
         ],
       },
       states: {
+        GetLLMResponse: {
+          invoke: {
+            id: "getResponseFromOpenAI",
+            src: "getResponseFromOpenAI",
+            input: ({ context: { messages } }) => ({ messages }),
+            onDone: {
+              target: "Prompt",
+              actions: assign({
+                messages: ({ context, event }) => {
+                  console.log(`event.output: ${event.output}`);
+                  const { messages } = context;
+                  return [
+                    ...messages,
+                    {
+                      role: "assistant",
+                      content: event.output ?? "",
+                    },
+                  ];
+                },
+              }),
+            },
+            onError: {
+              // target: "failure",
+              // actions: assign({ error: ({ event }) => event.error }),
+            },
+          },
+        },
         Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+          // entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+          entry: {
+            type: "spst.speak",
+            params: ({ context }) => ({
+              utterance: context.messages[context.messages.length - 1].content,
+            }),
+          },
           on: { SPEAK_COMPLETE: "Ask" },
         },
         NoInput: {
