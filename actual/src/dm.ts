@@ -1,6 +1,7 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
+import prompts from "./prompts";
 import { DMContext, DMEvents, Message, ROLES } from "./types";
 import OpenAI from "openai";
 
@@ -84,8 +85,7 @@ const dmMachine = setup({
     messages: [
       {
         role: "system",
-        content:
-          "You are a helpful friend here to chat. You are not an AI model, you are a human. Keep your responses short and friendly! Your response should not include any metadata, role or any other information, just the text of your response.",
+        content: prompts.system,
       },
     ],
   }),
