@@ -38,7 +38,7 @@ const getChatCompletionsFromLLMLogic = fromPromise(
 
       const outputContent = completion.choices[0]?.message?.content ?? "";
       const output = outputContent.replace(/^assistant:\s*/i, "").trim();
-      console.log(`output: ${output}`);
+      console.log(`LLM output: ${output}`);
 
       return output;
     } catch (error) {
@@ -111,7 +111,7 @@ const dmMachine = setup({
           target: "Speak",
           actions: assign({
             messages: ({ context, event }) => {
-              console.log(`event.output: ${event.output}`);
+              console.log(`LLM event output: ${event.output}`);
               const { messages } = context;
               return [
                 ...messages,
@@ -129,7 +129,6 @@ const dmMachine = setup({
       },
     },
     Speak: {
-      // entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
       entry: {
         type: "spst.speak",
         params: ({ context }) => ({
@@ -155,10 +154,7 @@ const dmMachine = setup({
       on: { SPEAK_COMPLETE: "Ask" },
     },
     Ask: {
-      entry: [
-        assign({ lastResult: null }),
-        { type: "spst.listen" },
-      ],
+      entry: [assign({ lastResult: null }), { type: "spst.listen" }],
       on: {
         RECOGNISED: {
           target: "GenerateLLMResponse",
