@@ -95,95 +95,86 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { CLICK: "GenerateLLMResponse" },
     },
-    Greeting: {
-      initial: "GenerateLLMResponse",
-      on: {
-        LISTEN_COMPLETE: [
-          {
-            target: ".NoInput",
-            guard: ({ context }) =>
-              !context.lastResult || context.lastResult.length === 0,
-          },
-        ],
+    GenerateLLMResponse: {
+      invoke: {
+        id: "getChatCompletionsFromLLMActor",
+        src: "getChatCompletionsFromLLMActor",
+        input: ({ context: { messages } }) => ({ messages }),
+        onDone: {
+          target: "Prompt",
+          actions: assign({
+            messages: ({ context, event }) => {
+              console.log(`event.output: ${event.output}`);
+              const { messages } = context;
+              return [
+                ...messages,
+                {
+                  role: ROLES.Assistant,
+                  content: event.output ?? "",
+                },
+              ];
+            },
+          }),
+        },
+        onError: {
+          // target: "failure",
+          // actions: assign({ error: ({ event }) => event.error }),
+        },
       },
-      states: {
-        GenerateLLMResponse: {
-          invoke: {
-            id: "getChatCompletionsFromLLMActor",
-            src: "getChatCompletionsFromLLMActor",
-            input: ({ context: { messages } }) => ({ messages }),
-            onDone: {
-              target: "Prompt",
-              actions: assign({
-                messages: ({ context, event }) => {
-                  console.log(`event.output: ${event.output}`);
-                  const { messages } = context;
-                  return [
-                    ...messages,
-                    {
-                      role: ROLES.Assistant,
-                      content: event.output ?? "",
-                    },
-                  ];
+    },
+    Prompt: {
+      // entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+      entry: {
+        type: "spst.speak",
+        params: ({ context }) => ({
+          utterance:
+            context.messages[context.messages.length - 1]?.content ??
+            prompts.defaultGreeting,
+        }),
+      },
+      on: { SPEAK_COMPLETE: "Ask" },
+    },
+    NoInput: {
+      entry: {
+        type: "spst.speak",
+        params: { utterance: prompts.cannotHear },
+      },
+      on: { SPEAK_COMPLETE: "Ask" },
+    },
+    Ask: {
+      entry: { type: "spst.listen" },
+      on: {
+        RECOGNISED: {
+          target: "GenerateLLMResponse",
+          actions: assign({
+            lastResult: ({ event }) => event.value,
+            messages: ({ context, event }) => {
+              const { messages } = context;
+              return [
+                ...messages,
+                {
+                  role: ROLES.User,
+                  content: event.value[0]?.utterance ?? "",
                 },
-              }),
+              ];
             },
-            onError: {
-              // target: "failure",
-              // actions: assign({ error: ({ event }) => event.error }),
-            },
-          },
+          }),
         },
-        Prompt: {
-          // entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          entry: {
-            type: "spst.speak",
-            params: ({ context }) => ({
-              utterance:
-                context.messages[context.messages.length - 1]?.content ??
-                prompts.defaultGreeting,
-            }),
-          },
-          on: { SPEAK_COMPLETE: "Ask" },
+        ASR_NOINPUT: {
+          actions: assign({ lastResult: null }),
         },
-        NoInput: {
-          entry: {
-            type: "spst.speak",
-            params: { utterance: prompts.cannotHear },
-          },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        Ask: {
-          entry: { type: "spst.listen" },
-          on: {
-            RECOGNISED: {
-              target: "GenerateLLMResponse",
-              actions: assign({
-                lastResult: ({ event }) => event.value,
-                messages: ({ context, event }) => {
-                  const { messages } = context;
-                  return [
-                    ...messages,
-                    {
-                      role: ROLES.User,
-                      content: event.value[0]?.utterance ?? "",
-                    },
-                  ];
-                },
-              }),
-            },
-            ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
-            },
-          },
+        LISTEN_COMPLETE: {
+          target: "NoInput",
+          guard: ({ context }) =>
+            !context.lastResult || context.lastResult.length === 0,
         },
       },
     },
     Done: {
       on: {
-        CLICK: "Greeting",
+        CLICK: "GenerateLLMResponse",
       },
     },
   },
