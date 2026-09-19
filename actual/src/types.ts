@@ -13,9 +13,13 @@ export type DMEvents =
   | { type: "CLICK" }
   | { type: "DONE" };
 
-export const ROLES = ["assistant", "user", "system"] as const;
+export const ROLES = {
+  Assistant: "assistant",
+  User: "user",
+  System: "system",
+} as const;
 
-export type MessageRole = (typeof ROLES)[number];
+export type MessageRole = (typeof ROLES)[keyof typeof ROLES];
 
 export type Message = {
   role: MessageRole;

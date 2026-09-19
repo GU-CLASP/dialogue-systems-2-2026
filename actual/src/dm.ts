@@ -56,7 +56,7 @@ const settings: Settings = {
 };
 
 const startsWithRole = (str: string): boolean =>
-  ROLES.some((role) => str.startsWith(role));
+  Object.values(ROLES).some((role) => str.startsWith(role));
 
 const dmMachine = setup({
   types: {
@@ -87,7 +87,7 @@ const dmMachine = setup({
     lastResult: null,
     messages: [
       {
-        role: "system",
+        role: ROLES.System,
         content: prompts.system,
       },
     ],
@@ -128,7 +128,7 @@ const dmMachine = setup({
                   return [
                     ...messages,
                     {
-                      role: "assistant",
+                      role: ROLES.Assistant,
                       content: event.output ?? "",
                     },
                   ];
@@ -170,7 +170,7 @@ const dmMachine = setup({
                   return [
                     ...messages,
                     {
-                      role: "user",
+                      role: ROLES.User,
                       content: event.value[0].utterance,
                     },
                   ];
@@ -196,7 +196,7 @@ const dmMachine = setup({
                   return [
                     ...messages,
                     {
-                      role: "assistant",
+                      role: ROLES.Assistant,
                       content: event.output ?? "",
                     },
                   ];
