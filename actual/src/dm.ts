@@ -36,10 +36,7 @@ const getChatCompletionsFromLLMLogic = fromPromise(
     });
 
     const outputContent = completion.choices[0]?.message?.content ?? "";
-    let output = outputContent;
-    if (startsWithRole(outputContent)) {
-      output = outputContent.split("\n\n")[1];
-    }
+    const output = outputContent.replace(/^assistant:\s*/i, "").trim();
     console.log(`output: ${output}`);
 
     return output;
@@ -55,9 +52,6 @@ const settings: Settings = {
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
 };
-
-const startsWithRole = (str: string): boolean =>
-  Object.values(ROLES).some((role) => str.startsWith(role));
 
 const dmMachine = setup({
   types: {
