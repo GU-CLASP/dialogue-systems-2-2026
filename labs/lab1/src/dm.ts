@@ -1,10 +1,11 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
-import { Settings, speechstate } from "speechstate";
-import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import type { Settings} from "speechstate";
+import { speechstate } from "speechstate";
+import { KEY } from "./azure";
+import type { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "germanywestcentral";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -31,8 +32,11 @@ const settings: Settings = {
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
   ttsDefaultVoice: "en-US-DavisNeural",
-  bargeIn: false,
 };
+
+interface CompletionInput {
+    messages: Message[]
+  };
 
 const dmMachine = setup({
   types: {
@@ -55,19 +59,29 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    getCompletion: fromPromise(async({ input }: {inout: {messages: Message[] }}) => {
-      const response = await openai.chat.completion.create({
-        model: "ModelName"
-        messages: input.messages,
-        });
-      
-      
-      }),
+
+
+    getCompletion: fromPromise(
+        async({ input }: { input: CompletionInput }) => {
+          const response = await openai.chat.completions.create({
+            model: "llama3.1",
+            messages: input.messages,
+          });
+
+          const content = response.choices[0].message.content;
+          if (content === null) {
+            throw new Error("The model didn't respond.");
+          } 
+          return content;
+      }
+    ),
+
   },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    nextUtterance: "",
     messages: [
       {
       role: "system",
@@ -90,7 +104,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "CheckGrammar",
+            target: "GetCompletion",
             guard: ({ context }) => !!context.lastResult,
           },
           { target: ".NoInput" },
@@ -98,7 +112,7 @@ const dmMachine = setup({
       },
       states: {
         Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+          entry: { type: "spst.speak", params: { utterance: `What's up?` } },
           on: { SPEAK_COMPLETE: "Ask" },
         },
         NoInput: {
@@ -114,14 +128,14 @@ const dmMachine = setup({
             RECOGNISED: {
               actions: assign(({ context, event }) => {
                 const utterance = event.value[0].utterance;
+                
                 return { 
                   lastResult: event.value ,
-                  
                   messages: [
-                    context.messages,
+                    ...context.messages,
                     {
                       role: "user",
-                      contet: utterance,
+                      content: utterance,
                     }
                   ],
                 };
@@ -133,13 +147,56 @@ const dmMachine = setup({
           },
         },
       },
-    },
+    }, 
     
     Done: {
       on: {
         CLICK: "Greeting",
       },
     },
+    
+    GetCompletion: {
+      invoke: {
+        src: "getCompletion",
+        input: ({context}) => ({
+          messages: context.messages,
+        }),
+        onDone: {
+          target: "SpeakResponse",
+
+          actions: assign(({context, event}) => ({
+            nextUtterance: event.output, 
+            messages: [
+              ...context.messages,
+              {
+                role: "assistant",
+                content: event.output,
+              },
+            ],
+          })),
+        },
+        onError:{
+          actions: ({event}) => {
+            console.error("LLM error:", event.error);
+          },
+        },
+      },
+    },
+
+    SpeakResponse: {
+      entry: {
+        type: "spst.speak",
+
+        params: ({context}) => ({
+          utterance: context.nextUtterance,
+        }),
+      },
+
+      on: {
+        SPEAK_COMPLETE: "Greeting.Ask"
+      }
+    }
+
   },
 });
 

@@ -1,9 +1,11 @@
-import { Hypothesis, SpeechStateExternalEvent } from "speechstate";
-import { AnyActorRef } from "xstate";
+import type { Hypothesis, SpeechStateExternalEvent } from "speechstate";
+import type { AnyActorRef } from "xstate";
 
 export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
+  messages: Message[];
+  nextUtterance: string;
 
   
   // nextUtterance: string;
@@ -11,6 +13,5 @@ export interface DMContext {
 
 export type DMEvents = SpeechStateExternalEvent 
 | { type: "CLICK" } | {type: "DONE"};
-type messages = 
-{role: "assistant" | "user" | "system"; content: string;}
+export type Message = {role: "assistant" | "user" | "system"; content: string;}
         
