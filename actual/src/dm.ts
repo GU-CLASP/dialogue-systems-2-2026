@@ -54,6 +54,7 @@ const grammar: { [index: string]: GrammarEntry } = {
 function isInGrammar(utterance: string) {
   return utterance.toLowerCase() in grammar;
 }
+
 /* async function getResponseFromOpenAI(messages: Message[]) {
   const completion = await openai.chat.completions.create({
     messages: messages,
@@ -66,7 +67,6 @@ function isInGrammar(utterance: string) {
 
 const startsWithRole = (str: string): boolean =>
   ROLES.some((role) => str.startsWith(role));
-
 
 const dmMachine = setup({
   types: {
@@ -133,11 +133,15 @@ const dmMachine = setup({
       initial: "GetLLMResponse",
       on: {
         LISTEN_COMPLETE: [
-          {
+          /* {
             target: "CheckGrammar",
             guard: ({ context }) => !!context.lastResult,
+          }, */
+          {
+            target: ".NoInput",
+            guard: ({ context }) =>
+              !context.lastResult || context.lastResult.length === 0,
           },
-          { target: ".NoInput" },
         ],
       },
       states: {
@@ -189,12 +193,43 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
+              target: "GetResponseFromLLM",
+              actions: assign(({ context, event }) => {
+                const { messages } = context;
+                messages.push({
+                  role: "user",
+                  content: event.value[0].utterance,
+                });
                 return { lastResult: event.value };
               }),
             },
             ASR_NOINPUT: {
               actions: assign({ lastResult: null }),
+            },
+          },
+        },
+        GetResponseFromLLM: {
+          invoke: {
+            id: "getResponseFromOpenAI",
+            src: "getResponseFromOpenAI",
+            input: ({ context: { messages } }) => ({ messages }),
+            onDone: {
+              target: "Prompt",
+              actions: assign({
+                messages: ({ context, event }) => {
+                  const { messages } = context;
+                  messages.push({
+                    role: "assistant",
+                    content: event.output ?? "",
+                  });
+                  console.log(`event.output: ${event.output}`);
+                  return messages;
+                },
+              }),
+            },
+            onError: {
+              // target: "failure",
+              // actions: assign({ error: ({ event }) => event.error }),
             },
           },
         },
