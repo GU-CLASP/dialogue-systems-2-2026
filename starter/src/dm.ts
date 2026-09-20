@@ -66,17 +66,6 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    getGreeting: fromPromise<any, string>(async ({input}) => {
-      return await openai.chat.completions.create({
-        messages:[
-          {
-            role: 'system',
-            content: input,
-          }
-        ],
-        model:'gemma2:2b',
-     })
-    }),
     getCompletion: fromPromise<any, Message[]>(async input => 
       await chatCompletion(input.input)
     ),
@@ -116,20 +105,14 @@ const dmMachine = setup({
     },
     GetGreeting: {
           invoke: {
-            src: "getGreeting",
-            input: ( {context}) => context.messages?.[0].content,
+            src: "getCompletion",
+            input: ( {context}) => context.messages,
             onDone: {
               target: "ChitChatLoop",
-              actions: //assign({ nextUtterance: ({event}) => event.output.choices[0].message.content
-              /*(({event, context}) => context.messages?.push({
-                  role: 'assistant',
-                  content: event.output.choices[0].message.content
-              }))*/
-              assign({messages: ({ context, event }) => [... context.messages , {
-                  role: 'assistant',
-                  content: event.output.choices[0].message.content
-                }
-              ]})  
+              actions: assign({messages: ({ context, event }) => [... context.messages , {
+                role: 'assistant',
+                content: event.output.choices[0].message.content
+              }]})  
             }
           }
         },
