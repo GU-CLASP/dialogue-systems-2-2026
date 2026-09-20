@@ -163,11 +163,13 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign({messages: ({ context, event }) => [... context.messages , {
+              actions: assign({
+                messages: ({ context, event }) => [... context.messages , {
                   role: 'user',
                   content: event.value[0].utterance
-                }
-              ]})  
+                }],
+                noInput: false
+              }), 
             },
             ASR_NOINPUT: {
               actions: assign({ noInput: true }),
@@ -208,7 +210,7 @@ const dmMachine = setup({
             src: "getCompletion",
             input: ( {context}) => context.messages,
             onDone: {
-              target: "#DM.Done",
+              target: "Speak",
               actions: assign({messages: ({ context, event }) => [... context.messages , {
                   role: 'assistant',
                   content: event.output.choices[0].message.content
