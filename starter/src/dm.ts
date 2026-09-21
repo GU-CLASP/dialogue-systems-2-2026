@@ -4,19 +4,16 @@ import { KEY } from "./credentials";
 import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
 
-import { QdrantClient } from "@qdrant/js-client-rest"; // importing the qdrant client
-
 const REGION = "swedencentral";
-const COLLECTION_N = "gu_support"; // the collection name I defined in Qdrant
 
 const systemPrompt: Message = { // to tell at first to LLM how to behave
   role: "system",
   content: "You are a friendly, helpful voice assistant. Keep responses very brief.",
-}; // so sort of instruction to the model
+};
 
 const greeting: Message = { // for speechstate to speak at first
   role: "assistant",
-  content: "Hello world!", // so the first assistant message is hello world
+  content: "Hello world!",
 }
 
 // llm client (creates an api client)
@@ -24,23 +21,12 @@ const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/", // port 11434
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
-}); // the clinet api is used for two things: one chat completion where we use llama3.1 and two for embeddings using qwen3-embedding (so one client proposes two different models)
+});
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
-
-// to connect to our local Qdrant database
-const qdrant = new QdrantClient({ host: "localhost", port: 6333 });
-
-// our embedding function (so input is a string and output the embedding vector)
-const embed = async (input: string) =>
-  openai.embeddings.create({
-    model: "qwen3-embedding",
-    input: input,
-    dimensions: 384, // 384 numbers
-  }).then((result) => result.data[0].embedding);
 
 /** backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
@@ -58,28 +44,14 @@ const settings: Settings = {
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false,
 };
-// Helper functions ----------------------
 
-// llm helper function (sends the message to llm)
+// llm helper function
 async function chatCompletion(messages: Message[]): Promise<string> {
   const response = await openai.chat.completions.create({ // sending the request to ollama and waiting for the llm respond before moving on
     model: "llama3.1",
     messages: messages, // we send the messages to llama which is out conversation history
   });
   return response.choices[0].message.content ?? ""; // and then take the first generated response
-}
-
-// it gets the users question and fetch the most relavant chunks from qdrant
-async function retrieve(query: string): Promise<string> {
-  const embedding = await embed(query); // make the query embedded
-  const results = await qdrant.query(COLLECTION_N, { // search qdrant in the collection we defined
-    query: embedding,
-    with_payload: true, // return the stored text as well
-    limit: 3, // finds 3 most relevant chunks
-  });
-  return results.points
-    .map((p) => (p.payload as { text: string }).text) // extract only texts
-    .join("\n\n") // so returns a single text block
 }
 
 const dmMachine = setup({
@@ -107,53 +79,42 @@ const dmMachine = setup({
     })),
   },
   actors: {
-    // chatCompletion actor
     // this is the actor that machine can invoke
     chatCompletion: fromPromise<string, Message[]>(async ({ input }) => {
       return await chatCompletion(input); // when the actor starts -> take its input, pass it to our chatCompletion() function and wait for the result and then return it
     }),
-
-    // retrieve actor
-    retrieve: fromPromise<string, string>(
-      async ({ input }) => { // for retrieving relevant info from qdrant
-        return await retrieve(input);
-      })
   },
 }).createMachine({
   // initial context (will be created when the machine starts)
   context: ({ spawn }) => ({ // spawn creates another actor
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
-    messages: [systemPrompt], // so initally the message history contains only the system prompt that we created up there
-    retrievedContext: "", // the retrieved context from qdrant would be stored here
+    messages: [systemPrompt] // so initally the message history contains only the system prompt that we created up there
   }),
 
   id: "DM",
   initial: "Prepare",
 
   states: {
-    // ---------------------- Prepare State
     Prepare: {
       entry: ({ context }) => context.spstRef.send({ type: "PREPARE" }), // initialize speech recognition and text-to-speech services
       on: { ASRTTS_READY: "WaitToStart" },
     },
-    // --------------------- Wait To Start State
     WaitToStart: {
       on: { CLICK: "Loop" },
     },
 
-    // -------------------- Loop State
-    Loop: { // the whole thing is in a loop state
+    // the whole thing is in a loop state
+    Loop: {
       entry: { // when we enter the loop we execute the append action first for adding the greeting thing to message history 
         type: "append",
         params: { message: greeting }, // so after entering the loop state our massages would have first system prompt and then this greeting thing
       },
       initial: "Speaking",
 
-      // ------ states inside the loop state
-      states: { // we have four states in the loop
+      // we have three states in the loop
+      states: { 
 
-        // -------------------- Speaking State
         Speaking: {
           entry: {
             type: "spst.speak" // so speaking the last message in the history to user
@@ -163,7 +124,6 @@ const dmMachine = setup({
           },
         },
 
-        // -------------------- Ask State
         Ask: {
           entry: {
             type: "spst.listen" // entering this state it would listen to user
@@ -181,78 +141,17 @@ const dmMachine = setup({
               },
             },
             ASR_NOINPUT: {
-              target: "NoInput", // for handling asr_noinput
+              actions: assign({ lastResult: null }), // if nothing was recognized
             },
-            LISTEN_COMPLETE: [
-              {
-                target: "Retrieve",
-                guard: ({ context }) => context.messages[context.messages.length - 1].role === "user", // if the last message saved in the history was from user (which means it is the systems turn now)
-              },
-              {
-                target: "Speaking" // if there is no user input then just re prompt
-              },
-            ], // if the listening was complete we move to last state
+            LISTEN_COMPLETE: "ChatCompletion", // if the listening was complete we move to last state
           },
         },
 
-        // -------------------- NoInput state - VG-1
-        NoInput: { 
-          entry: {
-            type: "append",
-            params: { 
-              message: { 
-                role: "assistant", 
-                content: "Sorry, I didn't catch that. Could you repeat?" 
-              } 
-            },
-          },
-          after: {
-            300: "Speaking", // I ran into problem, this fixes it, cuz it waits 300ms before speaking, giving spsRef time to finish tearing down ASR 
-          },
-        },
-
-        // -------------------- Retrieve State
-        Retrieve: { // rag part
-          invoke: { // entering this state would start an actor
-            id: "retrieve",
-            src: "retrieve", // so use this actor
-            input: ({ context }) =>
-              context.messages[
-                context.messages.length - 1
-              ].content, // the last message's context (the users latest question)
-            onDone: { // when Qdrant retrieval seucceeds
-              actions: assign(({ event }) => ({
-                retrievedContext: event.output // the string returned by retrieve()
-              })), // when it is done put hte retrieved docs in the variable we defined in context at first
-              target: "ChatCompletion", // we move to llm generation
-            },
-            onError: { // if qdrant fails
-              actions: [
-                ({ event }) =>
-                  console.error("Retrieval failed:", event.error), // if there is an error print it
-                assign({ retrievedContext: "" }), // proceed without retrieved context
-              ],
-              target: "ChatCompletion", // llm answers without GU context
-            },
-          },
-        },
-
-        // -------------------- ChatCompletion State
         ChatCompletion: { // in this state we call the LLM
           invoke: { // start an actor while this state is active
             id: "chatCompletion", // invoke id
             src: "chatCompletion", // actor source
-            input: ({ context }) => { // we sill build an augmented input
-              const augmentedSystem: Message = { // we want to fold the retrieved context into a system message, without messing up the stored conversation history
-                role: "system",
-                content:
-                  `${systemPrompt.content}\n\n` +
-                  `Use the following information from GU's student portal if it helps answer the user's question.` +
-                  `if it isn't relevant, ignore it and answer normally.\n\n` +
-                  context.retrievedContext,
-              };
-              return [augmentedSystem, ...context.messages.slice(1)]; // take everything except index 0
-            },
+            input: ({ context }) => context.messages, // actor input
             onDone: { // when the promise actor completed successfully, we know actor would return a string
               actions: {
                 type: "append",

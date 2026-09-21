@@ -10,8 +10,9 @@ export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
   // nextUtterance: string;
-  messages: Message[] // for the history thingy
-  retrievedContext: string; // for the things retrieved from qdrant
+
+  messages: Message[]
+
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};
