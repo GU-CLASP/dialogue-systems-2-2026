@@ -8,9 +8,8 @@ export type Payload = {
 export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
-  nextUtterance: string;
   messages: Message[];
-  noInput: boolean ;
+  noInput: number ;
   retrievedPoints: any;
   payloads: Payload[],
 }

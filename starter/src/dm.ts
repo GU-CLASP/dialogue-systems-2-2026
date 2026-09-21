@@ -88,8 +88,11 @@ const dmMachine = setup({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
-    messages : [{role: 'system', content: 'You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.'}],
-    noInput: false,
+    messages : [{
+      role: 'system', 
+      content: `You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.`
+    }],
+    noInput: 0,
     retrievedPoints: [],
     payloads: [],
   }),
@@ -104,27 +107,33 @@ const dmMachine = setup({
       on: { CLICK: "GetGreeting" },
     },
     GetGreeting: {
-          invoke: {
-            src: "getCompletion",
-            input: ( {context}) => context.messages,
-            onDone: {
-              target: "ChitChatLoop",
-              actions: assign({messages: ({ context, event }) => [... context.messages , {
-                role: 'assistant',
-                content: event.output.choices[0].message.content
-              }]})  
-            }
-          }
-        },
+      invoke: {
+        src: "getCompletion",
+        input: ( {context}) => context.messages,
+        onDone: {
+          target: "ChitChatLoop",
+          actions: assign({messages: ({ context, event }) => [... context.messages , {
+            role: 'assistant',
+            content: event.output.choices[0].message.content
+          }]})  
+        }
+      }
+    },
     ChitChatLoop: {
       initial: "Speak",
       on: {
         LISTEN_COMPLETE: [
-          {
+          { // go to RAG only if input from user detected
             target: ".Retrieval",
             guard: ({ context }) => !context.noInput,
           },
-          { target: ".NoInput" },
+          { // stop the system after 4 silences in a row
+            target: "#DM.GoodBye",
+            guard: ({ context }) => context.noInput > 3,
+          }, 
+          { // after 1 to 3 silences, encourage the user to reply
+            target: ".GetCompletion" 
+          },
         ],
       },
       states: {
@@ -132,13 +141,6 @@ const dmMachine = setup({
           entry: { 
             type: "spst.speak", 
             params: ( {context}) => ({ utterance: context.messages?.[context.messages.length - 1].content}),
-          },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
-          entry: {
-            type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
@@ -151,11 +153,20 @@ const dmMachine = setup({
                   role: 'user',
                   content: event.value[0].utterance
                 }],
-                noInput: false
+                noInput: 0,
               }), 
             },
             ASR_NOINPUT: {
-              actions: assign({ noInput: true }),
+              actions: assign({
+                messages: ({ context, event }) => [... context.messages , {
+                  role: 'user',
+                  content: ''
+                }, {
+                  role: 'system',
+                  content: 'The user did not reply. Politely invite them to continue. Be brief and do not ask anything else.'
+                }],
+                noInput: ({ context}) => context.noInput +1,
+              }), 
             },
           },
         },
@@ -178,16 +189,15 @@ const dmMachine = setup({
             }))
           }}),
           always: {
-              target: "GetCompletion",
-              actions: assign({messages: ({ context}) => [... context.messages , {
-                  role: 'system',
-                  content: `Reply to the user based on the following documents:
-                  ${context.payloads.map(item => JSON.stringify(item)).join("\n")}`
-                }
-              ]})  
+            target: "GetCompletion",
+            actions: assign({messages: ({ context}) => [... context.messages , {
+              role: 'system',
+              content: `Reply to the user based only on the following context:
+              ${context.payloads.map(item => JSON.stringify(item)).join("\n")}`
             }
+            ]})  
+          }
         },
-
         GetCompletion: {
           invoke: {
             src: "getCompletion",
@@ -195,14 +205,21 @@ const dmMachine = setup({
             onDone: {
               target: "Speak",
               actions: assign({messages: ({ context, event }) => [... context.messages , {
-                  role: 'assistant',
-                  content: event.output.choices[0].message.content
-                }
+                role: 'assistant',
+                content: event.output.choices[0].message.content
+              }
               ]})  
             }
           }
         },
       },
+    },
+    GoodBye: {
+      entry: { 
+        type: "spst.speak", 
+        params: { utterance: `Due to inactivity, this session will now close. Feel free to start a new chat whenever you're ready. Goodbye!`}
+      },
+      on: { SPEAK_COMPLETE: "Done" },
     },
     Done: {
       on: {
