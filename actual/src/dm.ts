@@ -122,7 +122,7 @@ const dmMachine = setup({
               const userQuestion = context.lastResult?.[0]?.utterance ?? "";
               const ragResults =
                 event.output?.map((payload) => payload?.text).join("\n") ?? "";
-              const messageEntry = `Context: ${ragResults} \n\n User Question: ${userQuestion}`;
+              const messageEntry = `CONTEXT: ${ragResults}\n\nUSER QUESTION: ${userQuestion}`;
               return [
                 ...messages,
                 {
