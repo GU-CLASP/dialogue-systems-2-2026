@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { Settings, speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
 import {
   EMBEDDING_DIMENSIONS,
@@ -19,6 +20,8 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
@@ -31,14 +34,27 @@ const azureProxyCredentials = {
   };
 */
 
-const embed = async (input: string) =>
-  openai.embeddings
-    .create({
-      model: EMBEDDING_MODEL,
-      input: input,
-      dimensions: EMBEDDING_DIMENSIONS,
-    })
-    .then((result) => result.data[0].embedding);
+const queryQdrant = async (collection: string, query: string) => {
+  const embed = async (input: string) =>
+    openai.embeddings
+      .create({
+        model: EMBEDDING_MODEL,
+        input: input,
+        dimensions: EMBEDDING_DIMENSIONS,
+      })
+      .then((result) => result.data[0].embedding);
+
+  const embedding = await embed(query);
+
+  const results = await client.query(collection, {
+    with_payload: true,
+    query: embedding,
+    limit: 5,
+  });
+
+  console.log(results.points.map((point) => point.payload));
+  return results.points.map((point) => point.payload);
+};
 
 const getChatCompletionsFromLLMLogic = fromPromise(
   async ({ input }: { input: { messages: Message[] } }) => {
@@ -56,6 +72,17 @@ const getChatCompletionsFromLLMLogic = fromPromise(
       return output;
     } catch (error) {
       console.error("LLM error:", error);
+      throw error;
+    }
+  },
+);
+
+const queryRagLogic = fromPromise(
+  async ({ input }: { input: { query: string } }) => {
+    try {
+      return await queryQdrant("ServiceAndSupport", input.query);
+    } catch (error) {
+      console.error("RAG error:", error);
       throw error;
     }
   },
@@ -93,6 +120,7 @@ const dmMachine = setup({
   },
   actors: {
     getChatCompletionsFromLLMActor: getChatCompletionsFromLLMLogic,
+    queryRagActor: queryRagLogic,
   },
 }).createMachine({
   context: ({ spawn }) => ({
@@ -141,6 +169,37 @@ const dmMachine = setup({
         },
       },
     },
+    QueryRAG: {
+      invoke: {
+        id: "queryRagActor",
+        src: "queryRagActor",
+        input: ({ context }) => ({
+          query: context.lastResult?.[0]?.utterance ?? "",
+        }),
+        onDone: {
+          target: "GenerateLLMResponse",
+          actions: assign({
+            messages: ({ context, event }) => {
+              const { messages } = context;
+              const userQuestion = context.lastResult?.[0]?.utterance ?? "";
+              const ragResults =
+                event.output?.map((payload) => payload?.text).join("\n") ?? "";
+              const messageEntry = `Context: ${ragResults} \n\n User Question: ${userQuestion}`;
+              return [
+                ...messages,
+                {
+                  role: ROLES.User,
+                  content: messageEntry,
+                },
+              ];
+            },
+          }),
+        },
+        onError: {
+          target: "Error",
+        },
+      },
+    },
     Speak: {
       entry: {
         type: "spst.speak",
@@ -170,19 +229,9 @@ const dmMachine = setup({
       entry: [assign({ lastResult: null }), { type: "spst.listen" }],
       on: {
         RECOGNISED: {
-          target: "GenerateLLMResponse",
+          target: "QueryRAG",
           actions: assign({
             lastResult: ({ event }) => event.value,
-            messages: ({ context, event }) => {
-              const { messages } = context;
-              return [
-                ...messages,
-                {
-                  role: ROLES.User,
-                  content: event.value[0]?.utterance ?? "",
-                },
-              ];
-            },
           }),
         },
         ASR_NOINPUT: {
