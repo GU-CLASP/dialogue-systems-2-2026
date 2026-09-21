@@ -2,14 +2,16 @@ import OpenAI from "openai";
 import { Settings, speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
 
+import {
+  EMBEDDING_DIMENSIONS,
+  EMBEDDING_MODEL,
+  LLM_MODEL,
+  REGION,
+  ROLES,
+} from "./constants";
 import { KEY } from "./credentials";
 import prompts from "./prompts";
-import { DMContext, DMEvents, Message, ROLES } from "./types";
-
-const REGION = "swedencentral" as const;
-const LLM_MODEL = "llama3.2:latest" as const;
-const EMBEDDING_MODEL = "qwen3-embedding" as const;
-const EMBEDDING_DIMENSIONS = 384 as const;
+import { DMContext, DMEvents, Message } from "./types";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
