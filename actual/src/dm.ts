@@ -29,7 +29,7 @@ const azureProxyCredentials = {
   };
 */
 
-const getChatCompletionsFromLLMLogic = fromPromise(
+const getChatCompletionsLogic = fromPromise(
   async ({ input }: { input: { messages: Message[] } }) => {
     try {
       return await getChatCompletions(input.messages);
@@ -72,7 +72,7 @@ const dmMachine = setup({
       }),
   },
   actors: {
-    getChatCompletionsFromLLMActor: getChatCompletionsFromLLMLogic,
+    getChatCompletionsActor: getChatCompletionsLogic,
     queryRagActor: queryRagLogic,
   },
 }).createMachine({
@@ -98,8 +98,8 @@ const dmMachine = setup({
     },
     GenerateLLMResponse: {
       invoke: {
-        id: "getChatCompletionsFromLLMActor",
-        src: "getChatCompletionsFromLLMActor",
+        id: "getChatCompletionsActor",
+        src: "getChatCompletionsActor",
         input: ({ context: { messages } }) => ({ messages }),
         onDone: {
           target: "Speak",
