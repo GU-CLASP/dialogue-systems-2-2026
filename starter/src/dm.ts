@@ -181,7 +181,7 @@ const dmMachine = setup({
               },
             },
             ASR_NOINPUT: {
-              actions: assign({ lastResult: null }), // if nothing was recognized
+              target: "NoInput", // for handling asr_noinput
             },
             LISTEN_COMPLETE: [
               {
@@ -195,24 +195,40 @@ const dmMachine = setup({
           },
         },
 
+        // -------------------- NoInput state - VG-1
+        NoInput: { 
+          entry: {
+            type: "append",
+            params: { 
+              message: { 
+                role: "assistant", 
+                content: "Sorry, I didn't catch that. Could you repeat?" 
+              } 
+            },
+          },
+          after: {
+            300: "Speaking", // I ran into problem, this fixes it, cuz it waits 300ms before speaking, giving spsRef time to finish tearing down ASR 
+          },
+        },
+
         // -------------------- Retrieve State
         Retrieve: { // rag part
           invoke: { // entering this state would start an actor
             id: "retrieve",
             src: "retrieve", // so use this actor
-            input: ({ context }) => 
+            input: ({ context }) =>
               context.messages[
                 context.messages.length - 1
               ].content, // the last message's context (the users latest question)
             onDone: { // when Qdrant retrieval seucceeds
-              actions: assign(({ event }) => ({ 
+              actions: assign(({ event }) => ({
                 retrievedContext: event.output // the string returned by retrieve()
               })), // when it is done put hte retrieved docs in the variable we defined in context at first
               target: "ChatCompletion", // we move to llm generation
             },
             onError: { // if qdrant fails
               actions: [
-                ({ event }) => 
+                ({ event }) =>
                   console.error("Retrieval failed:", event.error), // if there is an error print it
                 assign({ retrievedContext: "" }), // proceed without retrieved context
               ],
