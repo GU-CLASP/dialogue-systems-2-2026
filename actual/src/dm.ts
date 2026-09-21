@@ -1,30 +1,25 @@
-import OpenAI from "openai";
 import { Settings, speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
-import { QdrantClient } from "@qdrant/js-client-rest";
 
-import {
-  EMBEDDING_DIMENSIONS,
-  EMBEDDING_MODEL,
-  LLM_MODEL,
-  REGION,
-  ROLES,
-} from "./constants";
+import { REGION, ROLES } from "./constants";
 import { KEY } from "./credentials";
 import prompts from "./prompts";
+import { getChatCompletions, queryQdrant } from "./services";
 import { DMContext, DMEvents, Message } from "./types";
-
-const openai = new OpenAI({
-  baseURL: "http://localhost:11434/v1/",
-  apiKey: "ollama",
-  dangerouslyAllowBrowser: true,
-});
-
-const client = new QdrantClient({ host: "localhost", port: 6333 });
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
+};
+
+const settings: Settings = {
+  azureCredentials: azureCredentials,
+  azureRegion: REGION,
+  asrDefaultCompleteTimeout: 0,
+  asrDefaultNoInputTimeout: 5000,
+  locale: "en-US",
+  ttsDefaultVoice: "en-US-DavisNeural",
+  bargeIn: false,
 };
 
 /** backup: Azure access via FLoV proxy
@@ -34,42 +29,10 @@ const azureProxyCredentials = {
   };
 */
 
-const queryQdrant = async (collection: string, query: string) => {
-  const embed = async (input: string) =>
-    openai.embeddings
-      .create({
-        model: EMBEDDING_MODEL,
-        input: input,
-        dimensions: EMBEDDING_DIMENSIONS,
-      })
-      .then((result) => result.data[0].embedding);
-
-  const embedding = await embed(query);
-
-  const results = await client.query(collection, {
-    with_payload: true,
-    query: embedding,
-    limit: 5,
-  });
-
-  console.log(results.points.map((point) => point.payload));
-  return results.points.map((point) => point.payload);
-};
-
 const getChatCompletionsFromLLMLogic = fromPromise(
   async ({ input }: { input: { messages: Message[] } }) => {
     try {
-      const completion = await openai.chat.completions.create({
-        messages: input.messages,
-        model: LLM_MODEL,
-        store: true,
-      });
-
-      const outputContent = completion.choices[0]?.message?.content ?? "";
-      const output = outputContent.replace(/^assistant\s*/i, "").trim();
-      console.log(`LLM output: ${output}`);
-
-      return output;
+      return await getChatCompletions(input.messages);
     } catch (error) {
       console.error("LLM error:", error);
       throw error;
@@ -87,16 +50,6 @@ const queryRagLogic = fromPromise(
     }
   },
 );
-
-const settings: Settings = {
-  azureCredentials: azureCredentials,
-  azureRegion: REGION,
-  asrDefaultCompleteTimeout: 0,
-  asrDefaultNoInputTimeout: 5000,
-  locale: "en-US",
-  ttsDefaultVoice: "en-US-DavisNeural",
-  bargeIn: false,
-};
 
 const dmMachine = setup({
   types: {
