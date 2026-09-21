@@ -1,26 +1,11 @@
-import { Settings, speechstate } from "speechstate";
+import { speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
 
-import { REGION, ROLES } from "./constants";
-import { KEY } from "./credentials";
+import { settings } from "./configs";
+import { ROLES } from "./constants";
 import prompts from "./prompts";
 import { getChatCompletions, queryQdrant } from "./services";
 import { DMContext, DMEvents, Message } from "./types";
-
-const azureCredentials = {
-  endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
-  key: KEY,
-};
-
-const settings: Settings = {
-  azureCredentials: azureCredentials,
-  azureRegion: REGION,
-  asrDefaultCompleteTimeout: 0,
-  asrDefaultNoInputTimeout: 5000,
-  locale: "en-US",
-  ttsDefaultVoice: "en-US-DavisNeural",
-  bargeIn: false,
-};
 
 /** backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
