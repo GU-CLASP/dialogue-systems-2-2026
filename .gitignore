@@ -137,4 +137,4 @@ tools/custom-gcl.hash
 
 **/credentials.ts
 
-qdrant_storage/
+qdrant_data/
