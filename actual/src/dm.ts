@@ -8,6 +8,8 @@ import { DMContext, DMEvents, Message, ROLES } from "./types";
 
 const REGION = "swedencentral" as const;
 const LLM_MODEL = "llama3.2:latest" as const;
+const EMBEDDING_MODEL = "qwen3-embedding" as const;
+const EMBEDDING_DIMENSIONS = 384 as const;
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -26,6 +28,15 @@ const azureProxyCredentials = {
   key: "",
   };
 */
+
+const embed = async (input: string) =>
+  openai.embeddings
+    .create({
+      model: EMBEDDING_MODEL,
+      input: input,
+      dimensions: EMBEDDING_DIMENSIONS,
+    })
+    .then((result) => result.data[0].embedding);
 
 const getChatCompletionsFromLLMLogic = fromPromise(
   async ({ input }: { input: { messages: Message[] } }) => {
