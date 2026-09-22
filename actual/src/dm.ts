@@ -67,7 +67,7 @@ const dmMachine = setup({
     messages: [
       {
         role: ROLES.System,
-        content: prompts.system,
+        content: prompts.systemDefault,
       },
     ],
   }),
@@ -122,12 +122,20 @@ const dmMachine = setup({
               const userQuestion = context.lastResult?.[0]?.utterance ?? "";
               const ragResults =
                 event.output?.map((payload) => payload?.text).join("\n") ?? "";
-              const messageEntry = `CONTEXT: ${ragResults}\n\nUSER QUESTION: ${userQuestion}`;
+
+              const conversationHistory = messages.filter(
+                (message) => message.role !== ROLES.System,
+              );
+              const newSystemPrompt = `${prompts.systemDefault}\n\n${prompts.systemRAG}\n\nCONTEXT: ${ragResults}`;
               return [
-                ...messages,
+                {
+                  role: ROLES.System,
+                  content: newSystemPrompt,
+                },
+                ...conversationHistory,
                 {
                   role: ROLES.User,
-                  content: messageEntry,
+                  content: userQuestion,
                 },
               ];
             },
