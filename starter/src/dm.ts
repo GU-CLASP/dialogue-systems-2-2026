@@ -1,10 +1,10 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
-import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+//import { KEY } from "./credentials";
+import { DMContext, DMEvents, Message } from "./types"; // added Message
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "northeurope";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -12,20 +12,20 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-const azureCredentials = {
+/**const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
+**/
 
-/** backup: Azure access via FLoV proxy
+// backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
   proxyUrl: "https://rndserv.flov.gu.se:4000/api/token",
-  key: "",
+  key: "Icy1PkSRT0OeGhHKJiP2pRcHEK/Ux8M3ZIVQ3zLZkGNVZEsWIvqKApF/ZOoM99l5",
   };
-*/
 
 const settings: Settings = {
-  azureCredentials: azureCredentials,
+  azureCredentials: azureProxyCredentials,
   azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
@@ -34,32 +34,15 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
-
 const dmMachine = setup({
   types: {
     /** you might need to extend these */
     context: {} as DMContext,
     events: {} as DMEvents,
+    /*type Message = {
+      role: "assistant" | "user" | "system";
+      content: string;
+    }*/
   },
   actions: {
     /** define your actions here */
@@ -75,11 +58,34 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    fetchLLM: fromPromise<string, { messages: Message[] }>(
+      async ({ input }) => /**{ input: { messages: Message[] } }) => **/ {
+        //console.log("Actor input:", input);
+
+      // do some asynchronous work
+        const response = await openai.chat.completions.create({
+          model: "llama3.2:latest",
+          messages: input.messages,
+        });
+
+      //console.log("LLM response:", response);
+
+      return response.choices[0].message.content ?? "";
+      },
+    ),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [ // added messages: Message[] into context
+      {
+        role: "system",
+        content:
+          "You are a friendly voice chatbot. Give brief, natural, conversational responses.",
+      },
+    ] as Message[],
   }),
   id: "DM",
   initial: "Prepare",
@@ -96,7 +102,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "CheckGrammar",
+            target: "GetCompletion", // changed target state
             guard: ({ context }) => !!context.lastResult,
           },
           { target: ".NoInput" },
@@ -104,22 +110,36 @@ const dmMachine = setup({
       },
       states: {
         Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+          entry: { type: "spst.speak", params: { utterance: `Hello, what can I do for you today?` } },
           on: { SPEAK_COMPLETE: "Ask" },
         },
         NoInput: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+            params: { utterance: `Is there something on your mind?` },
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
         Ask: {
-          entry: { type: "spst.listen" },
+          entry: [
+            assign({ lastResult: null }), // resetting lastResult
+            { type: "spst.listen" },
+          ],
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
+              actions: assign(({ context, event }) => {
+                const utterance = event.value[0].utterance; // extracting what the user said
+
+                return {
+                  lastResult: event.value,
+                  messages: [
+                    ...context.messages, // appending to convo history
+                    {
+                      role: "user" as const, // as user message
+                      content: utterance,
+                    },
+                  ],
+                };
               }),
             },
             ASR_NOINPUT: {
@@ -129,22 +149,44 @@ const dmMachine = setup({
         },
       },
     },
-    CheckGrammar: {
+    GetCompletion: {  // replaced CheckGrammar with this
+      invoke: {
+        src: "fetchLLM",
+        input: ({ context }) => ({
+          messages: context.messages,
+        }),
+        onDone: {
+          actions: assign({
+            messages: ({ context, event }) => [
+              ...context.messages,
+              {
+                role: "assistant" /**as const**/,
+                content: event.output,
+              },
+            ],
+        }),
+        target: "SpeakResponse",
+        },
+      },
+    },
+    SpeakResponse: {
       entry: {
         type: "spst.speak",
         params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
+          utterance: context.messages[context.messages.length - 1].content,
         }),
       },
-      on: { SPEAK_COMPLETE: "Done" },
+      on: {
+        SPEAK_COMPLETE: {
+          target: "Greeting.Ask",
+        },
+      },
     },
-    Done: {
+    /**Done: {
       on: {
         CLICK: "Greeting",
       },
-    },
+    }, **/
   },
 });
 
