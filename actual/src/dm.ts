@@ -2,7 +2,7 @@ import { speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
 
 import { settings } from "./configs";
-import { ROLES } from "./constants";
+import { NO_INPUT_THRESHOLD, ROLES } from "./constants";
 import prompts from "./prompts";
 import { getChatCompletions, queryQdrant } from "./services";
 import { DMContext, DMEvents, Message } from "./types";
@@ -70,6 +70,7 @@ const dmMachine = setup({
         content: prompts.systemDefault,
       },
     ],
+    noInputCount: 0,
   }),
   id: "DM",
   initial: "Prepare",
@@ -160,9 +161,22 @@ const dmMachine = setup({
     NoInput: {
       entry: {
         type: "spst.speak",
-        params: { utterance: prompts.cannotHear },
+        params: ({ context }) => ({
+          utterance:
+            prompts.noInput[context.noInputCount - 1] ?? prompts.cannotHear,
+        }),
       },
-      on: { SPEAK_COMPLETE: "Ask" },
+      on: {
+        SPEAK_COMPLETE: [
+          {
+            target: "Done",
+            guard: ({ context }) => context.noInputCount >= NO_INPUT_THRESHOLD,
+          },
+          {
+            target: "Ask",
+          },
+        ],
+      },
     },
     Error: {
       entry: {
@@ -175,22 +189,40 @@ const dmMachine = setup({
       entry: [assign({ lastResult: null }), { type: "spst.listen" }],
       on: {
         RECOGNISED: {
-          target: "QueryRAG",
           actions: assign({
             lastResult: ({ event }) => event.value,
+            noInputCount: 0,
           }),
         },
         ASR_NOINPUT: {
-          actions: assign({ lastResult: null }),
+          actions: assign({
+            lastResult: null,
+            noInputCount: ({ context }) => context.noInputCount + 1,
+          }),
         },
-        LISTEN_COMPLETE: {
-          target: "NoInput",
-          guard: ({ context }) =>
-            !context.lastResult || context.lastResult.length === 0,
-        },
+        LISTEN_COMPLETE: [
+          {
+            target: "QueryRAG",
+            guard: ({ context }) =>
+              !!context.lastResult && context.lastResult.length > 0,
+          },
+          {
+            target: "NoInput",
+          },
+        ],
       },
     },
     Done: {
+      entry: assign({
+        lastResult: null,
+        messages: [
+          {
+            role: ROLES.System,
+            content: prompts.systemDefault,
+          },
+        ],
+        noInputCount: 0,
+      }),
       on: {
         CLICK: "GenerateLLMResponse",
       },

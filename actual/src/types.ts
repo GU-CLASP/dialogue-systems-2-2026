@@ -8,6 +8,7 @@ export interface DMContext {
   lastResult: Hypothesis[] | null;
   // nextUtterance: string;
   messages: Message[];
+  noInputCount: number;
 }
 
 export type DMEvents =
