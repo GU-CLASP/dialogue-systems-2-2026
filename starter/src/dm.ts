@@ -3,6 +3,7 @@ import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
 const REGION = "northeurope";
 
@@ -10,6 +11,11 @@ const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
+});
+
+const client = new QdrantClient({
+  host: "localhost",
+  port: 6333,
 });
 
 /** 
@@ -76,13 +82,32 @@ const dmMachine = setup({
       }),
   },
   actors: {
+    queryRAG: fromPromise(async ({ input }: { input: string }) => {
+      const embedding = await openai.embeddings
+        .create({
+          model: "qwen3-embedding",
+          input: input,
+          dimensions: 384,
+        })
+        .then((result) => result.data[0].embedding);
+
+      return await client.query("gu-info", {
+        query: embedding,
+        with_payload: true,
+        limit: 5,
+      });
+  }),
   llm: fromPromise(async ({ input }: { input: DMContext["messages"] }) => {
     const completion = await openai.chat.completions.create({
       messages: input,
       model: "llama3.2:latest",
     });
 
-    return completion.choices[0].message.content;
+    //return completion.choices[0].message.content;
+    const response = completion.choices[0].message.content;
+    console.log("LLM response:", response);
+
+    return response;
   }),
   },
 }).createMachine({
@@ -111,7 +136,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "LLM",
+            target: "RAG",
             guard: ({ context }) => !!context.lastResult,
           },
           { target: ".NoInput" },
@@ -146,6 +171,27 @@ const dmMachine = setup({
               actions: assign({ lastResult: null }),
             },
           },
+        },
+      },
+    },
+    RAG: {
+      invoke: {
+        src: "queryRAG",
+        input: ({ context }) =>
+          context.messages[context.messages.length - 1].content,
+        onDone: {
+          target: "LLM",
+          actions: assign(({ context, event }) => {
+            console.log("RAG results:", event.output.points);
+            return {
+              messages: context.messages.concat({
+                role: "system",
+                content: `Use the following information to answer the user's question:\n${event.output.points
+                  .map((result) => result.payload?.text || "")
+                  .join("\n\n")}`,
+              })
+            };
+          }),
         },
       },
     },
