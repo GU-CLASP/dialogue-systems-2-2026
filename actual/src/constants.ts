@@ -1,3 +1,5 @@
+import prompts from "./prompts";
+
 export const REGION = "swedencentral" as const;
 export const LLM_MODEL = "llama3.2:latest" as const;
 
@@ -9,3 +11,5 @@ export const ROLES = {
   User: "user",
   System: "system",
 } as const;
+
+export const NO_INPUT_THRESHOLD = prompts.noInput.length;
