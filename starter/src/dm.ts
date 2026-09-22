@@ -1,7 +1,7 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
 
 const REGION = "<YOUR_REGION>";
@@ -55,6 +55,16 @@ function isInGrammar(utterance: string) {
   return utterance.toLowerCase() in grammar;
 }
 
+const chatCompletion = fromPromise<string, { messages: Message[] }>(
+  async ({ input }) => {
+        const completion = await openai.chat.completions.create({
+          model: "qwen3:4b",
+          messages: input.messages,
+    });
+    return completion.choices[0].message.content ?? "";
+  },
+);
+
 const dmMachine = setup({
   types: {
     /** you might need to extend these */
@@ -75,11 +85,12 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+    actors: { chatCompletion: chatCompletion },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [{ role: "system", content: "Reply in one or two sentences, and be polite." }],
   }),
   id: "DM",
   initial: "Prepare",
