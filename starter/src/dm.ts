@@ -4,7 +4,7 @@ import { KEY } from "./credentials";
 import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "northeurope";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -34,32 +34,15 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
+const GREETING: Message = {
+  role: "assistant",
+  content: "Hi! How can I help you?",
 };
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
-
 const chatCompletion = fromPromise<string, { messages: Message[] }>(
   async ({ input }) => {
-        const completion = await openai.chat.completions.create({
-          model: "qwen3:4b",
-          messages: input.messages,
+    const completion = await openai.chat.completions.create({
+      model: "qwen3:4b",
+      messages: input.messages,
     });
     return completion.choices[0].message.content ?? "";
   },
@@ -85,7 +68,7 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-    actors: { chatCompletion: chatCompletion },
+  actors: { chatCompletion: chatCompletion },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
@@ -100,60 +83,58 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { CLICK: "Loop" },
     },
-    Greeting: {
-      initial: "Prompt",
-      on: {
-        LISTEN_COMPLETE: [
-          {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
-          },
-          { target: ".NoInput" },
-        ],
-      },
+    Loop: {
+      entry: assign(({ context }) => {
+        const newMessages = [...context.messages, GREETING];
+        return { messages: newMessages };
+      }),
+      initial: "Speaking",
       states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
+        Speaking: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+            params: ({ context }) => {
+              const lastMessage = context.messages[context.messages.length - 1];
+              return { utterance: lastMessage.content };
+            },
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
+
         Ask: {
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
+              actions: assign(({ context, event }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  { role: "user", content: event.value[0].utterance },
+                ];
+                return { messages: newMessages };
               }),
             },
-            ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
+            LISTEN_COMPLETE: "ChatCompletion",
+          },
+        },
+
+        ChatCompletion: {
+          invoke: {
+            src: "chatCompletion",
+            input: ({ context }) => ({ messages: context.messages }),
+            onDone: {
+              target: "Speaking",
+              actions: assign(({ context, event }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  { role: "assistant", content: event.output },
+                ];
+                return { messages: newMessages };
+              }),
             },
           },
         },
-      },
-    },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
-    },
-    Done: {
-      on: {
-        CLICK: "Greeting",
       },
     },
   },
