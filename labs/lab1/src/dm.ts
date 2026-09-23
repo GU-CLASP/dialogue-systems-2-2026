@@ -4,6 +4,7 @@ import { speechstate } from "speechstate";
 import { KEY } from "./azure";
 import type { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
 const REGION = "germanywestcentral";
 
@@ -17,6 +18,11 @@ const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
+
+const client = new QdrantClient({
+  host: "localhost",
+  port: 6333,
+});
 
 /** backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
@@ -37,6 +43,19 @@ const settings: Settings = {
 interface CompletionInput {
     messages: Message[]
   };
+
+interface RetrivalInput {
+    query: string
+};
+
+const embed = async (input:string) => {
+  const result = await openai.embeddings.create({
+    model: "qwen3-embedding",
+    input: input,
+    dimensions: 384
+  });
+  return result.data[0].embedding;
+};
 
 const dmMachine = setup({
   types: {
@@ -59,8 +78,24 @@ const dmMachine = setup({
       }),
   },
   actors: {
+    GetInformation: fromPromise(
+      async({ input }: {input: RetrivalInput}) => {
+        const embedding = await embed(input.query);
 
+        const results = await client.query("GUCollection", {
+          with_payload: true,
+          query: embedding,
+          limit: 5,
+        });
 
+        const retrievedText = results.points
+        .map((point:any)=>point.payload?.text)
+        .filter((text:any): text is string => typeof text === "string")
+        .join("\n\n");
+
+        return retrievedText;
+      },
+    ),
     getCompletion: fromPromise(
         async({ input }: { input: CompletionInput }) => {
           const response = await openai.chat.completions.create({
@@ -75,13 +110,13 @@ const dmMachine = setup({
           return content;
       }
     ),
-
   },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
     nextUtterance: "",
+    retrievedText: "",
     messages: [
       {
       role: "system",
@@ -104,7 +139,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "GetCompletion",
+            target: "RetrieveInformation",
             guard: ({ context }) => !!context.lastResult,
           },
           { target: ".NoInput" },
@@ -155,12 +190,50 @@ const dmMachine = setup({
       },
     },
     
+    RetrieveInformation: {
+      invoke: {
+        src: "GetInformation",
+        input: ({ context }) => ({
+          query: context.messages[context.messages.length -1].content,
+        }),
+
+        onDone: {
+          target: "GetCompletion",
+
+          actions: assign({
+            retrievedText: ({ event }) =>event.output
+,          }),
+        },
+        onError: {
+          target: "GetCompletion",
+
+        actions: ({event}) => {
+          console.error("Error with Qdrant", event.error);
+          },
+        },
+      },
+    },
+
     GetCompletion: {
       invoke: {
         src: "getCompletion",
         input: ({context}) => ({
-          messages: context.messages,
+          messages: [
+            {
+              role: "system",
+              content: `You are a assistant for students at the University of Gothenburg.
+              Answer in short and helpful responses. Always stay kind. 
+              Use the following information to answer the user's question:
+              ${context.retrievedText}
+              If this information doesn't answer the user's question say that you don't know the answer.
+              `
+            }, 
+            ...context.messages.filter(
+              (message) => message.role !== "system",
+            ),
+          ],
         }),
+
         onDone: {
           target: "SpeakResponse",
 

@@ -2,10 +2,11 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
+import { readFile, readdir } from "node:fs/promises";
+import path from "node:path";
 
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
@@ -98,6 +99,35 @@ program
       `Succesfully added ${chunks.length} document into collection: ${collection}`,
     );
   });
+
+program
+  .command("addFolder")
+  .description("Add a whole folder with data at once")
+  .argument("<collection>", "collection name")
+  .argument("<folder>", "folder path")
+  .action(async (collection, folder) => {
+    const files = await readdir(folder);
+    for (const file of files) {
+      const filePath = path.join(folder, file);
+      console.log(`adding ${filePath}`);
+      const chunks = await makeChunksFromFile(filePath)
+          const points = await Promise.all(
+      chunks.map(async (chunk) => {
+        const embedding = await embed(chunk);
+        return {
+          id: uuidv4(),
+          vector: embedding,
+          payload: { text: chunk },
+        };
+      }),
+    );
+    await client.upsert(collection, { wait: true, points: points });
+    console.log(
+      `Succesfully added ${filePath} to the collection.`)  
+    }
+  });
+    
+
 
 program
   .command("queryCollection")

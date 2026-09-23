@@ -137,3 +137,6 @@ tools/custom-gcl.hash
 
 **/credentials.ts
 labs/lab1/src/azure.ts
+
+#Rag data
+rag/qdrant_data/
