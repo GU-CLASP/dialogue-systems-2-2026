@@ -136,3 +136,6 @@ tools/custom-gcl.hash
 !tsc/testdata/submoduleTriaged.txt
 
 **/credentials.ts
+
+# Qdrant 本地数据库（提交时打包上传 Canvas，不进 git）
+rag/qdrant_data/
