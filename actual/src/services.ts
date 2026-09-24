@@ -29,6 +29,7 @@ const queryQdrant = async (collection: string, query: string) => {
     with_payload: true,
     query: embedding,
     limit: 5,
+    score_threshold: 0.6,
   });
 
   console.log(results.points.map((point) => point.payload));
