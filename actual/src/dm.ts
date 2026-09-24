@@ -121,8 +121,7 @@ const dmMachine = setup({
             messages: ({ context, event }) => {
               const { messages } = context;
               const userQuestion = context.lastResult?.[0]?.utterance ?? "";
-              const ragResults =
-                event.output?.map((payload) => payload?.text).join("\n") ?? "";
+              const ragResults = event.output;
 
               const conversationHistory = messages.filter(
                 (message) => message.role !== ROLES.System,

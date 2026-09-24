@@ -32,8 +32,13 @@ const queryQdrant = async (collection: string, query: string) => {
     score_threshold: 0.6,
   });
 
+  console.log(results);
+
   console.log(results.points.map((point) => point.payload));
-  return results.points.map((point) => point.payload);
+
+  const chunks = results.points.map((point) => point.payload?.text);
+
+  return chunks.join("\n\n").trim() || "No relevant documents found.";
 };
 
 const getChatCompletions = async (messages: Message[]) => {
