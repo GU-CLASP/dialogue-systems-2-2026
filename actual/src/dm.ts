@@ -151,7 +151,7 @@ const dmMachine = setup({
         type: "spst.speak",
         params: ({ context }) => ({
           utterance:
-            context.messages[context.messages.length - 1]?.content ??
+            context.messages[context.messages.length - 1]?.content ||
             prompts.defaultGreeting,
         }),
       },
@@ -162,7 +162,7 @@ const dmMachine = setup({
         type: "spst.speak",
         params: ({ context }) => ({
           utterance:
-            prompts.noInput[context.noInputCount - 1] ?? prompts.cannotHear,
+            prompts.noInput[context.noInputCount - 1] || prompts.cannotHear,
         }),
       },
       on: {
@@ -203,7 +203,7 @@ const dmMachine = setup({
           {
             target: "QueryRAG",
             guard: ({ context }) =>
-              !!context.lastResult && context.lastResult.length > 0,
+              !!context.lastResult?.[0]?.utterance?.trim(),
           },
           {
             target: "NoInput",
