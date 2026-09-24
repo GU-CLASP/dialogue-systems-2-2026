@@ -111,11 +111,14 @@ For broad items like Servicecenter support (B2), k=5 brings in more **useful** c
 **k=10 starts to add noise.**  
 Later ranks often come from other GU pages we do not need. One idea for **broad** questions—if we have not tested that question before—is to retrieve with a **higher k**, then let the **LLM filter** and keep only useful snippets. That second filter step is **future work** and still needs experiments; this report only shows that raw k=10 already mixes in noise.
 
-**Disclaimer**  
-I used AI tools to support my learning in this lab. The experiment design and the written arguments were planned and organised by me. AI assistance was used for faster experimental checks (e.g. running comparisons) and for helping me understand the coding logic of the RAG pipeline—not to replace my own reasoning about the results.
-
 ---
 
 ## 5. Conclusion
 
 Across **2 factoid + 2 broad + 2 how-to** queries in this PoC, a default of **k=5** gave a **good balance** across question types: better than k=1 when one chunk is not enough, and cleaner than k=10 when extra hits turn into noise. That is a practical setting for our current SpeechState RAG assistant—but **not a final law**. In particular, questions that need **multi-step reasoning** over several pieces of information may still need different retrieval settings. Follow-up work can build on this baseline by studying **filtering** and **re-ranking** of retrieved chunks (for example after a larger k), which we leave as future learning.
+
+---
+
+## 6. Disclaimer
+
+I used AI tools to support my learning in this lab. The experiment design and the written arguments were planned and organised by me. AI assistance was used for faster experimental checks (e.g. running comparisons) and for helping me understand the coding logic of the RAG pipeline—not to replace my own reasoning about the results.
