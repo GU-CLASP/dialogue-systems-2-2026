@@ -6,6 +6,7 @@ export interface DMContext {
   lastResult: Hypothesis[] | null;
   messages: Message[];
   nextUtterance: string;
+  retrievedText: string;
 
   
   // nextUtterance: string;

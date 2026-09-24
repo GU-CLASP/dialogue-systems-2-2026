@@ -147,7 +147,7 @@ const dmMachine = setup({
       },
       states: {
         Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `What's up?` } },
+          entry: { type: "spst.speak", params: { utterance: `Hey, I'm your GU voice assistant. What can I help you with?` } },
           on: { SPEAK_COMPLETE: "Ask" },
         },
         NoInput: {
@@ -182,8 +182,7 @@ const dmMachine = setup({
           },
         },
       },
-    }, 
-    
+    },   
     Done: {
       on: {
         CLICK: "Greeting",
