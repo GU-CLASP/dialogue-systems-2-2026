@@ -1,152 +1,121 @@
-# Lab 1 VG 报告：RAG 对话流水线
+# Lab 1 VG-RAG 报告：检索应返回几条结果？
 
 **课程：** Dialogue Systems 2  
-**重点：** 端到端流程、代码模块关系、状态机的作用
+**作者：** Sean Sha  
+**聚焦问题：** *是否应返回不同数量的检索结果（当前限制为 5）？*  
+**语料：** `gu_support_all` — 21 篇 GU 页面，**438** 个 chunk；`qwen3-embedding`（384 维，Cosine）
 
 ---
 
-## 1. 系统在做什么
+## 1. 动机
 
-本实验做一个**语音助手**，能够：
+SpeechState 的 RAG 固定取 **top-5** 写入 system prompt。语音场景既要证据够用，又要避免上下文过长。
 
-1. **听**用户说话（Azure Speech STT）
-2. **查**与 GU 学生支持相关的文档（Qdrant RAG）
-3. **用**本地 LLM 生成回答（Ollama）
-4. **说**出答案（Azure Speech TTS）
+知识库来自 **21 篇爬取的 GU Service & Support 页面**。用 LangChain 的 `RecursiveCharacterTextSplitter`（优先按爬虫的 `\n\n\n` 分节，再按 `chunkSize=500` 与 overlap 切细）索引为 Qdrant 中的 **438 个 chunk**。查询时把用户问题做成 embedding，再与这 **438 个 chunk 向量**做 Cosine 检索——对比的不是整篇文章，也**不是「自然句对句」**。这些 chunk 是切分窗口（常含多句片段），因此**不能**假设「一个问题 ↔ 一句标准答案」。由此引出我的假设：**k=1 并不是固定最优常量**；多小的 k 才够用，会受切块、embedding、以及**问题类型**等影响。
 
-它不只是文字聊天：语音、检索、生成由同一个**对话管理（DM）状态机**串起来。
+**若该假设不成立**，则测试的**每一道题**都应在 **k=1** 时就成功（金标字符串或足够内容已在 top-1）。**若假设成立**，则应看到**不同问题需要不同的 k**——有的 k=1 即可，有的要提到 5 或 10 才够。在切块与 embedding 固定的前提下，本 PoC 在 **三类、各两问** 上对比 **k = 1、5、10**，检验问题类型是否已足以改变「k=1 是否够用」。
 
----
 
-## 2. 流水线总览
-
-```mermaid
-flowchart LR
-  A[用户语音] --> B[Azure STT]
-  B --> C[DM: 写入 user 消息]
-  C --> D[问题 embedding]
-  D --> E[Qdrant 检索]
-  E --> F[增强 system prompt]
-  F --> G[Ollama LLM]
-  G --> H[DM: 写入 assistant 消息]
-  H --> I[Azure TTS]
-  I --> A
-```
-
-**一句话：**  
-听写 → 记历史 → 检索文档 → 文档塞进提示 → LLM → 朗读 → 再听。
-
-| 阶段 | 作用 | 主要代码 |
-|------|------|----------|
-| STT / TTS | 语音进/出 | `speechstate`（在 `starter/src/dm.ts` 里调用） |
-| 对话历史 | `messages[]` | `starter/src/types.ts`、`dm.ts` |
-| 检索 | 从库中取相似片段 | `dm.ts` 的 `retrieve` + Qdrant |
-| 增强 | 文档写入 system | `dm.ts` 的 `chatCompletion` |
-| 生成 | 简短回答 | Ollama（`llama3.2`） |
-| 离线建库 | 切块、向量、入库 | `rag/src/main.ts` |
 
 ---
 
-## 3. 各模块如何配合
+## 2. 方法
 
-### 3.1 离线：建知识库
+我们比较三种**问题类型**，每类各选 **两个具体问题**（共六道）：
 
+1. **事实型（Factoid）** — 答案应是语料中的明确字符串：  
+   - *What is the phone number for Feelgood?*（金标：`031-786 43 22`）  
+   - *What is the email for student healthcare?*（金标：`student.goteborg@feelgood.se`）
+
+2. **宽问题（Broad）** — 答案分散在多条要点，而非一行：  
+   - *What support does student healthcare offer?*  
+   - *What can Servicecenter help me with?*
+
+3. **方法/指南型（How-to）** — 偏流程或说明：  
+   - *How should I search for scholarly information?*  
+   - *How do I work with sources and references?*
+
+以上 **六道问题各自** 都跑 **三组检索设置：k = 1、k = 5、k = 10**（共 18 次）。切块、embedding 与 collection 固定，只改问题与 `k`。事实型看返回块是否含金标字符串；宽问题与方法型看仅 top-1 是否够用，以及第 2–5 名是否必要、第 6–10 名是否噪声。
+
+工具：`npx tsx src/main.ts queryCollection gu_support_all "<q>" -k <n>`。  
+明细表：`labs/lab1/topk-experiment-record.md`。
+
+---
+
+## 3. 主要结果
+
+**一句话对照假设：**  
+若 k=1 永远够用，六道题都应在 k=1 通过。**实际不是。**
+
+| | k=1 够用？ | k=5 够用？ | k=10 比 k=5 更有用吗？ |
+|--|------------|------------|------------------------|
+| A1 Feelgood 电话 | 是 | 是 | 否（多出跑题页） |
+| A2 医疗邮箱 | **否** | 是 | 否（更多噪声） |
+| B1 医疗支持 | 否 | 是 | 否 |
+| B2 Servicecenter | 否 | 是 | 否 |
+| C1 学术检索 | 否 | 是 | 否 |
+| C2 来源与参考文献 | 勉强 | 是 | 几乎没有 |
+
+因此：**6 题里只有约 1 题能明确靠 k=1；6 题在 k=5 都够用；k=10 没有额外赢面。**
+
+**两个具体例子**
+- **A1（电话）：** 金标 `031-786 43 22` 已在第 **1** 名 → k=1 可以。  
+- **A2（邮箱）：** 第 1 名没有邮箱；金标 `student.goteborg@feelgood.se` 首次出现在第 **4** 名 → k=1 失败，k=5 成功。
+
+宽问题和方法型问题（B/C）也差不多：**第一条**常常只是开头介绍，真正有用的细节在第 **2–5** 条。把 **k 调到 10** 一般**不会答得更好**，多半只是多抓到一些**跑题页面**。
+
+
+**例子（B2）**
+
+问题：
 ```text
-labs/lab1/data/*.txt
-        │
-        ▼
-rag/src/main.ts （addFolder / addData）
-        │  切块 → qwen3-embedding → upsert
-        ▼
-Qdrant 集合 gu_support_all
-   （数据在 rag/qdrant_data/）
+What can Servicecenter help me with?
 ```
 
-- **`rag/src/main.ts`**：命令行建库、整夹导入、测试查询。
-- **Docker Qdrant**：本机 `6333` 端口的向量库。
-- **Ollama `qwen3-embedding`**：文本 → 384 维向量（与 collection 维度一致）。
+实际检索到的 chunk（Qdrant 原文摘录）：
 
-这部分在**启动语音应用之前**完成。网页端只**查询**已有集合。
+**#1 — score 0.72 — `page-003-Servicecenter.txt`**
+> Servicecenter can help you navigate the University of Gothenburg - our buildings as well as our organisation. If you don't know who to contact with a question, contact Servicecenter and we will guide you.
 
-### 3.2 在线：用户说一轮
+**#2 — score 0.70 — `page-003-Servicecenter.txt`**
+> Via Servicecenter, you can get access to some IT support. … We can help you with: Login and access to university tools and software … Access to the university wifi eduroam
 
-```text
-starter/src/dm.ts  （DM 状态机）
-   ├── SpeechState     → LISTEN / SPEAK
-   ├── retrieve actor  → Qdrant
-   └── chatCompletion  → Ollama 聊天
-```
+**#3 — score 0.68 — `page-003-Servicecenter.txt`**
+> Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help you with contact details to study administration, study counsellors or other university functions …
 
-- **`types.ts`**：定义 `Message`、`DMContext`（含 `messages`、`ragContext` 等）。
-- **`credentials.ts`**：Azure 密钥与区域（已 gitignore）。
-- **`starter/src/main.ts`**：只挂按钮；业务逻辑在 `dm.ts`。
+**#4 — score 0.67 — `page-003-Servicecenter.txt`**
+> Servicecenter can help you with key pickup and drop-off. For other questions about your student accommodation, please contact studenthousing@gu.se.
 
-**注意：** 对话历史和 RAG 不是一回事：
+**#5 — score 0.63 — `page-003-Servicecenter.txt`**
+> In our for Servicecenters you can buy some University of Gothenburg promotional products such as water bottles, tote bags, notebooks and pens.
 
-- `messages` = 给 LLM 的完整对话记忆  
-- `ragContext` = **本轮**检索到的文档，写进 system prompt，不是永久当成聊天轮次保存
+**#6（仅 k=10）— score 0.62 — `page-017-Disability study support.txt`**
+> Applying for and being granted study support
+
+**k=1** 时模型只能看到导航（#1）。  
+**k=5** 时还能看到 IT、学习咨询、钥匙、文创（#2–#5）。  
+**k=10** 仍有这些，但会多出像 #6 这样的跑题块。
+
+完整排名：`labs/lab1/topk-experiment-record.md`。
 
 ---
 
-## 4. 状态机在里面的作用
+## 4. 反思
 
-如果没有状态机，语音事件、检索、LLM 容易在回调里打架。**XState** 把「这一轮先做什么、后做什么」写清楚。
+**并非所有问题都适合 k=1。**  
+A1 是答案集中、分数断层明显的情况；A2 说明近义相关块可能压过真正含邮箱的块。B/C 类通常需要**多段同主题**才能支撑一句完整口播回答。
 
-### 4.1 为什么需要它
+**在目前测过的问题里，k=5 对 broad 类特别有价值。**  
+以 Servicecenter（B2）为例：k=5 能多拿到 IT、学习咨询、钥匙、文创等**有用**块，而这些在 k=1 根本看不到。所以就本测试集而言，k=5 不只是系统默认值，也是 broad 问题开始“信息够用”的档位。
 
-| 需求 | 状态机怎么保证 |
-|------|----------------|
-| TTS 说完再听 | `Speaking` → `SPEAK_COMPLETE` → `Ask` |
-| ASR 完成再检索 | `Ask` → `LISTEN_COMPLETE` → `Retrieve` |
-| 检索完成再生成 | `Retrieve` → `onDone` → `ChatCompletion` |
-| 处理静音 | `NoInput` 先提示，再回 `Ask` |
-| 结束无限听循环 | 按钮或口令进入 `Paused` |
+**k=10 会开始混进噪声。**  
+后面名次常来自其他不相关的 GU 页面。对 **broad** 问题，若之前没测过，一个想法是先用**较高的 k** 多取一些结果，再让 **LLM 做一次 filter**，只留下有用片段。这一步属于 **future work**，还需要额外实验验证；本报告只能说明：直接用原始 k=10 已经会出现噪声。
 
-所以状态机是**指挥**：Azure / Qdrant / Ollama 是乐器；DM 决定**谁何时演奏**。
-
-### 4.2 主对话循环
-
-```mermaid
-stateDiagram-v2
-  [*] --> Prepare
-  Prepare --> WaitToStart: ASRTTS_READY
-  WaitToStart --> Loop: CLICK
-
-  state Loop {
-    [*] --> Speaking
-    Speaking --> Ask: SPEAK_COMPLETE
-    Ask --> Retrieve: 听到用户
-    Ask --> NoInput: 无输入
-    NoInput --> Ask: SPEAK_COMPLETE
-    Retrieve --> ChatCompletion: 文档就绪
-    ChatCompletion --> Speaking: 回复就绪
-  }
-
-  Loop --> Paused: 点按钮或说 stop
-  Paused --> Loop: 再点按钮继续
-```
-
-### 4.3 一点反思
-
-- 流程好讲，是因为每一步都是**有名字的状态**。
-- RAG 很自然地放在 **`Ask` 和 `ChatCompletion` 之间的 `Retrieve`**（标准的 R → A → G）。
-- 不足：检索主要用**最新一句**。若用户说 “What about the phone number?”（指代上文），可能不够。改进可以只改 `retrieve` 的 `input`（例如拼上最近话题），不必重做整台状态机。
+**声明**  
+本实验过程中我使用了 AI 工具辅助学习。实验方案与文字表达由我自己思考整理；快速验证实验（例如对比不同 k）以及理解 RAG 流水线的代码逻辑时，借助了 AI 协同，但结论与推理仍由我本人完成。
 
 ---
 
-## 5. 简单实测观察
+## 5. 结论
 
-- 单轮 GU 问题（Feelgood 电话）有效：检索命中正确片段，回答含真实号码。
-- 先闲聊再问 GU 问题仍有效：`messages` 保留历史；RAG 仍按新问题检索。
-- 静音会走 VG-1 的 `NoInput`，而不是无声死循环重听。
-- 暂停/继续避免测试时一直 listen。
-
----
-
-## 6. 结论
-
-本实验流水线是：
-
-**SpeechState（听说）+ Qdrant（知识）+ Ollama（推理），由 XState DM 编排。**
-
-状态机的职责不是“记住 GU 事实”，而是**排好事件与副作用的顺序**，让语音时间线下的 RAG 对话可靠。建库（`rag/`）与对话（`starter/`）分开，也便于测试和提交作业。
+在本 PoC 的 **2 个事实型 + 2 个宽问题 + 2 个方法型** 查询上，默认 **k=5** 在不同类型问题上取得了**较好的均衡**：比 k=1 更能覆盖“一条不够”的情况，又比 k=10 更少噪声。这对当前 SpeechState RAG 助手是务实的设定，但**不能当作定论**。尤其是需要**多步信息推理**的问题，仍可能要求不同的检索策略。后续学习可在此基础上继续做 **filter** 与 **re-rank**（例如先取较大 k 再筛选），作为 future work。

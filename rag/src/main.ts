@@ -194,14 +194,24 @@ program
   .description("Query the collection")
   .argument("<collection>", "collection name")
   .argument("<query>", "text of the query")
-  .action(async (collection, query) => {
+  .option("-k, --limit <n>", "number of results to return", "5")
+  .action(async (collection, query, options) => {
+    const limit = Number(options.limit) || 5;
     const embedding = await embed(query);
     const results = await client.query(collection, {
       with_payload: true,
       query: embedding,
-      limit: 5,
+      limit,
     });
-    console.log(results.points);
+    // Compact print for VG top-k experiments
+    console.log(`limit=${limit}, hits=${results.points?.length ?? 0}`);
+    for (const [i, p] of (results.points ?? []).entries()) {
+      const payload = p.payload as { text?: string; source?: string } | null;
+      const text = (payload?.text ?? "").replace(/\s+/g, " ").slice(0, 120);
+      console.log(
+        `#${i + 1} score=${p.score?.toFixed(4)} source=${payload?.source ?? "?"} | ${text}`,
+      );
+    }
   });
 
 program.parse();
