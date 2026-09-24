@@ -123,7 +123,7 @@ program
           return {
             id:uuidv4(),
             vector: embedding,
-            payload: { 
+            payload: {  
               text: chunk,
               source: fileName, // added additional data
             },

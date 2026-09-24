@@ -10,7 +10,9 @@ export interface DMContext {
   spstRef: AnyActorRef;
   lastResult: Hypothesis[] | null;
   // nextUtterance: string;
-  messages: Message[];
+  
+  messages: Message[]; // for LLM
+  retrievedContext: string; // for RAG
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};
