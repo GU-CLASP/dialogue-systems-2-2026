@@ -1,7 +1,7 @@
 # Lab 1 VG-RAG Report: How Many Retrieval Results?
 
 **Course:** Dialogue Systems 2  
-**Author:** Sean Sha  
+**Author:** Maoxuan Sha (Sean) 
 **Focus question:** *Should you return a different number of query results (currently limited to 5)?*  
 **Corpus:** `gu_support_all` — 21 GU Service & Support pages, **438** chunks; `qwen3-embedding` (384-d, Cosine)
 
