@@ -2,10 +2,11 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir} from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
+import { join } from "node:path";
 
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
@@ -47,10 +48,9 @@ const makeChunksFromFile = async (filepath: string) => {
     chunkOverlap: 50,
     separators: ["\n\n\n", "\n\n", "\n", ". ", " "],
   });
-
   const document = await readFile(filepath, "utf8");
   const chunks = await splitter.splitText(document);
-  return chunks;
+  return chunks; 
 };
 
 program
@@ -98,6 +98,44 @@ program
       `Succesfully added ${chunks.length} document into collection: ${collection}`,
     );
   });
+program
+  .command("addAllData")
+  .description("Chunk data in all files from folder at <path> and add it to a collection.")
+  .argument("<collection>", "collection name")
+  .argument("<folderpath>", "folder path")
+  .action(async (collection, folderpath) => {
+    const fileNames = await readdir(folderpath);
+    const numberFiles : number = fileNames.length
+    let numberDocs : number = 0;
+    for (var fileName of fileNames) {
+      console.log("\n", "Processing", fileName)
+      const pageTitle = fileName.substring(9, fileName.length -4) 
+      const fullPath = join(folderpath, fileName);
+      const chunks = await makeChunksFromFile(fullPath);
+      const points = await Promise.all(
+        chunks.map(async (chunk) => {
+          const embedding = await embed(chunk);
+          return {
+            id: uuidv4(),
+            vector: embedding,
+            payload: { page: pageTitle, text: chunk },
+          };
+        }),
+      );
+      numberDocs += chunks.length
+      console.log(
+      `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
+      );
+      await client.upsert(collection, { wait: true, points: points });
+      console.log(
+      `Succesfully added ${chunks.length} documents into collection: ${collection}`,
+      );
+    }
+    console.log( "\n",
+      `Collection ${collection} populated with ${numberDocs} documents / chunks from ${numberFiles} files / pages`,
+      );
+  });
+
 
 program
   .command("queryCollection")

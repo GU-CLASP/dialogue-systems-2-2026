@@ -1,16 +1,19 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "francecentral";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
 });
+
+const client = new QdrantClient({ host: "localhost", port: 6333 });
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
@@ -34,26 +37,13 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
+const chatCompletion = (input: Message[]) => {
+  return openai.chat.completions.create({
+        messages:input,
+        model:'gemma2:2b',
+     })
 
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
 };
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
 
 const dmMachine = setup({
   types: {
@@ -75,11 +65,36 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    getCompletion: fromPromise<any, Message[]>(async input => 
+      await chatCompletion(input.input)
+    ),
+    queryRAG: fromPromise<any, string>(async ({input}) => {
+      const embedding = await openai.embeddings
+        .create({
+          model: "qwen3-embedding",
+          input: input,
+          dimensions: 384,
+        })
+        .then((result) => result.data[0].embedding);
+      return await client.query("studentPortal", {
+        with_payload: true,
+        query: embedding,
+        limit: 5,
+      });
+    }),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages : [{
+      role: 'system', 
+      content: `You are a helpful assitant who provides very brief chat-like responses. Do not use emojis. Start the conversation using a short greeting.`
+    }],
+    noInput: 0,
+    retrievedPoints: [],
+    payloads: [],
   }),
   id: "DM",
   initial: "Prepare",
@@ -89,28 +104,43 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { CLICK: "GetGreeting" },
     },
-    Greeting: {
-      initial: "Prompt",
+    GetGreeting: {
+      invoke: {
+        src: "getCompletion",
+        input: ( {context}) => context.messages,
+        onDone: {
+          target: "ChitChatLoop",
+          actions: assign({messages: ({ context, event }) => [... context.messages , {
+            role: 'assistant',
+            content: event.output.choices[0].message.content
+          }]})  
+        }
+      }
+    },
+    ChitChatLoop: {
+      initial: "Speak",
       on: {
         LISTEN_COMPLETE: [
-          {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
+          { // go to RAG only if input from user detected
+            target: ".Retrieval",
+            guard: ({ context }) => !context.noInput,
           },
-          { target: ".NoInput" },
+          { // stop the system after 4 silences in a row
+            target: "#DM.GoodBye",
+            guard: ({ context }) => context.noInput > 3,
+          }, 
+          { // after 1 to 3 silences, encourage the user to reply
+            target: ".GetCompletion" 
+          },
         ],
       },
       states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
-          entry: {
-            type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+        Speak: {
+          entry: { 
+            type: "spst.speak", 
+            params: ( {context}) => ({ utterance: context.messages?.[context.messages.length - 1].content}),
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
@@ -118,31 +148,82 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
-              }),
+              actions: assign({
+                messages: ({ context, event }) => [... context.messages , {
+                  role: 'user',
+                  content: event.value[0].utterance
+                }],
+                noInput: 0,
+              }), 
             },
             ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
+              actions: assign({
+                messages: ({ context, event }) => [... context.messages , {
+                  role: 'user',
+                  content: ''
+                }, {
+                  role: 'system',
+                  content: 'The user did not reply. Politely invite them to continue. Be brief and do not ask anything else.'
+                }],
+                noInput: ({ context}) => context.noInput +1,
+              }), 
             },
           },
         },
+        Retrieval: {
+          invoke: {
+            src: "queryRAG",
+            input: ({context}) => context.messages?.[context.messages.length - 1].content,
+            onDone: {
+              target: "Augmentation",
+              actions: assign({retrievedPoints: ({ event }) => event.output.points})  
+            }
+          }
+        },
+        Augmentation: {
+          entry: 
+            assign({payloads: ({ context }) => {
+            return context.retrievedPoints.map((item) => ({
+              page: item.payload.page,
+              text: item.payload.text,
+            }))
+          }}),
+          always: {
+            target: "GetCompletion",
+            actions: assign({messages: ({ context}) => [... context.messages , {
+              role: 'system',
+              content: `Reply to the user based only on the following context:
+              ${context.payloads.map(item => JSON.stringify(item)).join("\n")}`
+            }
+            ]})  
+          }
+        },
+        GetCompletion: {
+          invoke: {
+            src: "getCompletion",
+            input: ( {context}) => context.messages,
+            onDone: {
+              target: "Speak",
+              actions: assign({messages: ({ context, event }) => [... context.messages , {
+                role: 'assistant',
+                content: event.output.choices[0].message.content
+              }
+              ]})  
+            }
+          }
+        },
       },
     },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
+    GoodBye: {
+      entry: { 
+        type: "spst.speak", 
+        params: { utterance: `Due to inactivity, this session will now close. Feel free to start a new chat whenever you're ready. Goodbye!`}
       },
       on: { SPEAK_COMPLETE: "Done" },
     },
     Done: {
       on: {
-        CLICK: "Greeting",
+        CLICK: "GetGreeting",
       },
     },
   },
