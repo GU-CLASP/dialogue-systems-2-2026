@@ -3,8 +3,9 @@ import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "northeurope";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
@@ -12,20 +13,25 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
+const client = new QdrantClient({
+  host: "localhost",
+  port: 6333,
+});
+
+/** 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
-
-/** backup: Azure access via FLoV proxy
+*/
+/** backup: Azure access via FLoV proxy */
 const azureProxyCredentials = {
   proxyUrl: "https://rndserv.flov.gu.se:4000/api/token",
-  key: "",
+  key: KEY,
   };
-*/
 
 const settings: Settings = {
-  azureCredentials: azureCredentials,
+  azureCredentials: azureProxyCredentials,
   azureRegion: REGION,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
@@ -75,11 +81,45 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    queryRAG: fromPromise(async ({ input }: { input: string }) => {
+      const embedding = await openai.embeddings
+        .create({
+          model: "qwen3-embedding",
+          input: input,
+          dimensions: 384,
+        })
+        .then((result) => result.data[0].embedding);
+
+      return await client.query("gu-info", {
+        query: embedding,
+        with_payload: true,
+        limit: 5,
+      });
+  }),
+  llm: fromPromise(async ({ input }: { input: DMContext["messages"] }) => {
+    const completion = await openai.chat.completions.create({
+      messages: input,
+      model: "llama3.2:latest",
+    });
+
+    //return completion.choices[0].message.content;
+    const response = completion.choices[0].message.content;
+    console.log("LLM response:", response);
+
+    return response;
+  }),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [
+    {
+      role: "system",
+      content: "Give brief, conversational responses.",
+    },
+  ],
   }),
   id: "DM",
   initial: "Prepare",
@@ -96,7 +136,7 @@ const dmMachine = setup({
       on: {
         LISTEN_COMPLETE: [
           {
-            target: "CheckGrammar",
+            target: "RAG",
             guard: ({ context }) => !!context.lastResult,
           },
           { target: ".NoInput" },
@@ -118,8 +158,13 @@ const dmMachine = setup({
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
+              actions: assign(({ context, event }) => {
+                return { lastResult: event.value,
+                  messages: context.messages.concat({
+                    role: "user",
+                    content: event.value[0].utterance,
+                  })
+                 };
               }),
             },
             ASR_NOINPUT: {
@@ -127,6 +172,55 @@ const dmMachine = setup({
             },
           },
         },
+      },
+    },
+    RAG: {
+      invoke: {
+        src: "queryRAG",
+        input: ({ context }) =>
+          context.messages[context.messages.length - 1].content,
+        onDone: {
+          target: "LLM",
+          actions: assign(({ context, event }) => {
+            console.log("RAG results:", event.output.points);
+            return {
+              messages: context.messages.concat({
+                role: "system",
+                content: `Use the following information to answer the user's question:\n${event.output.points
+                  .map((result) => result.payload?.text || "")
+                  .join("\n\n")}`,
+              })
+            };
+          }),
+        },
+      },
+    },
+    LLM: {
+      invoke: {
+        src: "llm",
+        input: ({ context }) => context.messages,
+        onDone: {
+          target: "Answer",
+          actions: assign(({ context, event }) => {
+          return {
+            messages: context.messages.concat({
+              role: "assistant",
+              content: event.output || "",
+            }),
+          };
+        }),
+        },
+      },
+    },
+    Answer: {
+      entry: {
+        type: "spst.speak",
+        params: ({ context }) => ({
+          utterance: context.messages[context.messages.length - 1].content,
+        }),
+      },
+      on: {
+        SPEAK_COMPLETE: "Greeting.Ask",
       },
     },
     CheckGrammar: {
