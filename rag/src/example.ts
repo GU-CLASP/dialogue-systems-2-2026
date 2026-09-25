@@ -1,3 +1,4 @@
+// a small CLI demo for semantic search over a Thai restaurant menu 
 import { Command } from "commander";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import OpenAI from "openai";
@@ -34,7 +35,10 @@ program
   .argument("<name>")
   .action(async (name) => {
     await client.createCollection(name, {
-      vectors: { size: 384, distance: "Cosine" },
+      vectors: { 
+        size: 384, 
+        distance: "Cosine" 
+      },
     });
     console.log(`Successfully created collection: ${name}`);
   });
@@ -161,7 +165,7 @@ program
     const result = await client.query(name, {
       query: embedding,
       with_payload: true,
-      limit: 5,
+      limit: 5, // find the 5 stored menu items whose embeddings are most similar to the query embedding
     });
     console.log(result.points);
   });
