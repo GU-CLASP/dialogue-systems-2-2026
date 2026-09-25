@@ -4,9 +4,32 @@ import { objectsEqual, WHQ } from "./utils";
 interface NLUMapping {
   [index: string]: Move[];
 }
+
+// what the user can say
 type NLGMapping = [Move, string][];
 
 const nluMapping: NLUMapping = {
+
+  // adding the days the user could say
+  friday: [
+    {
+      type: "answer",
+      content: "friday",
+    },
+  ],
+  thursday: [
+    {
+      type: "answer",
+      content: "thursday",
+    },
+  ],
+  tuesday: [
+    {
+      type: "answer",
+      content: "tuesday",
+    },
+  ],
+
   "where is the lecture?": [
     {
       type: "ask",
@@ -38,7 +61,13 @@ const nluMapping: NLUMapping = {
     },
   ],
 };
+
+// what the system can say
 const nlgMapping: NLGMapping = [
+
+  // added booking day question for system
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
+
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
@@ -54,6 +83,13 @@ const nlgMapping: NLGMapping = [
       content: { predicate: "booking_room", argument: "G212" },
     },
     "The lecture is in G212.",
+  ],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" },
+    },
+    "The lecture is in J440.",
   ],
 ];
 
