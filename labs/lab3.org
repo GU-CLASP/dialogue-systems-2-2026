@@ -36,12 +36,16 @@ Intergrate Furhat with your previous work so that it can be either
 
 * Part VG-2 (1 extra VG point)
 
-#+begin_quote
-[!IMPORTANT]
-Starter code for this part is under construction.
-#+end_quote
-
 Implement a proof-of-concept XState interface that uses new [[https://docs.furhat.io/realtime-api/intro][Furhat Realtime API]], so that it is possible to plug it in to your application (~dm.ts~) instead of SpeechState.
+
+Here is a starter repository code that you can use. Feel free to
+create pull requests! https://github.com/vladmaraev/furstate
+- You will need to implement sending/receiving other events (e.g., to
+  make Furhat listen).
+- Use [[ https://github.com/vladmaraev/furstate/blob/main/test/basic.test.ts][tests]] to verify that everything is working correctly.
+- In the test you can also see how the "furstate" machine can be invoked from your application.
+
+
 
 * Submission
 Report the lab by submitting a link to a *new* pull request containing your solutions.
