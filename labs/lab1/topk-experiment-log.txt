@@ -1,0 +1,145 @@
+
+======== [A1] What is the phone number for Feelgood ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.6929 source=page-000-Student healthcare.txt | You can contact Student healthcare (Feelgood) by email or by phone. student.goteborg@feelgood.se 031-786 43 22 (Monday t
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.6926 source=page-000-Student healthcare.txt | You can contact Student healthcare (Feelgood) by email or by phone. student.goteborg@feelgood.se 031-786 43 22 (Monday t
+#2 score=0.5441 source=page-000-Student healthcare.txt | student.goteborg@feelgood.se . Address for scheduled in-person appointments If you have a scheduled appointment, the add
+#3 score=0.5207 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#4 score=0.4993 source=page-000-Student healthcare.txt | As a student you have the right to access your patient records. To do this, contact the current provider of student heal
+#5 score=0.4983 source=page-000-Student healthcare.txt | 112 is the emergency number for ambulance, police and rescue, and fire brigade. You will be asked to explain what has ha
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.6926 source=page-000-Student healthcare.txt | You can contact Student healthcare (Feelgood) by email or by phone. student.goteborg@feelgood.se 031-786 43 22 (Monday t
+#2 score=0.5441 source=page-000-Student healthcare.txt | student.goteborg@feelgood.se . Address for scheduled in-person appointments If you have a scheduled appointment, the add
+#3 score=0.5207 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#4 score=0.4993 source=page-000-Student healthcare.txt | As a student you have the right to access your patient records. To do this, contact the current provider of student heal
+#5 score=0.4983 source=page-000-Student healthcare.txt | 112 is the emergency number for ambulance, police and rescue, and fire brigade. You will be asked to explain what has ha
+#6 score=0.4824 source=page-003-Servicecenter.txt | Servicecenter can help you with Servicecenter can help you navigate the University of Gothenburg - our buildings as well
+#7 score=0.4733 source=page-000-Student healthcare.txt | At the University Church you can talk about everything that is going on in your life, whenever you need to. You are welc
+#8 score=0.4707 source=page-008-The structured search process.txt | This is frequently found in the Contact, Help or About pages.
+#9 score=0.4696 source=page-017-Disability study support.txt | Applying for and being granted study support
+#10 score=0.4682 source=page-017-Disability study support.txt | If you have any questions or would like to talk about study support, the quickest way to reach us is by e-mail. You can 
+
+======== [A2] What is the email for student healthcare ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.7357 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.7356 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#2 score=0.7173 source=page-000-Student healthcare.txt | As a student you have the right to access your patient records. To do this, contact the current provider of student heal
+#3 score=0.6982 source=page-000-Student healthcare.txt | The provider of student healthcare services has access to the following personal data from Ladok: name, personal identif
+#4 score=0.6669 source=page-000-Student healthcare.txt | You can contact Student healthcare (Feelgood) by email or by phone. student.goteborg@feelgood.se 031-786 43 22 (Monday t
+#5 score=0.6257 source=page-003-Servicecenter.txt | Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help yo
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.7356 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#2 score=0.7173 source=page-000-Student healthcare.txt | As a student you have the right to access your patient records. To do this, contact the current provider of student heal
+#3 score=0.6982 source=page-000-Student healthcare.txt | The provider of student healthcare services has access to the following personal data from Ladok: name, personal identif
+#4 score=0.6669 source=page-000-Student healthcare.txt | You can contact Student healthcare (Feelgood) by email or by phone. student.goteborg@feelgood.se 031-786 43 22 (Monday t
+#5 score=0.6257 source=page-003-Servicecenter.txt | Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help yo
+#6 score=0.6244 source=page-002-Study administration.txt | Contact information Read the information from your department on this page for more details on how to contact the person
+#7 score=0.6183 source=page-003-Servicecenter.txt | Servicecenter can help you with key pickup and drop-off. For other questions about your student accommodation, please co
+#8 score=0.6003 source=page-000-Student healthcare.txt | Contact Student healthcare You can always turn to Student healthcare if you need support because of something that is ca
+#9 score=0.5997 source=page-001-Study guidance.txt | Need help with study administration? If you need help with practical matters concerning your education, like registering
+#10 score=0.5946 source=page-019-The University Library.txt | New student – get started with the library Get started with the library as a distance student
+
+======== [B1] What support does student healthcare offer ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.7928 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.7924 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#2 score=0.7584 source=page-000-Student healthcare.txt | Contact Student healthcare You can always turn to Student healthcare if you need support because of something that is ca
+#3 score=0.7419 source=page-000-Student healthcare.txt | Self-guided resources and other types of support There are lots of resources that you can use on your own, when you feel
+#4 score=0.7371 source=page-000-Student healthcare.txt | Examples of things that Student healthcare can help you with: Stress management, for example if you feel that you can’t 
+#5 score=0.7270 source=page-000-Student healthcare.txt | If you're experiencing issues with public speaking, such as presentations or actively participating in seminars or group
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.7924 source=page-000-Student healthcare.txt | If something is not related to your studies, you should seek out the general healthcare services. If you’re unsure, cont
+#2 score=0.7584 source=page-000-Student healthcare.txt | Contact Student healthcare You can always turn to Student healthcare if you need support because of something that is ca
+#3 score=0.7419 source=page-000-Student healthcare.txt | Self-guided resources and other types of support There are lots of resources that you can use on your own, when you feel
+#4 score=0.7371 source=page-000-Student healthcare.txt | Examples of things that Student healthcare can help you with: Stress management, for example if you feel that you can’t 
+#5 score=0.7270 source=page-000-Student healthcare.txt | If you're experiencing issues with public speaking, such as presentations or actively participating in seminars or group
+#6 score=0.7134 source=page-004-Study strategies.txt | Support from the University If your studies affect your health You can contact the Student healthcare if you need suppor
+#7 score=0.7125 source=page-000-Student healthcare.txt | The provider of student healthcare services has access to the following personal data from Ladok: name, personal identif
+#8 score=0.7111 source=page-017-Disability study support.txt | Applying for and being granted study support
+#9 score=0.6815 source=page-003-Servicecenter.txt | Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help yo
+#10 score=0.6813 source=page-000-Student healthcare.txt | Medicine prescriptions. Support regarding documented illnesses. Support regarding milder illnesses, for example colds an
+
+======== [B2] What can Servicecenter help me with ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.7243 source=page-003-Servicecenter.txt | Servicecenter can help you with Servicecenter can help you navigate the University of Gothenburg - our buildings as well
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.7242 source=page-003-Servicecenter.txt | Servicecenter can help you with Servicecenter can help you navigate the University of Gothenburg - our buildings as well
+#2 score=0.6995 source=page-003-Servicecenter.txt | Via Servicecenter, you can get access to some IT support. Servicecenter can help you to an extent and put you in contact
+#3 score=0.6823 source=page-003-Servicecenter.txt | Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help yo
+#4 score=0.6714 source=page-003-Servicecenter.txt | Servicecenter can help you with key pickup and drop-off. For other questions about your student accommodation, please co
+#5 score=0.6296 source=page-003-Servicecenter.txt | In our for Servicecenters you can buy some University of Gothenburg promotional products such as water bottles, tote bag
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.7242 source=page-003-Servicecenter.txt | Servicecenter can help you with Servicecenter can help you navigate the University of Gothenburg - our buildings as well
+#2 score=0.6995 source=page-003-Servicecenter.txt | Via Servicecenter, you can get access to some IT support. Servicecenter can help you to an extent and put you in contact
+#3 score=0.6823 source=page-003-Servicecenter.txt | Servicecenter can help you with general informations about studying at the University of Gothenburg. We can also help yo
+#4 score=0.6714 source=page-003-Servicecenter.txt | Servicecenter can help you with key pickup and drop-off. For other questions about your student accommodation, please co
+#5 score=0.6296 source=page-003-Servicecenter.txt | In our for Servicecenters you can buy some University of Gothenburg promotional products such as water bottles, tote bag
+#6 score=0.6233 source=page-017-Disability study support.txt | Applying for and being granted study support
+#7 score=0.6197 source=page-008-The structured search process.txt | This is frequently found in the Contact, Help or About pages.
+#8 score=0.6080 source=page-003-Servicecenter.txt | Contact Servicecenter Contact Form: Support for students E-mail : servicecenter@gu.se Phone: +4631 786 6500 Opening hour
+#9 score=0.6048 source=page-003-Servicecenter.txt | There are four Servicecenter locations at the university. You do not need to be a student at the faculty to visit Servic
+#10 score=0.6029 source=page-019-The University Library.txt | New student – get started with the library Get started with the library as a distance student
+
+======== [C1] How should I search for scholarly information ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.7295 source=page-008-The structured search process.txt | Discovery services can be subject-specific or cover several fields. This is why you need to know what kind of informatio
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.7293 source=page-008-The structured search process.txt | Discovery services can be subject-specific or cover several fields. This is why you need to know what kind of informatio
+#2 score=0.7270 source=page-007-Searching for information.txt | A few information search strategies Chain search: Start out from one relevant source in a database to find more, using s
+#3 score=0.7255 source=page-008-The structured search process.txt | Google Scholar is a freely available search engine from Google that specializes in finding scientific source material
+#4 score=0.7159 source=page-008-The structured search process.txt | When you can't find what you're looking for, it's a good idea to review the search service you're using, perhaps also yo
+#5 score=0.7061 source=page-008-The structured search process.txt | Google Scholar search engine (freely available).
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.7293 source=page-008-The structured search process.txt | Discovery services can be subject-specific or cover several fields. This is why you need to know what kind of informatio
+#2 score=0.7270 source=page-007-Searching for information.txt | A few information search strategies Chain search: Start out from one relevant source in a database to find more, using s
+#3 score=0.7255 source=page-008-The structured search process.txt | Google Scholar is a freely available search engine from Google that specializes in finding scientific source material
+#4 score=0.7159 source=page-008-The structured search process.txt | When you can't find what you're looking for, it's a good idea to review the search service you're using, perhaps also yo
+#5 score=0.7061 source=page-008-The structured search process.txt | Google Scholar search engine (freely available).
+#6 score=0.7001 source=page-019-The University Library.txt | Our librarians offer search support, including assistance in evaluating and improving your search results, as well as gu
+#7 score=0.6905 source=page-017-Disability study support.txt | Services for people with reading disabilities on the University library website
+#8 score=0.6669 source=page-006-Sources for scholarly communication.txt | How to identify a paper from a popular science publication
+#9 score=0.6616 source=page-008-The structured search process.txt | Expand your search by using fewer search terms. You may be able to find more and better results via another discovery se
+#10 score=0.6565 source=page-017-Disability study support.txt | Applying for and being granted study support
+
+======== [C2] How do I work with sources and references ========
+--- k=1 ---
+limit=1, hits=1
+#1 score=0.7250 source=page-009-Working with sources and references.txt | Sources in an academic context are for example textbooks, scientific articles and reports. Such sources are a starting p
+--- k=5 ---
+limit=5, hits=5
+#1 score=0.7250 source=page-009-Working with sources and references.txt | Sources in an academic context are for example textbooks, scientific articles and reports. Such sources are a starting p
+#2 score=0.7036 source=page-011-Planning, reading and taking notes.txt | Make a habit of noting the references of the texts that are the basis for your notes. Also, mark if you have quoted a so
+#3 score=0.6898 source=page-013-Revising your text.txt | Examine the statements and reasoning that your text presents. Are they well substantiated? That is, do you refer to rele
+#4 score=0.6568 source=page-009-Working with sources and references.txt | References are an essential component of any academic text. They appear both in the body of the text, and in a reference
+#5 score=0.6524 source=page-009-Working with sources and references.txt | There are different ways of providing references in a text, depending on whether the focus lies on the information of a 
+--- k=10 ---
+limit=10, hits=10
+#1 score=0.7250 source=page-009-Working with sources and references.txt | Sources in an academic context are for example textbooks, scientific articles and reports. Such sources are a starting p
+#2 score=0.7036 source=page-011-Planning, reading and taking notes.txt | Make a habit of noting the references of the texts that are the basis for your notes. Also, mark if you have quoted a so
+#3 score=0.6898 source=page-013-Revising your text.txt | Examine the statements and reasoning that your text presents. Are they well substantiated? That is, do you refer to rele
+#4 score=0.6568 source=page-009-Working with sources and references.txt | References are an essential component of any academic text. They appear both in the body of the text, and in a reference
+#5 score=0.6524 source=page-009-Working with sources and references.txt | There are different ways of providing references in a text, depending on whether the focus lies on the information of a 
+#6 score=0.6441 source=page-009-Working with sources and references.txt | When you refer to sources in your text you may use certain referencing verbs. Referencing verbs can be used to give the 
+#7 score=0.6432 source=page-009-Working with sources and references.txt | Compiling a list of references All sources used and referred to should be presented in a reference list (sometimes known
+#8 score=0.6414 source=page-006-Sources for scholarly communication.txt | How to identify a paper from a popular science publication
+#9 score=0.6350 source=page-009-Working with sources and references.txt | Keep in mind that the work done in the tools is automated, and that errors can occur. It is always you as a student who 
+#10 score=0.6286 source=page-007-Searching for information.txt | Assuming that (A) is a scientific text, you will find the reference list at the end of the article. Alternatively, the r
+DONE
