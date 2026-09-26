@@ -169,4 +169,12 @@ describe("DME tests", () => {
       { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
+
+  describe("negative semantic understanding feedback", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "How is the weather today?" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+    ]);
+  });
 });
