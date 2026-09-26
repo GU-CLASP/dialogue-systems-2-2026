@@ -59,8 +59,11 @@ const nluMapping: NLUMapping = {
 };
 const nlgMapping: NLGMapping = [
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
-  // for which day
+  //; for which day
   [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
+  [{ type: "icm:neg:understanding", content: null},
+    "Sorry, I don't understand.",
+  ],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
     {

@@ -8,7 +8,7 @@ import { initialIS } from "../src/is";
 interface Turn {
   speaker: string;
   message: string;
-}
+} // one line in the conversation
 
 interface TestContext extends DMEContext {
   dialogue: Turn[]; // test stores a list of all dialogue turns
@@ -92,7 +92,7 @@ describe("DME tests", () => { // the test state machine
         invoke: { // starts the actual dialogue manager as a child actor
           src: "dme",
           id: "dmeTestID",
-          input: ({ context, self }) => {
+          input: ({ context, self }) => { // what the dme recieves
             return {
               parentRef: self,
               latest_moves: context.latest_moves,
@@ -133,12 +133,13 @@ describe("DME tests", () => { // the test state machine
     ]);
   });
 
+  // I added friday as well cuz of task one here
   describe("system answer from database", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
-      { speaker: "sys", message: "Which day?"},
-      { speaker: "usr", message: "Friday"},
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
@@ -155,21 +156,59 @@ describe("DME tests", () => { // the test state machine
       { speaker: "usr", message: "Thursday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
-      { speaker: "sys", message: "The lecture is in J440."},
+      { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
 
   describe("system answer from database, with day (Friday)", () => {
     runTest([
-      { speaker: "sys", message: "Hello! You can ask me anything!"},
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
-      { speaker: "sys", message: "Which day?"},
+      { speaker: "sys", message: "Which day?" },
       { speaker: "usr", message: "Friday" },
-      { speaker: "sys", message: "Which course?"},
-      { speaker: "usr", message: "Dialogue Systems 2"},
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
   });
 
+  // 2a
+  describe("negative understanding feedback (no pending question)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr",message: "bla bla" },
+      {speaker: "sys", message: "Sorry, I don't understand." },
+    ]);
+  });
+
+  // 2b
+  describe("negative understanding feedback with repeated question", () => {
+    runTest([
+      { speaker: "sys", message:"Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      {speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message:"bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+    ]);
+  });
+
+  //  2c
+  describe("recovers and gives room info after repeated misunderstandings", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
 
 });

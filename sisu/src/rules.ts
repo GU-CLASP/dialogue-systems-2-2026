@@ -69,6 +69,18 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+
+          // Do not add the question again if it is already on QUD
+          const alreadyInQUD = is.shared.qud.some((existingQ) =>
+            objectsEqual(existingQ, q)
+          );
+
+          if (alreadyInQUD) {
+            return () => ({
+              ...is,
+            });
+          }
+
           return () => ({
             ...is,
             shared: {
@@ -110,11 +122,11 @@ export const rules: Rules = {
   /** rule 2.4 */
   integrate_answer: ({ is }) => {
     const topQUD = is.shared.qud[0];
-    if (topQUD) {
+    if (topQUD) { // continues only when some questioin is being discussed
       for (const move of is.shared.lu!.moves) {
         if (move.type === "answer") {
           const a = move.content;
-          if (relevant(is.domain, a, topQUD)) {
+          if (relevant(is.domain, a, topQUD)) { // does this answer fit the current question
             let proposition = combine(is.domain, topQUD, a);
             return () => ({
               ...is,
@@ -143,6 +155,23 @@ export const rules: Rules = {
   /** TODO rule 2.7 integrate_usr_quit */
 
   /** TODO rule 2.8 integrate_sys_quit */
+
+  // check whether the latest user utterance was not understood
+  integrate_negative_understanding: ({ is }) => {
+    if (
+      is.shared.lu!.speaker === "usr" && // last utterance was from user
+      Array.isArray(is.shared.lu!.moves) && //the moves field exists and is an array
+      is.shared.lu!.moves.length === 0 // no dialogue moves were recognized from the user's utterance
+    ) {
+      return () => ({ 
+        ...is, // copy all the properties from is
+        next_moves: [
+          ...is.next_moves, // adding a new dialogue move
+          { type: "icm:neg:understanding", content: null },
+        ],
+      });
+    }
+  },
 
   /**
    * DowndateQUD
