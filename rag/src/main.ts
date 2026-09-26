@@ -2,10 +2,11 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
+import path from "node:path";
 
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
@@ -65,7 +66,7 @@ program
 program
   .command("createCollection")
   .description("Create a collection")
-  .argument("<name>", "collection name")
+  .argument("<name>", "my_first_collection")
   .action(async (name) => {
     await client.createCollection(name, {
       vectors: { size: 384, distance: "Cosine" },
@@ -73,6 +74,51 @@ program
     console.log(`Succesfully created collection: ${name}`);
   });
 
+program
+  .command("addData")
+  .description("Chunk all data at <path> and add it to a collection.")
+  .argument("<collection>", "collection name")
+  .argument("<path>", "file path")
+  .action(async (collection, currPath) => {
+
+    const newCollection = await client.collectionExists(collection);
+    if (!newCollection.exists) {
+      console.log(`creating collection ${newCollection}`);
+      await client.createCollection(collection, {
+      vectors: { size: 384, distance: "Cosine" },
+    });
+    }
+
+    const allFilenames = await readdir(currPath);
+    console.log(`${allFilenames.length} files in ${currPath}`);
+    // loop through all files 
+    for (const filename of allFilenames) {
+      const fullPath = path.join(currPath, filename);
+      console.log(`current file: ${fullPath}`);
+
+      const chunks = await makeChunksFromFile(fullPath);
+
+      const points = await Promise.all(
+        chunks.map(async (chunk, i) => {
+          const embedding = await embed(chunk);
+          return {
+            id: uuidv4(),
+            vector: embedding,
+            payload: { text: chunk, source: filename, chunkIndex: i },
+          };
+        }),
+      );
+      console.log(
+        `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
+      );
+      await client.upsert(collection, { wait: true, points: points });
+      console.log(
+        `Succesfully added ${chunks.length} document into collection: ${collection}`,
+      );
+    };  
+  });
+
+  /*
 program
   .command("addData")
   .description("Chunk data at <path> and add it to a collection.")
@@ -99,6 +145,7 @@ program
     );
   });
 
+  */
 program
   .command("queryCollection")
   .description("Query the collection")
