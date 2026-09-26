@@ -1,9 +1,10 @@
-import { setup, createActor, sendTo, assign, waitFor } from "xstate";
 import { describe, expect, test } from "vitest";
-import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
+import { assign, createActor, sendTo, setup, waitFor } from "xstate";
+
 import { dme } from "../src/dme";
-import { nlu, nlg } from "../src/nlug";
 import { initialIS } from "../src/is";
+import { nlg, nlu } from "../src/nlug";
+import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
 
 interface Turn {
   speaker: string;
@@ -23,7 +24,7 @@ describe("DME tests", () => {
       notify: assign(
         ({ context }, params: { speaker: string; message: string }) => {
           return { dialogue: [...context.dialogue, params] };
-        }
+        },
       ),
     },
     types: {} as {
@@ -59,7 +60,7 @@ describe("DME tests", () => {
                     moves: nlu(event.value),
                   },
                 }),
-                { delay: 1000 }
+                { delay: 1000 },
               ),
             ],
           },
@@ -74,7 +75,7 @@ describe("DME tests", () => {
                     moves: (event as NextMovesEvent).value,
                   },
                 }),
-                { delay: 1000 }
+                { delay: 1000 },
               ),
               {
                 type: "notify",
@@ -119,7 +120,7 @@ describe("DME tests", () => {
         (snapshot) => snapshot.context.dialogue.length === expectedSoFar.length,
         {
           timeout: 1000 /** allowed time to transition to the expected state */,
-        }
+        },
       );
       expect(snapshot.context.dialogue).toEqual(expectedSoFar);
     });
@@ -133,13 +134,39 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database", () => {
+  describe("system answer from database - Fri", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("system answer from database - Thu", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("system answer from database - Tue", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
 });
