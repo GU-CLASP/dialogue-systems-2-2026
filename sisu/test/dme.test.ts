@@ -2,7 +2,7 @@ import { setup, createActor, sendTo, assign, waitFor } from "xstate";
 import { describe, expect, test } from "vitest";
 import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
 import { dme } from "../src/dme";
-import { nlu, nlg } from "../src/nlug";
+import { nlu, nlg, nluScore } from "../src/nlug";
 import { initialIS } from "../src/is";
 
 interface Turn {
@@ -57,6 +57,7 @@ describe("DME tests", () => { // the test state machine
                   value: {
                     speaker: "usr",
                     moves: nlu(event.value),
+                    score: nluScore(event.value), // for vg
                   },
                 }),
                 { delay: 1000 }
@@ -176,18 +177,18 @@ describe("DME tests", () => { // the test state machine
   describe("negative understanding feedback (no pending question)", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr",message: "bla bla" },
-      {speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
     ]);
   });
 
   // 2b
   describe("negative understanding feedback with repeated question", () => {
     runTest([
-      { speaker: "sys", message:"Hello! You can ask me anything!" },
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
-      {speaker: "sys", message: "Which day?" },
-      { speaker: "usr", message:"bla bla" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
       { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
     ]);
   });
@@ -208,6 +209,36 @@ describe("DME tests", () => { // the test state machine
       { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("VG1: confidence-based grounding, confirms noisy answer, proceeds on yes", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "fridayish" },
+      { speaker: "sys", message: "Did you say Friday?" },
+      { speaker: "usr", message: "yes" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("VG1: confidence-based grounding, reasks the question if user says no", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "fridayish" },
+      { speaker: "sys", message: "Did you say Friday?" },
+      { speaker: "usr", message: "no" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
 
