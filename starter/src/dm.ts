@@ -2,7 +2,11 @@ import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents, Message } from "./types";
+import { QdrantClient } from "@qdrant/js-client-rest";
 import OpenAI from "openai";
+
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+const RAGcollection = "lab1_step3";
 
 const REGION = "swedencentral";
 
@@ -39,29 +43,18 @@ const OLLAMA = "llama3.2"
 
 const SYS_PROMPT: Message = {
   role: "system",
-  content: "hello! this is the system speaking"
+  content: "" // this will get overwritten with the actual system prompt later
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
+const embed = async (input: string) =>
+  openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: input,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
 
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
 
 const dmMachine = setup({
   types: {
@@ -93,6 +86,15 @@ const dmMachine = setup({
         return completion.choices[0].message.content ?? "";
       },
     ),
+    queryRAG: fromPromise<any[], {query: string}>(async ({input}) => {
+      const embedding = await embed(input.query);
+      const result = await client.query(RAGcollection, {
+        query: embedding,
+        with_payload: true,
+        limit: 5,
+      });
+      return result.points;
+    }),
   },
 }).createMachine({
   context: ({ spawn }) => ({
@@ -111,20 +113,17 @@ const dmMachine = setup({
       on: { CLICK: "Greeting" },
     },
     Greeting: {
-      entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
+      entry: { type: "spst.speak", params: { utterance: `Hello I am a chat bot, let's talk about something!` } },
       on: { SPEAK_COMPLETE: "SystemAsk" },
     },
     SystemAsk: {
       entry: { type: "spst.listen" },
       on: {
         RECOGNISED: {
-          target: "GetSystemResponse",
+          target: "FetchFromRAG",
           actions: assign(({ context, event }) => ({
             lastResult: event.value,
-            messages: [
-              ...context.messages,
-              {role: "user", content: event.value[0].utterance } as Message,
-            ],
+            messages: context.messages.concat({role: "user", content: event.value[0].utterance } as Message),
           })),
         },
         ASR_NOINPUT: {
@@ -140,6 +139,42 @@ const dmMachine = setup({
       },
       on: { SPEAK_COMPLETE: "SystemAsk" },
     },
+    FetchFromRAG: {
+      invoke: {
+        id: "queryRAG",
+        src: "queryRAG",
+        input: ({ context }) => ({
+          query: context.lastResult ? context.lastResult[0].utterance : "",
+        }),
+        onDone: {
+          target: "GetSystemResponse",
+          actions: assign(({context, event}) => {
+            const points = event.output;
+            const relevantInfo = points.map((p:any) => p.payload?.text).filter(Boolean).join("\n\n");
+            const newSysMessage: Message = {
+              role: "system",
+              content: ` You are a helpful chat system who can have a natural conversation with a user and retrieve useful factual and accurate information.
+      If useful information is contained in the pages below, answer the user in a short and concise manner:
+      
+      INFORMATION START
+
+      ${relevantInfo || "no information found"}
+      
+      INFORMATION END
+
+      Please be brief and do not mention anything which is not backed up by the information provided.`,
+            };
+            return {
+              messages: [newSysMessage].concat(context.messages.slice(1)),
+            };
+          }),
+        },
+        onError: {
+          target: "GetSystemResponse",
+          actions: ({event}) => console.error("RAG Retrieval Error: ", event.error),
+        },
+      },
+    },
     GetSystemResponse: {
       invoke: {
         id: "getResponse",
@@ -148,10 +183,7 @@ const dmMachine = setup({
         onDone: {
           target: "SystemRespond",
           actions: assign(({ context, event }) => ({
-            messages: [
-              ...context.messages,
-              {role:"assistant", content: event.output } as Message,
-            ],
+            messages: context.messages.concat({role:"assistant", content: event.output } as Message),
           })),
         },
         onError: {
@@ -159,13 +191,7 @@ const dmMachine = setup({
           actions: [
             ({ event }) => console.error("LLM error:", event.error),
             assign(({ context }) => ({
-              messages: [
-                ...context.messages,
-                {
-                  role:"assistant",
-                  content: "Error connecting to the agent.",
-                } as Message,
-              ],
+              messages: context.messages.concat({ role:"assistant", content: "Error connecting to the agent."} as Message),
             })),
           ],
         },
