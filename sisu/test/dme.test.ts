@@ -2,25 +2,25 @@ import { setup, createActor, sendTo, assign, waitFor } from "xstate";
 import { describe, expect, test } from "vitest";
 import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
 import { dme } from "../src/dme";
-import { nlu, nlg } from "../src/nlug";
+import { nlu, nlg, nluScore } from "../src/nlug";
 import { initialIS } from "../src/is";
 
 interface Turn {
   speaker: string;
   message: string;
-}
+} // one line in the conversation
 
 interface TestContext extends DMEContext {
-  dialogue: Turn[];
+  dialogue: Turn[]; // test stores a list of all dialogue turns
 }
 
-describe("DME tests", () => {
+describe("DME tests", () => { // the test state machine
   const machine = setup({
     actors: {
       dme: dme,
     },
     actions: {
-      notify: assign(
+      notify: assign( // adds a new turn to the stored dialogue
         ({ context }, params: { speaker: string; message: string }) => {
           return { dialogue: [...context.dialogue, params] };
         }
@@ -41,32 +41,33 @@ describe("DME tests", () => {
     states: {
       TestInterface: {
         on: {
-          INPUT: {
+          INPUT: { // when the user speaks
             actions: [
-              {
+              { // first record the user message
                 type: "notify",
                 params: ({ event }) => ({
                   speaker: "usr",
                   message: event.value,
                 }),
               },
-              sendTo(
+              sendTo( // runs NLU
                 "dmeTestID",
                 ({ event }) => ({
                   type: "SAYS",
                   value: {
                     speaker: "usr",
                     moves: nlu(event.value),
+                    score: nluScore(event.value), // for vg
                   },
                 }),
                 { delay: 1000 }
               ),
             ],
           },
-          NEXT_MOVES: {
+          NEXT_MOVES: { // when the system wants to speak
             actions: [
-              sendTo(
-                "dmeTestID",
+              sendTo( // the systems own move is sent back into DME
+                "dmeTestID", // allows the information state to remember what the system just said
                 ({ event }) => ({
                   type: "SAYS",
                   value: {
@@ -76,7 +77,7 @@ describe("DME tests", () => {
                 }),
                 { delay: 1000 }
               ),
-              {
+              { // runs the system moves through NLG
                 type: "notify",
                 params: ({ event }: any) => ({
                   speaker: "sys",
@@ -89,15 +90,15 @@ describe("DME tests", () => {
         },
       },
       DME: {
-        invoke: {
+        invoke: { // starts the actual dialogue manager as a child actor
           src: "dme",
           id: "dmeTestID",
-          input: ({ context, self }) => {
+          input: ({ context, self }) => { // what the dme recieves
             return {
               parentRef: self,
               latest_moves: context.latest_moves,
               latest_speaker: context.latest_speaker,
-              is: context.is,
+              is: context.is, // DME starts with the initial information state defifined in is.ts
             };
           },
         },
@@ -105,27 +106,27 @@ describe("DME tests", () => {
     },
   });
 
-  const runTest = (turns: Turn[]) => {
-    let expectedSoFar: Turn[] = [];
-    const actor = createActor(machine).start();
-    test.each(turns)("$speaker> $message", async (turn) => {
-      expectedSoFar.push(turn);
-      if (turn.speaker === "usr") {
+  const runTest = (turns: Turn[]) => { // takes an expected conversation
+    let expectedSoFar: Turn[] = []; // starts with no expected dialogue
+    const actor = createActor(machine).start(); // starts the test state machine
+    test.each(turns)("$speaker> $message", async (turn) => { // Vitest creates one test for every turn
+      expectedSoFar.push(turn); // adds the current expected turn
+      if (turn.speaker === "usr") { // if it is the users turn
         console.info("user input: ", turn.message);
-        actor.send({ type: "INPUT", value: turn.message });
-      }
+        actor.send({ type: "INPUT", value: turn.message }); // send that input to the system
+      } // but for system turns, it does not manually send anything, it waits for the dialogue manager to produce that system output automatically
       const snapshot = await waitFor(
-        actor,
+        actor, // wait until the real dialogue contains as many turns as we currently expect
         (snapshot) => snapshot.context.dialogue.length === expectedSoFar.length,
         {
           timeout: 1000 /** allowed time to transition to the expected state */,
         }
       );
-      expect(snapshot.context.dialogue).toEqual(expectedSoFar);
+      expect(snapshot.context.dialogue).toEqual(expectedSoFar); // vitest checks whether the real conversation exactly equals the expected one
     });
   };
 
-  describe("system answer from beliefs", () => {
+  describe("system answer from beliefs", () => { // first test: test sth system already knows in its beliefs
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "What's your favorite food?" },
@@ -133,13 +134,112 @@ describe("DME tests", () => {
     ]);
   });
 
+  // I added friday as well cuz of task one here
   describe("system answer from database", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
   });
+
+  // for task one, failing tests
+
+  describe("system answer from database, with day (Thursday)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("system answer from database, with day (Friday)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  // 2a
+  describe("negative understanding feedback (no pending question)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+    ]);
+  });
+
+  // 2b
+  describe("negative understanding feedback with repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+    ]);
+  });
+
+  //  2c
+  describe("recovers and gives room info after repeated misunderstandings", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("VG1: confidence-based grounding, confirms noisy answer, proceeds on yes", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "fridayish" },
+      { speaker: "sys", message: "Did you say Friday?" },
+      { speaker: "usr", message: "yes" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("VG1: confidence-based grounding, reasks the question if user says no", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "fridayish" },
+      { speaker: "sys", message: "Did you say Friday?" },
+      { speaker: "usr", message: "no" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
 });

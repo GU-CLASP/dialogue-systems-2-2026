@@ -28,7 +28,7 @@ export type Question = WhQuestion;
 type WhQuestion = { type: "whq"; predicate: string };
 
 interface OtherMove {
-  type: "greet" | "request";
+  type: "greet" | "request" | "icm:neg:understanding";
   content: null | string;
 }
 interface AnswerMove {
@@ -40,7 +40,22 @@ interface AskMove {
   content: Question;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove;
+
+// for vg A
+
+// the user's reply to a confirmation
+interface ConfirmMove {
+  type: "confirm";
+  content: "yes" | "no" ;
+}
+
+// systems confirmation ICM
+interface IcmConfirmMove {
+  type: "icm:usr:confirm";
+  content: Move;
+}
+
+export type Move = OtherMove | AnswerMove | AskMove | ConfirmMove | IcmConfirmMove;
 
 export type Action = {
   type:
@@ -58,9 +73,18 @@ export interface InformationState {
   next_moves: Move[];
   domain: Domain;
   database: Database;
-  private: { agenda: Action[]; plan: Action[]; bel: Proposition[] };
+  private: { 
+    agenda: Action[]; 
+    plan: Action[]; 
+    bel: Proposition[];
+    pending_confirmation?: Move; // vg 1
+  };
   shared: {
-    lu?: { speaker: Speaker; moves: Move[] };
+    lu?: { 
+      speaker: Speaker; 
+      moves: Move[];
+      score?: number; // vg1
+    };
     qud: Question[];
     com: Proposition[];
   };
@@ -79,6 +103,7 @@ export interface TotalInformationState {
   /** interface variables */
   latest_speaker?: Speaker;
   latest_moves?: Move[];
+  latest_score?: number; // for vg 1
 
   /** information state */
   is: InformationState;
@@ -93,7 +118,7 @@ export type DMEEvent = SaysMovesEvent;
 
 export type SaysMovesEvent = {
   type: "SAYS";
-  value: { speaker: Speaker; moves: Move[] };
+  value: { speaker: Speaker; moves: Move[]; score?: number }; // I added score for vg 1
 };
 
 export type NextMovesEvent = {

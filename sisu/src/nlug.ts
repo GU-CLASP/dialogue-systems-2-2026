@@ -37,9 +37,63 @@ const nluMapping: NLUMapping = {
       content: "LT2319",
     },
   ],
+  // adding friday, thursday and tuesday
+  friday: [
+    {
+      type: "answer",
+      content: "Friday",
+    },
+  ],
+  thursday: [
+    {
+      type: "answer",
+      content: "Thursday",
+    },
+  ],
+  tuesday: [
+    {
+      type: "answer",
+      content: "Tuesday",
+    },
+  ],
+
+  // for vg
+  fridayish: [ // noisy variant of friday
+    {
+      type: "answer",
+      content: "Friday",
+    },
+  ],
+  yes: [
+    {
+      type: "confirm",
+      content: "yes"
+    },
+  ],
+  no: [
+    {
+      type: "confirm",
+      content: "no",
+    },
+  ],
 };
+
+const nluConfidenceMapping: {[index: string]: number} = {
+  fridayish: 0.4,
+};
+
+export function nluScore(utterance: string): number {
+  const key = utterance.toLowerCase();
+  return key in nluConfidenceMapping ? nluConfidenceMapping[key] : 1.0;
+}
+
 const nlgMapping: NLGMapping = [
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
+  //; for which day
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
+  [{ type: "icm:neg:understanding", content: null},
+    "Sorry, I don't understand.",
+  ],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
     {
@@ -55,21 +109,36 @@ const nlgMapping: NLGMapping = [
     },
     "The lecture is in G212.",
   ],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" },
+    },
+    "The lecture is in J440.",
+  ],
+  
 ];
 
+function shortContentText(content: unknown): string {
+  if (typeof content === "string") return content;
+  if (content && typeof content === "object" && "argument" in (content as any)) {
+    return (content as { argument: string }).argument;
+  }
+  return "";
+}
+
 export function nlg(moves: Move[]): string {
-  console.log("generating moves", moves);
   function generateMove(move: Move): string {
-    const mapping = nlgMapping.find((x) => objectsEqual(x[0], move));
-    if (mapping) {
-      return mapping[1];
+    if (move.type === "icm:usr:confirm") {
+      return `Did you say ${shortContentText(move.content.content)}?`;
     }
+    const mapping = nlgMapping.find((x) => objectsEqual(x[0], move));
+    if (mapping) return mapping[1];
     throw new Error(`Failed to generate move ${JSON.stringify(move)}`);
   }
-  const utterance = moves.map(generateMove).join(" ");
-  console.log("generated utterance:", utterance);
-  return utterance;
+  return moves.map(generateMove).join(" ");
 }
+
 
 /** NLU mapping function can be replaced by statistical NLU
  */
