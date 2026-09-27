@@ -53,6 +53,15 @@ const makeChunksFromFile = async (filepath: string) => {
   return chunks;
 };
 
+//paragraph-based chunking
+const makeParagraphChunksFromFile = async (filepath: string) => {
+  const document =await readFile(filepath, "utf8");
+  const paragraphs =document
+    .split(/\n\s*\n/)
+    .map((paragraph: string) => paragraph.trim())
+    .filter((paragraph: string) => paragraph.length > 0);
+  return paragraphs;
+};
 program
   .command("split")
   .description("Split file at <path> into chunks and print.")
@@ -61,6 +70,7 @@ program
     const chunks = await makeChunksFromFile(path);
     chunks.forEach((c, ix) => console.log(ix, "\n", c));
   });
+
 
 program
   .command("createCollection")
@@ -79,9 +89,11 @@ program
   .argument("<collection>", "collection name")
   .argument("<path>", "file path")
   .action(async (collection, path) => {
-    const chunks = await makeChunksFromFile(path);
+    const chunks = collection === "gu_paragraph"
+     ? await makeParagraphChunksFromFile(path) 
+     : await makeChunksFromFile(path);
     const points = await Promise.all(
-      chunks.map(async (chunk) => {
+      chunks.map(async (chunk: string) => {
         const embedding = await embed(chunk);
         return {
           id: uuidv4(),
