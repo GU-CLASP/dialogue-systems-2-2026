@@ -158,6 +158,14 @@ describe("DME tests", () => {
       { speaker: "sys", message: "Pizza." },
     ]);
   });
+  
+  describe("Negative semantic understanding feedback", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "i like chocolates" },
+      { speaker: "sys", message: "Sorry, I dont understand" },
+    ]);
+  }); 
 
  // describe("system answer from database", () => {
    // runTest([

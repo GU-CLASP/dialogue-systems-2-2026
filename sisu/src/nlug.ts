@@ -60,6 +60,8 @@ const nlgMapping: NLGMapping = [
   [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
+  [{ type: "notunderstood", content: null }, "Sorry, I dont understand"],
+
   [
     {
       type: "answer",

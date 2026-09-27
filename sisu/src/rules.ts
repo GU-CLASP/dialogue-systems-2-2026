@@ -330,4 +330,18 @@ export const rules: Rules = {
       });
     }
   },
+  
+  
+  select_not_understood: ({ is }) => {
+    if (Array.isArray(is.shared.lu?.moves) &&is.shared.lu.moves.length === 0 ) {
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves,{ type: "notunderstood", content: null },
+        ],
+      });
+    }
+  },
 };
+  
+
+
