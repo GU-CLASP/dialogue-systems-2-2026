@@ -65,6 +65,9 @@ const nluMapping: NLUMapping = {
 // what the system can say
 const nlgMapping: NLGMapping = [
 
+  // clarification question
+  [{ type: "clarify", content: null }, "Sorry, I didn't understand."],
+
   // added booking day question for system
   [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
 

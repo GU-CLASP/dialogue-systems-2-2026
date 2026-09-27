@@ -170,4 +170,45 @@ describe("DME tests", () => {
       { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
+
+  // testing non-sensical answer for 2a
+  describe("system answer testing negative semantic understanding", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Banana" },
+      { speaker: "sys", message: "Sorry, I didn't understand." },
+    ]);
+  });
+
+  // testing non-sensical answer for 2b
+  describe("system answer testing negative semantic understanding + repeating question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Apple" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which day?" },
+    ]);
+  });
+
+  // testing non-sensical answer for 2c
+  describe("system answer testing negative semantic understanding + repeating question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Strawberry" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which day?" },
+      { speaker: "usr", message: "Grape" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+
+    ]);
+  });
+
 });
