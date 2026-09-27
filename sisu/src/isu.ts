@@ -41,6 +41,14 @@ const dmMachine = setup({
       context.ssRef.send({
         type: "LISTEN",
       }),
+    speak_no_input: ({ context }) =>
+
+      context.ssRef.send({
+        type: "SPEAK",
+        value: {
+          utterance: "I can't hear you."
+      },
+    }),
   },
   types: {} as {
     context: DMContext;
@@ -94,12 +102,18 @@ const dmMachine = setup({
                   })),
                 },
                 ASR_NOINPUT: {
-                  // TODO
+                  target: "NoInput"
                 },
               },
             },
+            NoInput: {
+              entry: "speak_no_input",
+              on: { SPEAK_COMPLETE:  { target: "Recognising", actions: "listen" }
+                }, 
+              },
+            },
           },
-        },
+      
         Generate: {
           initial: "Idle",
           states: {

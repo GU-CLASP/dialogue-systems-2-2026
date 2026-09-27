@@ -82,6 +82,13 @@ const nlgMapping: NLGMapping = [
     },
     "The lecture is in J440."
   ],
+  [
+    {
+      type: "icm:sem*neg",
+      content: null
+    },
+    "Sorry, I don't understand."
+  ],
 ];
 
 export function nlg(moves: Move[]): string {

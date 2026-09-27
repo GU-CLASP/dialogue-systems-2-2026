@@ -330,4 +330,21 @@ export const rules: Rules = {
       });
     }
   },
+
+
+  /** Implemenatation Rule 3.12 */
+  selectIcmSemNeg: ({ is }) => {
+    if(is.shared.lu?.speaker === "usr" && 
+      Array.isArray(is.shared.lu?.moves) && 
+      is.shared.lu.moves.length === 0 &&
+      !is.next_moves.some((move) => move.type === "icm:sem*neg")
+      )
+      {
+      const icmMove: Move = { type: "icm:sem*neg", content: null};
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, icmMove]
+      });
+    }
+  },
 };
