@@ -6,6 +6,7 @@ export interface DMContext {
   lastResult: Hypothesis[] | null;
   // nextUtterance: string;
   messages: Message[];
+  ragContext: string;
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};
