@@ -137,5 +137,6 @@ tools/custom-gcl.hash
 
 **/credentials.ts
 
-# Qdrant 本地数据库（提交时打包上传 Canvas，不进 git）
+# Local Qdrant database (submitted as a zip on Canvas, not tracked in git)
 rag/qdrant_data/
+rag/qdrant_data.zip

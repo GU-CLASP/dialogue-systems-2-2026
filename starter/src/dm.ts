@@ -201,6 +201,19 @@ const dmMachine = setup({
                 return { messages: newMessages };
               }),
             },
+            onError: {
+              target: "Speaking",
+              actions: assign(({ context }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  {
+                    role: "assistant",
+                    content: "Sorry, I could not reach the language model.",
+                  },
+                ];
+                return { messages: newMessages };
+              }),
+            },
           },
         },
       },
