@@ -46,7 +46,7 @@ const dmMachine = setup({
       context.ssRef.send({
         type: "SPEAK",
         value: {
-          utterance: "I can't hear you."
+          utterance: "Sorry, I can't hear you."
       },
     }),
   },
@@ -107,13 +107,13 @@ const dmMachine = setup({
               },
             },
             NoInput: {
-              entry: "speak_no_input",
-              on: { SPEAK_COMPLETE:  { target: "Recognising", actions: "listen" }
-                }, 
+              on: {
+              LISTEN_COMPLETE: { actions: "speak_no_input" },
+              SPEAK_COMPLETE:  { target: "Recognising", actions: "listen" }
+                  }, 
               },
             },
           },
-      
         Generate: {
           initial: "Idle",
           states: {

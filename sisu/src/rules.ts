@@ -69,6 +69,8 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+
+          if (!objectsEqual(q, is.shared.qud[0])) {
           return () => ({
             ...is,
             shared: {
@@ -76,6 +78,7 @@ export const rules: Rules = {
               qud: [q, ...is.shared.qud],
             },
           });
+          }
         }
       }
     }
@@ -341,10 +344,22 @@ export const rules: Rules = {
       )
       {
       const icmMove: Move = { type: "icm:sem*neg", content: null};
-      return () => ({
+      const currentQuestion = is.shared.qud[0];
+
+      if (currentQuestion === undefined) {
+        return () => ({
         ...is,
         next_moves: [...is.next_moves, icmMove]
+      })
+    } else {
+        const askMove: Move = {
+        type: "ask",
+        content: currentQuestion,
+      };
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, icmMove, askMove]
       });
-    }
+    }}
   },
 };
