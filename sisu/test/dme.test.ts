@@ -220,5 +220,25 @@ describe("DME tests", () => {
     ]);
   });
 
+  describe("negative contact feedback + negative semantic understanding feedback + repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "*noinput*" },
+      { speaker: "sys", message: "Sorry, I didn't hear you." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I didn't understand. Which course?" },
+      { speaker: "usr", message: "*noinput*" },
+      { speaker: "sys", message: "Sorry, I didn't hear you. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
   
 });

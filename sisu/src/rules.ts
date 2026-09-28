@@ -69,6 +69,10 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          // do not push the question if already on top of qud
+          if (is.shared.qud[0] && objectsEqual(is.shared.qud[0], q)) {
+            return () => is;
+          }
           return () => ({
             ...is,
             shared: {
