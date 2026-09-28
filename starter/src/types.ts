@@ -13,6 +13,8 @@ export interface DMContext {
   
   messages: Message[]; // for LLM
   retrievedContext: string; // for RAG
+
+  noInputCount: number; // VG-1
 }
 
 export type DMEvents = SpeechStateExternalEvent | { type: "CLICK" } | {type: "DONE"};

@@ -127,6 +127,7 @@ const dmMachine = setup({
       },
     ] as Message[],
     retrievedContext: "", // to store Qdrant text for current query
+    noInputCount: 0, // counting how often there is no input from the user (VG-1)
   }),
   id: "DM",
   initial: "Prepare",
@@ -136,17 +137,34 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { 
+        CLICK: {
+          actions: assign({
+            noInputCount: 0, // resetting no input counter at restart (VG-1)
+          }),
+          target: "Greeting",
+        },
+      },
     },
     Greeting: {
       initial: "Prompt",
       on: {
         LISTEN_COMPLETE: [
+          // recognition successful -> RAG pipeline
           {
             target: "Retrieve",
             guard: ({ context }) => !!context.lastResult,
           },
-          { target: ".NoInput" },
+
+          // VG-1
+          // third time no input (consecutively)
+          { target: ".NoInputFinal",
+            guard: ({ context }) => context.noInputCount >= 3,
+          },
+          // first or second time no input
+          {
+            target: ".NoInput",
+          },
         ],
       },
       states: {
@@ -157,9 +175,21 @@ const dmMachine = setup({
         NoInput: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `Is there something on your mind?` },
+            params: ({ context }) => ({
+                utterance:
+                  context.noInputCount === 1
+                    ? `I didn't hear anything. Please try again.` // if count === 1
+                    : `I still didn't hear anything. Please try one more time`, // if count === 2 (VG-1)
+            }),
           },
           on: { SPEAK_COMPLETE: "Ask" },
+        },
+        NoInputFinal: {
+          entry: {
+            type: "spst.speak",
+            params: { utterance: `I didn't hear anything. Click to try again! ` }, 
+          },
+          on: { SPEAK_COMPLETE: "#DM.WaitToStart" }, // sending the user back to the beginning after three times of no input (VG-1)
         },
         Ask: {
           entry: [
@@ -180,11 +210,18 @@ const dmMachine = setup({
                       content: utterance,
                     },
                   ],
+                  noInputCount: 0, // resetting no input counter if utterance recognised (VG-1)
                 };
               }),
             },
             ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
+
+              // VG-1
+              actions:
+                assign(({ context }) => ({
+                    lastResult: null, // no Input -> clear lastResult
+                    noInputCount: context.noInputCount + 1, // increasing the count by one
+              })),
             },
           },
         },
@@ -194,12 +231,37 @@ const dmMachine = setup({
       invoke: {
         src: "queryRAG",
         input: ({ context }) => ({
-          query: context.lastResult![0].utterance,
+  		    query: context.lastResult![0].utterance,
         }),
+
+        // VG-RAG: keeping the latest two user utterances for retrieval
+        /*
+        input: ({ context }) => {
+          // keeping only user messages
+          const userMessages = context.messages.filter(
+            (message) => message.role === "user",
+          );
+
+          // taking the two most recent user messages
+          const recentUserMessages = userMessages.slice(-2);
+
+          // combining them
+          const query = recentUserMessages
+            .map((message) => message.content)
+            .join("\n");
+
+          // control log
+          console.log("RAG query:", query);
+
+          return {
+            query: query,
+          };
+        },
+        */
         onDone: {
           actions: [
             
-            // storing the retrieved info
+            // storing the retrieved info (for augmentation step)
             assign({
               retrievedContext: ({ event }) => event.output,
             }),
@@ -273,6 +335,7 @@ dmActor.subscribe((state) => {
   console.group("State update");
   console.log("State value:", state.value);
   console.log("State context:", state.context);
+  console.log("No-input count:", state.context.noInputCount); // checking the no input counter
   console.groupEnd();
 });
 
