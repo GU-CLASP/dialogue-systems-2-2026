@@ -2,7 +2,8 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { join } from "node:path";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
@@ -70,34 +71,48 @@ program
     await client.createCollection(name, {
       vectors: { size: 384, distance: "Cosine" },
     });
-    console.log(`Succesfully created collection: ${name}`);
+    console.log(`Successfully created collection: ${name}`);
   });
 
 program
   .command("addData")
-  .description("Chunk data at <path> and add it to a collection.")
+  .description("Chunk all files in a folder and add them to a collection.")
   .argument("<collection>", "collection name")
-  .argument("<path>", "file path")
+  .argument("<path>", "folder path")
   .action(async (collection, path) => {
-    const chunks = await makeChunksFromFile(path);
-    const points = await Promise.all(
-      chunks.map(async (chunk) => {
-        const embedding = await embed(chunk);
-        return {
-          id: uuidv4(),
-          vector: embedding,
-          payload: { text: chunk },
-        };
-      }),
+    // Read all the text files from the folder
+    const files = (await readdir(path)).filter((file) =>
+      file.endsWith(".txt")
     );
+
+    for (const file of files) {
+      const filepath = join(path, file);
+      const chunks = await makeChunksFromFile(filepath);
+      // Create an embedding and Qdrant point for each chunk
+      const points = await Promise.all(
+        chunks.map(async (chunk) => {
+          const embedding = await embed(chunk);
+          
+          return {
+            id: uuidv4(),
+            vector: embedding,
+            payload: { 
+              text: chunk,
+              source: file, // keep the source file name as metadata
+            },
+          };
+        }),
+      );
     console.log(
       `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
     );
+
     await client.upsert(collection, { wait: true, points: points });
     console.log(
-      `Succesfully added ${chunks.length} document into collection: ${collection}`,
+      `Successfully added ${chunks.length} documents into collection: ${collection}`,
     );
-  });
+  }
+});
 
 program
   .command("queryCollection")

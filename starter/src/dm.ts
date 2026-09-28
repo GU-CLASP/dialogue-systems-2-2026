@@ -3,14 +3,29 @@ import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import { DMContext, DMEvents } from "./types";
 import OpenAI from "openai";
+import { Message } from "./types";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "italynorth";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
 });
+
+// Connect to Qdrant database
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+
+// Converting text into embeddings for Qdrant 
+const embed = async (input: string) =>
+  openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: input,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
@@ -34,27 +49,6 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
-
 const dmMachine = setup({
   types: {
     /** you might need to extend these */
@@ -75,11 +69,52 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    ChatReply: fromPromise(async ({ input }: { input: { messages: Message[]; retrievedContext: string } }): Promise<string> => {
+      // Add the retrieved information to the LLM prompt
+      const messagesWithContext: Message[] = [
+        {
+        role: "system",
+        content: `Use the following retrieved GU information to answer the user:\n\n${input.retrievedContext}`,
+      },
+      ...input.messages,
+    ];
+
+      const completion = await openai.chat.completions.create({
+        model: "llama3.2:latest",
+        messages: messagesWithContext,
+      });
+      return completion.choices[0].message.content ?? "";
+      }),
+    // Search Qdrant for information related to the user's question  
+    Retrieval: fromPromise(async ({ input } : { input: string }): Promise<string> => {
+      const embedding = await embed(input);
+      // Retrieve the five most relevant chunks
+      const results = await client.query("gu_student_support", {
+        with_payload: true,
+        query: embedding,
+        limit: 5,
+      });
+      // Get the text from the retrieved Qdrant results
+      const texts = results.points.map((point) => point.payload?.text);
+      const validTexts = texts.filter((text) => text !== undefined);
+      // Combine the retrieved chunks into one context 
+      const context = validTexts.join("\n\n");
+
+      return context;
+    }),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [
+      {
+      role: "system",
+      content: "You are a helpful voice assistant. Keep your responses short and conversational, like a spoken reply — one or two sentences at most.",
+      },
+    ],
+    retrievedContext: "",
   }),
   id: "DM",
   initial: "Prepare",
@@ -92,53 +127,108 @@ const dmMachine = setup({
       on: { CLICK: "Greeting" },
     },
     Greeting: {
-      initial: "Prompt",
+      entry: {
+        type: "spst.speak",
+        params: { utterance: "Hello world!" },
+      },
       on: {
+        SPEAK_COMPLETE: "Ask",
+      },
+    },
+    Ask: {
+      entry: { type: "spst.listen" },
+      on: {
+        // Save the recognised user utterance in the dialogue history
+        RECOGNISED: {
+          actions: assign(({ context, event }) => {
+            return {  
+              lastResult: event.value,
+              messages: [...context.messages, { role: "user", content: event.value[0].utterance }],
+            };
+          }),
+        },
+        // Handle no input
+        ASR_NOINPUT: {
+          actions: assign({ lastResult: null }),
+        },
         LISTEN_COMPLETE: [
           {
-            target: "CheckGrammar",
+            target: "Retrieval",
             guard: ({ context }) => !!context.lastResult,
           },
-          { target: ".NoInput" },
-        ],
+          {
+            target: "NoInput",
+          },
+        ]
       },
-      states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
-          entry: {
-            type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
-          },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        Ask: {
-          entry: { type: "spst.listen" },
-          on: {
-            RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
-              }),
-            },
-            ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
-            },
-          },
+    },
+    Retrieval: {
+      invoke:{
+        src: "Retrieval",
+        input: ({ context }) => {
+          // Use the last two user messages to give retrieval more dialogue context
+          const userMessages = context.messages.filter(
+            (message) => message.role === "user"
+          );
+          const lastTwo = userMessages.slice(-2);
+          const retrievalQuery = lastTwo.map((message) => message.content).join("\n");
+
+          return retrievalQuery;
+        },   
+        // Save the retrieved information for ChatCompletion 
+        onDone: {
+          target: "ChatCompletion",
+          actions: assign(({ event }) => {
+            return {
+              retrievedContext: event.output,
+            };
+          }),
         },
       },
     },
-    CheckGrammar: {
+    NoInput: {
       entry: {
         type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
+        params: {
+          utterance: "I didn't hear anything. Please try again.",
+        },
       },
-      on: { SPEAK_COMPLETE: "Done" },
+      on: {
+        SPEAK_COMPLETE: "Ask",
+      },
+    },
+    ChatCompletion: {
+      invoke: {
+        src: "ChatReply",
+        input: ({ context }) => ({
+          messages: context.messages,
+          retrievedContext: context.retrievedContext,
+        }),
+        onDone: {
+          target: "Speaking",
+          // Add the LLM response to the dialogue history
+          actions: assign(({ context, event }) => {
+            return {
+              messages: [...context.messages, { role: "assistant", content: event.output }],
+            };
+          }),
+        },
+      },
+    },
+    Speaking: {
+      entry: ({ context }) => {
+        const lastMessage = context.messages[context.messages.length - 1];
+
+        context.spstRef.send({
+          type: "SPEAK",
+          value: {
+            utterance: lastMessage.content
+          },
+        });
+      },
+      on: {
+        SPEAK_COMPLETE: "Ask",
+      },
     },
     Done: {
       on: {
