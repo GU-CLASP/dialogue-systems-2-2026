@@ -69,6 +69,8 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+
+          if (!objectsEqual(q, is.shared.qud[0])) {
           return () => ({
             ...is,
             shared: {
@@ -76,6 +78,7 @@ export const rules: Rules = {
               qud: [q, ...is.shared.qud],
             },
           });
+          }
         }
       }
     }
@@ -329,5 +332,34 @@ export const rules: Rules = {
         next_moves: [...is.next_moves, is.private.agenda[0] as Move],
       });
     }
+  },
+
+
+  /** Implemenatation Rule 3.12 */
+  selectIcmSemNeg: ({ is }) => {
+    if(is.shared.lu?.speaker === "usr" && 
+      Array.isArray(is.shared.lu?.moves) && 
+      is.shared.lu.moves.length === 0 &&
+      !is.next_moves.some((move) => move.type === "icm:sem*neg")
+      )
+      {
+      const icmMove: Move = { type: "icm:sem*neg", content: null};
+      const currentQuestion = is.shared.qud[0];
+
+      if (currentQuestion === undefined) {
+        return () => ({
+        ...is,
+        next_moves: [...is.next_moves, icmMove]
+      })
+    } else {
+        const askMove: Move = {
+        type: "ask",
+        content: currentQuestion,
+      };
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, icmMove, askMove]
+      });
+    }}
   },
 };
