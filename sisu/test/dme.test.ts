@@ -166,6 +166,32 @@ describe("DME tests", () => {
       { speaker: "sys", message: "Sorry, I dont understand" },
     ]);
   }); 
+  
+  describe(" Feedback followed by repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I dont understand Which day?" },
+    ]);
+  }); 
+  
+  describe(" Final Result", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I dont understand Which day?" },
+     { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I dont understand Which course?" },
+      {speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  }); 
 
  // describe("system answer from database", () => {
    // runTest([
