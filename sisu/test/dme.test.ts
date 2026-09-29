@@ -8,7 +8,7 @@ import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
 
 interface Turn {
   speaker: string;
-  message: string;
+  message: string | null;
 }
 
 interface TestContext extends DMEContext {
@@ -22,14 +22,14 @@ describe("DME tests", () => {
     },
     actions: {
       notify: assign(
-        ({ context }, params: { speaker: string; message: string }) => {
+        ({ context }, params: { speaker: string; message: string | null }) => {
           return { dialogue: [...context.dialogue, params] };
         },
       ),
     },
     types: {} as {
       context: TestContext;
-      events: DMEEvent | { type: "INPUT"; value: string };
+      events: DMEEvent | { type: "INPUT"; value: string | null };
     },
   }).createMachine({
     context: {
@@ -57,7 +57,7 @@ describe("DME tests", () => {
                   type: "SAYS",
                   value: {
                     speaker: "usr",
-                    moves: nlu(event.value),
+                    moves: event.value !== null ? nlu(event.value) : null,
                   },
                 }),
                 { delay: 1000 },
@@ -203,6 +203,28 @@ describe("DME tests", () => {
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "bla bla" },
       { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("negative perception feedback", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: null },
+      { speaker: "sys", message: "I didn't hear what you said." },
+    ]);
+  });
+
+  describe("negative perception feedback followed by repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: null },
+      { speaker: "sys", message: "I didn't hear what you said. Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
