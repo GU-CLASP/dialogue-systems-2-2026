@@ -26,12 +26,17 @@ export const rules: Rules = {
    * Grounding
    */
   get_latest_move: (context) => {
+    const notPerceive =
+      context.latest_speaker === "usr" && context.latest_moves === null;
+
     const notUnderstand =
       context.latest_speaker === "usr" &&
       Array.isArray(context.latest_moves) &&
       context.latest_moves.length === 0;
 
     const nextMoves = [...context.is.next_moves];
+
+    if (notPerceive) nextMoves.push({ type: "not_perceive", content: null });
     if (notUnderstand)
       nextMoves.push({ type: "not_understand", content: null });
 
@@ -41,7 +46,7 @@ export const rules: Rules = {
       shared: {
         ...context.is.shared,
         lu: {
-          moves: context.latest_moves!,
+          moves: context.latest_moves ?? [],
           speaker: context.latest_speaker!,
         },
       },
