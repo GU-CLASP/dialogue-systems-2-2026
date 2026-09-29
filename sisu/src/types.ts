@@ -45,7 +45,17 @@ interface NotUnderstandMove {
   content: null;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove | NotUnderstandMove;
+interface NotPerceiveMove {
+  type: "not_perceive";
+  content: null;
+}
+
+export type Move =
+  | OtherMove
+  | AnswerMove
+  | AskMove
+  | NotUnderstandMove
+  | NotPerceiveMove;
 
 export type Action = {
   type:
@@ -83,7 +93,7 @@ export interface DMEContext extends TotalInformationState {
 export interface TotalInformationState {
   /** interface variables */
   latest_speaker?: Speaker;
-  latest_moves?: Move[];
+  latest_moves?: Move[] | null;
 
   /** information state */
   is: InformationState;
@@ -98,7 +108,7 @@ export type DMEEvent = SaysMovesEvent;
 
 export type SaysMovesEvent = {
   type: "SAYS";
-  value: { speaker: Speaker; moves: Move[] };
+  value: { speaker: Speaker; moves: Move[] | null };
 };
 
 export type NextMovesEvent = {
