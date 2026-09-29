@@ -134,7 +134,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database - Fri", () => {
+  describe("(1) system answer from database - Fri", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -146,7 +146,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database - Thu", () => {
+  describe("(1) system answer from database - Thu", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -158,7 +158,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database - Tue", () => {
+  describe("(1) system answer from database - Tue", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -170,7 +170,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("negative semantic understanding feedback", () => {
+  describe("(2A) negative semantic understanding feedback", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "How is the weather today?" },
@@ -178,7 +178,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("feedback followed by repeated question", () => {
+  describe("(2B) feedback followed by repeated question", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "bla bla" },
@@ -190,7 +190,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("feedback followed by several repeated question", () => {
+  describe("(2C) feedback followed by several repeated question", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -208,7 +208,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("negative perception feedback", () => {
+  describe("(VG-A) negative perception feedback", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: null },
@@ -216,7 +216,7 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("negative perception feedback followed by repeated question", () => {
+  describe("(VG-A) negative perception feedback followed by repeated question", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
