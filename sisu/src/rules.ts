@@ -1,16 +1,16 @@
+import { combine, relevant, resolves } from "./semantics";
 import {
-  Question,
-  TotalInformationState,
+  Action,
   InformationState,
   Move,
-  Action,
+  Question,
+  TotalInformationState,
 } from "./types";
-import { relevant, resolves, combine } from "./semantics";
 import { objectsEqual } from "./utils";
 
 type Rules = {
   [index: string]: (
-    context: TotalInformationState
+    context: TotalInformationState,
   ) => ((x: void) => InformationState) | undefined;
 };
 
@@ -26,12 +26,27 @@ export const rules: Rules = {
    * Grounding
    */
   get_latest_move: (context) => {
+    const notPerceive =
+      context.latest_speaker === "usr" && context.latest_moves === null;
+
+    const notUnderstand =
+      context.latest_speaker === "usr" &&
+      Array.isArray(context.latest_moves) &&
+      context.latest_moves.length === 0;
+
+    const nextMoves = [...context.is.next_moves];
+
+    if (notPerceive) nextMoves.push({ type: "not_perceive", content: null });
+    if (notUnderstand)
+      nextMoves.push({ type: "not_understand", content: null });
+
     return () => ({
       ...context.is,
+      next_moves: nextMoves,
       shared: {
         ...context.is.shared,
         lu: {
-          moves: context.latest_moves!,
+          moves: context.latest_moves ?? [],
           speaker: context.latest_speaker!,
         },
       },
@@ -69,6 +84,7 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          if (objectsEqual(is.shared.qud[0], q)) return; // prevent duplicate question in qud
           return () => ({
             ...is,
             shared: {
@@ -220,7 +236,7 @@ export const rules: Rules = {
         const question = action.content as Question;
         const propositionFromDB = is.database.consultDB(
           question,
-          is.shared.com
+          is.shared.com,
         );
         if (propositionFromDB) {
           return () => ({

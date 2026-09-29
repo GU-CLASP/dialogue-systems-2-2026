@@ -1,13 +1,14 @@
-import { setup, createActor, sendTo, assign, waitFor } from "xstate";
 import { describe, expect, test } from "vitest";
-import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
+import { assign, createActor, sendTo, setup, waitFor } from "xstate";
+
 import { dme } from "../src/dme";
-import { nlu, nlg } from "../src/nlug";
 import { initialIS } from "../src/is";
+import { nlg, nlu } from "../src/nlug";
+import { DMEContext, DMEEvent, NextMovesEvent } from "../src/types";
 
 interface Turn {
   speaker: string;
-  message: string;
+  message: string | null;
 }
 
 interface TestContext extends DMEContext {
@@ -21,14 +22,14 @@ describe("DME tests", () => {
     },
     actions: {
       notify: assign(
-        ({ context }, params: { speaker: string; message: string }) => {
+        ({ context }, params: { speaker: string; message: string | null }) => {
           return { dialogue: [...context.dialogue, params] };
-        }
+        },
       ),
     },
     types: {} as {
       context: TestContext;
-      events: DMEEvent | { type: "INPUT"; value: string };
+      events: DMEEvent | { type: "INPUT"; value: string | null };
     },
   }).createMachine({
     context: {
@@ -56,10 +57,10 @@ describe("DME tests", () => {
                   type: "SAYS",
                   value: {
                     speaker: "usr",
-                    moves: nlu(event.value),
+                    moves: event.value !== null ? nlu(event.value) : null,
                   },
                 }),
-                { delay: 1000 }
+                { delay: 1000 },
               ),
             ],
           },
@@ -74,7 +75,7 @@ describe("DME tests", () => {
                     moves: (event as NextMovesEvent).value,
                   },
                 }),
-                { delay: 1000 }
+                { delay: 1000 },
               ),
               {
                 type: "notify",
@@ -119,7 +120,7 @@ describe("DME tests", () => {
         (snapshot) => snapshot.context.dialogue.length === expectedSoFar.length,
         {
           timeout: 1000 /** allowed time to transition to the expected state */,
-        }
+        },
       );
       expect(snapshot.context.dialogue).toEqual(expectedSoFar);
     });
@@ -133,10 +134,96 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database", () => {
+  describe("(1) system answer from database - Fri", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("(1) system answer from database - Thu", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("(1) system answer from database - Tue", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("(2A) negative semantic understanding feedback", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "How is the weather today?" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+    ]);
+  });
+
+  describe("(2B) feedback followed by repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+    ]);
+  });
+
+  describe("(2C) feedback followed by several repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "bla bla" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("(VG-A) negative perception feedback", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: null },
+      { speaker: "sys", message: "I didn't hear what you said." },
+    ]);
+  });
+
+  describe("(VG-A) negative perception feedback followed by repeated question", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: null },
+      { speaker: "sys", message: "I didn't hear what you said. Which day?" },
+      { speaker: "usr", message: "Friday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
