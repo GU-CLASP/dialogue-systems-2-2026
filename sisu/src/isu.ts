@@ -1,9 +1,9 @@
-import { createActor, setup, AnyMachineSnapshot, sendTo, assign } from "xstate";
+import { createActor, setup, AnyMachineSnapshot, sendTo, assign, fromPromise } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { createBrowserInspector } from "@statelyai/inspect";
 import { KEY } from "./azure";
-import { DMContext, DMEvent, NextMovesEvent } from "./types";
-import { nlg, nlu } from "./nlug";
+import { DMContext, DMEvent, NextMovesEvent, Move } from "./types";
+import { nlg, nlu, nluQdrant } from "./nlug";
 import { dme } from "./dme";
 import { initialIS } from "./is";
 
@@ -28,6 +28,9 @@ const settings: Settings = {
 const dmMachine = setup({
   actors: {
     dme: dme,
+    nluQdrant: fromPromise<Move[], string>(async ({input}) => {
+      return await nluQdrant(input)
+    },),
   },
   actions: {
     speak_next_moves: ({ context, event }) =>
@@ -78,7 +81,12 @@ const dmMachine = setup({
             },
             Recognising: {
               on: {
-                LISTEN_COMPLETE: {
+                LISTEN_COMPLETE: [
+                  {
+                    guard: ({ context }) => context.lastUserUtterance !== undefined,
+                    target: "ProcessingNLU"
+                  },
+                  {
                   target: "Idle",
                   actions: sendTo("dmeID", ({ context }) => ({
                     type: "SAYS",
@@ -87,21 +95,44 @@ const dmMachine = setup({
                       moves: context.lastUserMoves,
                     },
                   })),
-                },
+                  },
+                ],
                 RECOGNISED: {
                   actions: assign(({ event }) => ({
-                    lastUserMoves: nlu(event.value[0].utterance),
+                    lastUserUtterance: event.value[0].utterance,
                   })),
                 },
                 ASR_NOINPUT: {
                   // TODO
                   actions: assign({
                     lastUserMoves: [{type: "noInput", content: null}],
+                    lastUserUtterance: undefined
                 }),
                 },
               },
             },
-          },
+            ProcessingNLU: {
+              invoke: {
+                src: "nluQdrant",
+                input: ({ context }) => context.lastUserUtterance!,
+                onDone: {
+                  target: "Idle",
+                  actions: [
+                    assign(({ event }) => ({
+                      lastUserMoves: event.output
+                    })),
+                    sendTo("dmeID", ({ event }) => ({
+                      type: "SAYS",
+                      value: {
+                        speaker: "usr",
+                        moves: event.output,
+                      },
+                    })),
+                  ]
+                }
+              }
+            },
+          }
         },
         Generate: {
           initial: "Idle",

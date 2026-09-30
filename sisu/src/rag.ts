@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-//import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-//import { readFile } from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";

@@ -69,6 +69,7 @@ export interface InformationState {
 export interface DMContext extends TotalInformationState {
   ssRef: any;
   lastUserMoves?: Move[];
+  lastUserUtterance?: string
 }
 
 export interface DMEContext extends TotalInformationState {

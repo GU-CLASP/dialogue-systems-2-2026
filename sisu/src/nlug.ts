@@ -1,5 +1,16 @@
 import { Move } from "./types";
 import { objectsEqual, WHQ } from "./utils";
+import { QdrantClient } from "@qdrant/js-client-rest";
+import OpenAI from "openai";
+
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+
+const openai = new OpenAI({
+  baseURL: "http://localhost:11434/v1/",
+  apiKey: "ollama",
+  dangerouslyAllowBrowser: true,
+});
+
 
 interface NLUMapping {
   [index: string]: Move[];
@@ -121,4 +132,30 @@ export function nlg(moves: Move[]): string {
  */
 export function nlu(utterance: string): Move[] {
   return nluMapping[utterance.toLowerCase()] || []; // here is returned the empty array in case not understanding
+}
+
+export async function nluQdrant(utterance: string): Promise<Move[]> {
+  const embedding = await openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: utterance,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
+  const points = (await client.query("NLUdata", {
+    with_payload: true,
+    query: embedding,
+    limit: 1,
+  })).points;
+  if (points.length === 0) {
+    return []
+  };
+  const retrieved_nlu = points.map((item) => ({
+    utterance: item.payload?.utterance,
+    move: item.payload?.move as Move,
+    score: item.score
+  }))
+  if (retrieved_nlu[0].score < 0.6) {
+    return [] }
+  return [retrieved_nlu[0].move]
 }
