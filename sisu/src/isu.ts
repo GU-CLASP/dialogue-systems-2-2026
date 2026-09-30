@@ -84,7 +84,8 @@ const dmMachine = setup({
                 LISTEN_COMPLETE: [
                   {
                     guard: ({ context }) => context.lastUserUtterance !== undefined,
-                    target: "ProcessingNLU"
+                    target: "ProcessingNLU",
+                    actions: () => console.log("[NLU] Starting NLU")
                   },
                   {
                   target: "Idle",
@@ -98,16 +99,22 @@ const dmMachine = setup({
                   },
                 ],
                 RECOGNISED: {
-                  actions: assign(({ event }) => ({
+                  actions: [
+                    ({ event }) => console.log("[ASR] RECOGNISED", event.value[0].utterance),
+                    assign(({ event }) => ({
                     lastUserUtterance: event.value[0].utterance,
-                  })),
+                    })),
+                  ]
                 },
                 ASR_NOINPUT: {
                   // TODO
-                  actions: assign({
+                  actions: [
+                    () => console.log("[ASR] NO INPUT"),
+                    assign({
                     lastUserMoves: [{type: "noInput", content: null}],
                     lastUserUtterance: undefined
-                }),
+                    }),
+                  ]
                 },
               },
             },
@@ -118,8 +125,10 @@ const dmMachine = setup({
                 onDone: {
                   target: "Idle",
                   actions: [
+                    () => console.log("[NLU] Complete"),
                     assign(({ event }) => ({
-                      lastUserMoves: event.output
+                      lastUserMoves: event.output,
+                      lastUserUtterance: undefined,
                     })),
                     sendTo("dmeID", ({ event }) => ({
                       type: "SAYS",
@@ -194,7 +203,7 @@ dmActor.subscribe((snapshot: AnyMachineSnapshot) => {
   console.log(
     "%cState value:",
     "background-color: #056dff",
-    snapshot.value,
+    JSON.stringify(snapshot.value, null, 2),
     snapshot.context.is
   );
 });

@@ -135,6 +135,7 @@ export function nlu(utterance: string): Move[] {
 }
 
 export async function nluQdrant(utterance: string): Promise<Move[]> {
+  console.log("[NLU] Query");
   const embedding = await openai.embeddings
     .create({
       model: "qwen3-embedding",
@@ -148,14 +149,18 @@ export async function nluQdrant(utterance: string): Promise<Move[]> {
     limit: 1,
   })).points;
   if (points.length === 0) {
+    console.log("[NLU] No result")
     return []
   };
   const retrieved_nlu = points.map((item) => ({
     utterance: item.payload?.utterance,
     move: item.payload?.move as Move,
     score: item.score
-  }))
-  if (retrieved_nlu[0].score < 0.6) {
+  }));
+  console.log("[NLU] Result:", points[0]);
+  if (retrieved_nlu[0].score < 0.7) {
+    console.log(`[NLU] Result rejected, score ${retrieved_nlu[0].score} < 0.6`);
     return [] }
+  console.log(`[NLU] Result accepted -> move: ${retrieved_nlu[0].move}`);
   return [retrieved_nlu[0].move]
 }
