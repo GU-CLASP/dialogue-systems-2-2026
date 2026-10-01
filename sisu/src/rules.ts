@@ -154,15 +154,17 @@ export const rules: Rules = {
   /** rule 2.5 */
   downdate_qud: ({ is }) => {
     const q = is.shared.qud[0];
-    for (const p of is.shared.com) {
-      if (resolves(p, q)) {
-        return () => ({
-          ...is,
-          shared: {
-            ...is.shared,
-            qud: [...is.shared.qud.slice(1)],
-          },
-        });
+    if (q) {
+      for (const p of is.shared.com) {
+        if (resolves(p, q)) {
+          return () => ({
+            ...is,
+            shared: {
+              ...is.shared,
+              qud: [...is.shared.qud.slice(1)],
+            },
+          });
+        }
       }
     }
   },

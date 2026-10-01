@@ -158,7 +158,7 @@ export async function nluQdrant(utterance: string): Promise<Move[]> {
     score: item.score
   }));
   console.log("[NLU] Result:", points[0]);
-  if (retrieved_nlu[0].score < 0.7) {
+  if (retrieved_nlu[0].score < 0.6) {
     console.log(`[NLU] Result rejected, score ${retrieved_nlu[0].score} < 0.6`);
     return [] }
   console.log(`[NLU] Result accepted -> move: ${retrieved_nlu[0].move}`);
