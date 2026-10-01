@@ -82,6 +82,12 @@ export const dme = setup({
         },
         SelectMove: {
           always: [
+            isuTransition("NormalSelectMove", "select_negative_understanding"), // Task 2a+b: if negative understanding isn't selected, the system is sent to select from the other moves (preventing an infinite loop)
+            { target: "NormalSelectMove" },
+          ],
+        },
+        NormalSelectMove: {
+          always: [
             isuTransition("SelectionDone", "select_ask"),
             isuTransition("SelectionDone", "select_answer"),
             isuTransition("SelectionDone", "select_other"),

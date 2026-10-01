@@ -69,6 +69,17 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+
+          // making sure that questions don't get added to qud twice if repeatedly asked (Task 2c)
+          const alreadyInQud = is.shared.qud.some((question) =>
+            objectsEqual(question, q)
+          );
+          if (alreadyInQud) {
+            return () => ({
+              ...is,
+            });
+          }
+
           return () => ({
             ...is,
             shared: {
@@ -330,4 +341,16 @@ export const rules: Rules = {
       });
     }
   },
+
+  select_negative_understanding: ({ is }) => {
+    if(is.shared.lu?.speaker === "usr" && Array.isArray(is.shared.lu?.moves) && is.shared.lu?.moves.length === 0) { 
+      const clarifyMove: Move = { type: "clarify", content: null };
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, clarifyMove],
+      }); 
+    }
+  },
+
 };
+
