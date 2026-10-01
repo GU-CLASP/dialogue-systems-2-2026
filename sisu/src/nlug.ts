@@ -1,12 +1,23 @@
 import { Move } from "./types";
 import { objectsEqual, WHQ } from "./utils";
+import { QdrantClient } from "@qdrant/js-client-rest";
+import OpenAI from "openai";
+
+const client = new QdrantClient({ host: "localhost", port: 6333 });
+
+const openai = new OpenAI({
+  baseURL: "http://localhost:11434/v1/",
+  apiKey: "ollama",
+  dangerouslyAllowBrowser: true,
+});
+
 
 interface NLUMapping {
   [index: string]: Move[];
 }
 type NLGMapping = [Move, string][];
 
-const nluMapping: NLUMapping = {
+const nluMapping: NLUMapping = { // use only lower case here
   "where is the lecture?": [
     {
       type: "ask",
@@ -16,7 +27,7 @@ const nluMapping: NLUMapping = {
   "what's your favorite food?": [
     {
       type: "ask",
-      content: WHQ("favorite_food"),
+      content: WHQ("favorite_food"), // ?x.favorite_food(x)
     },
   ],
   pizza: [
@@ -37,6 +48,30 @@ const nluMapping: NLUMapping = {
       content: "LT2319",
     },
   ],
+  "friday": [
+    {
+      type: "answer",
+      content: "friday",
+    },
+  ],
+  "thursday": [
+    {
+      type: "answer",
+      content: "thursday",
+    },
+  ],
+  "tuesday": [
+    {
+      type: "answer",
+      content: "tuesday",
+    },
+  ],
+  "*noinput*": [
+    {
+      type: "noInput",
+      content: null,
+    },
+  ],
 };
 const nlgMapping: NLGMapping = [
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
@@ -54,6 +89,28 @@ const nlgMapping: NLGMapping = [
       content: { predicate: "booking_room", argument: "G212" },
     },
     "The lecture is in G212.",
+  ],
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" },
+    },
+    "The lecture is in J440.",
+  ],
+  [
+    {
+      type: "noUnderstandingFeedback",
+      content: null,
+    },
+    "Sorry, I didn't understand.",
+  ],
+  [
+    {
+      type: "noInputFeedback",
+      content: null,
+    },
+    "Sorry, I didn't hear you.",
   ],
 ];
 
@@ -74,5 +131,36 @@ export function nlg(moves: Move[]): string {
 /** NLU mapping function can be replaced by statistical NLU
  */
 export function nlu(utterance: string): Move[] {
-  return nluMapping[utterance.toLowerCase()] || [];
+  return nluMapping[utterance.toLowerCase()] || []; // here is returned the empty array in case not understanding
+}
+
+export async function nluQdrant(utterance: string): Promise<Move[]> {
+  console.log("[NLU] Query");
+  const embedding = await openai.embeddings
+    .create({
+      model: "qwen3-embedding",
+      input: utterance,
+      dimensions: 384,
+    })
+    .then((result) => result.data[0].embedding);
+  const points = (await client.query("NLUdata", {
+    with_payload: true,
+    query: embedding,
+    limit: 1,
+  })).points;
+  if (points.length === 0) {
+    console.log("[NLU] No result")
+    return []
+  };
+  const retrieved_nlu = points.map((item) => ({
+    utterance: item.payload?.utterance,
+    move: item.payload?.move as Move,
+    score: item.score
+  }));
+  console.log("[NLU] Result:", points[0]);
+  if (retrieved_nlu[0].score < 0.6) {
+    console.log(`[NLU] Result rejected, score ${retrieved_nlu[0].score} < 0.6`);
+    return [] }
+  console.log(`[NLU] Result accepted -> move: ${retrieved_nlu[0].move}`);
+  return [retrieved_nlu[0].move]
 }
