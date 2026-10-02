@@ -140,6 +140,17 @@ export const rules: Rules = {
     }
   },
 
+  /** task 2a */
+  integrate_confusion: ({ is }) => {
+    const noMovesRecognized = Array.isArray(is.shared.lu!.moves) && is.shared.lu!.moves.length == 0;
+    if ( is.shared.lu!.speaker == "usr" && noMovesRecognized) {
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, {type: "confusion", content: null}],
+      });
+    }
+  },
+
   /** TODO rule 2.7 integrate_usr_quit */
 
   /** TODO rule 2.8 integrate_sys_quit */
