@@ -1,14 +1,16 @@
 import { assign, createActor, setup, AnyMachineSnapshot } from "xstate";
 import { speechstate } from "speechstate";
 import { createBrowserInspector } from "@statelyai/inspect";
-// import { KEY } from "../azure";
+//import { KEY } from "../azure";
 
 const inspector = createBrowserInspector();
 
+const REGION = "swedencentral";
+
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
-  // key: KEY,
+    `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
+  //key: KEY,
 };
 
 const settings = {
@@ -16,8 +18,8 @@ const settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  ttsDefaultVoice: "en-US-DavisNeural",
-  azureRegion: "northeurope",
+  ttsDefaultVoice: "en-US-AvaNeural",
+  azureRegion: REGION,
 };
 
 const dmMachine = setup({
