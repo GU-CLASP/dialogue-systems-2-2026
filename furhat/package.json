@@ -2,6 +2,8 @@
   "name": "xstate-backend",
   "packageManager": "yarn@3.6.3",
   "dependencies": {
+    "@qdrant/js-client-rest": "^1.18.0",
+    "openai": "^6.49.0",
     "xstate": "^5.22.0"
   },
   "devDependencies": {
