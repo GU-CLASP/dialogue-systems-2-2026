@@ -1,7 +1,7 @@
 import { createActor, setup, AnyMachineSnapshot, sendTo, assign } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { createBrowserInspector } from "@statelyai/inspect";
-import { KEY } from "./azure";
+import { PROXY_KEY } from "./azure";
 import { DMContext, DMEvent, NextMovesEvent } from "./types";
 import { nlg, nlu } from "./nlug";
 import { dme } from "./dme";
@@ -9,14 +9,15 @@ import { initialIS } from "./is";
 
 const inspector = createBrowserInspector();
 
-const azureCredentials = {
-  endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
-  key: KEY,
+const azureProxyCredentials = {
+  /* endpoint:
+    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken", */
+  proxyUrl: "https://rndserv.flov.gu.se:4000/api/token", // used proxy URL from lab 1"
+  key: PROXY_KEY,
 };
 
 const settings: Settings = {
-  azureCredentials: azureCredentials,
+  azureCredentials: azureProxyCredentials,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",

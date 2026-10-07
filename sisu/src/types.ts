@@ -40,7 +40,13 @@ interface AskMove {
   content: Question;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove;
+// adding move to handle negative semantic understanding
+interface ClarifyMove {
+  type: "clarify";
+  content: null;
+}
+
+export type Move = OtherMove | AnswerMove | AskMove | ClarifyMove;
 
 export type Action = {
   type:
