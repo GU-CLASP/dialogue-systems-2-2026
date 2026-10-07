@@ -69,6 +69,11 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          if (is.shared.qud[0] && objectsEqual(is.shared.qud[0], q)
+          ) {
+            return;
+          }
+          
           return () => ({
             ...is,
             shared: {
@@ -330,4 +335,25 @@ export const rules: Rules = {
       });
     }
   },
+  
+  // RULE 3.12
+  
+  select_not_understood: ({ is }) => {
+    if (Array.isArray(is.shared.lu?.moves) &&is.shared.lu.moves.length === 0    ) {
+
+    for(const move of is.next_moves){
+      if (move.type === "notunderstood"){
+        return;
+      }
+    }
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves,{ type: "notunderstood", content: null },
+        ],
+      });
+    }
+  },
 };
+  
+
+

@@ -82,6 +82,7 @@ export const dme = setup({
         },
         SelectMove: {
           always: [
+            isuTransition("SelectMove", "select_not_understood"),
             isuTransition("SelectionDone", "select_ask"),
             isuTransition("SelectionDone", "select_answer"),
             isuTransition("SelectionDone", "select_other"),

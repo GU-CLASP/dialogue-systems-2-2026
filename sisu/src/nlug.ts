@@ -25,6 +25,24 @@ const nluMapping: NLUMapping = {
       content: "pizza",
     },
   ],
+  "tuesday": [
+    {
+      type: "answer",
+      content: "Tuesday",
+    },
+  ],
+  "thursday": [
+    {
+      type: "answer",
+      content: "Thursday",
+    },
+  ],
+  "friday": [
+    {
+      type: "answer",
+      content: "Friday",
+    },
+  ],
   "dialogue systems 2": [
     {
       type: "answer",
@@ -39,8 +57,11 @@ const nluMapping: NLUMapping = {
   ],
 };
 const nlgMapping: NLGMapping = [
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
+  [{ type: "notunderstood", content: null }, "Sorry, I dont understand"],
+
   [
     {
       type: "answer",
@@ -55,6 +76,13 @@ const nlgMapping: NLGMapping = [
     },
     "The lecture is in G212.",
   ],
+  [
+  {
+    type: "answer",
+    content: { predicate: "booking_room", argument: "J440" },
+  },
+  "The lecture is in J440.",
+],
 ];
 
 export function nlg(moves: Move[]): string {

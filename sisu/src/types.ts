@@ -40,7 +40,13 @@ interface AskMove {
   content: Question;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove;
+interface NegSemanticUnderstanding{
+  type : "notunderstood";
+  content:null;
+  
+}
+
+export type Move = OtherMove | AnswerMove | AskMove| NegSemanticUnderstanding;
 
 export type Action = {
   type:
