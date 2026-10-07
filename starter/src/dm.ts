@@ -1,21 +1,19 @@
+import { speechstate } from "speechstate";
 import { assign, createActor, fromPromise, setup } from "xstate";
-import { Settings, speechstate } from "speechstate";
-import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
-import OpenAI from "openai";
 
-const REGION = "<YOUR_REGION>";
-
-const openai = new OpenAI({
-  baseURL: "http://localhost:11434/v1/",
-  apiKey: "ollama",
-  dangerouslyAllowBrowser: true,
-});
-
-const azureCredentials = {
-  endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
-  key: KEY,
-};
+import {
+  fhGesture,
+  fhLed,
+  fhListen,
+  fhSay,
+  newGesture,
+  setFurhatBaseUrl,
+} from "../../furhat/src/services";
+import { settings } from "./configs";
+import { NO_INPUT_THRESHOLD, ROLES } from "./constants";
+import prompts from "./prompts";
+import { getChatCompletions, queryQdrant } from "./services";
+import { DMContext, DMEvents, Message } from "./types";
 
 /** backup: Azure access via FLoV proxy
 const azureProxyCredentials = {
@@ -23,37 +21,29 @@ const azureProxyCredentials = {
   key: "",
   };
 */
+setFurhatBaseUrl(window.location.origin);
 
-const settings: Settings = {
-  azureCredentials: azureCredentials,
-  azureRegion: REGION,
-  asrDefaultCompleteTimeout: 0,
-  asrDefaultNoInputTimeout: 5000,
-  locale: "en-US",
-  ttsDefaultVoice: "en-US-DavisNeural",
-  bargeIn: false,
-};
+const getChatCompletionsLogic = fromPromise(
+  async ({ input }: { input: { messages: Message[] } }) => {
+    try {
+      return await getChatCompletions(input.messages);
+    } catch (error) {
+      console.error("LLM error:", error);
+      throw error;
+    }
+  },
+);
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
-};
-
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
+const queryRagLogic = fromPromise(
+  async ({ input }: { input: { query: string } }) => {
+    try {
+      return await queryQdrant("ServiceAndSupport", input.query);
+    } catch (error) {
+      console.error("RAG error:", error);
+      throw error;
+    }
+  },
+);
 
 const dmMachine = setup({
   types: {
@@ -75,74 +65,240 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: {
+    getChatCompletionsActor: getChatCompletionsLogic,
+    queryRagActor: queryRagLogic,
+    fhSay: fromPromise<any, string>(async ({ input }) => {
+      return fhSay(input);
+    }),
+    fhListen: fromPromise<any, null>(async () => {
+      return fhListen();
+    }),
+  },
 }).createMachine({
   context: ({ spawn }) => ({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    lastUtterance: null,
+    messages: [
+      {
+        role: ROLES.System,
+        content: prompts.systemDefault,
+      },
+    ],
+    noInputCount: 0,
   }),
   id: "DM",
   initial: "Prepare",
   states: {
     Prepare: {
-      entry: ({ context }) => context.spstRef.send({ type: "PREPARE" }),
+      entry: ({ context }) => {
+        fhLed(0, 0, 0);
+        context.spstRef.send({ type: "PREPARE" });
+      },
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      entry: () => fhLed(0, 0, 255),
+      on: { CLICK: "GenerateLLMResponse" },
     },
-    Greeting: {
-      initial: "Prompt",
-      on: {
-        LISTEN_COMPLETE: [
-          {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
-          },
-          { target: ".NoInput" },
-        ],
+    GenerateLLMResponse: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        fhGesture("GazeAway", false);
       },
-      states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
-          entry: {
-            type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
-          },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        Ask: {
-          entry: { type: "spst.listen" },
-          on: {
-            RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
-              }),
+      invoke: {
+        id: "getChatCompletionsActor",
+        src: "getChatCompletionsActor",
+        input: ({ context: { messages } }) => ({ messages }),
+        onDone: {
+          target: "Speak",
+          actions: assign({
+            messages: ({ context, event }) => {
+              console.log(`LLM event output: ${event.output}`);
+              const { messages } = context;
+              return [
+                ...messages,
+                {
+                  role: ROLES.Assistant,
+                  content: event.output ?? "",
+                },
+              ];
             },
-            ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
-            },
-          },
+          }),
+        },
+        onError: {
+          target: "Error",
         },
       },
     },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
+    QueryRAG: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        newGesture();
+      },
+      invoke: {
+        id: "queryRagActor",
+        src: "queryRagActor",
+        input: ({ context }) => ({
+          // query: context.lastResult?.[0]?.utterance ?? "",
+          query: context.lastUtterance ?? "",
         }),
+        onDone: {
+          target: "GenerateLLMResponse",
+          actions: assign({
+            messages: ({ context, event }) => {
+              const { messages } = context;
+              // const userQuestion = context.lastResult?.[0]?.utterance ?? "";
+              const userQuestion = context.lastUtterance ?? "";
+              const ragResults = event.output;
+
+              const conversationHistory = messages.filter(
+                (message) => message.role !== ROLES.System,
+              );
+              const newSystemPrompt = `${prompts.systemDefault}\n\n${prompts.systemRAG}\n\nCONTEXT: ${ragResults}`;
+              return [
+                {
+                  role: ROLES.System,
+                  content: newSystemPrompt,
+                },
+                ...conversationHistory,
+                {
+                  role: ROLES.User,
+                  content: userQuestion,
+                },
+              ];
+            },
+          }),
+        },
+        onError: {
+          target: "Error",
+        },
       },
-      on: { SPEAK_COMPLETE: "Done" },
+    },
+    Speak: {
+      entry: () => fhLed(255, 0, 0),
+      invoke: {
+        src: "fhSay",
+        input: ({ context }) =>
+          context.messages[context.messages.length - 1]?.content ||
+          prompts.defaultGreeting,
+        onDone: {
+          target: "Ask",
+          actions: ({ event }) => console.log("\t", event.output),
+        },
+        onError: {
+          target: "Error",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    NoInput: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        fhGesture("Shake", false);
+      },
+      invoke: {
+        src: "fhSay",
+        input: ({ context }) =>
+          prompts.noInput[context.noInputCount - 1] || prompts.cannotHear,
+        onDone: [
+          {
+            target: "Done",
+            guard: ({ context }) => context.noInputCount >= NO_INPUT_THRESHOLD,
+          },
+          {
+            target: "Ask",
+            actions: ({ event }) => console.log("\t", event.output),
+          },
+        ],
+        onError: {
+          target: "Error",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Error: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        fhGesture("Shake", false);
+      },
+      invoke: {
+        src: "fhSay",
+        input: prompts.llmError,
+        onDone: {
+          target: "Ask",
+          actions: ({ event }) => console.log("\t", event.output),
+        },
+        onError: {
+          target: "Error",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Ask: {
+      entry: () => {
+        fhLed(0, 255, 0);
+        fhGesture("Nod", false);
+      },
+      invoke: {
+        src: "fhListen",
+        input: null,
+        onDone: [
+          {
+            target: "NoInput",
+            guard: ({ event }) => {
+              return (
+                !event.output.message ||
+                event.output.message.trim() === "" ||
+                event.output.message === "SILENCE"
+              );
+            },
+            actions: [
+              () => console.log("\tNo input"),
+              assign({
+                lastUtterance: null,
+                noInputCount: ({ context }) => context.noInputCount + 1,
+              }),
+            ],
+            // actions: () => console.log("\tNo input"),
+          },
+          {
+            target: "QueryRAG",
+            actions: [
+              assign({
+                lastUtterance: ({ event }) => event.output.message,
+                noInputCount: 0,
+              }),
+              ({ event }) => console.log("\t", event.output.message),
+            ],
+          },
+        ],
+        onError: {
+          target: "Error",
+          actions: ({ event }) => console.error(event),
+        },
+      },
     },
     Done: {
+      entry: [
+        () => {
+          fhLed(0, 0, 0);
+          fhGesture("BigSmile", false);
+        },
+        assign({
+          lastUtterance: null,
+          messages: [
+            {
+              role: ROLES.System,
+              content: prompts.systemDefault,
+            },
+          ],
+          noInputCount: 0,
+        }),
+      ],
       on: {
-        CLICK: "Greeting",
+        CLICK: "GenerateLLMResponse",
       },
     },
   },
@@ -158,10 +314,12 @@ dmActor.subscribe((state) => {
 });
 
 export function setupButton(element: HTMLButtonElement) {
-  element.addEventListener("click", () => {
+  const clickHandler = () => {
     dmActor.send({ type: "CLICK" });
-  });
-  dmActor.subscribe((snapshot) => {
+  };
+  element.addEventListener("click", clickHandler);
+
+  const subscription = dmActor.subscribe((snapshot) => {
     const meta: { view?: string } = Object.values(
       snapshot.context.spstRef.getSnapshot().getMeta(),
     )[0] || {
@@ -169,4 +327,9 @@ export function setupButton(element: HTMLButtonElement) {
     };
     element.innerHTML = `${meta.view}`;
   });
+
+  return () => {
+    element.removeEventListener("click", clickHandler);
+    subscription.unsubscribe();
+  };
 }

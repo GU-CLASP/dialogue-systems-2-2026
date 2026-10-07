@@ -1,109 +1,163 @@
-import { setup, createActor, fromPromise, assign } from "xstate";
+import { assign, createActor, fromPromise, setup } from "xstate";
 
-const FURHATURI = "127.0.0.1:54321";
+import {
+  fhAttend,
+  fhAudio,
+  fhGesture,
+  fhLed,
+  fhListen,
+  fhSay,
+  fhVoice,
+  newGesture,
+} from "./services";
 
-async function fhVoice(name: string) {
-  const myHeaders = new Headers();
-  myHeaders.append("accept", "application/json");
-  const encName = encodeURIComponent(name);
-  return fetch(`http://${FURHATURI}/furhat/voice?name=${encName}`, {
-    method: "POST",
-    headers: myHeaders,
-    body: "",
-  });
-}
+// const FURHATURI = "http://127.0.0.1:54321";
+const AUDIO_URL =
+  "https://raw.githubusercontent.com/kscottz/PiCommander/master/lion_growl.wav";
 
-async function fhSay(text: string) {
-  const myHeaders = new Headers();
-  myHeaders.append("accept", "application/json");
-  const encText = encodeURIComponent(text);
-  return fetch(`http://${FURHATURI}/furhat/say?text=${encText}&blocking=true`, {
-    method: "POST",
-    headers: myHeaders,
-    body: "",
-  });
-}
+// let furhatUrlBase = "";
 
-async function newGesture() {
-  const myHeaders = new Headers();
-  myHeaders.append("accept", "application/json");
-  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=false`, {
-    method: "POST",
-    headers: myHeaders,
-    body: JSON.stringify({
-      name: "newGesture",
-      frames: [
-        {
-          time: [], //ADD THE TIME FRAME OF YOUR LIKING
-          persist: true,
-          params: {
-            //ADD PARAMETERS HERE IN ORDER TO CREATE A GESTURE
-          },
-        },
-        {
-          time: [], //ADD TIME FRAME IN WHICH YOUR GESTURE RESETS
-          persist: true,
-          params: {
-            reset: true,
-          },
-        },
-        //ADD MORE TIME FRAMES IF YOUR GESTURE REQUIRES THEM
-      ],
-      class: "furhatos.gestures.Gesture",
-    }),
-  });
-}
+type LEDColor = {
+  red?: number;
+  green?: number;
+  blue?: number;
+};
 
-async function fhGesture(text: string) {
-  const myHeaders = new Headers();
-  myHeaders.append("accept", "application/json");
-  return fetch(
-    `http://${FURHATURI}/furhat/gesture?name=${text}&blocking=true`,
-    {
-      method: "POST",
-      headers: myHeaders,
-      body: "",
-    },
-  );
-}
+type Gesture = {
+  name: string;
+  blocking: boolean;
+};
 
-async function fhListen() {
-  const myHeaders = new Headers();
-  myHeaders.append("accept", "application/json");
-  return fetch(`http://${FURHATURI}/furhat/listen`, {
-    method: "GET",
-    headers: myHeaders,
-  })
-    .then((response) => response.body)
-    .then((body) => body.getReader().read())
-    .then((reader) => reader.value)
-    .then((value) => JSON.parse(new TextDecoder().decode(value)).message);
-}
+type Audio = {
+  url: string;
+  blocking: boolean;
+};
 
 const dmMachine = setup({
   actors: {
     fhVoice: fromPromise<any, null>(async () => {
       return fhVoice("en-US-EchoMultilingualNeural");
     }),
-    fhHello: fromPromise<any, null>(async () => {
-      return fhSay("Hi");
+    fhSay: fromPromise<any, string>(async ({ input }) => {
+      return fhSay(input);
     }),
-    fhL: fromPromise<any, null>(async () => {
-     return fhListen();
-   }),
+    fhAudio: fromPromise<any, Audio>(async ({ input }) => {
+      const { url, blocking } = input;
+      return fhAudio(url, blocking);
+    }),
+    fhListen: fromPromise<any, null>(async () => {
+      return fhListen();
+    }),
+    fhAttend: fromPromise<any, null>(async () => {
+      return fhAttend("CLOSEST");
+    }),
+    fhLed: fromPromise<any, LEDColor>(async ({ input }) => {
+      const { red, green, blue } = input;
+      return fhLed(red, green, blue);
+    }),
+    fhNewGesture: fromPromise<any, null>(async () => {
+      return newGesture();
+    }),
+    fhGesture: fromPromise<any, Gesture>(async ({ input }) => {
+      const { name, blocking } = input;
+      return fhGesture(name, blocking);
+    }),
   },
 }).createMachine({
   id: "root",
-  initial: "Start",
+  context: {
+    lastUtterance: null,
+  },
+  initial: "Attend",
   states: {
-    Start: { after: { 1000: "Next" } },
-    Next: {
+    Attend: {
+      entry: () => fhLed(0, 0, 0),
       invoke: {
-        src: "fhHello",      
+        src: "fhAttend",
         input: null,
         onDone: {
+          target: "Greet",
+          actions: ({ event }) => console.log("\t", event.output),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Greet: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        newGesture();
+      },
+      invoke: {
+        src: "fhSay",
+        input: "Hello there",
+        onDone: {
           target: "Listen",
-          actions: ({ event }) => console.log(event.output),
+          actions: ({ event }) => console.log("\t", event.output),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    NoInput: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        fhGesture("Shake", false);
+      },
+      invoke: {
+        src: "fhSay",
+        input: "I can't hear you.",
+        onDone: {
+          target: "Listen",
+          actions: ({ event }) => console.log("\t", event.output),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Repeat: {
+      entry: () => fhLed(255, 0, 0),
+      invoke: {
+        src: "fhSay",
+        input: ({ context }) => `You said ${context.lastUtterance}`,
+        onDone: [
+          {
+            target: "Angry",
+            guard: ({ context }) =>
+              context.lastUtterance?.toLowerCase().includes("angry") ?? false,
+            actions: ({ event }) => console.log("\t", event.output),
+          },
+          {
+            target: "Listen",
+            actions: ({ event }) => console.log("\t", event.output),
+          },
+        ],
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Angry: {
+      entry: () => {
+        fhLed(255, 0, 0);
+        fhGesture("ExpressAnger", false);
+      },
+      invoke: {
+        src: "fhAudio",
+        input: {
+          url: AUDIO_URL,
+          blocking: true,
+        },
+        onDone: {
+          target: "Listen",
+          actions: ({ event }) => console.log("\t", event.output),
         },
         onError: {
           target: "Fail",
@@ -112,15 +166,45 @@ const dmMachine = setup({
       },
     },
     Listen: {
+      entry: () => fhLed(0, 255, 0),
+      invoke: {
+        src: "fhListen",
+        input: null,
+        onDone: [
+          {
+            target: "NoInput",
+            guard: ({ event }) => {
+              return (
+                !event.output.message ||
+                event.output.message.trim() === "" ||
+                event.output.message === "SILENCE"
+              );
+            },
+            actions: () => console.log("\tNo input"),
+          },
+          {
+            target: "Repeat",
+            actions: [
+              assign({
+                lastUtterance: ({ event }) => event.output.message,
+              }),
+              ({ event }) => console.log("\t", event.output.message),
+            ],
+          },
+        ],
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
     },
     Fail: {},
   },
 });
 
 const actor = createActor(dmMachine).start();
-console.log(actor.getSnapshot().value);
+console.log(`[State]: ${actor.getSnapshot().value}`);
 
 actor.subscribe((snapshot) => {
-  console.log(snapshot.value);
+  console.log(`[State] ${snapshot.value}`);
 });
-

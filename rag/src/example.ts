@@ -1,6 +1,7 @@
-import { Command } from "commander";
-import { QdrantClient } from "@qdrant/js-client-rest";
-import OpenAI from "openai";
+import { Command } from 'commander';
+import OpenAI from 'openai';
+
+import { QdrantClient } from '@qdrant/js-client-rest';
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
