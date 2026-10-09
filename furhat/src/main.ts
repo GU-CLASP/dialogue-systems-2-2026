@@ -24,34 +24,143 @@ async function fhSay(text: string) {
   });
 }
 
-async function newGesture() {
+// implementing user tracking (closest user)
+async function fhAttend() {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
-  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=false`, {
+
+  return fetch(`http://${FURHATURI}/furhat/attend?user=CLOSEST`, {
+    method: "POST",
+    headers: myHeaders,
+    body: "",
+  });
+}
+
+// LED light
+async function fhLED(red: number, green: number, blue: number) {
+  const response = await fetch(
+    `http://${FURHATURI}/furhat/led?red=${red}&green=${green}&blue=${blue}`, 
+    {
+      method: "POST",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`LED failed: ${response.status}`);
+  }
+
+  return response;
+}
+
+// new Gesture
+async function ponderingGesture() {
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "application/json");
+  myHeaders.append("Content-Type", "application/json");
+
+  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=true`, {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({
-      name: "newGesture",
+      name: "PonderingGesture",
       frames: [
         {
-          time: [], //ADD THE TIME FRAME OF YOUR LIKING
+          time: [0.3],
           persist: true,
           params: {
-            //ADD PARAMETERS HERE IN ORDER TO CREATE A GESTURE
+            GAZE_PAN: 10,
+            GAZE_TILT: -15,
+            NECK_PAN: 5,
+            BROW_UP_LEFT: 1.0,
+            BROW_UP_RIGHT: 1.0,
           },
         },
         {
-          time: [], //ADD TIME FRAME IN WHICH YOUR GESTURE RESETS
+          time: [1.5],
+          persist: true,
+          params: {
+            GAZE_PAN: -10,
+            GAZE_TILT: -15,
+            NECK_PAN: -5,
+            BROW_UP_LEFT: 1.0,
+            BROW_UP_RIGHT: 1.0,
+          },
+        },
+        {
+          time: [2.5],
           persist: true,
           params: {
             reset: true,
           },
         },
-        //ADD MORE TIME FRAMES IF YOUR GESTURE REQUIRES THEM
       ],
       class: "furhatos.gestures.Gesture",
     }),
   });
+}
+
+// new Gesture with sound
+async function laughGesture() {
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "application/json");
+  myHeaders.append("Content-Type", "application/json");
+
+  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=true`, {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({
+      name: "LaughGesture",
+      frames: [
+        {
+          time: [0.2],
+          persist: true,
+          params: {
+            SMILE_OPEN: 1.0,
+            SMILE_CLOSED: 0.7,
+            SQUINT_LEFT: 0.7,
+            SQUINT_RIGHT: 0.7,
+            NECK_TILT: 5,
+          },
+        },
+        {
+          time: [0.7],
+          persist: true,
+          params: {
+            SMILE_OPEN: 1.0,
+            SQUINT_LEFT: 1.0,
+            SQUINT_RIGHT: 1.0,
+            NECK_TILT: -5,
+          },
+        },
+        {
+          time: [1.2],
+          persist: true,
+          params: {
+            SMILE_OPEN: 1.0,
+            SQUINT_LEFT: 0.7,
+            SQUINT_RIGHT: 0.7,
+            NECK_TILT: 5,
+          },
+        },
+        {
+          time: [2.5],
+          persist: true,
+          params: {
+            reset: true,
+          },
+        },
+      ],
+      class: "furhatos.gestures.Gesture",
+    }),
+  });
+}
+
+// adding the audio
+async function laughWithAudio() {
+  return Promise.all([ // starting both operations at the same time
+    laughGesture(),
+    fhSay("Hihihi hihi!"),
+  ]);
 }
 
 async function fhGesture(text: string) {
@@ -81,29 +190,60 @@ async function fhListen() {
 }
 
 const dmMachine = setup({
+
+  // implementing a simple dialogue
+  types: {
+    context: {} as {
+      userSpeech: string;
+    },
+  },
+
   actors: {
     fhVoice: fromPromise<any, null>(async () => {
       return fhVoice("en-US-EchoMultilingualNeural");
     }),
     fhHello: fromPromise<any, null>(async () => {
-      return fhSay("Hi");
+      await fhLED(127, 0, 0); // turning the LED red
+      return fhSay("Hi! What's up?");
     }),
     fhL: fromPromise<any, null>(async () => {
-     return fhListen();
+      await fhLED(0, 127, 0); // turning the LED green
+      return fhListen();
+   }),
+   fhAttend: fromPromise<any, null>(async () => {
+      return fhAttend();
+   }),
+   fhRepeat: fromPromise<any, { text: string }>(async ({ input }) => {
+      await fhLED(127, 0, 0); // turning the LED red
+      return fhSay(`You said: ${input.text}`);
+   }),
+   fhPonderingGesture: fromPromise<any, null>(async () => {
+      await fhLED(127, 0, 0); // turning the LED red
+      return ponderingGesture();
+   }),
+   fhLaughGesture: fromPromise<any, null>(async () => {
+      await fhLED(127, 0, 0); // turning the LED red
+      return laughWithAudio();
    }),
   },
 }).createMachine({
   id: "root",
+
+  // implementing a simple dialogue
+  context: {
+    userSpeech: "",
+  },
+
   initial: "Start",
   states: {
-    Start: { after: { 1000: "Next" } },
-    Next: {
+    Start: {
       invoke: {
-        src: "fhHello",      
+
+        // added attending to the closest user
+        src: "fhAttend",
         input: null,
         onDone: {
-          target: "Listen",
-          actions: ({ event }) => console.log(event.output),
+          target: "Next",
         },
         onError: {
           target: "Fail",
@@ -111,9 +251,98 @@ const dmMachine = setup({
         },
       },
     },
-    Listen: {
+    Next: {
+      invoke: {
+        src: "fhHello",      
+        input: null,
+        onDone: {
+          target: "Listen",
+          //  actions: ({ event }) => console.log(event.output),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
     },
-    Fail: {},
+
+    // implementing a simple dialogue
+    Listen: {
+      invoke: {
+        src: "fhL",
+        input: null,
+        onDone: {
+          target: "Gesture",
+
+          actions: assign({
+            userSpeech: ({ event }) => event.output,
+          }),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+
+      },
+    },
+
+    // adding the new gesture to the dialogue
+    Gesture: {
+      invoke: {
+        src: "fhPonderingGesture",
+        input: null,
+        onDone: {
+          target: "Laugh",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+
+    // adding gesture with audio
+    Laugh: {
+      invoke: {
+        src: "fhLaughGesture",
+        input: null,
+        onDone: {
+          target: "Repeat",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+
+    // implementing a simple dialogue
+    Repeat: {
+      invoke: {
+        src: "fhRepeat",
+        input: ({ context }) => ({
+          text: context.userSpeech,
+        }),
+        onDone: {
+          target: "Done",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+
+    Fail: {
+      entry: () => {
+        fhLED(0, 0, 0).catch(console.error); // turning the LED off
+      },
+    },
+    Done: {
+      entry: () => {
+        fhLED(0, 0, 0).catch(console.error); // turning the LED off
+      },
+    },
   },
 });
 
@@ -123,4 +352,3 @@ console.log(actor.getSnapshot().value);
 actor.subscribe((snapshot) => {
   console.log(snapshot.value);
 });
-
