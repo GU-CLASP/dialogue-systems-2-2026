@@ -7,7 +7,7 @@ const inspector = createBrowserInspector();
 
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    "https://germanywestcentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   // key: KEY,
 };
 
@@ -17,7 +17,7 @@ const settings = {
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
   ttsDefaultVoice: "en-US-DavisNeural",
-  azureRegion: "northeurope",
+  azureRegion: "germanywestcentral",
 };
 
 const dmMachine = setup({
