@@ -67,7 +67,10 @@ export const rules: Rules = {
   integrate_sys_ask: ({ is }) => {
     if (is.shared.lu!.speaker === "sys") {
       for (const move of is.shared.lu!.moves) {
-        if (move.type === "ask") {
+        if (
+          move.type === "ask" && 
+          !is.shared.qud.some((x) => objectsEqual(x, move.content))
+        ) {
           const q = move.content;
           return () => ({
             ...is,
@@ -253,6 +256,36 @@ export const rules: Rules = {
     }
   },
 
+  /** Larsson (2002) rule 3.12, selectIcmSemNeg */
+  select_icm_sem_neg: ({ is }) => {
+    const lu = is.shared.lu;
+    if (
+      lu &&
+      lu.speaker === "usr" &&
+      lu.moves.length === 0 &&
+      !is.next_moves.some((m) => m.type === "icm:sem*neg")
+    ) {
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, { type: "icm:sem*neg", content: null }],
+      });
+    }
+  },
+  select_icm_con_neg: ({ is }) => {
+    const lu = is.shared.lu;
+    if (
+      lu &&
+      lu.speaker === "usr" &&
+      lu.moves.some((m) => m.type === "noinput") &&
+      is.next_moves.length === 0 &&
+      is.private.agenda.length === 0
+    ) {
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, { type: "icm:con*neg", content: null }],
+      });
+    }
+  },
   /** rule 2.13 */
   select_ask: ({ is }) => {
     let newIS = is;
