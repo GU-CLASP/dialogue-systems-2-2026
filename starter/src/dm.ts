@@ -1,16 +1,21 @@
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
-import { DMContext, DMEvents } from "./types";
+import { DMContext, DMEvents, Message } from "./types";
 import OpenAI from "openai";
+import { QdrantClient } from "@qdrant/js-client-rest";
 
-const REGION = "<YOUR_REGION>";
+const REGION = "northeurope";
 
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
   dangerouslyAllowBrowser: true,
 });
+
+const qdrant = new QdrantClient({ host: "localhost", port: 6333 });
+
+const COLLECTION = "gu_stuservice";
 
 const azureCredentials = {
   endpoint: `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
@@ -34,26 +39,57 @@ const settings: Settings = {
   bargeIn: false,
 };
 
-interface GrammarEntry {
-  person?: string;
-  day?: string;
-  time?: string;
-}
-
-const grammar: { [index: string]: GrammarEntry } = {
-  vlad: { person: "Vladislav Maraev" },
-  bora: { person: "Bora Kara" },
-  tal: { person: "Talha Bedir" },
-  tom: { person: "Tom Södahl Bladsjö" },
-  monday: { day: "Monday" },
-  tuesday: { day: "Tuesday" },
-  "10": { time: "10:00" },
-  "11": { time: "11:00" },
+const GREETING: Message = {
+  role: "assistant",
+  content: "Hi! How can I help you?",
 };
 
-function isInGrammar(utterance: string) {
-  return utterance.toLowerCase() in grammar;
-}
+const chatCompletion = fromPromise<
+  string,
+  { messages: Message[]; ragContext: string }
+>(async ({ input }) => {
+  const systemPrompt: Message = {
+    role: "system",
+    content:
+      "You are a helpful voice assistant for students at the University of Gothenburg. " +
+      "Answer politely in one or two short sentences. " +
+      "Use plain text only: no markdown, no lists, no emoji, no special symbols, " +
+      "because your answer will be read out loud by a speech synthesiser. " +
+      "Use the information between CONTEXT START and CONTEXT END to answer. " +
+      "If it does not contain the answer, say that you do not know.\n\n" +
+      "CONTEXT START\n" +
+      input.ragContext +
+      "\nCONTEXT END",
+  };
+
+  const completion = await openai.chat.completions.create({
+    model: "qwen3:4b",
+    messages: [systemPrompt, ...input.messages.slice(1)],
+  });
+  return completion.choices[0].message.content ?? "";
+});
+
+const queryRAG = fromPromise<string, { question: string }>(
+  async ({ input }) => {
+    const embedding = await openai.embeddings
+      .create({
+        model: "qwen3-embedding",
+        input: input.question,
+        dimensions: 384,
+      })
+      .then((result) => result.data[0].embedding);
+
+    const results = await qdrant.query(COLLECTION, {
+      query: embedding,
+      with_payload: true,
+      limit: 5,
+    });
+
+    return results.points
+      .map((p) => p.payload?.text as string)
+      .join("\n---\n");
+  },
+);
 
 const dmMachine = setup({
   types: {
@@ -75,11 +111,13 @@ const dmMachine = setup({
         type: "LISTEN",
       }),
   },
-  actors: {},
+  actors: { chatCompletion: chatCompletion, queryRAG: queryRAG },
 }).createMachine({
   context: ({ spawn }) => ({
+    ragContext: "",
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
+    messages: [{ role: "system", content: "Reply in one or two sentences, and be polite." }],
   }),
   id: "DM",
   initial: "Prepare",
@@ -89,60 +127,95 @@ const dmMachine = setup({
       on: { ASRTTS_READY: "WaitToStart" },
     },
     WaitToStart: {
-      on: { CLICK: "Greeting" },
+      on: { CLICK: "Loop" },
     },
-    Greeting: {
-      initial: "Prompt",
-      on: {
-        LISTEN_COMPLETE: [
-          {
-            target: "CheckGrammar",
-            guard: ({ context }) => !!context.lastResult,
-          },
-          { target: ".NoInput" },
-        ],
-      },
+    Loop: {
+      entry: assign(({ context }) => {
+        const newMessages = [...context.messages, GREETING];
+        return { messages: newMessages };
+      }),
+      initial: "Speaking",
       states: {
-        Prompt: {
-          entry: { type: "spst.speak", params: { utterance: `Hello world!` } },
-          on: { SPEAK_COMPLETE: "Ask" },
-        },
-        NoInput: {
+        Speaking: {
           entry: {
             type: "spst.speak",
-            params: { utterance: `I can't hear you!` },
+            params: ({ context }) => {
+              const lastMessage = context.messages[context.messages.length - 1];
+              return { utterance: lastMessage.content };
+            },
           },
           on: { SPEAK_COMPLETE: "Ask" },
         },
+
         Ask: {
           entry: { type: "spst.listen" },
           on: {
             RECOGNISED: {
-              actions: assign(({ event }) => {
-                return { lastResult: event.value };
+              actions: assign(({ context, event }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  { role: "user", content: event.value[0].utterance },
+                ];
+                return { messages: newMessages };
               }),
             },
-            ASR_NOINPUT: {
-              actions: assign({ lastResult: null }),
+            LISTEN_COMPLETE: "Retrieval",
+          },
+        },
+
+        Retrieval: {
+          invoke: {
+            src: "queryRAG",
+            input: ({ context }) => ({
+              question: context.messages[context.messages.length - 1].content,
+            }),
+            onDone: {
+              target: "ChatCompletion",
+              actions: assign(({ event }) => {
+                return { ragContext: event.output };
+              }),
+            },
+            onError: {
+              target: "ChatCompletion",
+              actions: assign(() => {
+                return { ragContext: "" };
+              }),
             },
           },
         },
-      },
-    },
-    CheckGrammar: {
-      entry: {
-        type: "spst.speak",
-        params: ({ context }) => ({
-          utterance: `You just said: ${context.lastResult![0].utterance}. And it ${
-            isInGrammar(context.lastResult![0].utterance) ? "is" : "is not"
-          } in the grammar.`,
-        }),
-      },
-      on: { SPEAK_COMPLETE: "Done" },
-    },
-    Done: {
-      on: {
-        CLICK: "Greeting",
+
+        ChatCompletion: {
+          invoke: {
+            src: "chatCompletion",
+            input: ({ context }) => ({
+              messages: context.messages,
+              ragContext: context.ragContext,
+            }),
+            onDone: {
+              target: "Speaking",
+              actions: assign(({ context, event }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  { role: "assistant", content: event.output },
+                ];
+                return { messages: newMessages };
+              }),
+            },
+            onError: {
+              target: "Speaking",
+              actions: assign(({ context }) => {
+                const newMessages: Message[] = [
+                  ...context.messages,
+                  {
+                    role: "assistant",
+                    content: "Sorry, I could not reach the language model.",
+                  },
+                ];
+                return { messages: newMessages };
+              }),
+            },
+          },
+        },
       },
     },
   },

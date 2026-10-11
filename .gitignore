@@ -136,3 +136,7 @@ tools/custom-gcl.hash
 !tsc/testdata/submoduleTriaged.txt
 
 **/credentials.ts
+
+# Local Qdrant database (submitted as a zip on Canvas, not tracked in git)
+rag/qdrant_data/
+rag/qdrant_data.zip
