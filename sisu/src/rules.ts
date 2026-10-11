@@ -69,6 +69,10 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          // do not push the question if already on top of qud
+          if (is.shared.qud[0] && objectsEqual(is.shared.qud[0], q)) {
+            return () => is;
+          }
           return () => ({
             ...is,
             shared: {
@@ -150,15 +154,17 @@ export const rules: Rules = {
   /** rule 2.5 */
   downdate_qud: ({ is }) => {
     const q = is.shared.qud[0];
-    for (const p of is.shared.com) {
-      if (resolves(p, q)) {
-        return () => ({
-          ...is,
-          shared: {
-            ...is.shared,
-            qud: [...is.shared.qud.slice(1)],
-          },
-        });
+    if (q) {
+      for (const p of is.shared.com) {
+        if (resolves(p, q)) {
+          return () => ({
+            ...is,
+            shared: {
+              ...is.shared,
+              qud: [...is.shared.qud.slice(1)],
+            },
+          });
+        }
       }
     }
   },
@@ -330,4 +336,40 @@ export const rules: Rules = {
       });
     }
   },
+
+  /** new rule for negative understanding feedback */
+  select_nounderstanding_feedback: (tis) => {
+    const latestMove = tis.latest_moves;
+    if (Array.isArray(latestMove) && latestMove.length === 0)  { 
+      const noUnderstandingFeedbackMove: Move = { type: "noUnderstandingFeedback", content: null };
+      const qud = tis.is.shared.qud[0]; console.log("!!QUD :", qud)
+      let moves: Move[] = [noUnderstandingFeedbackMove]; console.log("!!MOVES :", moves)
+      if (qud) {
+        moves.push({ type: "ask", content: qud });
+      }
+      return () => ({
+        ...tis.is,
+        next_moves: moves,
+      });
+    }
+  },
+
+  /** new rule for negative contact feedback */
+  select_noinput_feedback: (tis) => {
+    const latestMove = tis.latest_moves?.[0];
+    if (latestMove?.type === "noInput")  { 
+      const noInputFeedbackMove: Move = { type: "noInputFeedback", content: null };
+      const qud = tis.is.shared.qud[0]; console.log("!!QUD :", qud)
+      let moves: Move[] = [noInputFeedbackMove]; console.log("!!MOVES :", moves)
+      if (qud) {
+        moves.push({ type: "ask", content: qud });
+      }
+      return () => ({
+        ...tis.is,
+        next_moves: moves,
+      });
+    }
+  }
+
+
 };

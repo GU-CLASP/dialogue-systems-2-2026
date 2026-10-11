@@ -28,7 +28,7 @@ export type Question = WhQuestion;
 type WhQuestion = { type: "whq"; predicate: string };
 
 interface OtherMove {
-  type: "greet" | "request";
+  type: "greet" | "request" | "noUnderstandingFeedback" | "noInputFeedback" | "noInput";
   content: null | string;
 }
 interface AnswerMove {
@@ -69,6 +69,7 @@ export interface InformationState {
 export interface DMContext extends TotalInformationState {
   ssRef: any;
   lastUserMoves?: Move[];
+  lastUserUtterance?: string
 }
 
 export interface DMEContext extends TotalInformationState {

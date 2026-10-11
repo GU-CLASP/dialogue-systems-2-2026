@@ -1,9 +1,9 @@
-import { createActor, setup, AnyMachineSnapshot, sendTo, assign } from "xstate";
+import { createActor, setup, AnyMachineSnapshot, sendTo, assign, fromPromise } from "xstate";
 import { Settings, speechstate } from "speechstate";
 import { createBrowserInspector } from "@statelyai/inspect";
 import { KEY } from "./azure";
-import { DMContext, DMEvent, NextMovesEvent } from "./types";
-import { nlg, nlu } from "./nlug";
+import { DMContext, DMEvent, NextMovesEvent, Move } from "./types";
+import { nlg, nlu, nluQdrant } from "./nlug";
 import { dme } from "./dme";
 import { initialIS } from "./is";
 
@@ -11,7 +11,7 @@ const inspector = createBrowserInspector();
 
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    "https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   key: KEY,
 };
 
@@ -20,7 +20,7 @@ const settings: Settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  azureRegion: "northeurope",
+  azureRegion: "francecentral",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false
 };
@@ -28,6 +28,9 @@ const settings: Settings = {
 const dmMachine = setup({
   actors: {
     dme: dme,
+    nluQdrant: fromPromise<Move[], string>(async ({input}) => {
+      return await nluQdrant(input)
+    },),
   },
   actions: {
     speak_next_moves: ({ context, event }) =>
@@ -78,7 +81,13 @@ const dmMachine = setup({
             },
             Recognising: {
               on: {
-                LISTEN_COMPLETE: {
+                LISTEN_COMPLETE: [
+                  {
+                    guard: ({ context }) => context.lastUserUtterance !== undefined,
+                    target: "ProcessingNLU",
+                    actions: () => console.log("[NLU] Starting NLU")
+                  },
+                  {
                   target: "Idle",
                   actions: sendTo("dmeID", ({ context }) => ({
                     type: "SAYS",
@@ -87,18 +96,52 @@ const dmMachine = setup({
                       moves: context.lastUserMoves,
                     },
                   })),
-                },
+                  },
+                ],
                 RECOGNISED: {
-                  actions: assign(({ event }) => ({
-                    lastUserMoves: nlu(event.value[0].utterance),
-                  })),
+                  actions: [
+                    ({ event }) => console.log("[ASR] RECOGNISED", event.value[0].utterance),
+                    assign(({ event }) => ({
+                    lastUserUtterance: event.value[0].utterance,
+                    })),
+                  ]
                 },
                 ASR_NOINPUT: {
                   // TODO
+                  actions: [
+                    () => console.log("[ASR] NO INPUT"),
+                    assign({
+                    lastUserMoves: [{type: "noInput", content: null}],
+                    lastUserUtterance: undefined
+                    }),
+                  ]
                 },
               },
             },
-          },
+            ProcessingNLU: {
+              invoke: {
+                src: "nluQdrant",
+                input: ({ context }) => context.lastUserUtterance!,
+                onDone: {
+                  target: "Idle",
+                  actions: [
+                    () => console.log("[NLU] Complete"),
+                    assign(({ event }) => ({
+                      lastUserMoves: event.output,
+                      lastUserUtterance: undefined,
+                    })),
+                    sendTo("dmeID", ({ event }) => ({
+                      type: "SAYS",
+                      value: {
+                        speaker: "usr",
+                        moves: event.output,
+                      },
+                    })),
+                  ]
+                }
+              }
+            },
+          }
         },
         Generate: {
           initial: "Idle",
@@ -160,7 +203,7 @@ dmActor.subscribe((snapshot: AnyMachineSnapshot) => {
   console.log(
     "%cState value:",
     "background-color: #056dff",
-    snapshot.value,
+    JSON.stringify(snapshot.value, null, 2),
     snapshot.context.is
   );
 });
