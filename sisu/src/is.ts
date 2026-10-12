@@ -12,11 +12,15 @@ export const initialIS = (): InformationState => {
     // Mapping from predicate to sort
     favorite_food: "food",
     booking_course: "course",
+    booking_day: "day",
   };
   const individuals: { [index: string]: string } = {
     // Mapping from individual to sort
     pizza: "food",
     LT2319: "course",
+    Friday: "day",
+    Thursday: "day",
+    Tuesday: "day",
   };
   return {
     domain: {
@@ -27,6 +31,7 @@ export const initialIS = (): InformationState => {
           type: "issue",
           content: WHQ("booking_room"),
           plan: [
+            findout(WHQ("booking_day")),
             findout(WHQ("booking_course")),
             consultDB(WHQ("booking_room")),
           ],
@@ -37,8 +42,15 @@ export const initialIS = (): InformationState => {
       consultDB: (question, facts) => {
         if (objectsEqual(question, WHQ("booking_room"))) {
           const course = getFactArgument(facts, "booking_course");
-          if (course == "LT2319") {
+          const day = getFactArgument(facts, "booking_day");
+          if (course == "LT2319" && day == "Friday") {
             return { predicate: "booking_room", argument: "G212" };
+          }
+          if (course == "LT2319" && day == "Thursday") {
+            return { predicate: "booking_room", argument: "J440" };
+          }
+          if (course == "LT2319" && day == "Tuesday") {
+            return { predicate: "booking_room", argument: "J440" };
           }
         }
         return null;

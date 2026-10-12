@@ -133,13 +133,71 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database", () => {
+  describe("system answer from database, Friday", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
       { speaker: "sys", message: "Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  describe("system answer from database, Tuesday", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("negative understanding 2a", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "eksncksnakscns" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+    ]);
+  });
+
+  describe("negative understanding 2b", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "jsndnsdnas" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "jsajnandasn" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Tuesday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  describe("negative understanding 2c", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "jsndnsdnas" },
+      { speaker: "sys", message: "Sorry, I don't understand." },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "jsajnandasn" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "jsjsjsjff" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "kskskvmo" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
     ]);
   });
 });
