@@ -76,10 +76,13 @@ export const dme = setup({
         SelectAction: {
           always: [
             isuTransition("SelectMove", "select_respond"),
+            isuTransition("SelectMove", "select_negative_contact"),
+            isuTransition("SelectMove", "select_not_understood"),
             isuTransition("SelectMove", "select_from_plan"),
             { target: "SelectMove" }, // TODO check it -- needed for greeting
           ],
         },
+
         SelectMove: {
           always: [
             isuTransition("SelectionDone", "select_ask"),

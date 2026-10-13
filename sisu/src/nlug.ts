@@ -37,8 +37,35 @@ const nluMapping: NLUMapping = {
       content: "LT2319",
     },
   ],
+  friday: [
+    { 
+      type: "answer",
+      content: "Friday" 
+    }
+  ],
+  thursday: [
+    {
+       type: "answer", 
+       content: "Thursday" 
+      }
+    ],
+  tuesday: [
+    { 
+      type: "answer", 
+      content: "Tuesday" 
+    }
+  ],
 };
 const nlgMapping: NLGMapping = [
+  [
+    { type: "not_understood", content: null },
+    "Sorry, I don't understand."
+  ],
+
+  [
+  { type: "negative_contact", content: null },
+  "I didn't hear anything. Could you repeat that?",
+],
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
@@ -54,6 +81,17 @@ const nlgMapping: NLGMapping = [
       content: { predicate: "booking_room", argument: "G212" },
     },
     "The lecture is in G212.",
+  ],
+  [
+    { type: "ask", content: WHQ("booking_day")},
+    "Which day?",
+  ],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" }, 
+    },
+    "The lecture is in J440.",
   ],
 ];
 
@@ -74,5 +112,8 @@ export function nlg(moves: Move[]): string {
 /** NLU mapping function can be replaced by statistical NLU
  */
 export function nlu(utterance: string): Move[] {
+  if ( utterance.trim() === "") {
+    return [{ type: "negative_contact", content: null }];
+  }
   return nluMapping[utterance.toLowerCase()] || [];
 }

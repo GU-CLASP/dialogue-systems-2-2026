@@ -65,7 +65,10 @@ export const rules: Rules = {
 
   /** rule 2.2 */
   integrate_sys_ask: ({ is }) => {
-    if (is.shared.lu!.speaker === "sys") {
+    if (
+      is.shared.lu!.speaker === "sys" &&
+      !is.shared.lu!.moves.some((move) => move.type === "not_understood")
+    ) {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
@@ -330,4 +333,42 @@ export const rules: Rules = {
       });
     }
   },
-};
+
+  select_negative_contact: ({ is }) => {
+  if (
+    is.shared.lu?.speaker === "usr" &&
+    is.shared.lu.moves.some(
+      (move) => move.type === "negative_contact"
+    )
+  ) {
+    return () => ({
+      ...is,
+      next_moves: [
+        ...is.next_moves,
+        { type: "negative_contact", content: null },
+      ],
+    });
+  }
+},
+
+  select_not_understood: ({ is }) => {
+    if (
+      is.shared.lu?.speaker === "usr" &&
+      is.shared.lu.moves.length === 0
+    ) {
+      const moves: Move[] = [
+        { type: "not_understood", content: null},
+      ];
+
+      const previousQuestion = is.shared.qud[0];
+
+      if (previousQuestion) {
+        moves.push({ type: "ask", content: previousQuestion});
+      }
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, ...moves],
+      });
+    }
+  },
+  };
