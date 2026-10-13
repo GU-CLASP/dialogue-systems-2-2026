@@ -69,13 +69,16 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
-          return () => ({
-            ...is,
-            shared: {
-              ...is.shared,
-              qud: [q, ...is.shared.qud],
-            },
-          });
+          // don't add the same question twice
+          if (!is.shared.qud.some((x) => objectsEqual(x, q))) {
+            return () => ({
+              ...is,
+              shared: {
+                ...is.shared,
+                qud: [q, ...is.shared.qud],
+              },
+            });
+          }
         }
       }
     }
@@ -136,6 +139,32 @@ export const rules: Rules = {
         return () => ({
           ...is,
         });
+      }
+    }
+  },
+
+  /** deals with answers that the system does not understand */
+  integrate_usr_not_understood: ({ is }) => {
+    if (is.shared.lu!.speaker === "usr") {
+      if (Array.isArray(is.shared.lu!.moves) && is.shared.lu!.moves.length === 0) {
+        return () => ({
+          ...is,
+          next_moves: [...is.next_moves, { type: "not_understood", content: null }],
+        });
+      }
+    }
+  },
+
+  /** deals with no input */
+  integrate_usr_no_input: ({ is }) => {
+    if (is.shared.lu!.speaker === "usr") {
+      for (const move of is.shared.lu!.moves) {
+        if (move.type === "no_input") {
+          return () => ({
+            ...is,
+            next_moves: [...is.next_moves, { type: "not_heard", content: null }],
+          });
+        }
       }
     }
   },

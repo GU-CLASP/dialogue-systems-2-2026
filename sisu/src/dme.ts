@@ -122,6 +122,8 @@ export const dme = setup({
             isuTransition("DowndateQUD", "integrate_usr_ask"),
             isuTransition("DowndateQUD", "integrate_answer"),
             isuTransition("DowndateQUD", "integrate_greet"),
+            isuTransition("DowndateQUD", "integrate_usr_not_understood"),
+            isuTransition("DowndateQUD", "integrate_usr_no_input"),
             { target: "DowndateQUD" },
           ],
         },

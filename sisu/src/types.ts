@@ -28,7 +28,7 @@ export type Question = WhQuestion;
 type WhQuestion = { type: "whq"; predicate: string };
 
 interface OtherMove {
-  type: "greet" | "request";
+  type: "greet" | "request" | "not_understood" | "no_input" | "not_heard";
   content: null | string;
 }
 interface AnswerMove {
