@@ -24,6 +24,16 @@ async function fhSay(text: string) {
   });
 }
 
+async function fhAttend() {
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "application/json");
+  return fetch(`http://${FURHATURI}/furhat/attend?user=CLOSEST`, {
+    method: "POST",
+    headers: myHeaders,
+    body: "",
+  });
+}
+
 async function newGesture() {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
@@ -89,17 +99,34 @@ const dmMachine = setup({
       return fhSay("Hi");
     }),
     fhL: fromPromise<any, null>(async () => {
-     return fhListen();
-   }),
+      return fhListen();
+    }),
+    fhAttendUser: fromPromise<any, null>(async () => {
+      return fhAttend();
+    }),
   },
 }).createMachine({
   id: "root",
   initial: "Start",
   states: {
-    Start: { after: { 1000: "Next" } },
+    Start: { after: { 1000: "Attend" } },
+    Attend: {
+      invoke: {
+        src: "fhAttendUser",
+        input: null,
+        onDone: {
+          target: "Next",
+          actions: ({ event }) => console.log(event.output),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
     Next: {
       invoke: {
-        src: "fhHello",      
+        src: "fhHello",
         input: null,
         onDone: {
           target: "Listen",
