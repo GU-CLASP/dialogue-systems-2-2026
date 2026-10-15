@@ -11,7 +11,7 @@ const inspector = createBrowserInspector();
 
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    "https://swedencentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   key: KEY,
 };
 
@@ -20,7 +20,7 @@ const settings: Settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  azureRegion: "northeurope",
+  azureRegion: "swedencentral",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false
 };
@@ -93,8 +93,10 @@ const dmMachine = setup({
                     lastUserMoves: nlu(event.value[0].utterance),
                   })),
                 },
+                // VG-A: silence. speechstate sends ASR_NOINPUT and then
+                // LISTEN_COMPLETE, so I stored a "no_input" move here.
                 ASR_NOINPUT: {
-                  // TODO
+                  actions: assign({ lastUserMoves: () => nlu("") }),
                 },
               },
             },

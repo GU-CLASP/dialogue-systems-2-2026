@@ -63,12 +63,43 @@ export const rules: Rules = {
     }
   },
 
+  /**Task 2a: the NLU returned no moves = the user was not understood
+ *  I put an "icm_und_neg" action on the agenda. */
+  integrate_no_understanding: ({ is }) => {
+    if (is.shared.lu!.speaker === "usr" && is.shared.lu!.moves.length === 0) {
+      const icm: Action = { type: "icm_und_neg", content: null };
+      return () => ({
+        ...is,
+        private: { ...is.private, agenda: [icm, ...is.private.agenda] },
+      });
+    }
+  },
+
+  /** VG-A: put "icm_con_neg" on the agenda */
+  integrate_no_contact: ({ is }) => {
+    if (
+      is.shared.lu!.speaker === "usr" &&
+      is.shared.lu!.moves.some((m) => m.type === "no_input")
+    ) {
+      const icm: Action = { type: "icm_con_neg", content: null };
+      return () => ({
+        ...is,
+        private: { ...is.private, agenda: [icm, ...is.private.agenda] },
+      });
+    }
+  },
+
+
   /** rule 2.2 */
   integrate_sys_ask: ({ is }) => {
     if (is.shared.lu!.speaker === "sys") {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          // Task 2b: a repeated question must not be added to QUD twice
+          if (is.shared.qud.some((x) => objectsEqual(x, q))) {
+            return undefined;
+          }
           return () => ({
             ...is,
             shared: {
@@ -321,12 +352,26 @@ export const rules: Rules = {
     }
   },
 
-  /** only for greet for now */
+  /** greet + Task 2a/2b negative understanding feedback */
   select_other: ({ is }) => {
-    if (is.private.agenda[0] && is.private.agenda[0].type === "greet") {
+    const top = is.private.agenda[0];
+    if (top && top.type === "greet") {
       return () => ({
         ...is,
-        next_moves: [...is.next_moves, is.private.agenda[0] as Move],
+        next_moves: [...is.next_moves, top as Move],
+      });
+    }
+    // VG-A: contact feedback is handled exactly like understanding feedback
+    if (top && (top.type === "icm_und_neg" || top.type === "icm_con_neg")) {
+      const moves: Move[] = [{ type: top.type, content: null }];
+      // Task 2b: if the plan is still waiting for an answer ask that question again
+      const pending = is.private.plan[0];
+      if (pending && pending.type === "findout") {
+        moves.push({ type: "ask", content: pending.content as Question });
+      }
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, ...moves],
       });
     }
   },
