@@ -13,6 +13,8 @@ export type DogPreferences = {
     temperaments: string[];
 };
 
+export type QuestionSlot = | "size" | "activity" | "grooming";
+
 export type DialogueState = {
     preferences: DogPreferences;
 
@@ -21,6 +23,8 @@ export type DialogueState = {
 
     // breed currently being discussed
     currentBreed?: Breed;
+
+    lastQuestion?: QuestionSlot;
 };
 
 export function createInitialState(): DialogueState {
@@ -31,6 +35,7 @@ export function createInitialState(): DialogueState {
         },
         searchResults: [],
         currentBreed: undefined,
+        lastQuestion: undefined,
     };
 }
 

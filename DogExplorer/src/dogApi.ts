@@ -17,3 +17,22 @@ export async function searchBreed(breedName: string, apiKey: string): Promise<Br
   const breeds: Breed[] = await response.json(); // we get the breeds
   return breeds;
 }
+
+
+export async function getAllBreeds(apiKey: string): Promise<Breed[]> {
+  const response = await fetch(`${B_URL}/breeds`,
+    {
+      headers: {
+        "x-api-key": apiKey,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch breeds: ${response.status}`);
+  }
+
+  const breeds: Breed[] = await response.json();
+
+  return breeds;
+}

@@ -1,62 +1,93 @@
 import dotenv from "dotenv"; // for getting the apikey
-import { searchBreed } from "./dogApi";
+import { searchBreed, getAllBreeds } from "./dogApi";
 import { createInitialState, updatePreferences } from "./dialogueState";
 import { stat } from "node:fs";
 import { understandUser } from "./nlu";
+import { decideNextAction } from "./dialogueManager";
+import readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
+import { findMatchingBreeds } from "./breedMatcher";
 
-// // .env is outside the folder
-// dotenv.config({path:"../.env"});
-// const apiKey = process.env.DOG_API_KEY;
-// if(!apiKey){ // if it was empty we throw an error
-//     throw new Error("DOG_API_KEY is missing from .env");
-// }
-// // I use whippet breed as an example to test
-// const breeds = await searchBreed("whippet", apiKey);
-
-// if (breeds.length === 0) { // if it was no breed found
-//     console.log("No breed found.");
-// } else {
-//     const breed = breeds[0]; // first breed
-//     console.log("Breed:", breed.name);
-//     console.log("Temperament:", breed.temperament);
-//     console.log("Weight:", breed.weight.metric, "kg");
-//     console.log("Height:", breed.height.metric, "cm");
-//     console.log("Life span:", breed.life_span, "years");
-//     console.log("Description:", breed.description);
-// }
+// api
+dotenv.config({ path: "../.env" });
+const apiKey = process.env.DOG_API_KEY;
+if (!apiKey) {
+    throw new Error("DOG_API_KEY is missing");
+}
 
 
 const state = createInitialState();
-console.log("Initial State:");
-console.log(state.preferences);
 
-const utterance = "I want a medium-sized dog that is pretty active but doesn't need much grooming.";
+// terminal interface
+const rl = readline.createInterface({ input, output, });
 
-console.log("\nUser:");
-console.log(utterance);
+console.log("\nSystem: Hi! I can help you explore dog breeds.");
+console.log("System: What kind of dog are you looking for?");
 
-const nlu = await understandUser(utterance);
+try {
+    while (true) {
+        const utterance = await rl.question("\nYou: ");
 
-console.log("\NLU results:");
-console.log(nlu);
+        if (["exit", "quit", "bye"].includes(utterance.trim().toLowerCase())) {
+            console.log("\nSystem: Goodbye!");
+            break;
+        }
 
-updatePreferences(state, nlu);
+        if (!utterance.trim()) {
+            console.log("System: Sorry, I didn't hear anything. Could you repeat?");
+            continue;
+        }
 
-console.log("\Updated state:");
-console.log(state.preferences);
+        try {
+            const nlu = await understandUser(utterance, state.lastQuestion);
+
+            console.log("\n[NLU]", nlu);
+
+            // updating information state
+            updatePreferences(state, nlu);
+
+            console.log("[STATE]", state.preferences);
+
+            // what to do next, ask or search
+            const action = decideNextAction(state);
+
+            if (action.type === "ask") {
+                state.lastQuestion = action.slot;
+                console.log("\nSystem:", action.question);
+            }
+
+            else if (action.type === "search") {
+                state.lastQuestion = undefined;
+
+                console.log("\nSystem: Let me find some breeds for you...");
+
+                // the breed catalog from the API
+                const allBreeds = await getAllBreeds(apiKey);
+
+                // filtering
+                const matches = findMatchingBreeds(allBreeds, state.preferences);
+
+                // saving the results
+                state.searchResults = matches.slice(0, 3);
+
+                if (state.searchResults.length === 0) {
+                    console.log("\nSystem: I couldn't find breeds matching those filters.");
+                } else {
+                    console.log("\nSystem: Here are some breeds to explore:");
+                    state.searchResults.forEach((breed, index) => {
+                        console.log(`${index + 1}. ${breed.name}`);
+                    });
+                }
+
+                break;
+            }
 
 
-const secondUtterance = "I would also like something friendly and calm.";
-
-console.log("\nUser:");
-console.log(secondUtterance);
-
-const secondNLU = await understandUser(secondUtterance);
-
-console.log("\nNLU result:");
-console.log(secondNLU);
-
-updatePreferences(state, secondNLU);
-
-console.log("\nUpdated state:");
-console.log(state.preferences);
+        } catch (error) {
+            console.error("\nError processing utterance:", error);
+            console.log("System: Sorry, something went wrong. Could you try again?");
+        }
+    }
+} finally {
+    rl.close();
+}
