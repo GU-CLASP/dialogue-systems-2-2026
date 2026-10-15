@@ -125,21 +125,79 @@ describe("DME tests", () => {
     });
   };
 
-  describe("system answer from beliefs", () => {
-    runTest([
-      { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr", message: "What's your favorite food?" },
-      { speaker: "sys", message: "Pizza." },
-    ]);
-  });
-
-  describe("system answer from database", () => {
-    runTest([
-      { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr", message: "Where is the lecture?" },
-      { speaker: "sys", message: "Which course?" },
-      { speaker: "usr", message: "Dialogue Systems 2" },
-      { speaker: "sys", message: "The lecture is in G212." },
-    ]);
-  });
+describe("system answer from database - Friday", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "Where is the lecture?" },
+    { speaker: "sys", message: "Which day?" },
+    { speaker: "usr", message: "Friday" },
+    { speaker: "sys", message: "Which course?" },
+    { speaker: "usr", message: "Dialogue Systems 2" },
+    { speaker: "sys", message: "The lecture is in G212." },
+  ]);
 });
+
+describe("system answer from database - Thursday", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "Where is the lecture?" },
+    { speaker: "sys", message: "Which day?" },
+    { speaker: "usr", message: "Thursday" },
+    { speaker: "sys", message: "Which course?" },
+    { speaker: "usr", message: "Dialogue Systems 2" },
+    { speaker: "sys", message: "The lecture is in J440." },
+  ]);
+});
+
+describe("negative understanding feedback", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "blablabla" },
+    { speaker: "sys", message: "Sorry, I don't understand." },
+  ]);
+});
+
+describe("negative understanding feedback - repeated question", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "bla bla" },
+    { speaker: "sys", message: "Sorry, I don't understand." },
+    { speaker: "usr", message: "Where is the lecture?" },
+    { speaker: "sys", message: "Which day?" },
+    { speaker: "usr", message: "Friday" },
+    { speaker: "sys", message: "Which course?" },
+    { speaker: "usr", message: "bla bla" },
+    { speaker: "sys", message: "Sorry, I don't understand. Which course?",},
+  ]);
+});
+
+describe("negative understanding feedback - repeated misunderstandings", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "Where is the lecture?" },
+    { speaker: "sys", message: "Which day?" },
+    { speaker: "usr", message: "bla bla" },
+    { speaker: "sys", message: "Sorry, I don't understand. Which day?", },
+    { speaker: "usr", message: "bla bla" },
+    { speaker: "sys", message: "Sorry, I don't understand. Which day?", },
+    { speaker: "usr", message: "Friday" },
+    { speaker: "sys", message: "Which course?" },
+    { speaker: "usr", message: "bla bla" },
+    { speaker: "sys", message: "Sorry, I don't understand. Which course?",},
+    { speaker: "usr", message: "Dialogue Systems 2" },
+    { speaker: "sys", message: "The lecture is in G212." },
+  ]);
+});
+
+describe("system answer from database - Tuesday", () => {
+  runTest([
+    { speaker: "sys", message: "Hello! You can ask me anything!" },
+    { speaker: "usr", message: "Where is the lecture?" },
+    { speaker: "sys", message: "Which day?" },
+    { speaker: "usr", message: "Tuesday" },
+    { speaker: "sys", message: "Which course?" },
+    { speaker: "usr", message: "Dialogue Systems 2" },
+    { speaker: "sys", message: "The lecture is in J440." },
+  ]);
+});
+})
