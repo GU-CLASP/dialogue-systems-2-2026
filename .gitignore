@@ -135,4 +135,5 @@ tools/custom-gcl.hash
 !tsc/testdata/submoduleAccepted.txt
 !tsc/testdata/submoduleTriaged.txt
 
-**/credentials.ts
+starter/src/credentials.ts
+rag/qdrant_data/

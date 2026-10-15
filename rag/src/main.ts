@@ -2,10 +2,11 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises"; // adding readdir to list files in a folder
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
+import { join } from "node:path"; // so I can combine folder path and filename
 
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
@@ -96,6 +97,50 @@ program
     await client.upsert(collection, { wait: true, points: points });
     console.log(
       `Succesfully added ${chunks.length} document into collection: ${collection}`,
+    );
+  });
+
+// adding data from a whole folder at once
+program
+  .command("addFolder")
+  .description("Chunk data from multiple files in a folder at <path> and add it to a collection.")
+  .argument("<collection>", "collection name")
+  .argument("<path>", "folder path")
+  .action(async (collection, path) => {
+    const files = await readdir(path) // getting filenames
+    const textFiles = files.filter((file) => file.endsWith(".txt")); // only txt files
+    
+    const allPoints = [] // array for collecting all the points
+
+    for (const fileName of textFiles) { // looping over all the files in the folder
+      const filePath = join(path, fileName); // getting path to file
+      
+      const chunks = await makeChunksFromFile(filePath);
+
+      const pointsFile = await Promise.all(
+        chunks.map(async (chunk) => {
+          const embedding = await embed(chunk);
+          return {
+            id:uuidv4(),
+            vector: embedding,
+            payload: {  
+              text: chunk,
+              source: fileName, // added additional data
+            },
+          };
+        }),
+      );
+
+      allPoints.push(...pointsFile) // adding file points to all points array
+
+      console.log(
+        `Done chunking ${fileName} into ${chunks.length} documents.`,
+      );
+    }
+    
+    await client.upsert(collection, { wait: true, points: allPoints });
+    console.log(
+      `Succesfully added ${allPoints.length} document into collection: ${collection}`,
     );
   });
 
