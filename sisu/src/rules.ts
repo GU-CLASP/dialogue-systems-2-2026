@@ -321,6 +321,29 @@ export const rules: Rules = {
     }
   },
 
+  select_negative_semantic_feedback: ({ is }) => {
+    if (
+      is.shared.lu &&
+      is.shared.lu!.speaker === "usr" &&
+      is.shared.lu!.moves.length === 0
+    ) {
+      return () => ({
+        ...is,
+        next_moves: [
+          ...is.next_moves,
+          { type: "icm", content: "sem_neg" },
+            ...(is.shared.qud[0] 
+              ? [{ type: "ask" as const, content: is.shared.qud[0] }] 
+              : [])
+        ],
+        shared: {
+          ...is.shared,
+          qud: [...is.shared.qud.slice(1)],
+        },
+      });
+    }
+  },
+
   /** only for greet for now */
   select_other: ({ is }) => {
     if (is.private.agenda[0] && is.private.agenda[0].type === "greet") {

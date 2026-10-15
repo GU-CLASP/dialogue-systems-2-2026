@@ -40,7 +40,12 @@ interface AskMove {
   content: Question;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove;
+interface IcmMove {
+  type: "icm";
+  content: "sem_neg";
+}
+
+export type Move = OtherMove | AnswerMove | AskMove | IcmMove;
 
 export type Action = {
   type:
