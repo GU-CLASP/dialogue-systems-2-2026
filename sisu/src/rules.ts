@@ -8,6 +8,8 @@ import {
 import { relevant, resolves, combine } from "./semantics";
 import { objectsEqual } from "./utils";
 
+const CONFIDENCE_THRESHOLD = 0.7;
+
 type Rules = {
   [index: string]: (
     context: TotalInformationState
@@ -33,6 +35,7 @@ export const rules: Rules = {
         lu: {
           moves: context.latest_moves!,
           speaker: context.latest_speaker!,
+          score: context.latest_score, // vg 1, for carrying the score
         },
       },
     });
@@ -69,6 +72,18 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+
+          // Do not add the question again if it is already on QUD
+          const alreadyInQUD = is.shared.qud.some((existingQ) =>
+            objectsEqual(existingQ, q)
+          );
+
+          if (alreadyInQUD) {
+            return () => ({
+              ...is,
+            });
+          }
+
           return () => ({
             ...is,
             shared: {
@@ -110,11 +125,11 @@ export const rules: Rules = {
   /** rule 2.4 */
   integrate_answer: ({ is }) => {
     const topQUD = is.shared.qud[0];
-    if (topQUD) {
+    if (topQUD) { // continues only when some questioin is being discussed
       for (const move of is.shared.lu!.moves) {
         if (move.type === "answer") {
           const a = move.content;
-          if (relevant(is.domain, a, topQUD)) {
+          if (relevant(is.domain, a, topQUD)) { // does this answer fit the current question
             let proposition = combine(is.domain, topQUD, a);
             return () => ({
               ...is,
@@ -143,6 +158,78 @@ export const rules: Rules = {
   /** TODO rule 2.7 integrate_usr_quit */
 
   /** TODO rule 2.8 integrate_sys_quit */
+
+  // check whether the latest user utterance was not understood
+  integrate_negative_understanding: ({ is }) => {
+    if (
+      is.shared.lu!.speaker === "usr" && // last utterance was from user
+      Array.isArray(is.shared.lu!.moves) && //the moves field exists and is an array
+      is.shared.lu!.moves.length === 0 // no dialogue moves were recognized from the user's utterance
+    ) {
+      return () => ({ 
+        ...is, // copy all the properties from is
+        next_moves: [
+          ...is.next_moves, // adding a new dialogue move
+          { type: "icm:neg:understanding", content: null },
+        ],
+      });
+    }
+  },
+
+  // vg 1
+
+  // for checking if the nlu recognize sth but with low confidence
+  integrate_low_confidence: ({ is }) => {
+    if ( 
+      is.shared.lu!.speaker === "usr" && // if the latest utterance came from the user
+      Array.isArray(is.shared.lu!.moves) && // so moves exist and is an array
+      is.shared.lu!.moves.length > 0 && // checks that the nlu recognizes at least one move
+      is.shared.lu!.score !== undefined && // we check if confidence score exists
+      is.shared.lu!.score < CONFIDENCE_THRESHOLD && // check if confidence is below the threshold
+      !is.private.pending_confirmation // check that we are not already waiting for confirmation
+    ) { // and if all of these were true
+      const move = is.shared.lu!.moves[0]; // first recognized move
+      if (move.type !== "confirm") { //cuz we dont ask for confirmation of a confirmation
+        return () => ({
+          ...is,
+          private: { ...is.private, pending_confirmation: move }, // we store the uncertain move
+          next_moves: [
+            ...is.next_moves,
+            { type: "icm:usr:confirm", content: move }, // we add a confirmation request
+          ],
+        });
+      }
+    }
+  },
+
+
+  // to process the user's reply to the confirmation request
+  integrate_confirm: ({ is }) => {
+    if (is.shared.lu!.speaker === "usr" && is.private.pending_confirmation) { // again if it was user speaking and there is sth waiting for confirmation
+      for (const move of is.shared.lu!.moves) { // we loop through the moves
+        if (move.type === "confirm") { // and if the move was a confirmation move
+          const pending = is.private.pending_confirmation; // save the pending move
+          if (move.content === "yes" && pending.type === "answer") { // if the user said yes
+            const topQUD = is.shared.qud[0]; // current question
+            if (topQUD && relevant(is.domain, pending.content, topQUD)) { // we check relevance
+              const proposition = combine(is.domain, topQUD, pending.content); // making the preposition
+              return () => ({
+                ...is,
+                private: { ...is.private, pending_confirmation: undefined },
+                shared: { ...is.shared, com: [proposition, ...is.shared.com] },
+              });
+            }
+          }
+          // if the user says no
+          return () => ({ // only clear the pending confirmation
+            ...is,
+            private: { ...is.private, pending_confirmation: undefined },
+          });
+        }
+      }
+    }
+  },
+
 
   /**
    * DowndateQUD
@@ -241,7 +328,10 @@ export const rules: Rules = {
    */
   /** rule 2.12 */
   select_from_plan: ({ is }) => {
-    if (is.private.agenda.length === 0 && !!is.private.plan[0]) {
+    if (is.private.agenda.length === 0 && 
+      !!is.private.plan[0] &&
+      !is.private.pending_confirmation // for vg 1
+    ) {
       const action = is.private.plan[0];
       return () => ({
         ...is,
