@@ -11,7 +11,7 @@ const inspector = createBrowserInspector();
 
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    "https://germanywestcentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   key: KEY,
 };
 
@@ -20,7 +20,7 @@ const settings: Settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  azureRegion: "northeurope",
+  azureRegion: "germanywestcentral",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false
 };
@@ -41,6 +41,14 @@ const dmMachine = setup({
       context.ssRef.send({
         type: "LISTEN",
       }),
+    speak_no_input: ({ context }) =>
+
+      context.ssRef.send({
+        type: "SPEAK",
+        value: {
+          utterance: "Sorry, I can't hear you."
+      },
+    }),
   },
   types: {} as {
     context: DMContext;
@@ -94,12 +102,18 @@ const dmMachine = setup({
                   })),
                 },
                 ASR_NOINPUT: {
-                  // TODO
+                  target: "NoInput"
                 },
               },
             },
+            NoInput: {
+              on: {
+              LISTEN_COMPLETE: { actions: "speak_no_input" },
+              SPEAK_COMPLETE:  { target: "Recognising", actions: "listen" }
+                  }, 
+              },
+            },
           },
-        },
         Generate: {
           initial: "Idle",
           states: {

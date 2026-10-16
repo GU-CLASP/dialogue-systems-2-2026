@@ -7,13 +7,13 @@ interface NLUMapping {
 type NLGMapping = [Move, string][];
 
 const nluMapping: NLUMapping = {
-  "where is the lecture?": [
+  "where is the lecture": [
     {
       type: "ask",
       content: WHQ("booking_room"),
     },
   ],
-  "what's your favorite food?": [
+  "what's your favorite food": [
     {
       type: "ask",
       content: WHQ("favorite_food"),
@@ -37,9 +37,29 @@ const nluMapping: NLUMapping = {
       content: "LT2319",
     },
   ],
+  "tuesday": [
+    {
+      type: "answer",
+      content: "Tuesday"
+    },
+  ],
+    "thursday": [
+    {
+      type: "answer",
+      content: "Thursday"
+    },
+  ],
+    "friday": [
+    {
+      type: "answer",
+      content: "Friday"
+    },
+  ],
+
 };
 const nlgMapping: NLGMapping = [
-  [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
+  [{ type: "ask", content: WHQ("booking_course")}, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
     {
@@ -54,6 +74,20 @@ const nlgMapping: NLGMapping = [
       content: { predicate: "booking_room", argument: "G212" },
     },
     "The lecture is in G212.",
+  ],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" },     
+    },
+    "The lecture is in J440."
+  ],
+  [
+    {
+      type: "icm:sem*neg",
+      content: null
+    },
+    "Sorry, I don't understand."
   ],
 ];
 
@@ -74,5 +108,18 @@ export function nlg(moves: Move[]): string {
 /** NLU mapping function can be replaced by statistical NLU
  */
 export function nlu(utterance: string): Move[] {
-  return nluMapping[utterance.toLowerCase()] || [];
+  console.log("NLU received:", JSON.stringify(utterance));
+
+  const normalized = utterance
+    .toLowerCase()
+    .trim()
+    .replace(/[.!?]+$/, "");
+
+  console.log("NLU normalized:", JSON.stringify(normalized));
+
+  const result = nluMapping[normalized] || [];
+
+  console.log("NLU result:", result);
+
+  return result;
 }
