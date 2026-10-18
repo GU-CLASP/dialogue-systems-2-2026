@@ -3,9 +3,11 @@
   "packageManager": "yarn@3.6.3",
   "dependencies": {
     "@types/node": "^22.7.2",
+    "ws": "^8.22.0",
     "xstate": "^5.22.0"
   },
   "devDependencies": {
+    "@types/ws": "^8.18.2",
     "esbuild": "^0.25.10",
     "tsx": "^4.20.5",
     "typescript": "^5.2.2",
