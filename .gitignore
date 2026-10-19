@@ -136,3 +136,6 @@ tools/custom-gcl.hash
 !tsc/testdata/submoduleTriaged.txt
 
 **/credentials.ts
+
+DogExplorer/src/credentials.ts
+node_modules/
