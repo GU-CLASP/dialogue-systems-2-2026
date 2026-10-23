@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
@@ -97,6 +97,47 @@ program
     console.log(
       `Succesfully added ${chunks.length} document into collection: ${collection}`,
     );
+  });
+
+program
+  .command("addFolder")
+  .description("Add all .txt files from a folder to a collection")
+  .argument("<collection>", "collection name")
+  .argument("<folder>", "folder path")
+  .action(async (collection, folder) => {
+    const files = await readdir(folder);
+
+   const textFiles = files.filter((file: string) => file.endsWith(".txt"));
+
+    console.log(`Found ${textFiles.length} text files.`);
+
+    for (const file of textFiles) {
+      const filepath = `${folder}/${file}`;
+
+      console.log(`Processing ${file}...`);
+
+      const chunks = await makeChunksFromFile(filepath);
+
+      const points = await Promise.all(
+        chunks.map(async (chunk) => ({
+          id: crypto.randomUUID(),
+          vector: await embed(chunk),
+          payload: {
+            text: chunk,
+            source: file,
+          },
+        })),
+      );
+
+      await client.upsert(collection, {
+        wait: true,
+        points: points,
+      });
+
+      console.log(`Added ${chunks.length} chunks from ${file}.`);
+    }
+
+    console.log("Done adding folder.");
   });
 
 program
