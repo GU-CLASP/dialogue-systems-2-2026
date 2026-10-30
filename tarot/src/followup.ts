@@ -15,6 +15,11 @@ export type Route =
   | "DescribeCard"
   | "GoodOrBad"
   | "AskWhichCard"
+  | "YesOrNo"
+  | "When"
+  | "Advice"
+  | "IsItReal"
+  | "Thanks"
   | "Repeat"
   | "AnotherReading"
   | "Goodbye"
@@ -81,6 +86,16 @@ export function planFollowUp(intent: FollowUpIntent, s: State): Plan {
       }
       return { route: "DescribeCard", query: f.drawn.card.name, pendingGoodOrBad: false }; // another card
     }
+    case "yes_or_no":
+      return { route: "YesOrNo", pendingGoodOrBad: false };
+    case "when":
+      return { route: "When", pendingGoodOrBad: false };
+    case "advice":
+      return { route: "Advice", pendingGoodOrBad: false };
+    case "is_it_real":
+      return { route: "IsItReal", pendingGoodOrBad: false };
+    case "thanks":
+      return { route: "Thanks", pendingGoodOrBad: false };
     case "repeat":
       return { route: "Repeat", pendingGoodOrBad: s.pendingGoodOrBad };
     case "another_reading":

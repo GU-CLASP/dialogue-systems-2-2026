@@ -34,3 +34,19 @@ Options (environment variables): `LLM_MODEL` (default `gemma4`), `OLLAMA_URL`,
 
 The LLM never chooses cards or invents meanings: the API decides the card, the dataset
 gives its meaning, and the LLM only phrases it for the user's question.
+
+## Test scenarios
+
+`scenarios/` holds one user turn per line. 01–05 test the core flow and repairs.
+06–12 are based on what real clients most often ask tarot readers (love first, then work;
+yes/no and "when" questions; health, money and legal questions that ethical readers decline):
+
+| Scenario | Tests |
+|---|---|
+| 06 love, yes or no | "So is that a yes or no?": a lean from the card tones, never a flat no |
+| 07 job | "When will I hear back?" (no dates), "What should I do?" (LLM advice), "thank you" |
+| 08 crush | a card that was not drawn, then "is it good?" about it |
+| 09 health | declined, with a gentler question offered instead and accepted |
+| 10 money | declined, offer refused, the user asks their own question |
+| 11 vague | "tell me about my life" → love / work / yourself?; "is this real?" |
+| 12 crisis | no reading; points to a support line |

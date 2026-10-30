@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { cleanForSpeech, isUsable } from "../src/llm.ts";
-import { followUpIntent, isNo, isYes, wantsRandom } from "../src/nlu.ts";
+import { followUpIntent, isNo, isVague, isYes, sensitiveTopic, topicOf, wantsRandom } from "../src/nlu.ts";
 import { apiNameFor, findCardInText, mergeSources, type Card } from "../src/tarot.ts";
 
 const card = (name: string): Card => ({
@@ -70,4 +70,32 @@ test("LLM output is made speakable", () => {
   assert.ok(!isUsable(""));
   assert.ok(!isUsable("As an AI language model, I cannot predict the future."));
   assert.ok(isUsable("Something unexpected may shake your plans."));
+});
+
+test("follow-up: questions real tarot clients ask", () => {
+  assert.deepEqual(followUpIntent("so is that a yes or no?", deck), { intent: "yes_or_no" });
+  assert.deepEqual(followUpIntent("so will he come back?", deck), { intent: "yes_or_no" });
+  assert.deepEqual(followUpIntent("when will I hear back?", deck), { intent: "when" });
+  assert.deepEqual(followUpIntent("what should I do?", deck), { intent: "advice" });
+  assert.deepEqual(followUpIntent("is this real?", deck), { intent: "is_it_real" });
+  assert.deepEqual(followUpIntent("do you really believe that", deck), { intent: "is_it_real" });
+  assert.deepEqual(followUpIntent("thank you", deck), { intent: "thanks" });
+  assert.deepEqual(followUpIntent("no thank you", deck), { intent: "goodbye" });
+});
+
+test("opening question: sensitive topics and vague questions", () => {
+  assert.equal(sensitiveTopic("Will my mum's cancer get better?"), "health");
+  assert.equal(sensitiveTopic("Should I buy bitcoin?"), "money");
+  assert.equal(sensitiveTopic("Will I win in court?"), "legal");
+  assert.equal(sensitiveTopic("Sometimes I want to die"), "crisis");
+  assert.equal(sensitiveTopic("Will I get the job?"), undefined);
+  assert.equal(sensitiveTopic("Will my ex come back?"), undefined);
+  assert.ok(isVague("tell me about my life"));
+  assert.ok(isVague("what does my future hold"));
+  assert.ok(!isVague("what does my future hold in love"));
+  assert.ok(!isVague("Will I get the job?"));
+  assert.equal(topicOf("love"), "love");
+  assert.equal(topicOf("my career I guess"), "work");
+  assert.equal(topicOf("just general"), "general");
+  assert.equal(topicOf("myself"), "self");
 });

@@ -4,10 +4,13 @@
 //   npm run text     same dialogue in the terminal (type; empty line = silence)
 import { appendFileSync, mkdirSync } from "node:fs";
 import { assign, createActor, fromPromise, setup } from "xstate";
-import { classifyFollowUp, describeCard, interpretCard, positionName, summarise, warmUp, type FollowUpIntent } from "./llm.ts";
+import { advise, classifyFollowUp, describeCard, interpretCard, positionName, summarise, warmUp, type FollowUpIntent } from "./llm.ts";
 import { checkNumbers, parseNumbers, randomNumbers, spokenList, type NumberCheck } from "./numbers.ts";
-import { followUpIntent, isGoodbye, isNo, isYes, wantsRandom } from "./nlu.ts";
-import { cardWithArticle, goodOrBadAnswer, revealLine } from "./phrases.ts";
+import { followUpIntent, isGoodbye, isNo, isVague, isYes, sensitiveTopic, topicOf, wantsRandom, type Sensitive } from "./nlu.ts";
+import {
+  CRISIS_REPLY, IS_IT_REAL, SENSITIVE_REPLY, TOPIC_QUESTION,
+  cardWithArticle, goodOrBadAnswer, revealLine, whenAnswer, yesOrNoAnswer,
+} from "./phrases.ts";
 import { planFollowUp, type Route, type Subject } from "./followup.ts";
 import { createRobot, type Gesture } from "./robot.ts";
 import { cardTone, draw, loadDeck, searchCard, shuffle, toneOf, type Card, type DrawnCard } from "./tarot.ts";
@@ -39,6 +42,7 @@ interface Ctx {
   pendingGoodOrBad: boolean;
   route: Route;
   query: string;
+  sensitive: Exclude<Sensitive, "crisis"> | null; // the sensitive question we offered to rephrase
 }
 
 const GESTURE_FOR_TONE: Record<ReturnType<typeof toneOf>, Gesture> = {
@@ -125,6 +129,7 @@ const machine = setup({
       const description = await describeCard(card, input.c.question);
       return { text: where + description.text, subject };
     }),
+    advise: fromPromise(async ({ input }: { input: { question: string; drawn: DrawnCard[] } }) => (await advise(input.question, input.drawn)).text),
     classify: fromPromise(async ({ input }: { input: string }) => classifyFollowUp(input)),
   },
 }).createMachine({
@@ -150,6 +155,7 @@ const machine = setup({
     pendingGoodOrBad: false,
     route: "OutOfScope",
     query: "",
+    sensitive: null,
   },
   states: {
     Boot: {
@@ -180,10 +186,66 @@ const machine = setup({
         { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Shuffle", actions: assign({ question: "", silences: 0 }) },
         { guard: ({ context }) => !context.heard, target: "NoQuestion", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
         { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
+        // Questions an ethical tarot reader would not read on.
+        { guard: ({ context }) => sensitiveTopic(context.heard) === "crisis", target: "Crisis", actions: assign({ silences: 0 }) },
+        {
+          guard: ({ context }) => sensitiveTopic(context.heard) !== undefined,
+          target: "Sensitive",
+          actions: assign({ sensitive: ({ context }) => sensitiveTopic(context.heard) as Exclude<Sensitive, "crisis">, silences: 0 }),
+        },
+        // "Tell me about my life": ask which area first.
+        { guard: ({ context }) => isVague(context.heard), target: "AskTopic", actions: assign({ silences: 0 }) },
         { target: "Shuffle", actions: assign({ question: ({ context }) => context.heard, silences: 0 }) },
       ],
     },
     NoQuestion: say(() => "Take your time. Tell me what is on your mind, or ask for a general reading.", "HearQuestion"),
+
+    Crisis: say(() => CRISIS_REPLY, "HearQuestion"),
+
+    // Decline, and offer a gentler question instead (as real readers do).
+    Sensitive: say(
+      (c) => {
+        const { reply, reframe } = SENSITIVE_REPLY[c.sensitive!];
+        return `${reply} But we could ask the cards something gentler: ${reframe} Shall we ask that instead?`;
+      },
+      "HearReframe",
+      () => "Thoughtful",
+    ),
+    HearReframe: hear("ProcessReframe"),
+    ProcessReframe: {
+      always: [
+        { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Goodbye" },
+        { guard: ({ context }) => !context.heard, target: "ReframeAgain", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
+        { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
+        {
+          guard: ({ context }) => isYes(context.heard) && !isNo(context.heard),
+          target: "Shuffle",
+          actions: assign({ question: ({ context }) => SENSITIVE_REPLY[context.sensitive!].reframe, silences: 0 }),
+        },
+        { guard: ({ context }) => isNo(context.heard) && context.heard.split(" ").length <= 3, target: "OtherQuestion" },
+        // Anything else is taken as a new question, and checked again.
+        { target: "ProcessQuestion" },
+      ],
+    },
+    ReframeAgain: say((c) => `Shall we ask: ${SENSITIVE_REPLY[c.sensitive!].reframe} Yes or no?`, "HearReframe"),
+    OtherQuestion: say(() => "Of course. Then tell me another question.", "HearQuestion"),
+
+    AskTopic: say(() => "Gladly. To focus the cards: is it about love, work, or yourself? Or shall I do a general reading?", "HearTopic", () => "BrowRaise"),
+    HearTopic: hear("ProcessTopic"),
+    ProcessTopic: {
+      always: [
+        { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
+        // Silence or "general": a general reading.
+        { guard: ({ context }) => !context.heard || topicOf(context.heard) === "general", target: "Shuffle", actions: assign({ question: "" }) },
+        {
+          guard: ({ context }) => topicOf(context.heard) !== undefined,
+          target: "Shuffle",
+          actions: assign({ question: ({ context }) => TOPIC_QUESTION[topicOf(context.heard) as Exclude<ReturnType<typeof topicOf>, "general" | undefined>] }),
+        },
+        // They answered with a real question instead.
+        { target: "Shuffle", actions: assign({ question: ({ context }) => context.heard }) },
+      ],
+    },
 
     // ---------- 2. Choose ----------
     Shuffle: {
@@ -211,6 +273,7 @@ const machine = setup({
       }),
       always: [
         { guard: ({ context }) => context.chosen.length === 3, target: "Confirm" },
+        { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
         { guard: ({ context }) => !context.heard && context.silences >= 3, target: "ChooseForThem" },
         { guard: ({ context }) => !context.heard, target: "NoNumbers" },
         { guard: ({ context }) => context.lastCheck.outOfRange.length > 0, target: "OutOfRange" },
@@ -342,6 +405,11 @@ const machine = setup({
         { guard: ({ context }) => context.route === "DescribeCard", target: "DescribeCard" },
         { guard: ({ context }) => context.route === "GoodOrBad", target: "GoodOrBad" },
         { guard: ({ context }) => context.route === "AskWhichCard", target: "AskWhichCard" },
+        { guard: ({ context }) => context.route === "YesOrNo", target: "YesOrNo" },
+        { guard: ({ context }) => context.route === "When", target: "When" },
+        { guard: ({ context }) => context.route === "Advice", target: "Advice" },
+        { guard: ({ context }) => context.route === "IsItReal", target: "IsItReal" },
+        { guard: ({ context }) => context.route === "Thanks", target: "Thanks" },
         { guard: ({ context }) => context.route === "Repeat", target: "Repeat" },
         { guard: ({ context }) => context.route === "AnotherReading", target: "AnotherReading" },
         { guard: ({ context }) => context.route === "Goodbye", target: "Goodbye" },
@@ -363,6 +431,26 @@ const machine = setup({
         return "Thoughtful";
       },
     ),
+    YesOrNo: say(
+      (c) => `${yesOrNoAnswer(c.drawn).text} Anything else?`,
+      "HearFollowUp",
+      (c) => {
+        if (yesOrNoAnswer(c.drawn).lean === "yes") return "BigSmile";
+        return "Thoughtful";
+      },
+    ),
+    When: say((c) => `${whenAnswer(c.drawn)} Anything else?`, "HearFollowUp", () => "Thoughtful"),
+    Advice: {
+      invoke: {
+        src: "advise",
+        input: ({ context }) => ({ question: context.question, drawn: context.drawn }),
+        onDone: { target: "SpeakAdvice", actions: assign({ lastSaid: ({ event }) => event.output }) },
+        onError: { target: "OutOfScope" },
+      },
+    },
+    SpeakAdvice: say((c) => `${c.lastSaid} Anything else?`, "HearFollowUp", () => "Smile"),
+    IsItReal: say(() => `${IS_IT_REAL} Anything else?`, "HearFollowUp", () => "Wink"),
+    Thanks: say(() => "You are very welcome! Is there anything else you would like to know?", "HearFollowUp", () => "Smile"),
     AskWhichCard: say(() => "Which card do you mean: the first, the second, or the third?", "HearFollowUp", () => "BrowRaise"),
     DescribeCard: {
       invoke: {
@@ -381,7 +469,7 @@ const machine = setup({
     SpeakDescription: say((c) => `${c.lastSaid} Anything else?`, "HearFollowUp"),
     Repeat: say((c) => c.lastSaid, "HearFollowUp"),
     OutOfScope: say(
-      () => "That is beyond what the cards can show me. You can ask about one of your cards, ask for another reading, or say goodbye.",
+      () => "That is beyond what the cards can show me. You can ask about one of your cards, ask what to do next, ask for another reading, or say goodbye.",
       "HearFollowUp",
       () => "GazeAway",
     ),

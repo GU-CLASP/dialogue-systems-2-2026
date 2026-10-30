@@ -1,5 +1,6 @@
 // Varied wording for turning the cards, so the reading sounds like a person
 // rather than "Your past... Your present... Your future...".
+import type { Sensitive, Topic } from "./nlu.ts";
 import { cardTone, toneOf, type DrawnCard } from "./tarot.ts";
 
 const pick = <T>(items: T[], rand = Math.random) => items[Math.floor(rand() * items.length)];
@@ -75,3 +76,71 @@ export function revealLine(index: number, drawn: DrawnCard, explainReversed: boo
   const reaction = pick(REACTIONS[toneOf(drawn)], rand);
   return `${opener} ${reaction ? `${reaction} ${name}` : capitalise(name)}`;
 }
+
+/** The last card, as spoken: "the Six of Wands", "the Devil, reversed,". */
+function lastCard(drawn: DrawnCard[]): { name: string; hint: string } {
+  const last = drawn[drawn.length - 1];
+  const name = `${cardWithArticle(last)}${last.reversed ? ", reversed," : ""}`;
+  const hint = last.card.keywords[0]?.toLowerCase() ?? "change";
+  return { name, hint };
+}
+
+/**
+ * "So is that a yes or no?" Tarot shows tendencies, so the answer is a lean,
+ * never a flat no. The last card counts double: it is about what is coming.
+ */
+export function yesOrNoAnswer(drawn: DrawnCard[]): { text: string; lean: "yes" | "unclear" | "open" } {
+  let score = 0;
+  drawn.forEach((d, i) => {
+    const weight = i === drawn.length - 1 ? 2 : 1;
+    const tone = toneOf(d);
+    if (tone === "bright") score += weight;
+    if (tone === "hard") score -= weight;
+  });
+
+  const { name, hint } = lastCard(drawn);
+  if (score > 0) {
+    return { lean: "yes", text: `The cards lean towards yes, especially ${name} at the end. Still, tarot shows possibilities, not promises, so what you do next matters most.` };
+  }
+  if (score < 0) {
+    return { lean: "unclear", text: `The cards do not give a clear yes just now. ${capitalise(name)} at the end asks for patience, so the answer may depend on what you do next.` };
+  }
+  return { lean: "open", text: `The cards do not give a simple yes or no. ${capitalise(name)} at the end points to ${hint}, so the answer is still open, and partly in your hands.` };
+}
+
+/** "When will it happen?" Tarot cannot give dates, so say so honestly. */
+export function whenAnswer(drawn: DrawnCard[]): string {
+  const { name, hint } = lastCard(drawn);
+  return `The cards cannot show me a date: tarot speaks of how things unfold, not when. But ${name} at the end suggests that the next chapter is about ${hint}.`;
+}
+
+export const IS_IT_REAL =
+  "Honestly? I am a robot, and your cards were drawn at random. Tarot cannot see the future, " +
+  "but it can be a nice way to look at your question from a new angle.";
+
+/** What to say instead of reading on a sensitive question, and a gentler question to offer. */
+export const SENSITIVE_REPLY: Record<Exclude<Sensitive, "crisis">, { reply: string; reframe: string }> = {
+  health: {
+    reply: "That is a question for doctors, not for the cards, and I would never want to guess about something so important.",
+    reframe: "What can help me support myself and the people I love right now?",
+  },
+  money: {
+    reply: "The cards cannot give financial advice, and I would hate for them to decide what you do with your money.",
+    reframe: "What can help me feel calmer and wiser about money?",
+  },
+  legal: {
+    reply: "Legal matters are for a lawyer, not for the cards.",
+    reframe: "What can help me face this situation with a clear head?",
+  },
+};
+
+export const CRISIS_REPLY =
+  "That sounds really heavy, and it is far too important for the cards. Please talk to someone you trust, or call a support line: " +
+  "in Sweden, Mind's helpline is 90101, and in an emergency, call 112. " +
+  "If you would still like a reading about something else, tell me your question, or say goodbye.";
+
+export const TOPIC_QUESTION: Record<Exclude<Topic, "general">, string> = {
+  love: "What do I need to know about love right now?",
+  work: "What do I need to know about my work and studies?",
+  self: "What do I need to know about myself right now?",
+};

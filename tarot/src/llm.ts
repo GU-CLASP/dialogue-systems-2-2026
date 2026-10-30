@@ -162,21 +162,41 @@ Briefly explain what this card means, mentioning both its bright and shadow side
   return phrase(prompt, fallback);
 }
 
+/** "What should I do?" — one piece of advice, drawn mostly from the last card. */
+export function advise(question: string, drawn: DrawnCard[]) {
+  const last = drawn[drawn.length - 1];
+  const cards = drawn.map((d, i) => `${positionName(i)}: ${d.card.spokenName}${d.reversed ? " (reversed)" : ""}`).join("; ");
+  const prompt = `User's question: ${question || "(a general reading)"}
+The cards: ${cards}
+Last card's meaning: ${meaningOf(last).join("; ")}
+The user asks what they should do. Give one kind, concrete and realistic piece of advice, based mostly on the last card.
+Do not decide for them and do not promise an outcome.`;
+  const kw = last.card.keywords[0]?.toLowerCase() ?? "patience";
+  const fallback = `Let ${last.card.spokenName} guide you: focus on ${kw}, and take one small step towards what you want this week.`;
+  return phrase(prompt, fallback);
+}
+
 export type FollowUpIntent =
   | { intent: "ask_drawn_card"; position: number }
   | { intent: "ask_card_meaning"; card: string }
   | { intent: "good_or_bad"; position?: number; card?: string } // neither given: "it" = the card under discussion
   | { intent: "ask_it" } // "what does it mean?"
+  | { intent: "yes_or_no" | "when" | "advice" | "is_it_real" | "thanks" }
   | { intent: "another_reading" | "repeat" | "goodbye" | "other" };
 
 /** LLM fallback for follow-ups the rule-based NLU did not understand. */
 export async function classifyFollowUp(utterance: string): Promise<FollowUpIntent> {
   const system = `Classify a user's utterance after a three-card tarot reading (cards 1=past, 2=present, 3=future).
-Return ONLY JSON: {"intent": "ask_drawn_card"|"ask_card_meaning"|"good_or_bad"|"ask_it"|"another_reading"|"repeat"|"goodbye"|"other", "position": 1|2|3|null, "card": string|null}
+Return ONLY JSON: {"intent": "ask_drawn_card"|"ask_card_meaning"|"good_or_bad"|"ask_it"|"yes_or_no"|"when"|"advice"|"is_it_real"|"thanks"|"another_reading"|"repeat"|"goodbye"|"other", "position": 1|2|3|null, "card": string|null}
 - ask_drawn_card: asks about one of the drawn cards (give position)
 - ask_card_meaning: asks what a named tarot card means (give card name)
 - good_or_bad: asks whether a card is good or bad (give position or card name if mentioned, else null for "it")
 - ask_it: asks about "it" / "this" / "that" card without naming it
+- yes_or_no: wants a yes/no answer to their question ("so will he come back?")
+- when: asks when something will happen
+- advice: asks what they should do
+- is_it_real: asks whether tarot or the reading is real, true or accurate
+- thanks: thanks Madame Furhat
 - another_reading: wants a new reading or new question
 - repeat: wants the last thing repeated
 - goodbye: wants to stop
@@ -192,8 +212,9 @@ Return ONLY JSON: {"intent": "ask_drawn_card"|"ask_card_meaning"|"good_or_bad"|"
       return { intent: "good_or_bad", ...(pos !== undefined ? { position: pos } : {}), ...(parsed.card ? { card: parsed.card } : {}) };
     }
     if (parsed.intent === "ask_it") return { intent: "ask_it" };
-    if (parsed.intent === "another_reading" || parsed.intent === "repeat" || parsed.intent === "goodbye")
-      return { intent: parsed.intent };
+    const simple = ["yes_or_no", "when", "advice", "is_it_real", "thanks", "another_reading", "repeat", "goodbye"] as const;
+    const found = simple.find((i) => i === parsed.intent);
+    if (found) return { intent: found };
   } catch (err) {
     console.warn(`LLM classification failed: ${err}`);
   }
