@@ -1,0 +1,398 @@
+// Madame Furhat: a three-card tarot reading on the Furhat robot.
+//
+//   npm start        talk to the (virtual) Furhat via the Remote API
+//   npm run text     same dialogue in the terminal (type; empty line = silence)
+import { appendFileSync, mkdirSync } from "node:fs";
+import { assign, createActor, fromPromise, setup } from "xstate";
+import { classifyFollowUp, describeCard, interpretCard, positionName, summarise, type FollowUpIntent } from "./llm.ts";
+import { checkNumbers, parseNumbers, randomNumbers, spokenList, type NumberCheck } from "./numbers.ts";
+import { followUpIntent, isGoodbye, isNo, isYes, wantsRandom } from "./nlu.ts";
+import { cardWithArticle, goodOrBadAnswer, revealLine } from "./phrases.ts";
+import { planFollowUp, type Route, type Subject } from "./followup.ts";
+import { createRobot, type Gesture } from "./robot.ts";
+import { cardTone, draw, loadDeck, searchCard, shuffle, toneOf, type Card, type DrawnCard } from "./tarot.ts";
+
+const robot = createRobot();
+
+// Every turn is written to transcripts/ for evaluation and the report appendix.
+mkdirSync(new URL("../transcripts/", import.meta.url), { recursive: true });
+const transcript = new URL(`../transcripts/${new Date().toISOString().replace(/[:.]/g, "-")}.txt`, import.meta.url);
+const log = (speaker: string, text: string) => appendFileSync(transcript, `${speaker}: ${text}\n`);
+
+interface Ctx {
+  deck: Card[];
+  shuffled: Card[];
+  question: string;
+  chosen: number[];
+  lastCheck: NumberCheck & { parsed: number };
+  drawn: DrawnCard[];
+  readings: string[];
+  summary: string;
+  revealIndex: number;
+  heard: string;
+  lastSaid: string;
+  silences: number;
+  intent: FollowUpIntent;
+  round: number; // readings done so far
+  focus: Subject | null; // the card under discussion: what "it" refers to
+  subject: Subject | null; // the card the current answer is about
+  pendingGoodOrBad: boolean;
+  route: Route;
+  query: string;
+}
+
+const GESTURE_FOR_TONE: Record<ReturnType<typeof toneOf>, Gesture> = {
+  bright: "BigSmile",
+  hard: "BrowFrown",
+  neutral: "Thoughtful",
+};
+
+const remainingPrompt = (c: Ctx) => {
+  const left = 3 - c.chosen.length;
+  const sofar = c.chosen.length ? `So far I have ${spokenList(c.chosen)}. ` : "";
+  return `${sofar}Choose ${left === 1 ? "one more number" : `${left} more numbers`}.`;
+};
+
+const machine = setup({
+  types: { context: {} as Ctx },
+  actions: {
+    rememberSaid: assign({ lastSaid: ({ event }) => (event as unknown as { output: string }).output }),
+    rememberHeard: assign({ heard: ({ event }) => (event as unknown as { output: string }).output }),
+    logError: ({ event }) => console.error((event as { error?: unknown }).error),
+  },
+  actors: {
+    load: fromPromise(async () => {
+      await robot.setVoice(process.env.VOICE ?? "CoraMultilingualNeural");
+      // The mask name really is "anime [legacy]", exactly as the web interface shows it.
+      await robot.setFace(process.env.FACE_MASK ?? "anime [legacy]", process.env.FACE_CHARACTER ?? "AnimePink");
+      await robot.attendUser().catch(() => {});
+      return loadDeck();
+    }),
+    speak: fromPromise(async ({ input }: { input: { text: string; gesture?: Gesture } }) => {
+      if (input.gesture) await robot.gesture(input.gesture);
+      log("Furhat", input.text);
+      await robot.say(input.text);
+      return input.text;
+    }),
+    listen: fromPromise(async () => {
+      const heard = await robot.listen();
+      log("User", heard || "(silence)");
+      return heard;
+    }),
+    // Interpretations are prepared in parallel while Furhat is already talking.
+    prepareReading: fromPromise(async ({ input }: { input: { question: string; drawn: DrawnCard[] } }) => {
+      const intro = "Let me turn your cards and see what they have to say.";
+      log("Furhat", intro);
+      const [readings, summary] = await Promise.all([
+        Promise.all(input.drawn.map((d, i) => interpretCard(input.question, d, i, input.drawn.slice(0, i)))),
+        summarise(input.question, input.drawn),
+        robot.gesture("Thoughtful").then(() => robot.say(intro)),
+      ]);
+      return { readings: readings.map((r) => r.text), summary: summary.text };
+    }),
+    describe: fromPromise(async ({ input }: { input: { query: string; c: Ctx } }): Promise<{ text: string; subject: Subject | null }> => {
+      const card = await searchCard(input.query, input.c.deck);
+      if (!card) return { text: "", subject: null }; // e.g. "which card means good luck?" -> out of scope
+      const drawnAt = input.c.drawn.findIndex((d) => d.card.name === card.name);
+      const subject: Subject = drawnAt >= 0 ? { drawn: input.c.drawn[drawnAt], index: drawnAt } : { drawn: { card, reversed: false, number: 0 }, index: -1 };
+      const where = drawnAt >= 0 ? `${card.spokenName} is your ${positionName(drawnAt)} card. ` : "";
+      return { text: where + (await describeCard(card, input.c.question)).text, subject };
+    }),
+    classify: fromPromise(async ({ input }: { input: string }) => classifyFollowUp(input)),
+  },
+}).createMachine({
+  id: "tarot",
+  initial: "Boot",
+  context: {
+    deck: [],
+    shuffled: [],
+    question: "",
+    chosen: [],
+    lastCheck: { accepted: [], outOfRange: [], repeated: [], parsed: 0 },
+    drawn: [],
+    readings: [],
+    summary: "",
+    revealIndex: 0,
+    heard: "",
+    lastSaid: "",
+    silences: 0,
+    intent: { intent: "other" },
+    round: 0,
+    focus: null,
+    subject: null,
+    pendingGoodOrBad: false,
+    route: "OutOfScope",
+    query: "",
+  },
+  states: {
+    Boot: {
+      invoke: {
+        src: "load",
+        onDone: { target: "Greeting", actions: assign({ deck: ({ event }) => event.output }) },
+        onError: { target: "Fail", actions: ({ event }) => console.error("Could not load the deck:", event.error) },
+      },
+    },
+
+    // ---------- 1. Ask ----------
+    Greeting: say(() => "Welcome, seeker. I am Madame Furhat, and the cards are waiting for you.", "Ritual", () => "Smile"),
+    // A moment of "connection" before the question: Furhat closes its eyes and waits.
+    Ritual: say(
+      (c) =>
+        c.round === 0
+          ? "Before we begin, let us connect. Take a slow, deep breath, and quietly think of the question you want to ask."
+          : "Let us clear the cards. Take a deep breath, and think of your next question.",
+      "Breathe",
+      () => "CloseEyes",
+    ),
+    Breathe: { after: { 4000: "AskQuestion" } },
+    AskQuestion: say(() => "Good. When you are ready, tell me your question.", "HearQuestion", () => "OpenEyes"),
+    HearQuestion: hear("ProcessQuestion"),
+    ProcessQuestion: {
+      always: [
+        // Second silence in a row: just do a general reading.
+        { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Shuffle", actions: assign({ question: "", silences: 0 }) },
+        { guard: ({ context }) => !context.heard, target: "NoQuestion", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
+        { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
+        { target: "Shuffle", actions: assign({ question: ({ context }) => context.heard, silences: 0 }) },
+      ],
+    },
+    NoQuestion: say(() => "Take your time. Tell me what is on your mind, or ask for a general reading.", "HearQuestion"),
+
+    // ---------- 2. Choose ----------
+    Shuffle: {
+      entry: assign({ shuffled: ({ context }) => shuffle(context.deck), chosen: [], silences: 0 }),
+      ...say(
+        (c) =>
+          (c.question
+            ? "Keep your question in mind while I shuffle the cards... "
+            : "Then let the cards speak freely. I am shuffling the deck... ") +
+          "The deck is ready. Choose three numbers between 1 and 78.",
+        "HearNumbers",
+        () => "Thoughtful",
+      ),
+    },
+    HearNumbers: hear("ProcessNumbers"),
+    ProcessNumbers: {
+      entry: assign(({ context }) => {
+        if (!context.heard) return { silences: context.silences + 1 };
+        if (wantsRandom(context.heard)) {
+          return { chosen: [...context.chosen, ...randomNumbers(3 - context.chosen.length, context.chosen)], silences: 0 };
+        }
+        const heard = parseNumbers(context.heard);
+        const check = checkNumbers(heard, context.chosen);
+        return { chosen: [...context.chosen, ...check.accepted], lastCheck: { ...check, parsed: heard.length }, silences: 0 };
+      }),
+      always: [
+        { guard: ({ context }) => context.chosen.length === 3, target: "Confirm" },
+        { guard: ({ context }) => !context.heard && context.silences >= 3, target: "ChooseForThem" },
+        { guard: ({ context }) => !context.heard, target: "NoNumbers" },
+        { guard: ({ context }) => context.lastCheck.outOfRange.length > 0, target: "OutOfRange" },
+        { guard: ({ context }) => context.lastCheck.repeated.length > 0, target: "Repeated" },
+        { guard: ({ context }) => context.lastCheck.parsed === 0, target: "NotNumbers" },
+        { target: "AskMoreNumbers" },
+      ],
+    },
+    OutOfRange: say(
+      (c) => {
+        const bad = c.lastCheck.outOfRange;
+        return `The cards are numbered from 1 to 78, so ${spokenList(bad)} ${bad.length > 1 ? "are" : "is"} not in the deck. ${remainingPrompt(c)}`;
+      },
+      "HearNumbers",
+      () => "Shake",
+    ),
+    Repeated: say((c) => `You already chose ${c.lastCheck.repeated[0]}. Pick a different number. ${remainingPrompt(c)}`, "HearNumbers"),
+    NotNumbers: say(() => "I need numbers between 1 and 78. You can also say: you choose.", "HearNumbers"),
+    NoNumbers: say(
+      (c) => (c.silences >= 2 ? "If you like, just say: you choose, and I will pick for you." : "Just say three numbers, like seven, twenty-three and sixty-one."),
+      "HearNumbers",
+    ),
+    ChooseForThem: {
+      entry: assign({ chosen: ({ context }) => [...context.chosen, ...randomNumbers(3 - context.chosen.length, context.chosen)], silences: 0 }),
+      ...say(() => "Then let me choose for you.", "Confirm", () => "Wink"),
+    },
+    AskMoreNumbers: say((c) => (c.chosen.length === 2 ? `${spokenList(c.chosen)}. And your last number?` : remainingPrompt(c)), "HearNumbers"),
+
+    // Grounding: confirm before the irreversible step of turning the cards.
+    Confirm: say((c) => `${spokenList(c.chosen)}. Shall I turn the cards?`, "HearConfirm"),
+    HearConfirm: hear("ProcessConfirm"),
+    ProcessConfirm: {
+      always: [
+        // Silent twice: the user has probably walked away.
+        { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Goodbye" },
+        { guard: ({ context }) => !context.heard, target: "ConfirmAgain", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
+        { guard: ({ context }) => isYes(context.heard) && !isNo(context.heard), target: "Draw", actions: assign({ silences: 0 }) },
+        // "No, thirty, not thirteen" — start over with whatever numbers came with the correction.
+        { guard: ({ context }) => parseNumbers(context.heard).length > 0, target: "ProcessNumbers", actions: assign({ chosen: [] }) },
+        { guard: ({ context }) => isNo(context.heard), target: "Rechoose", actions: assign({ chosen: [] }) },
+        { target: "ConfirmAgain" },
+      ],
+    },
+    ConfirmAgain: say((c) => `Should I turn the cards ${spokenList(c.chosen)}? Yes or no?`, "HearConfirm"),
+    Rechoose: say(() => "No problem. Tell me your three numbers again.", "HearNumbers"),
+
+    // ---------- 3. Read ----------
+    Draw: {
+      entry: assign({
+        drawn: ({ context }) => draw(context.shuffled, context.chosen),
+        revealIndex: 0,
+        round: ({ context }) => context.round + 1,
+        focus: null,
+        pendingGoodOrBad: false,
+      }),
+      invoke: {
+        src: "prepareReading",
+        input: ({ context }) => ({ question: context.question, drawn: context.drawn }),
+        onDone: { target: "RevealCard", actions: assign({ readings: ({ event }) => event.output.readings, summary: ({ event }) => event.output.summary }) },
+        onError: { target: "Fail", actions: ({ event }) => console.error(event.error) },
+      },
+    },
+    RevealCard: say(
+      (c) => {
+        // Explain "reversed" the first time a reversed card turns up.
+        const firstReversed = c.drawn.findIndex((d) => d.reversed);
+        return revealLine(c.revealIndex, c.drawn[c.revealIndex], c.revealIndex === firstReversed && c.round === 1);
+      },
+      "SpeakReading",
+      (c) => GESTURE_FOR_TONE[toneOf(c.drawn[c.revealIndex])],
+    ),
+    SpeakReading: say((c) => c.readings[c.revealIndex], "NextCard"),
+    NextCard: {
+      always: [
+        { guard: ({ context }) => context.revealIndex < 2, target: "RevealCard", actions: assign({ revealIndex: ({ context }) => context.revealIndex + 1 }) },
+        { target: "Summary" },
+      ],
+    },
+    Summary: say((c) => `${c.summary} Is there anything you would like to know about your cards?`, "HearFollowUp", () => "Nod"),
+
+    // ---------- 4. Follow up ----------
+    HearFollowUp: hear("ProcessFollowUp"),
+    ProcessFollowUp: {
+      always: [
+        { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Goodbye" },
+        { guard: ({ context }) => !context.heard, target: "FollowUpSilence", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
+        {
+          guard: ({ context }) => followUpIntent(context.heard, context.deck) !== undefined,
+          target: "RouteFollowUp",
+          actions: assign({ intent: ({ context }) => followUpIntent(context.heard, context.deck)!, silences: 0 }),
+        },
+        { target: "ClassifyFollowUp", actions: assign({ silences: 0 }) },
+      ],
+    },
+    ClassifyFollowUp: {
+      invoke: {
+        src: "classify",
+        input: ({ context }) => context.heard,
+        onDone: { target: "RouteFollowUp", actions: assign({ intent: ({ event }) => event.output }) },
+        onError: { target: "RouteFollowUp", actions: assign({ intent: { intent: "other" } }) },
+      },
+    },
+    RouteFollowUp: {
+      entry: assign(({ context }) => {
+        const plan = planFollowUp(context.intent, context);
+        return {
+          route: plan.route,
+          subject: plan.subject ?? null,
+          query: plan.query ?? "",
+          pendingGoodOrBad: plan.pendingGoodOrBad,
+          focus: plan.subject ?? context.focus, // whatever we talk about now is what "it" means next
+        };
+      }),
+      always: [
+        { guard: ({ context }) => context.route === "AnswerDrawnCard", target: "AnswerDrawnCard" },
+        { guard: ({ context }) => context.route === "DescribeCard", target: "DescribeCard" },
+        { guard: ({ context }) => context.route === "GoodOrBad", target: "GoodOrBad" },
+        { guard: ({ context }) => context.route === "AskWhichCard", target: "AskWhichCard" },
+        { guard: ({ context }) => context.route === "Repeat", target: "Repeat" },
+        { guard: ({ context }) => context.route === "AnotherReading", target: "AnotherReading" },
+        { guard: ({ context }) => context.route === "Goodbye", target: "Goodbye" },
+        { target: "OutOfScope" },
+      ],
+    },
+    AnswerDrawnCard: say(
+      (c) => {
+        const { drawn: d, index: i } = c.subject!;
+        return `Your ${positionName(i)} card was ${cardWithArticle(d)}${d.reversed ? ", reversed" : ""}. ${c.readings[i]} Anything else?`;
+      },
+      "HearFollowUp",
+    ),
+    GoodOrBad: say(
+      (c) => `${goodOrBadAnswer(c.subject!.drawn)} Anything else?`,
+      "HearFollowUp",
+      (c) => (cardTone(c.subject!.drawn.card) === "bright" ? "BigSmile" : "Thoughtful"),
+    ),
+    AskWhichCard: say(() => "Which card do you mean: the first, the second, or the third?", "HearFollowUp", () => "BrowRaise"),
+    DescribeCard: {
+      invoke: {
+        src: "describe",
+        input: ({ context }) => ({ query: context.query, c: context }),
+        onDone: [
+          { guard: ({ event }) => !event.output.text, target: "OutOfScope" },
+          {
+            target: "SpeakDescription",
+            actions: assign({ lastSaid: ({ event }) => event.output.text, focus: ({ event, context }) => event.output.subject ?? context.focus }),
+          },
+        ],
+        onError: { target: "OutOfScope" },
+      },
+    },
+    SpeakDescription: say((c) => `${c.lastSaid} Anything else?`, "HearFollowUp"),
+    Repeat: say((c) => c.lastSaid, "HearFollowUp"),
+    OutOfScope: say(
+      () => "That is beyond what the cards can show me. You can ask about one of your cards, ask for another reading, or say goodbye.",
+      "HearFollowUp",
+      () => "GazeAway",
+    ),
+    FollowUpSilence: say(() => "You can ask about any of your cards, or say goodbye.", "HearFollowUp"),
+    AnotherReading: {
+      entry: assign({ question: "", chosen: [], drawn: [], readings: [], silences: 0 }),
+      ...say(() => "Of course.", "Ritual", () => "Smile"),
+    },
+
+    Goodbye: say(
+      () =>
+        "Thank you for visiting Madame Furhat. Remember, the cards are just for fun: " +
+        "they cannot really see the future, and your choices are always your own. Goodbye, and good luck!",
+      "Done",
+      () => "BigSmile",
+    ),
+    Done: { type: "final" },
+    Fail: { type: "final" },
+  },
+});
+
+// State helpers: "say something, then go to target" and "listen, then go to target".
+function say(text: (c: Ctx) => string, target: string, gesture?: (c: Ctx) => Gesture) {
+  return {
+    invoke: {
+      src: "speak" as const,
+      input: ({ context }: { context: Ctx }) => ({ text: text(context), gesture: gesture?.(context) }),
+      onDone: { target, actions: "rememberSaid" as const },
+      onError: { target: "Fail", actions: "logError" as const },
+    },
+  };
+}
+
+function hear(target: string) {
+  return {
+    invoke: {
+      src: "listen" as const,
+      onDone: { target, actions: "rememberHeard" as const },
+      onError: { target: "Fail", actions: "logError" as const },
+    },
+  };
+}
+
+const actor = createActor(machine);
+actor.subscribe((snapshot) => {
+  if (process.env.DEBUG) console.log(`[state] ${String(snapshot.value)}`);
+  if (snapshot.status === "done") {
+    robot.close();
+    console.log(`Transcript saved to ${transcript.pathname}`);
+    process.exit(snapshot.value === "Fail" ? 1 : 0);
+  }
+});
+process.on("SIGINT", () => {
+  robot.close();
+  process.exit(0);
+});
+actor.start();
