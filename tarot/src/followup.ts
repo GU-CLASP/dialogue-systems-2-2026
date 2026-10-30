@@ -55,18 +55,31 @@ export function planFollowUp(intent: FollowUpIntent, s: State): Plan {
     case "ask_card_meaning":
       return { route: "DescribeCard", query: intent.card, pendingGoodOrBad: false };
     case "good_or_bad": {
-      const subject =
-        intent.position !== undefined ? atPosition(intent.position) : intent.card ? byName(intent.card) : (s.focus ?? undefined);
-      return subject
-        ? { route: "GoodOrBad", subject, pendingGoodOrBad: false }
-        : { route: "AskWhichCard", pendingGoodOrBad: true };
+      // Which card is the question about?
+      let subject: Subject | undefined;
+      if (intent.position !== undefined) {
+        subject = atPosition(intent.position); // "is the second one bad?"
+      } else if (intent.card) {
+        subject = byName(intent.card); // "is the Tower bad?"
+      } else if (s.focus) {
+        subject = s.focus; // "is it good?" -> the card under discussion
+      }
+
+      if (subject) {
+        return { route: "GoodOrBad", subject, pendingGoodOrBad: false };
+      }
+      // We don't know which card "it" is: ask, and remember the question.
+      return { route: "AskWhichCard", pendingGoodOrBad: true };
     }
     case "ask_it": {
       const f = s.focus;
-      if (!f) return { route: "AskWhichCard", pendingGoodOrBad: false };
-      return f.index >= 0
-        ? { route: "AnswerDrawnCard", subject: f, pendingGoodOrBad: false }
-        : { route: "DescribeCard", query: f.drawn.card.name, pendingGoodOrBad: false };
+      if (!f) {
+        return { route: "AskWhichCard", pendingGoodOrBad: false };
+      }
+      if (f.index >= 0) {
+        return { route: "AnswerDrawnCard", subject: f, pendingGoodOrBad: false }; // one of the user's cards
+      }
+      return { route: "DescribeCard", query: f.drawn.card.name, pendingGoodOrBad: false }; // another card
     }
     case "repeat":
       return { route: "Repeat", pendingGoodOrBad: s.pendingGoodOrBad };

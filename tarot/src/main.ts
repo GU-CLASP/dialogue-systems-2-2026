@@ -47,11 +47,19 @@ const GESTURE_FOR_TONE: Record<ReturnType<typeof toneOf>, Gesture> = {
   neutral: "Thoughtful",
 };
 
-const remainingPrompt = (c: Ctx) => {
+// "So far I have 7 and 23. Choose one more number."
+function remainingPrompt(c: Ctx): string {
+  let sofar = "";
+  if (c.chosen.length > 0) {
+    sofar = `So far I have ${spokenList(c.chosen)}. `;
+  }
+
   const left = 3 - c.chosen.length;
-  const sofar = c.chosen.length ? `So far I have ${spokenList(c.chosen)}. ` : "";
-  return `${sofar}Choose ${left === 1 ? "one more number" : `${left} more numbers`}.`;
-};
+  if (left === 1) {
+    return `${sofar}Choose one more number.`;
+  }
+  return `${sofar}Choose ${left} more numbers.`;
+}
 
 const machine = setup({
   types: { context: {} as Ctx },
@@ -90,13 +98,31 @@ const machine = setup({
       ]);
       return { readings: readings.map((r) => r.text), summary: summary.text };
     }),
+    // "What does the Tower mean?" Returns what to say, and the card so that "it" can refer to it next.
     describe: fromPromise(async ({ input }: { input: { query: string; c: Ctx } }): Promise<{ text: string; subject: Subject | null }> => {
       const card = await searchCard(input.query, input.c.deck);
-      if (!card) return { text: "", subject: null }; // e.g. "which card means good luck?" -> out of scope
+      if (!card) {
+        // Not a card name, e.g. "which card means good luck?" -> out of scope
+        return { text: "", subject: null };
+      }
+
+      // Is it one of the user's three cards? (-1 if not)
       const drawnAt = input.c.drawn.findIndex((d) => d.card.name === card.name);
-      const subject: Subject = drawnAt >= 0 ? { drawn: input.c.drawn[drawnAt], index: drawnAt } : { drawn: { card, reversed: false, number: 0 }, index: -1 };
-      const where = drawnAt >= 0 ? `${card.spokenName} is your ${positionName(drawnAt)} card. ` : "";
-      return { text: where + (await describeCard(card, input.c.question)).text, subject };
+
+      let subject: Subject;
+      let where: string;
+      if (drawnAt >= 0) {
+        // One of the user's cards: use it as drawn (with its orientation).
+        subject = { drawn: input.c.drawn[drawnAt], index: drawnAt };
+        where = `${card.spokenName} is your ${positionName(drawnAt)} card. `;
+      } else {
+        // Not drawn: wrap it in the same shape, upright, with index -1.
+        subject = { drawn: { card, reversed: false, number: 0 }, index: -1 };
+        where = "";
+      }
+
+      const description = await describeCard(card, input.c.question);
+      return { text: where + description.text, subject };
     }),
     classify: fromPromise(async ({ input }: { input: string }) => classifyFollowUp(input)),
   },
@@ -203,14 +229,27 @@ const machine = setup({
     Repeated: say((c) => `You already chose ${c.lastCheck.repeated[0]}. Pick a different number. ${remainingPrompt(c)}`, "HearNumbers"),
     NotNumbers: say(() => "I need numbers between 1 and 78. You can also say: you choose.", "HearNumbers"),
     NoNumbers: say(
-      (c) => (c.silences >= 2 ? "If you like, just say: you choose, and I will pick for you." : "Just say three numbers, like seven, twenty-three and sixty-one."),
+      (c) => {
+        if (c.silences >= 2) {
+          return "If you like, just say: you choose, and I will pick for you.";
+        }
+        return "Just say three numbers, like seven, twenty-three and sixty-one.";
+      },
       "HearNumbers",
     ),
     ChooseForThem: {
       entry: assign({ chosen: ({ context }) => [...context.chosen, ...randomNumbers(3 - context.chosen.length, context.chosen)], silences: 0 }),
       ...say(() => "Then let me choose for you.", "Confirm", () => "Wink"),
     },
-    AskMoreNumbers: say((c) => (c.chosen.length === 2 ? `${spokenList(c.chosen)}. And your last number?` : remainingPrompt(c)), "HearNumbers"),
+    AskMoreNumbers: say(
+      (c) => {
+        if (c.chosen.length === 2) {
+          return `${spokenList(c.chosen)}. And your last number?`;
+        }
+        return remainingPrompt(c);
+      },
+      "HearNumbers",
+    ),
 
     // Grounding: confirm before the irreversible step of turning the cards.
     Confirm: say((c) => `${spokenList(c.chosen)}. Shall I turn the cards?`, "HearConfirm"),
@@ -318,7 +357,10 @@ const machine = setup({
     GoodOrBad: say(
       (c) => `${goodOrBadAnswer(c.subject!.drawn)} Anything else?`,
       "HearFollowUp",
-      (c) => (cardTone(c.subject!.drawn.card) === "bright" ? "BigSmile" : "Thoughtful"),
+      (c) => {
+        if (cardTone(c.subject!.drawn.card) === "bright") return "BigSmile";
+        return "Thoughtful";
+      },
     ),
     AskWhichCard: say(() => "Which card do you mean: the first, the second, or the third?", "HearFollowUp", () => "BrowRaise"),
     DescribeCard: {

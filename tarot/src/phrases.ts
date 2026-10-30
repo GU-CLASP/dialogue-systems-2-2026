@@ -44,24 +44,31 @@ const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export function goodOrBadAnswer(drawn: DrawnCard): string {
   const name = capitalise(cardWithArticle(drawn));
   const brightSide = drawn.card.light[0]?.replace(/\.$/, "").toLowerCase() ?? drawn.card.keywords.slice(0, 2).join(" and ");
+  let verdict: string;
   const tone = cardTone(drawn.card);
-  const verdict =
-    tone === "bright"
-      ? `${name} is one of the brightest cards in the deck, so yes, it is a good sign.`
-      : tone === "hard"
-        ? `${name} is a challenging card, but not a bad one. On its bright side, it speaks of ${brightSide}.`
-        : `${name} is neither good nor bad; it depends on how you use its energy. At its best, it speaks of ${brightSide}.`;
-  return drawn.reversed ? `${verdict} It came up reversed, so its energy is held back for now, but that can change.` : verdict;
+  if (tone === "bright") {
+    verdict = `${name} is one of the brightest cards in the deck, so yes, it is a good sign.`;
+  } else if (tone === "hard") {
+    verdict = `${name} is a challenging card, but not a bad one. On its bright side, it speaks of ${brightSide}.`;
+  } else {
+    verdict = `${name} is neither good nor bad; it depends on how you use its energy. At its best, it speaks of ${brightSide}.`;
+  }
+
+  if (drawn.reversed) {
+    verdict += " It came up reversed, so its energy is held back for now, but that can change.";
+  }
+  return verdict;
 }
 
 /** e.g. "Now, where you stand today. Hmm... the Tower." */
 export function revealLine(index: number, drawn: DrawnCard, explainReversed: boolean, rand = Math.random): string {
   const opener = pick(OPENERS[index] ?? ["Next,"], rand);
-  const turned = !drawn.reversed
-    ? ""
-    : explainReversed
-      ? ", upside down. When a card appears reversed, its energy is held back or turned inward"
-      : ", reversed";
+  let turned = "";
+  if (drawn.reversed && explainReversed) {
+    turned = ", upside down. When a card appears reversed, its energy is held back or turned inward";
+  } else if (drawn.reversed) {
+    turned = ", reversed";
+  }
   const name = `${cardWithArticle(drawn)}${turned}.`;
   // An opener that ends mid-sentence ("Looking back, the cards show me") flows straight into the card.
   if (!/[.!?]$/.test(opener)) return `${opener} ${name}`;
