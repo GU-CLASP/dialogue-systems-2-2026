@@ -4,7 +4,7 @@
 //   npm run text     same dialogue in the terminal (type; empty line = silence)
 import { appendFileSync, mkdirSync } from "node:fs";
 import { assign, createActor, fromPromise, setup } from "xstate";
-import { classifyFollowUp, describeCard, interpretCard, positionName, summarise, type FollowUpIntent } from "./llm.ts";
+import { classifyFollowUp, describeCard, interpretCard, positionName, summarise, warmUp, type FollowUpIntent } from "./llm.ts";
 import { checkNumbers, parseNumbers, randomNumbers, spokenList, type NumberCheck } from "./numbers.ts";
 import { followUpIntent, isGoodbye, isNo, isYes, wantsRandom } from "./nlu.ts";
 import { cardWithArticle, goodOrBadAnswer, revealLine } from "./phrases.ts";
@@ -70,6 +70,7 @@ const machine = setup({
   },
   actors: {
     load: fromPromise(async () => {
+      void warmUp(); // not awaited: the model loads during the greeting and the breathing ritual
       await robot.setVoice(process.env.VOICE ?? "CoraMultilingualNeural");
       // The mask name really is "anime [legacy]", exactly as the web interface shows it.
       await robot.setFace(process.env.FACE_MASK ?? "anime [legacy]", process.env.FACE_CHARACTER ?? "AnimePink");

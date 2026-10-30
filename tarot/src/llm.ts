@@ -18,6 +18,7 @@ You speak aloud through a robot, so:
 type Message = { role: "system" | "user" | "assistant"; content: string };
 
 export async function chat(messages: Message[], opts: { json?: boolean; maxTokens?: number } = {}) {
+  await warming;
   const res = await fetch(`${OLLAMA}/api/chat`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -26,6 +27,8 @@ export async function chat(messages: Message[], opts: { json?: boolean; maxToken
       model: MODEL,
       stream: false,
       think: false,
+      keep_alive: "30m", // keep the model in memory between readings
+
       ...(opts.json ? { format: "json" } : {}),
       options: { temperature: opts.json ? 0 : 0.7, num_predict: opts.maxTokens ?? 120 },
       messages,
@@ -35,6 +38,29 @@ export async function chat(messages: Message[], opts: { json?: boolean; maxToken
   const data = (await res.json()) as { message?: { content?: string } };
   return data.message?.content ?? "";
 }
+
+/**
+ * Loading the model on the server takes ~25 s after it has been idle. Called at start-up,
+ * so the model is ready by the time the first reading is needed. Never throws.
+ */
+export function warmUp(): Promise<void> {
+  warming = (async () => {
+    try {
+      await fetch(`${OLLAMA}/api/generate`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        signal: AbortSignal.timeout(90_000),
+        body: JSON.stringify({ model: MODEL, prompt: "", keep_alive: "30m" }),
+      });
+    } catch (err) {
+      console.warn(`LLM warm-up failed (readings will use templates if it stays down): ${err}`);
+    }
+  })();
+  return warming;
+}
+
+// Calls made while the model is still loading wait for it, so they don't time out.
+let warming: Promise<void> = Promise.resolve();
 
 /** Makes LLM text safe to speak: no markdown or emoji, at most `maxSentences` sentences. */
 export function cleanForSpeech(text: string, maxSentences = 2): string {
