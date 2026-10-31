@@ -37,8 +37,35 @@ const nluMapping: NLUMapping = {
       content: "LT2319",
     },
   ],
+  friday: [
+    {
+      type: "answer",
+      content: "friday",
+    },
+  ],
+  thursday: [
+    {
+      type: "answer",
+      content: "thursday",
+    },
+  ],
+  tuesday: [
+    {
+      type: "answer",
+      content: "tuesday",
+    },
+  ],
+  "[inaudible]": [
+    {
+      type: "contact_failure",
+      content: null,
+    },
+  ],
 };
 const nlgMapping: NLGMapping = [
+  [{ type: "icm:sem*neg", content: null }, "Sorry, I don't understand."],
+  [{ type: "icm:con*neg", content: null }, "Sorry, I didn't hear you."],
+  [{ type: "ask", content: WHQ("booking_day") }, "Which day?"],
   [{ type: "ask", content: WHQ("booking_course") }, "Which course?"],
   [{ type: "greet", content: null }, "Hello! You can ask me anything!"],
   [
@@ -55,8 +82,14 @@ const nlgMapping: NLGMapping = [
     },
     "The lecture is in G212.",
   ],
+  [
+    {
+      type: "answer",
+      content: { predicate: "booking_room", argument: "J440" },
+    },
+    "The lecture is in J440.",
+  ],
 ];
-
 export function nlg(moves: Move[]): string {
   console.log("generating moves", moves);
   function generateMove(move: Move): string {
