@@ -1,4 +1,4 @@
-# Madame Furhat — a robot tarot reader
+# Tarot Furhat — a robot tarot reader
 
 A three-card tarot reading on the Furhat robot (Dialogue Systems 2 project).
 The user asks a question, picks three numbers between 1 and 78, and Furhat turns

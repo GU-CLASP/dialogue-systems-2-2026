@@ -6,7 +6,7 @@ const OLLAMA = process.env.OLLAMA_URL ?? "http://localhost:11434";
 const MODEL = process.env.LLM_MODEL ?? "gemma4";
 const TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_MS ?? 20_000);
 
-const PERSONA = `You are Madame Furhat, a warm and slightly mysterious tarot reader.
+const PERSONA = `You are Tarot Furhat, a warm and slightly mysterious tarot reader.
 You speak aloud through a robot, so:
 - reply in at most two short sentences of plain spoken English;
 - no lists, no markdown, no emojis, no stage directions;
@@ -196,7 +196,7 @@ Return ONLY JSON: {"intent": "ask_drawn_card"|"ask_card_meaning"|"good_or_bad"|"
 - when: asks when something will happen
 - advice: asks what they should do
 - is_it_real: asks whether tarot or the reading is real, true or accurate
-- thanks: thanks Madame Furhat
+- thanks: thanks Tarot Furhat
 - another_reading: wants a new reading or new question
 - repeat: wants the last thing repeated
 - goodbye: wants to stop

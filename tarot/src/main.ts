@@ -1,4 +1,4 @@
-// Madame Furhat: a three-card tarot reading on the Furhat robot.
+// Tarot Furhat: a three-card tarot reading on the Furhat robot.
 //
 //   npm start        talk to the (virtual) Furhat via the Remote API
 //   npm run text     same dialogue in the terminal (type; empty line = silence)
@@ -167,7 +167,7 @@ const machine = setup({
     },
 
     // ---------- 1. Ask ----------
-    Greeting: say(() => "Welcome, seeker. I am Madame Furhat, and the cards are waiting for you.", "Ritual", () => "Smile"),
+    Greeting: say(() => "Welcome, seeker. I am Tarot Furhat, and the cards are waiting for you.", "Ritual", () => "Smile"),
     // A moment of "connection" before the question: Furhat closes its eyes and waits.
     Ritual: say(
       (c) =>
@@ -481,7 +481,7 @@ const machine = setup({
 
     Goodbye: say(
       () =>
-        "Thank you for visiting Madame Furhat. Remember, the cards are just for fun: " +
+        "Thank you for visiting Tarot Furhat. Remember, the cards are just for fun: " +
         "they cannot really see the future, and your choices are always your own. Goodbye, and good luck!",
       "Done",
       () => "BigSmile",
