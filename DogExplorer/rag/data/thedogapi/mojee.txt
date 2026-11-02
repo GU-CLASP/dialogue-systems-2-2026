@@ -1,0 +1,15 @@
+Breed: Mojee
+Source: https://thedogapi.com
+
+Description:
+Small companion crossbreed with uncertain parentage, possibly involving Japanese Chin crossed with either Maltese or Poodle. Not recognized by major kennel clubs, this modern designer breed typically displays a cheerful and affectionate temperament.
+
+History:
+Modern designer crossbreed developed in the early 21st century, though exact parentage and origins are uncertain. Not recognized by major authoritative kennel clubs.
+
+Temperament: Affectionate, playful, intelligent, gentle
+Breed group: Mixed
+Origin: unknown
+Life span: 12-15 years
+Weight: 3-5 kg
+Height: 20-28 cm

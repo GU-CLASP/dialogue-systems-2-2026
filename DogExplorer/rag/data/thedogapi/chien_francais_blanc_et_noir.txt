@@ -1,0 +1,15 @@
+Breed: Chien Français Blanc et Noir
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and elegant French scent hound distinguished by its distinctive black and white coat, bred for hunting large game in packs with endurance and persistence
+
+History:
+Developed in 19th century France from crosses of Gascon-Saintongeois and the now-extinct Montaimboeuf hounds, with English Foxhounds. Meticulously created as a powerful and enduring pack hound specialized for hunting roe deer and large game
+
+Temperament: Courageous, intelligent, work-focused, independent, loyal
+Breed group: Hound
+Origin: France
+Life span: 10-12 years
+Weight: Male: 30-35; Female: 28-33 kg
+Height: Male: 65-72; Female: 62-68 cm

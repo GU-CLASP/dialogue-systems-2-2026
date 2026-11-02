@@ -1,0 +1,15 @@
+Breed: English Mastiff
+Source: https://thedogapi.com
+
+Description:
+Massive, powerful giant breed with a short fawn, apricot, or brindle coat, distinctive black mask, and dignified demeanor. Known for combining imposing size with a gentle, loyal temperament and protective instincts.
+
+History:
+Ancient breed known in Britain for over 2,000 years, descended from Roman Molossian war dogs. Used as estate guardian, war dog, and big-game hunter. Modern breed refined in medieval England and saved from extinction after World War II.
+
+Temperament: Gentle, loyal, protective, calm, courageous
+Breed group: Working
+Origin: England
+Life span: 6-10 years
+Weight: Male: 73-104; Female: 54-77 kg
+Height: Male: 76-86; Female: 70-81 cm

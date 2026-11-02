@@ -1,0 +1,15 @@
+Breed: Shetland Sheepdog
+Source: https://thedogapi.com
+
+Description:
+Small, agile herding dog from the Shetland Islands, resembling a miniature Rough Collie with a dense double coat, intelligent expression, and alert demeanor. A distinct breed known for its bright, playful nature and collie-like appearance.
+
+History:
+Developed in the rugged Shetland Islands of Scotland as a small, hardy herding dog for sheep and ponies in harsh conditions. Created by crossing native dogs with Border Collies, Scotch Collies and possibly Spitz breeds. Recognized by AKC in 1911.
+
+Temperament: Intelligent, loyal, alert, playful, gentle, eager to please
+Breed group: Herding
+Origin: Shetland Islands, Scotland
+Life span: 12-14 years
+Weight: 7-11 kg
+Height: 33-41 cm

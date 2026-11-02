@@ -1,0 +1,15 @@
+Breed: Foxhoodle
+Source: https://thedogapi.com
+
+Description:
+A modern mixed breed cross between a Foxhound and Standard Poodle that combines the Poodle's trainability and potentially low-shedding coat with the Foxhound's stamina, scenting abilities, and pack mentality. Coat type and temperament can vary significantly depending on which parent's traits are more dominant.
+
+History:
+A modern designer crossbreed created by mixing American or English Foxhound with Standard Poodle to combine scenting ability, stamina, and sociable nature with intelligence and potentially lower-shedding coat. Not recognized by major kennel clubs
+
+Temperament: Intelligent, energetic, friendly, alert, loyal, playful
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 23-32; Female: 18-29 kg
+Height: Male: 56-69; Female: 53-64 cm

@@ -1,0 +1,14 @@
+Breed: Pug
+Source: https://thedogapi.com
+
+Description:
+Small, compact, and sturdy toy breed with a distinctive wrinkled, short-muzzled face, curled tail, and charming, mischievous personality
+
+History:
+Ancient breed originating in China as prized companions for Chinese emperors. Brought to Europe in the 16th century by Dutch traders, became official dog of House of Orange in Holland, gained widespread popularity in Victorian England
+
+Temperament: Affectionate, playful, friendly, charming, adaptable
+Breed group: Toy
+Origin: China
+Weight: 6-8 kg
+Height: 25-33 cm

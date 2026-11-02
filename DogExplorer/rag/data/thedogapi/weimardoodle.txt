@@ -1,0 +1,15 @@
+Breed: Weimardoodle
+Source: https://thedogapi.com
+
+Description:
+Large athletic crossbreed combining the Weimaraner's hunting instincts and noble appearance with the Poodle's intelligence and hypoallergenic coat. Features a wavy or curly coat and energetic, intelligent temperament.
+
+History:
+Modern designer crossbreed developed in the late 20th century by combining Weimaraner and Standard Poodle to create an intelligent, athletic companion with reduced shedding coat
+
+Temperament: Intelligent, energetic, loyal, athletic, affectionate, protective
+Breed group: Mixed
+Origin: United States
+Life span: 10-13 years
+Weight: Male: 27-39; Female: 20-34 kg
+Height: Male: 56-69; Female: 56-64 cm

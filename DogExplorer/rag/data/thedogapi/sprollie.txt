@@ -1,0 +1,15 @@
+Breed: Sprollie
+Source: https://thedogapi.com
+
+Description:
+Medium to large energetic crossbreed between a Border Collie and English Springer Spaniel, known for its high intelligence, athleticism, work drive, and affectionate nature
+
+History:
+Modern designer crossbreed developed by crossing English Springer Spaniels with Border Collies to combine the intense intelligence and work ethic of the Collie with the friendly, eager-to-please nature of the Spaniel, creating a versatile companion and sporting dog
+
+Temperament: Intelligent, energetic, loyal, athletic, eager to please, work-focused
+Breed group: Mixed
+Origin: United Kingdom
+Life span: 12-15 years
+Weight: Male: 16-32; Female: 14-27 kg
+Height: Male: 46-56; Female: 43-53 cm

@@ -1,0 +1,15 @@
+Breed: Chiweenie
+Source: https://thedogapi.com
+
+Description:
+A small, spirited crossbreed resulting from a Chihuahua and Dachshund with a compact elongated body, short legs, and confident personality combining traits from both parent breeds
+
+History:
+Designer crossbreed that gained popularity in the late 1990s in North America, developed by crossing Chihuahua and Dachshund breeds to create a small companion dog
+
+Temperament: Loyal, alert, playful, confident, energetic, affectionate
+Breed group: Mixed
+Origin: United States
+Life span: 12-16 years
+Weight: 2-5 kg
+Height: 15-25 cm

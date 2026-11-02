@@ -1,0 +1,15 @@
+Breed: Mastidoodle
+Source: https://thedogapi.com
+
+Description:
+Large crossbreed combining the gentle giant nature of the Mastiff with the intelligence and low-shedding coat of the Standard Poodle
+
+History:
+Modern designer crossbreed developed to combine the gentle temperament of Mastiffs with the intelligence and reduced shedding of Poodles
+
+Temperament: Gentle, intelligent, loyal, protective, calm
+Breed group: Mixed
+Origin: United States
+Life span: 8-12 years
+Weight: Male: 54-91; Female: 45-73 kg
+Height: Male: 66-81; Female: 61-76 cm

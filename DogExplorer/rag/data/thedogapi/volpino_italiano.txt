@@ -1,0 +1,14 @@
+Breed: Volpino Italiano
+Source: https://thedogapi.com
+
+Description:
+Small, compact spitz-type dog with a dense, long white double coat, fox-like expression, and lively, bold temperament. An ancient Italian breed traditionally kept as companion and excellent watchdog.
+
+History:
+Ancient Italian spitz-type breed dating back to Roman times, descended from the same stock as German Spitz. Favored by Italian royalty and nobility as palace companions and watchdogs. Faced near extinction before being revived by dedicated enthusiasts in the 1980s.
+
+Temperament: Alert, playful, loyal, intelligent, confident, energetic
+Breed group: Non-Sporting
+Origin: Italy
+Weight: 4-5.5 kg
+Height: Male: 27-30; Female: 24-28 cm

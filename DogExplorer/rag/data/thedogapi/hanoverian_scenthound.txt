@@ -1,0 +1,15 @@
+Breed: Hanoverian Scenthound
+Source: https://thedogapi.com
+
+Description:
+Robust medium-large scenthound known for its exceptional tracking ability and calm, determined temperament. Descended from medieval Liam hounds, this breed was specifically developed to track wounded game for hunters.
+
+History:
+Descended from medieval Liam hounds in Germany; developed to track wounded game for hunters. Recognized by the FCI (Standard No. 213).
+
+Temperament: Calm, loyal, determined, independent
+Breed group: Hound
+Origin: Germany
+Life span: 10-14 years
+Weight: 36-45 kg
+Height: 48-55 cm

@@ -1,0 +1,15 @@
+Breed: Miniature Fox Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, agile, and smooth-coated terrier known for its spirited, alert nature and compact build. Developed in Australia as a versatile vermin hunter and lively companion with an intelligent, courageous temperament.
+
+History:
+Developed in Australia during the late 19th and early 20th centuries from crosses of English Fox Terriers and other small terriers brought by settlers, refined as a versatile vermin hunter and spirited companion for farm work
+
+Temperament: Alert, energetic, intelligent, confident, loyal
+Breed group: Terrier
+Origin: Australia
+Life span: 12-18 years
+Weight: 3-5.5 kg
+Height: 24-31 cm

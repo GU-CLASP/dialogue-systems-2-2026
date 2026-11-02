@@ -1,0 +1,15 @@
+Breed: English Cocker Spaniel
+Source: https://thedogapi.com
+
+Description:
+A medium-sized, merry sporting spaniel known for its silky coat, long lush ears, expressive eyes, and energetic attitude. Compact and athletic, built for endurance and agility in the field with exceptional abilities as both hunting companion and family dog.
+
+History:
+Developed in England from land spaniels as a specialist flushing spaniel for woodcock and other game birds. Officially separated from American Cocker Spaniel in the 1940s by breed standards.
+
+Temperament: Merry, affectionate, intelligent, energetic, playful, gentle, eager to please
+Breed group: Sporting
+Origin: England
+Life span: 12-14 years
+Weight: Male: 13-15.5; Female: 12-14.5 kg
+Height: Male: 41-43; Female: 38-41 cm

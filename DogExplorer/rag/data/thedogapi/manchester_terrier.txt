@@ -1,0 +1,14 @@
+Breed: Manchester Terrier
+Source: https://thedogapi.com
+
+Description:
+Sleek, elegant terrier with distinctive black-and-tan coat and keen, alert expression. Known as the 'Gentleman's Terrier' in Victorian England, this racy, athletic breed exists in both Standard and Toy varieties with a clean-cut, spirited appearance.
+
+History:
+Developed in 19th-century Manchester by crossing Black and Tan Terriers with Whippets. Created as proficient rat-killer and rabbit-courser for working men of the industrial era. Recognized by AKC since 1886.
+
+Temperament: Alert, intelligent, loyal, energetic, spirited, independent
+Breed group: Terrier
+Origin: Manchester, England
+Weight: 5-10 kg
+Height: 38-41 cm

@@ -1,0 +1,15 @@
+Breed: Pembroke Welsh Corgi
+Source: https://thedogapi.com
+
+Description:
+A low-set, strong, and sturdily built herding dog with short legs, fox-like face, alert expression, and naturally bobbed tail. Known for their intelligence, sturdy build, and distinctive appearance.
+
+History:
+Ancient herding breed from Pembrokeshire, Wales, brought by Flemish weavers in 1107. Developed as a cattle herding dog, their low stature allowed them to nip at cattle's heels and avoid being kicked. Closely associated with British royalty.
+
+Temperament: Intelligent, affectionate, alert, outgoing, playful
+Breed group: Herding
+Origin: Pembrokeshire, Wales
+Life span: 12-13 years
+Weight: Male: 12-14; Female: 11-13 kg
+Height: 25-30 cm

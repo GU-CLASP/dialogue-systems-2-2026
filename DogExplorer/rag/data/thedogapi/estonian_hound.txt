@@ -1,0 +1,15 @@
+Breed: Estonian Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, strong-boned scent hound with short, smooth tricolor coat and sturdy build, known for its tenacity in hunting small game and stamina in Estonia's terrain
+
+History:
+Developed in Estonia between 1947-1954 after Soviet decree mandating each republic establish a national breed. Created by crossing local hunting dogs with Beagles, Swiss hounds, and English Foxhounds to create versatile hunting dog suited to Estonian terrain under restrictive hunting laws. Officially recognized by FCI in 2019.
+
+Temperament: Friendly, energetic, alert, intelligent, calm
+Breed group: Hound
+Origin: Estonia
+Life span: 12-15 years
+Weight: 20-30 kg
+Height: Male: 45-52; Female: 42-49 cm

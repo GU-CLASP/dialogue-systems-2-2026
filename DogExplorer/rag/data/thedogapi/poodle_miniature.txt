@@ -1,0 +1,15 @@
+Breed: Poodle (Miniature)
+Source: https://thedogapi.com
+
+Description:
+Elegant, athletic, and intelligent smaller version of the Standard Poodle with a curly, hypoallergenic coat and proud carriage
+
+History:
+Originally developed as water retrievers in Germany, the name 'Poodle' comes from German 'pudel' meaning 'to splash in water'. Miniature variety was bred down from Standard Poodles for companionship, circus performance, and truffle hunting
+
+Temperament: Intelligent, alert, playful, confident, eager to please
+Breed group: Non-Sporting
+Origin: Germany
+Life span: 12-16 years
+Weight: 4.5-6.8 kg
+Height: 25-38 cm

@@ -1,0 +1,15 @@
+Breed: Continental Bulldog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletically built bulldog with a broad head, muscular compact body, and short coat, designed for improved health and breathing compared to traditional bulldogs with smooth movement and endurance
+
+History:
+Developed in Switzerland in the early 2000s by breeder Imelda Angehrn to create a healthier more athletic bulldog with fewer respiratory issues by crossing English Bulldogs with Olde English Bulldogges, provisionally recognized by FCI in 2022
+
+Temperament: Friendly, confident, calm, alert, adaptable, loyal
+Breed group: Non-Sporting
+Origin: Switzerland
+Life span: 10-14 years
+Weight: Male: 23-30; Female: 20-27 kg
+Height: Male: 42-47; Female: 38-44 cm

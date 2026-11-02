@@ -1,0 +1,15 @@
+Breed: Moscow Watchdog
+Source: https://thedogapi.com
+
+Description:
+Large, powerfully built guardian breed developed in Soviet Russia with a pronounced guarding instinct, combining Saint Bernard and Caucasian Shepherd traits. Known for its balanced temperament, self-confidence, and devotion to family while maintaining strong protective instincts.
+
+History:
+Developed in the 1950s at Soviet 'Red Star' military kennels in Moscow post-WWII by crossing Saint Bernard, Caucasian Shepherd Dog, and Russian Spotted Hound. Goal was to create ideal military guard dog adapted to harsh Russian climate.
+
+Temperament: Protective, confident, loyal, alert, intelligent, independent
+Breed group: Working
+Origin: Russia
+Life span: 9-11 years
+Weight: Male: 50-68; Female: 45-60 kg
+Height: Male: 66-71; Female: 64-69 cm

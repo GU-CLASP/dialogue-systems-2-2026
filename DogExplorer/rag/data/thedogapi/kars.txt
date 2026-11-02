@@ -1,0 +1,15 @@
+Breed: Kars
+Source: https://thedogapi.com
+
+Description:
+Large, rugged livestock guardian dog with dense weather-resistant coat and protective nature
+
+History:
+An ancient Turkish livestock guardian from the Kars region, developed to protect flocks from predators in harsh climates; closely related to other regional shepherd breeds. Recognized by Turkish registries and FCI Group 2 as a regional variant.
+
+Temperament: Protective, independent, courageous, loyal
+Breed group: Working
+Origin: Eastern Anatolia, Turkey
+Life span: 10-13 years
+Weight: Male: 40-60; Female: 35-50 kg
+Height: Male: 71-81; Female: 69-76 cm

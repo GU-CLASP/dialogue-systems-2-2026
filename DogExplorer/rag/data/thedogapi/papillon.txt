@@ -1,0 +1,14 @@
+Breed: Papillon
+Source: https://thedogapi.com
+
+Description:
+Small, fine-boned, and elegant toy spaniel with distinctive butterfly-like ears (papillon is French for 'butterfly') and silky flowing coat, known for their alert, friendly, and energetic nature
+
+History:
+Descended from continental toy spaniels that were popular in European courts for centuries, appearing in paintings by masters like Titian, Goya, and Rubens. The breed was refined in France and Belgium, with the original drop-eared variety (Phalène) later joined by the erect-eared 'butterfly' version (Papillon)
+
+Temperament: Friendly, intelligent, alert, energetic, happy
+Breed group: Toy
+Origin: France and Belgium
+Weight: 2-4.5 kg
+Height: 20-28 cm

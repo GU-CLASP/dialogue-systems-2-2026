@@ -1,0 +1,15 @@
+Breed: Norrbottenspets
+Source: https://thedogapi.com
+
+Description:
+Small, compact spitz-type hunting dog from northern Sweden with erect ears, curled tail, and white coat with colored patches. Known for its alert, agile, and fearless nature with a well-muscled body built for athleticism.
+
+History:
+Ancient spitz breed from northern Sweden developed as versatile farm and hunting dog for small game from grouse to moose. Nearly extinct after WWII but revived by dedicated breeders and enthusiasts in the 1960s.
+
+Temperament: Alert, energetic, intelligent, courageous, confident, independent
+Breed group: Hound
+Origin: Norrbotten, Sweden
+Life span: 12-16 years
+Weight: Male: 9-14; Female: 8-14 kg
+Height: Male: 42-46; Female: 40-44 cm

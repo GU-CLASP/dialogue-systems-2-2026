@@ -1,0 +1,15 @@
+Breed: German Sheprador
+Source: https://thedogapi.com
+
+Description:
+Large, athletic crossbreed with sturdy build combining the intelligence and loyalty of German Shepherd with the friendly, outgoing retrieving nature of Labrador Retriever
+
+History:
+Modern designer crossbreed developed in late 20th century as part of the 'designer dog' trend, combining working abilities of German Shepherd with friendly temperament of Labrador Retriever to create a versatile family companion and working dog
+
+Temperament: Intelligent, loyal, friendly, energetic, protective, eager to please
+Breed group: Mixed
+Origin: United States
+Life span: 10-13 years
+Weight: Male: 27-41; Female: 25-36 kg
+Height: Male: 56-66; Female: 55-61 cm

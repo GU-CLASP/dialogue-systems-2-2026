@@ -1,0 +1,15 @@
+Breed: Hygen Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, strong and compact Norwegian scenthound with lean athletic build, developed for endurance in rough terrain and known for excellent tracking abilities and affectionate nature with family
+
+History:
+Developed in the 19th century by Norwegian breeder Hans Fredrik Hygen, created by crossing German Holsteiner hounds with local Norwegian scent hounds and other Scandinavian breeds like the Småland Hound to produce a resilient hound for hunting in challenging Arctic terrain. Recognized by the FCI as a Norwegian scent hound.
+
+Temperament: Energetic, intelligent, independent, alert, affectionate, loyal
+Breed group: Hound
+Origin: Norway
+Life span: 10-12 years
+Weight: 20-25 kg
+Height: Male: 48-58; Female: 46-55 cm

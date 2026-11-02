@@ -1,0 +1,15 @@
+Breed: Campeiro Bulldog
+Source: https://thedogapi.com
+
+Description:
+A powerful, medium-sized Brazilian bulldog breed with muscular, athletic build, broad chest, and short coat. Historically developed for cattle work on ranches with strong work ethic and alert expression.
+
+History:
+Descended from Old English Bulldogs brought to southern Brazil by European immigrants in the 19th century. Developed for ranch work, specifically for subduing and controlling cattle. After facing near extinction, the breed was revived through dedicated conservation efforts.
+
+Temperament: Loyal, protective, courageous, calm, work-focused
+Breed group: Working
+Origin: Brazil
+Life span: 10-12 years
+Weight: Male: 35-45; Female: 30-40 kg
+Height: Male: 48-56; Female: 46-54 cm

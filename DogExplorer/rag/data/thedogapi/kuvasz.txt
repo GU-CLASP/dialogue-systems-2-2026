@@ -1,0 +1,15 @@
+Breed: Kuvasz
+Source: https://thedogapi.com
+
+Description:
+Large, powerful white Hungarian livestock guardian dog with a dense double coat, noble bearing, and fiercely loyal, protective nature
+
+History:
+Ancient Hungarian breed descended from large molosser-type dogs from Tibet. Historically served as royal guard dogs for Magyar kings and fierce livestock guardians, prized for their loyalty and courage in protecting flocks and estates from predators and thieves
+
+Temperament: Loyal, protective, independent, courageous, intelligent, calm
+Breed group: Working
+Origin: Hungary
+Life span: 10-12 years
+Weight: Male: 45-52; Female: 32-41 kg
+Height: Male: 71-76; Female: 66-71 cm

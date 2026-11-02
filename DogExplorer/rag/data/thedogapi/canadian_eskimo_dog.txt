@@ -1,0 +1,15 @@
+Breed: Canadian Eskimo Dog
+Source: https://thedogapi.com
+
+Description:
+A powerful, Spitz-type working dog of the Arctic with thick double coat and imposing stature, known for exceptional endurance in sledding and hunting work. This primitive breed combines strength with hardy Arctic adaptation.
+
+History:
+Ancient aboriginal breed used by the Inuit people of the Canadian Arctic for thousands of years as a multi-purpose working dog for sledding, transportation and hunting. Nearly extinct with introduction of snowmobiles but saved through dedicated preservation and revival efforts.
+
+Temperament: Alert, loyal, intelligent, courageous, independent, work-focused
+Breed group: Working
+Origin: Canadian Arctic
+Life span: 10-15 years
+Weight: Male: 30-40; Female: 18-30 kg
+Height: Male: 58-70; Female: 50-60 cm

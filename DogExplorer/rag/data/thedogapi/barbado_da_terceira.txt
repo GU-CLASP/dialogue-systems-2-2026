@@ -1,0 +1,15 @@
+Breed: Barbado da Terceira
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, rugged Portuguese herding dog from the Azores with a distinctive long wavy coat and beard, known for its intelligence, docile nature, and lively disposition developed for cattle herding
+
+History:
+Ancient indigenous breed developed on Terceira Island in the Azores by Portuguese settlers for herding and guarding cattle. Nearly faced extinction in the 20th century before conservation and revival efforts in the 1990s led to its preservation and recognition
+
+Temperament: Intelligent, loyal, energetic, docile, playful, courageous, alert
+Breed group: Herding
+Origin: Terceira Island, Azores, Portugal
+Life span: 12-14 years
+Weight: Male: 25-30; Female: 21-26 kg
+Height: Male: 52-56; Female: 48-54 cm

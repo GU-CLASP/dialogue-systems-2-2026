@@ -1,0 +1,15 @@
+Breed: Griffon Bleu de Gascogne
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, rustic-looking French scenthound with distinctive blue-mottled, rough coat and strong hunting instincts. Known for exceptional stamina and a melodious voice, this persistent and versatile hunter combines keen scenting ability with rugged durability.
+
+History:
+Ancient French hound developed in the Gascogne region by crossing Grand Bleu de Gascogne with rough-coated griffon breeds to create a robust, keen-nosed hunting hound suited for rough terrain. Prized for exceptional nose and stamina.
+
+Temperament: Alert, energetic, independent, courageous, devoted, work-focused
+Breed group: Hound
+Origin: Gascony, France
+Life span: 10-12 years
+Weight: 18-25 kg
+Height: 48-57 cm

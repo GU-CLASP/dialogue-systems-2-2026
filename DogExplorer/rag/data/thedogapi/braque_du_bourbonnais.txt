@@ -1,0 +1,15 @@
+Breed: Braque du Bourbonnais
+Source: https://thedogapi.com
+
+Description:
+Ancient, medium-sized French pointing dog with compact, agile build, distinctive ticked speckled coat, naturally short tail, and expressive face. Known for natural hunting instincts and athletic ability.
+
+History:
+One of the most ancient French pointing breeds, documented since the 16th century. Nearly extinct after World War II but successfully restored in the 1970s by dedicated breeders from remaining bloodlines following French and FCI standards.
+
+Temperament: Gentle, intelligent, loyal, calm, affectionate, adaptable
+Breed group: Sporting
+Origin: Bourbonnais region, France
+Life span: 12-15 years
+Weight: Male: 18-26; Female: 16-24 kg
+Height: Male: 50-57; Female: 47-56 cm

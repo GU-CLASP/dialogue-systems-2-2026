@@ -1,0 +1,15 @@
+Breed: Blue Picardy Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, strongly built gundog with distinctive blue-gray roan speckled coat that gives it a bluish appearance. Known for its gentle hunting temperament and versatile field abilities.
+
+History:
+Developed in the Picardy region of France in the early 20th century by crossing Picardy Spaniels with English Setters (likely Gordon Setters) to produce a versatile, hardy pointing dog with the distinctive blue-speckled coat. Recognized by the FCI.
+
+Temperament: Gentle, intelligent, calm, devoted, affectionate
+Breed group: Sporting
+Origin: Picardy, France
+Life span: 10-14 years
+Weight: 19.5-22.7 kg
+Height: Male: 57-61; Female: 55-60 cm

@@ -1,0 +1,15 @@
+Breed: Podenco Andaluz
+Source: https://thedogapi.com
+
+Description:
+An ancient, agile Spanish sighthound from the Andalusia region with erect ears and athletic build, known for its keen senses and hunting prowess. Exists in three size varieties and three coat types, specialized for rabbit hunting in Andalusian terrain.
+
+History:
+Ancient primitive hound whose origins trace back to pharaonic dogs brought to the Iberian Peninsula by Phoenician traders. Developed in Andalusia for versatile hunting of rabbits and small game, utilizing sight, sound, and scent. Comes in three size varieties with shared hunting heritage.
+
+Temperament: Independent, alert, energetic, intelligent, loyal
+Breed group: Hound
+Origin: Andalusia, Spain
+Life span: 10-15 years
+Weight: Male: 7.5-32.5; Female: 7.5-30 kg
+Height: Male: 35-65; Female: 32-62 cm

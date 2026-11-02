@@ -1,0 +1,15 @@
+Breed: Corsican Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, versatile and athletic dog native to the island of Corsica with a rustic build and alert demeanor. This ancient multi-purpose breed combines hunting ability with herding and guarding instincts, displaying both independence and devotion to family.
+
+History:
+Ancient multi-purpose breed native to Corsica, used for hunting wild boar, herding livestock, and property protection. Nearly extinct in the 20th century but revived by enthusiasts starting in 1989. Recognized by French Kennel Club and provisionally by FCI as the Cursinu.
+
+Temperament: Independent, alert, loyal, protective, intelligent
+Breed group: Herding
+Origin: Corsica, France
+Life span: 10-14 years
+Weight: Male: 15-29; Female: 13-25 kg
+Height: Male: 46-58; Female: 43-56 cm

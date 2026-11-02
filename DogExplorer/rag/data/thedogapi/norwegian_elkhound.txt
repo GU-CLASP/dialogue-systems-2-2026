@@ -1,0 +1,15 @@
+Breed: Norwegian Elkhound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized spitz-type hunting dog with thick double coat and curled tail, bred for hunting elk and moose. Bold and energetic, this hardy gray hunting dog is known for its versatility, courage, and stamina in tracking large game.
+
+History:
+Ancient Nordic spitz-type breed dating back 6000 years, companion of Vikings used for hunting elk bear and moose in Scandinavian forests. Officially recognized by AKC in 1913.
+
+Temperament: Friendly, confident, energetic, loyal, independent
+Breed group: Hound
+Origin: Norway
+Life span: 12-15 years
+Weight: Male: 22-27; Female: 20-25 kg
+Height: Male: 50-53; Female: 48-51 cm

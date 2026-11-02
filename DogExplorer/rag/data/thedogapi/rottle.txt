@@ -1,0 +1,15 @@
+Breed: Rottle
+Source: https://thedogapi.com
+
+Description:
+Large, athletic and intelligent mixed breed crossing the Rottweiler and Standard Poodle, combining the Rottweiler's protective nature and strength with the Poodle's intelligence and potentially low-shedding curly or wavy coat
+
+History:
+Modern designer crossbreed intentionally developed by mixing Rottweiler and Standard Poodle to combine the Rottweiler's loyal guardian nature with the Poodle's high intelligence and low-shedding coat qualities. Not recognized by major kennel clubs.
+
+Temperament: Intelligent, loyal, protective, confident, affectionate, energetic
+Breed group: Mixed
+Origin: United States
+Life span: 9-14 years
+Weight: Male: 27-57; Female: 23-45 kg
+Height: Male: 56-69; Female: 51-64 cm

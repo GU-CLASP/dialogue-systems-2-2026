@@ -1,0 +1,15 @@
+Breed: Dalmatian
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic dog with distinctive black or liver spotted white coat and elegant build, originally bred as a carriage dog with exceptional endurance
+
+History:
+Ancient breed with roots in Dalmatia, Croatia, originally bred as carriage dogs to run for miles alongside horse-drawn coaches, guarding horses and coaches. Also served as circus performers and iconic firehouse mascots, particularly associated with American fire departments. Recognized by AKC in 1888.
+
+Temperament: Energetic, outgoing, intelligent, alert, athletic
+Breed group: Non-Sporting
+Origin: Dalmatia, Croatia
+Life span: 11-13 years
+Weight: Male: 25-32; Female: 20-27 kg
+Height: Male: 58-61; Female: 56-58 cm

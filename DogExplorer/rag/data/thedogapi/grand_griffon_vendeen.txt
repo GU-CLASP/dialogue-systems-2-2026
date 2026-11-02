@@ -1,0 +1,15 @@
+Breed: Grand Griffon Vendéen
+Source: https://thedogapi.com
+
+Description:
+Large, sturdily built French scent hound with a rough double coat, distinctive beard and mustache, and noble appearance. Known for exceptional stamina, courage, and independent nature, bred for hunting wild boar and deer in rough terrain.
+
+History:
+One of the oldest French scent hounds, descended from ancient Celtic hounds and royal white hounds of France. Developed in the Vendée region during the Middle Ages for hunting large game such as wild boar, deer, and wolves with exceptional courage and stamina.
+
+Temperament: Independent, courageous, intelligent, energetic, alert
+Breed group: Hound
+Origin: Vendée region, France
+Life span: 10-13 years
+Weight: 30-35 kg
+Height: Male: 62-68; Female: 60-65 cm

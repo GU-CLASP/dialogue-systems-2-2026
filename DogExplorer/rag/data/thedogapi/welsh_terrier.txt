@@ -1,0 +1,15 @@
+Breed: Welsh Terrier
+Source: https://thedogapi.com
+
+Description:
+Compact, sturdy medium-sized terrier with distinctive harsh wiry black and tan coat and lively, spirited expression. One of the oldest terrier breeds from Wales, known for its rugged build and friendly disposition.
+
+History:
+One of the oldest terrier breeds, originating in Wales where it was developed for hunting fox, badger, otter, and vermin. Originally known as the Old English Terrier or Black-and-Tan Wire Haired Terrier, it was formally recognized by The Kennel Club in 1886 and AKC in 1888.
+
+Temperament: Friendly, alert, intelligent, spirited, energetic, confident
+Breed group: Terrier
+Origin: Wales
+Life span: 12-15 years
+Weight: 9-10 kg
+Height: 38-39 cm

@@ -1,0 +1,15 @@
+Breed: Norfolk Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy, and fearless terrier with a wiry, weather-resistant coat and characteristic drop ears. Known for its spirited, affectionate nature and bred for ratting and companionship.
+
+History:
+Developed in Norfolk and East Anglia, England in the 1880s-early 20th century as farm dogs to control vermin and hunt foxes. Originally classified as the drop-eared variety of the Norwich Terrier, separated as distinct breed in 1964 by The Kennel Club (UK) and 1979 by the AKC based on ear carriage.
+
+Temperament: Alert, courageous, affectionate, energetic, playful
+Breed group: Terrier
+Origin: Norfolk, England
+Life span: 12-16 years
+Weight: 5-5.5 kg
+Height: 23-25 cm

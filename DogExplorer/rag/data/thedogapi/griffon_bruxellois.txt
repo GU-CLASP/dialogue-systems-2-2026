@@ -1,0 +1,15 @@
+Breed: Griffon Bruxellois
+Source: https://thedogapi.com
+
+Description:
+A small, intelligent toy dog from Belgium with a distinctive bearded, almost human-like expressive face and alert demeanor. Available in rough and smooth coat varieties, known for their big personality despite their small size.
+
+History:
+Developed in Brussels as stable dogs and ratters from local rough-coated terriers in the 1800s, refined by crossing with Pug and English Toy Spaniel, became popular with Belgian nobility and coachmen
+
+Temperament: Alert, intelligent, loyal, confident
+Breed group: Toy
+Origin: Brussels, Belgium
+Life span: 12-15 years
+Weight: 4-5 kg
+Height: 18-25 cm

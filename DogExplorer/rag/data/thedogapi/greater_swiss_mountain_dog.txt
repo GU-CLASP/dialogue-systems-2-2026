@@ -1,0 +1,15 @@
+Breed: Greater Swiss Mountain Dog
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and striking tricolor working dog with distinctive tri-colored coat and gentle, dependable temperament. Known for strength and robust build as a draft dog.
+
+History:
+One of Switzerland's oldest breeds, likely descended from Roman Mastiffs, used as an all-purpose draft, herding, and farm guardian dog in the Swiss Alps. Nearly extinct until rediscovered and revived in early 1900s by Dr. Albert Heim.
+
+Temperament: Gentle, loyal, confident, alert, friendly
+Breed group: Working
+Origin: Switzerland
+Life span: 8-11 years
+Weight: Male: 52-64; Female: 39-50 kg
+Height: Male: 65-72; Female: 60-69 cm

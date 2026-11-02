@@ -1,0 +1,15 @@
+Breed: Puli
+Source: https://thedogapi.com
+
+Description:
+Compact, medium-sized Hungarian herding dog known for its distinctive, naturally corded coat resembling dreadlocks, giving it an agile and athletic build with quick, spirited movement
+
+History:
+Ancient Hungarian sheepdog breed brought by Magyar tribes over 1000 years ago, traditionally used for herding and guarding livestock on the Hungarian plains. Their unique corded coat provided protection from predators and harsh weather. Nearly decimated by World War II but saved by dedicated breeding programs
+
+Temperament: Intelligent, energetic, loyal, alert, devoted, playful
+Breed group: Herding
+Origin: Hungary
+Life span: 10-16 years
+Weight: Male: 13.5-16; Female: 11-14 kg
+Height: Male: 40-44; Female: 37-41 cm

@@ -1,0 +1,15 @@
+Breed: Airedale Terrier
+Source: https://thedogapi.com
+
+Description:
+The largest of all terrier breeds, the Airedale is a large, athletic dog with a distinctive wiry black and tan coat and confident, alert demeanor. Known as the 'King of Terriers', this highly intelligent and versatile breed combines courage with an outgoing temperament.
+
+History:
+Developed in the Aire Valley of Yorkshire, England, by crossing Otterhounds with various terrier breeds. Originally bred by working-class fanciers to hunt otters and rats, their intelligence and courage led to their use as police dogs, war dogs, and all-around companions.
+
+Temperament: Confident, intelligent, courageous, alert, energetic, outgoing
+Breed group: Terrier
+Origin: Yorkshire, England
+Life span: 11-14 years
+Weight: Male: 23-32; Female: 18-25 kg
+Height: Male: 58-61; Female: 56-58 cm

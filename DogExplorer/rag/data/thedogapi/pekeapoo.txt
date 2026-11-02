@@ -1,0 +1,15 @@
+Breed: Pekeapoo
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Pekingese and Poodle traits, creating an intelligent and affectionate companion dog with a compact size and low-shedding coat
+
+History:
+Designer crossbreed developed in the United States in the 1950s-1960s as one of the earliest intentional hybrids, crossing Pekingese with Toy or Miniature Poodle to create a small companion dog with reduced shedding and playful temperament
+
+Temperament: Affectionate, intelligent, alert, playful, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 4-9 kg
+Height: 20-28 cm

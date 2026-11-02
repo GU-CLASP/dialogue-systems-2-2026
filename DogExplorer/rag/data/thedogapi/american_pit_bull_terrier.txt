@@ -1,0 +1,15 @@
+Breed: American Pit Bull Terrier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, muscular terrier with athletic build and short coat, known for its strength, confidence, intelligence, and affectionate nature towards people. Possesses great strength for its size and is both athletic and agile.
+
+History:
+Developed in the late 19th century from English bull-and-terrier breeds brought to America. Originally bred for bull-baiting and later refined as all-around farm dogs and loyal family companions. First recognized by the United Kennel Club in 1898.
+
+Temperament: Confident, intelligent, loyal, affectionate, eager to please, energetic
+Breed group: Terrier
+Origin: United States
+Life span: 12-16 years
+Weight: Male: 16-27; Female: 14-23 kg
+Height: Male: 46-53; Female: 43-51 cm

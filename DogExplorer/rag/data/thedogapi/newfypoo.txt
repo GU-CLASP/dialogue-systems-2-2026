@@ -1,0 +1,15 @@
+Breed: Newfypoo
+Source: https://thedogapi.com
+
+Description:
+Large mixed breed cross between Newfoundland and Standard Poodle, combining the gentle, patient nature of the Newfoundland with Poodle intelligence and typically low-shedding coat qualities
+
+History:
+Modern designer crossbreed developed over the past few decades in North America by crossing the giant Newfoundland with the intelligent Standard Poodle, aiming to combine the loving, gentle temperament and water rescue abilities of the Newfoundland with the low-shedding coat and high trainability of the Poodle
+
+Temperament: Gentle, intelligent, loyal, friendly, affectionate, calm
+Breed group: Mixed
+Origin: United States
+Life span: 8-12 years
+Weight: Male: 32-68; Female: 29-54 kg
+Height: Male: 56-71; Female: 56-66 cm

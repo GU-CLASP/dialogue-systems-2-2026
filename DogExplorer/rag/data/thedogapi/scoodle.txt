@@ -1,0 +1,15 @@
+Breed: Scoodle
+Source: https://thedogapi.com
+
+Description:
+Small to medium spirited crossbreed combining Scottish Terrier's bold, confident temperament with Poodle's intelligence and low-shedding coat. Features a sturdy build with wiry or curly coat and lively expression.
+
+History:
+Modern designer crossbreed intentionally developed in the United States to combine Scottish Terrier's bold, confident personality with Poodle's intelligence and hypoallergenic coat qualities
+
+Temperament: Intelligent, confident, alert, playful, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 5-10; Female: 4.5-9 kg
+Height: 25-38 cm

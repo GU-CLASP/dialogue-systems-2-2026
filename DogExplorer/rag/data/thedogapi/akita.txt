@@ -1,0 +1,15 @@
+Breed: Akita
+Source: https://thedogapi.com
+
+Description:
+A large, powerful spitz-type dog of Japanese origin with a bear-like head, dense double coat, and full curled tail. Known for its dignified presence, imposing stature, and courageous, loyal temperament.
+
+History:
+Ancient Japanese breed developed in the mountainous Akita prefecture for hunting large game including wild boar and bear. Revered in Japanese culture as a symbol of health, happiness, and good fortune. The breed was nearly lost after World War II but was preserved by dedicated breeders and designated as a national treasure in Japan.
+
+Temperament: Courageous, loyal, dignified, independent, protective, alert
+Breed group: Working
+Origin: Japan
+Life span: 10-13 years
+Weight: Male: 45-59; Female: 32-45 kg
+Height: Male: 66-71; Female: 61-66 cm

@@ -1,0 +1,15 @@
+Breed: Wetterhoun
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Dutch water dog from Friesland with a distinctive thick, curly, water-resistant coat. Originally bred for hunting otters and waterfowl, this robust breed combines independence with loyalty and serves as both a versatile hunting dog and natural watchdog.
+
+History:
+Ancient Dutch breed from the province of Friesland, used for centuries to hunt otters and waterfowl. The name translates to 'water dog.' Nearly extinct after WWII but preserved through dedicated breeding programs and recognized by FCI as a rare national breed.
+
+Temperament: Independent, loyal, intelligent, alert, calm, protective
+Breed group: Sporting
+Origin: Friesland, Netherlands
+Life span: 12-14 years
+Weight: Male: 25-35; Female: 20-30 kg
+Height: Male: 56-64; Female: 52-61 cm

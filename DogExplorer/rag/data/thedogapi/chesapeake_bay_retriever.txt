@@ -1,0 +1,15 @@
+Breed: Chesapeake Bay Retriever
+Source: https://thedogapi.com
+
+Description:
+A powerful, muscular gundog with distinctive wavy, waterproof double coat and amber eyes, bred for retrieving waterfowl in the harsh conditions of the Chesapeake Bay
+
+History:
+Developed in the 19th century along the Chesapeake Bay from two shipwrecked Newfoundland-type puppies (Sailor and Canton) bred with local retrievers to create a water gundog capable of withstanding icy conditions and retrieving waterfowl in harsh environments
+
+Temperament: Intelligent, courageous, loyal, protective, confident
+Breed group: Sporting
+Origin: Maryland, United States
+Life span: 10-13 years
+Weight: Male: 29-36; Female: 25-32 kg
+Height: Male: 58-66; Female: 53-61 cm

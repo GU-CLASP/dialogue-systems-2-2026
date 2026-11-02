@@ -1,0 +1,14 @@
+Breed: Alopekis
+Source: https://thedogapi.com
+
+Description:
+Small, fox-like Greek primitive landrace breed with wedge-shaped head and agile build, historically used as an all-purpose farm dog for companionship, watching, and vermin control
+
+History:
+Ancient Greek landrace breed with depictions found on ancient pottery, traditionally used as versatile farm companion for vermin control and watchdog duties. Kept for thousands of years in rural Greek communities, with current preservation and standardization efforts ongoing for official recognition.
+
+Temperament: Intelligent, alert, loyal, adaptable, energetic, playful
+Breed group: Primitive
+Origin: Greece
+Weight: 3-7 kg
+Height: 20-32 cm

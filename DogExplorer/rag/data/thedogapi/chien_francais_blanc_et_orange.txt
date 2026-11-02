@@ -1,0 +1,15 @@
+Breed: Chien Français Blanc et Orange
+Source: https://thedogapi.com
+
+Description:
+Large, noble, and muscular French scent hound with distinctive white and orange coat, bred for pack hunting large game such as deer and boar. Known for stamina, endurance, and ability to work collaboratively in packs.
+
+History:
+Developed in France from old hounds of Saintonge and crosses with the Billy breed, rooted in various French hounds and English foxhounds. Created for pack hunting large game, recognized by FCI with official breed club founded in 1957.
+
+Temperament: Gentle, calm, loyal, intelligent, energetic, work-focused
+Breed group: Hound
+Origin: France
+Life span: 10-12 years
+Weight: Male: 28-32; Female: 25-30 kg
+Height: Male: 62-70; Female: 60-66 cm

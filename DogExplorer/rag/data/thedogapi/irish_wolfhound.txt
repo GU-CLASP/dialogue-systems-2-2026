@@ -1,0 +1,15 @@
+Breed: Irish Wolfhound
+Source: https://thedogapi.com
+
+Description:
+A giant-sized sighthound of imposing appearance and dignified nature, the Irish Wolfhound is the tallest of all dog breeds. Known for its wiry, rough coat and gentle giant temperament, this ancient breed combines courage with a calm, dignified demeanor.
+
+History:
+Ancient breed from Ireland originally used in war and for hunting wolves and Irish elk. Nearly extinct by the 1860s but revived by Captain George Augustus Graham who standardized the breed.
+
+Temperament: Gentle, calm, dignified, courageous, loyal
+Breed group: Hound
+Origin: Ireland
+Life span: 6-8 years
+Weight: Male: 64-82; Female: 52-64 kg
+Height: Male: 81-89; Female: 76-84 cm

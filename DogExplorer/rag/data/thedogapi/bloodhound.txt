@@ -1,0 +1,15 @@
+Breed: Bloodhound
+Source: https://thedogapi.com
+
+Description:
+Large, substantial scent hound with a noble, dignified expression, characterized by exceptional tracking ability, distinctive wrinkled face, long drooping ears, loose skin, and pendulous jowls. Renowned for its extraordinary sense of smell and unparalleled tracking abilities.
+
+History:
+Ancient breed developed by monks at the Abbey of Saint-Hubert in Belgium and France during medieval times. Later refined in England and valued for centuries for tracking game and people, eventually imported to the US for search and rescue work.
+
+Temperament: Gentle, friendly, independent, alert, devoted, affectionate
+Breed group: Hound
+Origin: Belgium
+Life span: 10-12 years
+Weight: Male: 41-50; Female: 36-45 kg
+Height: Male: 64-69; Female: 58-64 cm

@@ -1,0 +1,15 @@
+Breed: Leonberger
+Source: https://thedogapi.com
+
+Description:
+Giant, majestic working dog with a lion-like appearance, thick water-resistant double coat, and gentle, balanced temperament. This powerful yet serene breed combines an imposing presence with a calm, patient demeanor.
+
+History:
+Developed in the 1840s by Heinrich Essig in Leonberg, Germany, crossing Newfoundlands, Saint Bernards, and Pyrenean Mountain Dogs to create a 'lion-like' dog resembling the lion on the town crest. Became popular companion for European royalty
+
+Temperament: Gentle, calm, loyal, friendly, intelligent, confident
+Breed group: Working
+Origin: Leonberg, Germany
+Life span: 7-9 years
+Weight: Male: 50-77; Female: 41-64 kg
+Height: Male: 71-80; Female: 65-75 cm

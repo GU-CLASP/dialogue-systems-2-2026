@@ -1,0 +1,15 @@
+Breed: Rat Terrier
+Source: https://thedogapi.com
+
+Description:
+Compact, energetic American terrier with smooth coat and athletic build, developed as a versatile all-purpose farm dog and vermin hunter
+
+History:
+Developed in early 20th century United States from European terriers brought by British migrants, including Fox Terrier and Manchester Terrier, for farm vermin control and companionship. President Theodore Roosevelt was a notable owner and credited with naming the breed. AKC recognition in 2013.
+
+Temperament: Alert, intelligent, energetic, friendly, playful, loyal
+Breed group: Terrier
+Origin: United States
+Life span: 12-18 years
+Weight: 4-11 kg
+Height: 25-46 cm

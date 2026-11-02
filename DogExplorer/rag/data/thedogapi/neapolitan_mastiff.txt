@@ -1,0 +1,15 @@
+Breed: Neapolitan Mastiff
+Source: https://thedogapi.com
+
+Description:
+Massive and powerful ancient guardian breed with distinctive heavily wrinkled face, loose skin, and imposing presence. Despite its formidable appearance, it is a steady and loyal companion with protective instincts.
+
+History:
+Ancient Italian guardian descended from Roman molossus war dogs. The modern breed was refined in the Naples region where it served as estate and farm guardian, and was revitalized in the mid-20th century as a distinct breed.
+
+Temperament: Protective, loyal, calm, confident, affectionate
+Breed group: Working
+Origin: Italy
+Life span: 7-9 years
+Weight: Male: 60-91; Female: 50-68 kg
+Height: Male: 66-79; Female: 61-74 cm

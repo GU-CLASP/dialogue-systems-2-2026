@@ -1,0 +1,15 @@
+Breed: Grand Basset Griffon Vendéen
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, long-backed, short-legged French scent hound with a rough, shaggy coat, noble head, and cheerful, independent personality bred for hunting hare and rabbit over rough terrain
+
+History:
+Developed in the Vendée region of France centuries ago from selective breeding of larger French scent hounds and the Grand Griffon to hunt small game over rough local terrain. The 'Grand' distinguishes it from the smaller Petit Basset Griffon Vendéen.
+
+Temperament: Happy, outgoing, independent, intelligent, courageous
+Breed group: Hound
+Origin: Vendée region, France
+Life span: 12-15 years
+Weight: 18-20.5 kg
+Height: 39-46 cm

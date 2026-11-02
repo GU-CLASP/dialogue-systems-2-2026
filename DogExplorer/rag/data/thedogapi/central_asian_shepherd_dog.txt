@@ -1,0 +1,15 @@
+Breed: Central Asian Shepherd Dog
+Source: https://thedogapi.com
+
+Description:
+An ancient, large, and powerful livestock guardian breed with massive bone structure and powerful muscles. Known for its courage, confidence, territorial nature, and natural protective instincts developed over thousands of years.
+
+History:
+Ancient breed originating over 5,000 years ago in the geographical area between the Ural Mountains, the Caspian Sea, Asia Minor, and Northwest China. Shaped by natural selection in harsh climates and constant struggle against predators, developed to guard livestock and property across Central Asian regions.
+
+Temperament: Independent, protective, confident, courageous, calm
+Breed group: Working
+Origin: Central Asia
+Life span: 12-15 years
+Weight: Male: 50-80; Female: 40-65 kg
+Height: Male: 69-81; Female: 61-69 cm

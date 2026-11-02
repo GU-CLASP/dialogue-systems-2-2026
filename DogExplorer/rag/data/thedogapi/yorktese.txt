@@ -1,0 +1,15 @@
+Breed: Yorktese
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Yorkshire Terrier and Maltese traits, known for its silky, low-shedding coat, spirited personality, and delicate build
+
+History:
+The Yorktese, also known as Morkie, is a modern designer crossbreed developed by intentionally crossing Yorkshire Terrier and Maltese to combine the low-shedding, silky coat of both breeds with a friendly and spirited temperament. Not recognized by major kennel clubs
+
+Temperament: Affectionate, playful, alert, intelligent, gentle, devoted
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 2-4 kg
+Height: 18-23 cm

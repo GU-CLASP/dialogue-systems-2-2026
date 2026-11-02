@@ -1,0 +1,15 @@
+Breed: Northern Inuit Dog
+Source: https://thedogapi.com
+
+Description:
+Large, athletic, wolf-like dog developed in the UK to resemble wolves while maintaining a domestic temperament suitable for companionship. Known for intelligence and loyalty but also independent nature.
+
+History:
+Developed in the UK from the late 1980s by Eddie Harrison (Edwina Harrison) crossing German Shepherds, Siberian Huskies, Alaskan Malamutes, and selected Inuit-type dogs to create a companion dog with wolf-like appearance. Not recognized by major international kennel clubs but governed by the Northern Inuit Society.
+
+Temperament: Friendly, intelligent, loyal, independent, gentle, alert
+Breed group: Mixed
+Origin: United Kingdom
+Life span: 12-15 years
+Weight: Male: 36-50; Female: 25-38 kg
+Height: Male: 58-76; Female: 58-71 cm

@@ -1,0 +1,15 @@
+Breed: Bouvier des Flandres
+Source: https://thedogapi.com
+
+Description:
+Large, powerfully built herding dog with a rugged appearance and rough, tousled double coat. This compact breed gives the impression of great strength without heaviness and has a dense weather-resistant coat suited for farm work.
+
+History:
+Developed by monks in the Flanders region of medieval Europe as cattle herding and all-purpose farm dog. Used to drive cattle, pull carts, and serve as a watchdog. Nearly extinct after World War I but revived by dedicated breeders.
+
+Temperament: Loyal, intelligent, protective, courageous, calm, gentle
+Breed group: Herding
+Origin: Belgium (Flanders region)
+Life span: 10-12 years
+Weight: 32-50 kg
+Height: Male: 62-70; Female: 60-67 cm

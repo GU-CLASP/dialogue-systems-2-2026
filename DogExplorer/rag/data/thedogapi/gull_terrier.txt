@@ -1,0 +1,15 @@
+Breed: Gull Terrier
+Source: https://thedogapi.com
+
+Description:
+An athletic, muscular, medium-sized landrace breed from Pakistan with a smooth coat and strong build. Known for its strength, tenacity, guarding instincts, and alert demeanor. Often predominantly white in color with strong predatory instincts.
+
+History:
+Developed in the Punjab region of Pakistan and India during the British Raj by crossing imported English Bull Terriers with local bully-type landrace dogs. Traditionally used for hunting, guarding, animal baiting, and rural protection. Maintains strong working abilities from its historical background.
+
+Temperament: Loyal, courageous, intelligent, protective, independent, energetic, alert
+Breed group: Terrier
+Origin: Pakistan (Punjab region)
+Life span: 10-14 years
+Weight: Male: 25-30; Female: 22-27 kg
+Height: Male: 46-56; Female: 43-53 cm

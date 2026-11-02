@@ -1,0 +1,15 @@
+Breed: Lucas Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy working terrier with a dense, shaggy wiry coat, specifically bred for a friendly, non-quarrelsome temperament while maintaining robust health and working ability
+
+History:
+Developed in the late 1940s by Sir Jocelyn Lucas crossing Norfolk Terriers and Sealyham Terriers to create a small, sturdy working terrier with a more companionable temperament and fewer health problems
+
+Temperament: Friendly, intelligent, alert, affectionate, adaptable
+Breed group: Terrier
+Origin: England
+Life span: 12-15 years
+Weight: Male: 6-9; Female: 5-9 kg
+Height: Male: 25-32; Female: 23-30 cm

@@ -1,0 +1,15 @@
+Breed: Lupo Italiano
+Source: https://thedogapi.com
+
+Description:
+Medium to large Italian working dog developed from wolf-dog crosses, resembling a wolf in appearance with a sturdy, athletic build and erect ears. Known for its wolf-like features, endurance, and suitability for specialized work such as search and rescue.
+
+History:
+Created in Italy in 1966 by Dr. Mario Messi through crossing a wild she-wolf from the Northern Apennines with German Shepherds. Developed under Italian government control for specialized utility roles including search and rescue, anti-poaching, and civil protection work.
+
+Temperament: Intelligent, loyal, alert, independent, work-focused
+Breed group: Working
+Origin: Italy
+Life span: 12-15 years
+Weight: Male: 30-40; Female: 25-35 kg
+Height: Male: 61-68; Female: 56-64 cm

@@ -1,0 +1,15 @@
+Breed: Beauceron
+Source: https://thedogapi.com
+
+Description:
+Large, powerful French herding dog with distinctive double dewclaws, short double coat, and black and tan markings. Known for its self-assured demeanor and versatility as both guardian and companion.
+
+History:
+Ancient French herding breed also known as Berger de Beauce, developed in plains surrounding Paris for herding and protecting sheep and cattle. Shares ancestry with the Briard, nearly extinct after World War II but saved by dedicated breeders. Also used for military and police work.
+
+Temperament: Intelligent, loyal, protective, courageous, confident
+Breed group: Herding
+Origin: France
+Life span: 10-12 years
+Weight: 32-50 kg
+Height: Male: 65-70; Female: 61-68 cm

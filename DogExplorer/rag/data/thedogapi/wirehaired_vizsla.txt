@@ -1,0 +1,15 @@
+Breed: Wirehaired Vizsla
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Hungarian sporting dog with a distinctive dense, wiry coat and golden rust coloring. Features a robust yet lean build and versatile hunting ability, bred for pointing and retrieving in harsh terrain.
+
+History:
+Developed in Hungary in the 1930s by crossing the smooth-coated Vizsla with German Wirehaired Pointers to create a wire-coated hunting dog with weather-resistant coat suitable for harsh terrain and cold water
+
+Temperament: Energetic, loyal, intelligent, affectionate, gentle
+Breed group: Sporting
+Origin: Hungary
+Life span: 12-14 years
+Weight: Male: 25-29; Female: 20-25 kg
+Height: Male: 58-64; Female: 55-58 cm

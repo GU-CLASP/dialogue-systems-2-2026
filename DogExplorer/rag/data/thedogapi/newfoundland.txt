@@ -1,0 +1,15 @@
+Breed: Newfoundland
+Source: https://thedogapi.com
+
+Description:
+Massive, powerful working dog known for exceptional water rescue abilities and gentle temperament. Often called the 'gentle giant,' this breed features a thick, water-resistant double coat, webbed feet, and natural swimming ability.
+
+History:
+Developed by fishermen on the island of Newfoundland for water rescue, hauling nets, and cart pulling. Descended from indigenous water dogs and European breeds brought by fishermen, recognized by major kennel clubs in the 19th century.
+
+Temperament: Gentle, loyal, devoted, calm, intelligent
+Breed group: Working
+Origin: Newfoundland, Canada
+Life span: 9-10 years
+Weight: Male: 59-68; Female: 45-54 kg
+Height: Male: 71-76; Female: 66-71 cm

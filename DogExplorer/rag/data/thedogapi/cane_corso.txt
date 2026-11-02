@@ -1,0 +1,15 @@
+Breed: Cane Corso
+Source: https://thedogapi.com
+
+Description:
+Large, powerful Italian mastiff-type dog with muscular, athletic build and confident demeanor. This intelligent and majestic breed was historically used as a guardian and hunter, known for its loyalty to family.
+
+History:
+Ancient Italian breed descended from Roman Molossian war dogs, developed as a versatile farmhand, guardian, and hunter of large game. The breed nearly faced extinction but was revived by enthusiasts in the 1970s.
+
+Temperament: Confident, protective, intelligent, loyal, affectionate
+Breed group: Working
+Origin: Italy
+Life span: 9-12 years
+Weight: Male: 45-50; Female: 40-45 kg
+Height: Male: 64-70; Female: 60-66 cm

@@ -1,0 +1,15 @@
+Breed: Armant
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Egyptian herding dog with a sturdy, well-muscled build and distinctive shaggy, wiry coat. Known for being courageous, protective, and alert with an intelligent expression.
+
+History:
+Named after the town of Armant along the Nile in Egypt, believed to have descended from European herding dogs, possibly Briards, brought by Napoleon's armies and crossed with native Egyptian dogs. Developed as versatile livestock guardians and herding dogs, officially recognized in Egypt as the national herding breed.
+
+Temperament: Loyal, courageous, intelligent, protective, alert
+Breed group: Herding
+Origin: Egypt
+Life span: 12-14 years
+Weight: 23-29 kg
+Height: 53-58 cm

@@ -1,0 +1,15 @@
+Breed: Chow Chow
+Source: https://thedogapi.com
+
+Description:
+An ancient, powerful, and sturdily built dog of Arctic spitz-type, known for its distinctive lion-like mane, unique blue-black tongue, stilted gait, and dense double coat
+
+History:
+One of the oldest recognizable breeds with origins dating back over 2,000 years in northern China, where it served as hunting, herding, guarding, and companion dog. Refined during Tang Dynasty and recognized by AKC in 1903.
+
+Temperament: Loyal, independent, aloof, alert, calm, protective
+Breed group: Non-Sporting
+Origin: China
+Life span: 8-12 years
+Weight: 20-32 kg
+Height: 43-51 cm

@@ -1,0 +1,15 @@
+Breed: Nureongi
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Korean landrace dog with characteristic yellowish coat, not a formally standardized breed but a distinct genetic group with spitz-type features including erect ears and curled tail
+
+History:
+Traditional Korean landrace dog meaning 'yellow one' with long presence in rural Korea. Historically served as multipurpose farm dog, livestock guardian, and watchdog. Not formally recognized by major kennel clubs but confirmed as distinct landrace group through genetic studies. Currently facing conservation efforts
+
+Temperament: Intelligent, alert, loyal, independent
+Breed group: Landrace
+Origin: Korea
+Life span: 12-15 years
+Weight: 16-25 kg
+Height: Male: 46-56; Female: 43-56 cm

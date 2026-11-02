@@ -1,0 +1,15 @@
+Breed: Mongrel
+Source: https://thedogapi.com
+
+Description:
+Mixed breed dog of unknown or varied ancestry, combining traits from multiple breeds. Physical characteristics, temperament, and health are highly variable and unpredictable, though often display hybrid vigor.
+
+History:
+Mixed breed dogs resulting from generations of natural or unintentional breeding between dogs of various ancestries. They have existed as long as domesticated dogs, predating modern purebred concepts, and are found worldwide though not recognized by kennel clubs.
+
+Temperament: Variable depending on ancestry and individual traits
+Breed group: Mixed
+Origin: Worldwide
+Life span: 10-16 years
+Weight: unknown kg
+Height: unknown cm

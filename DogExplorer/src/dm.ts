@@ -2,12 +2,14 @@ import { assign, createActor, fromPromise, setup } from "xstate";
 import { type Settings, speechstate } from "speechstate";
 import { KEY } from "./credentials";
 import type { DMContext, DMEvents, Message } from "./types";
+import { createInitialState, processDialogue } from "./processDialogue";
+import type { DialogueState } from "./dialogueState";
 
 const REGION = "swedencentral";
 
 const greeting: Message = { // for speechstate to speak at first
   role: "assistant",
-  content: "Hello! I can help you explore dog breeds. What kind of dog are you looking for?",
+  content: "Hi! I can help you explore dog breeds. Tell me what you're looking for, like size, energy or grooming, ask about a specific breed, or just say: show me some dogs.",
 }
 
 const azureCredentials = {
@@ -21,26 +23,12 @@ const settings: Settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  ttsDefaultVoice: "en-US-DavisNeural",
+  ttsDefaultVoice: "en-US-JennyNeural",
   bargeIn: false,
 };
 
-// llm helper function
-async function chatCompletion(utterance: string, sessionId: string): Promise<string> {
-  const response = await fetch("http://localhost:3001/api/dialogue",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId, utterance }),
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`DogExplorer backend error: ${response.status}`);
-  }
-
-  const result: { response: string } = await response.json();
-  return result.response;
+async function chatCompletion(utterance: string, dialogueState: DialogueState): Promise<string> {
+  return await processDialogue(utterance, dialogueState);
 }
 
 const dmMachine = setup({
@@ -68,8 +56,8 @@ const dmMachine = setup({
     })),
   },
   actors: {
-    chatCompletion: fromPromise<string, { utterance: string; sessionId: string }>(async ({ input }) => {
-      return await chatCompletion(input.utterance, input.sessionId);
+    chatCompletion: fromPromise<string, { utterance: string; dialogueState: DialogueState }>(async ({ input }) => {
+      return await chatCompletion(input.utterance, input.dialogueState);
     }),
   },
 }).createMachine({
@@ -78,7 +66,7 @@ const dmMachine = setup({
     spstRef: spawn(speechstate, { input: settings }),
     lastResult: null,
     messages: [],
-    sessionId: crypto.randomUUID(),
+    dialogueState: createInitialState(),
     currentUtterance: null,
   }),
 
@@ -159,11 +147,18 @@ const dmMachine = setup({
             assign({currentUtterance: null,}),
             {
               type: "append",
-              params: {
-                message: {
-                  role: "assistant",
-                  content: "Sorry, I didn't hear you. Could you repeat that?",
-                },
+              params: ({ context }) => {
+                // repeat what the system said last, so the user hears the pending question again
+                const NO_INPUT_PREFIX = "Sorry, I didn't hear you. ";
+                const lastSystemMessage = [...context.messages].reverse().find(message => message.role === "assistant");
+                const repeated = lastSystemMessage?.content.replace(NO_INPUT_PREFIX, "") ?? "Could you repeat that?";
+
+                return {
+                  message: {
+                    role: "assistant",
+                    content: NO_INPUT_PREFIX + repeated,
+                  },
+                };
               },
             },
           ],
@@ -176,7 +171,7 @@ const dmMachine = setup({
             src: "chatCompletion", // actor source
             input: ({ context }) => ({
               utterance: context.currentUtterance ?? "",
-              sessionId: context.sessionId,
+              dialogueState: context.dialogueState,
             }),
             onDone: { // when the promise actor completed successfully, we know actor would return a string
               actions: {

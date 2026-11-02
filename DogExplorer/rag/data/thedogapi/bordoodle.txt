@@ -1,0 +1,15 @@
+Breed: Bordoodle
+Source: https://thedogapi.com
+
+Description:
+An intelligent and energetic medium-to-large crossbreed combining the herding instincts and work ethic of the Border Collie with the low-shedding coat and athleticism of the Poodle, creating a highly trainable companion
+
+History:
+Developed in the late 20th/early 21st century by crossing Border Collies with Standard Poodles to create a highly intelligent, low-shedding companion. Part of the popular 'doodle' designer breed trend
+
+Temperament: Intelligent, energetic, loyal, playful, eager to please
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 16-29; Female: 14-25 kg
+Height: Male: 46-64; Female: 43-56 cm

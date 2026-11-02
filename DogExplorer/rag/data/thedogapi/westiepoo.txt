@@ -1,0 +1,15 @@
+Breed: Westiepoo
+Source: https://thedogapi.com
+
+Description:
+Small crossbreed combining the spirited West Highland White Terrier with the intelligent Miniature Poodle, featuring a curly or wavy low-shedding coat, compact body, and lively temperament
+
+History:
+Designer crossbreed that gained popularity in the United States starting in the 1990s, developed by crossing West Highland White Terriers with Miniature Poodles to create a small, intelligent companion with reduced shedding and the sturdy, confident nature of the Westie
+
+Temperament: Friendly, intelligent, playful, alert, confident
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 7-14; Female: 6-13 kg
+Height: Male: 25-43; Female: 25-41 cm

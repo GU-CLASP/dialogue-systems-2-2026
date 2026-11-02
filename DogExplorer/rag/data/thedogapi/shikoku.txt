@@ -1,0 +1,15 @@
+Breed: Shikoku
+Source: https://thedogapi.com
+
+Description:
+A medium-sized, primitive spitz-type hunting dog from Japan with a wolf-like appearance, compact build, and dense double coat. Known for its keen senses, endurance, and spirited yet cautious nature.
+
+History:
+Ancient Japanese breed developed for hunting wild boar and deer in mountainous regions of Kochi Prefecture on Shikoku Island. Declared Japanese Natural Monument in 1937 for preservation, maintained in relative isolation.
+
+Temperament: Alert, loyal, energetic, intelligent, courageous, independent
+Breed group: Spitz and Primitive Types
+Origin: Shikoku Island, Japan
+Life span: 10-15 years
+Weight: Male: 16-25; Female: 16-20 kg
+Height: Male: 47-55; Female: 44-52 cm

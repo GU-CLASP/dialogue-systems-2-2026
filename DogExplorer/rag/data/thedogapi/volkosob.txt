@@ -1,0 +1,15 @@
+Breed: Volkosob
+Source: https://thedogapi.com
+
+Description:
+A large, powerful wolf-dog hybrid developed in Russia for military and border patrol duties, combining the physical attributes and enhanced senses of a wolf with the working ability of a German Shepherd. This experimental crossbreed features a robust build designed for specialized working applications.
+
+History:
+Developed in the early 2000s at the Perm Institute of Internal Troops in Russia through experimental crossbreeding program between a female Carpathian grey wolf named Naida and specially selected German Shepherds. Bred for superior sense of smell, stamina, and strength for military and border security roles.
+
+Temperament: Intelligent, alert, loyal, protective, work-focused, confident
+Breed group: Mixed
+Origin: Perm, Russia
+Life span: 10-14 years
+Weight: Male: 38-48; Female: 32-41 kg
+Height: Male: 64-71; Female: 61-66 cm

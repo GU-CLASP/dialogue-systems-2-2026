@@ -1,0 +1,15 @@
+Breed: Curly-Coated Retriever
+Source: https://thedogapi.com
+
+Description:
+Large, elegant retriever and one of the oldest retriever breeds, distinguished by its distinctive tight, water-resistant curly coat and confident, athletic temperament
+
+History:
+One of the oldest retriever breeds, developed in England during the 18th-19th century from English Water Spaniel, St. John's Newfoundland, and Poodle ancestry, prized by gamekeepers for waterfowl hunting versatility
+
+Temperament: Confident, intelligent, independent, loyal, energetic
+Breed group: Sporting
+Origin: England
+Life span: 10-12 years
+Weight: 27-43 kg
+Height: Male: 64-69; Female: 58-64 cm

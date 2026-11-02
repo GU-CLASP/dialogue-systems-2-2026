@@ -1,0 +1,15 @@
+Breed: Azawakh
+Source: https://thedogapi.com
+
+Description:
+Elegant, tall sighthound from West Africa with a lean, muscular build, fine coat, and long legs built for speed and endurance in desert conditions of the Sahel region
+
+History:
+Ancient sighthound breed developed by nomadic Tuareg peoples of the Sahel region for hunting gazelle and other game, protecting livestock, and serving as companions. Bred for speed and stamina in Saharan and Sahelian conditions
+
+Temperament: Independent, loyal, alert, protective, affectionate, aloof
+Breed group: Hound
+Origin: West Africa (Sahel region: Mali, Niger, Burkina Faso)
+Life span: 12-15 years
+Weight: Male: 20-25; Female: 15-20 kg
+Height: Male: 63-74; Female: 60-70 cm

@@ -1,0 +1,15 @@
+Breed: Bernese Mountain Dog
+Source: https://thedogapi.com
+
+Description:
+Large, strong, and sturdy working dog with a distinctive long tricolored coat and calm, gentle temperament. One of four types of Swiss Mountain Dogs, known for being good-natured, loyal, and an excellent family companion.
+
+History:
+One of four types of Swiss Mountain Dogs originating in the canton of Bern. Served as all-purpose farm dogs for droving cattle, pulling carts to market, and watchdogs. Nearly extinct by early 1900s but revived through careful breeding programs
+
+Temperament: Calm, gentle, loyal, intelligent, affectionate, good-natured
+Breed group: Working
+Origin: Switzerland
+Life span: 7-10 years
+Weight: Male: 36-52; Female: 32-43 kg
+Height: Male: 64-70; Female: 58-66 cm

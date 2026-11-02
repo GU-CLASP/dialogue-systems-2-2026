@@ -1,0 +1,15 @@
+Breed: Otterhound
+Source: https://thedogapi.com
+
+Description:
+Large, shaggy-coated scent hound with webbed feet and waterproof double coat, bred for hunting otters in medieval England. Known for its boisterous and amiable temperament, keen nose, and distinctive love of water.
+
+History:
+Developed in medieval England for otter hunting, perfected for water work with webbed feet, oily double coat, and powerful scenting ability. Nearly extinct when otter hunting was banned in 1978, now among the rarest British breeds.
+
+Temperament: Friendly, gentle, independent, energetic, amiable
+Breed group: Hound
+Origin: England
+Life span: 10-13 years
+Weight: Male: 43-54; Female: 34-45 kg
+Height: Male: 66-74; Female: 58-69 cm

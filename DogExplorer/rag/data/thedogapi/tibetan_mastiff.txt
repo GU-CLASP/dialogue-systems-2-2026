@@ -1,0 +1,15 @@
+Breed: Tibetan Mastiff
+Source: https://thedogapi.com
+
+Description:
+An ancient and imposing guardian breed with massive size, noble bearing, and dense double coat. Known for its independent nature, impressive presence, and deep, powerful bark.
+
+History:
+Ancient guardian breed developed in the isolated Himalayas, used by Tibetan nomads and monasteries to protect livestock, villages, and property. Considered a progenitor of many modern mastiff breeds.
+
+Temperament: Independent, protective, intelligent, loyal, calm
+Breed group: Working
+Origin: Tibet
+Life span: 10-12 years
+Weight: Male: 45-73; Female: 34-54 kg
+Height: Male: 66-74; Female: 61-69 cm

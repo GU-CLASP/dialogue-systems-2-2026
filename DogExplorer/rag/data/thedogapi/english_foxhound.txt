@@ -1,0 +1,15 @@
+Breed: English Foxhound
+Source: https://thedogapi.com
+
+Description:
+Large, athletic scent hound with classic pack-hound build, bred for fox hunting with exceptional endurance and stamina. Features a short, hard, dense coat and powerful, musical voice with distinctive bay.
+
+History:
+Developed in England since the 16th century specifically for fox hunting, with studbooks maintained by the Masters of Foxhounds Association since the 1700s representing some of the most complete breed records
+
+Temperament: Friendly, energetic, gentle, independent, courageous
+Breed group: Hound
+Origin: England
+Life span: 10-13 years
+Weight: Male: 27-34; Female: 27-29 kg
+Height: Male: 56-64; Female: 53-61 cm

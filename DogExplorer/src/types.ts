@@ -1,32 +1,29 @@
-import type { Hypothesis, SpeechStateExternalEvent } from "speechstate";
+import type {Hypothesis, SpeechStateExternalEvent} from "speechstate";
 import type { AnyActorRef } from "xstate";
-
+import type { DialogueState } from "./dialogueState";
 
 export type Breed = {
+  id: string;
+  name: string;
+  life_span: string | null;
+  temperament: string | null;
+  origin: string | null;
+  description: string | null;
+  breed_group: string | null;
+  weight?: {
+    imperial?: string; // in pounds
+    metric?: string; // kligrams
+  };
+  height?: {
+    imperial?: string; //inches
+    metric?: string; // centimeters
+  };
+  image?: {
     id: string;
-    name: string;
-    life_span: string | null;
-    temperament: string | null;
-    origin: string | null;
-    description: string | null;
-    breed_group: string | null;
-
-    weight: {
-        imperical: string;
-        metric: string;
-    };
-
-    height: {
-        imperical: string;
-        metric: string;
-    };
-
-    image?: {
-        id: string;
-        url: string;
-        width: number;
-        height: number;
-    };
+    url: string;
+    width: number;
+    height: number;
+  };
 };
 
 export type Message = {
@@ -39,8 +36,10 @@ export interface DMContext {
   lastResult: Hypothesis[] | null;
   messages: Message[];
 
-  sessionId: string; // conversation on node backend, preferences are remembered between turns
-  currentUtterance: string | null;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+  dialogueState: DialogueState;
+
+  // Latest recognized user utterance
+  currentUtterance: string | null;
 }
 
-export type DMEvents = | SpeechStateExternalEvent | { type: "CLICK" } | { type: "DONE" };
+export type DMEvents = SpeechStateExternalEvent| { type: "CLICK" } | { type: "DONE" };

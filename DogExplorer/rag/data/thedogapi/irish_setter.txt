@@ -1,0 +1,15 @@
+Breed: Irish Setter
+Source: https://thedogapi.com
+
+Description:
+Elegant, athletic gundog known for its stunning mahogany or rich chestnut red flowing coat and high-energy, friendly temperament
+
+History:
+Developed in 18th-century Ireland as a versatile gundog for setting and retrieving game birds by crossing Irish Water Spaniel, English Setter, and Pointer. The breed's striking mahogany color became a hallmark in the 19th century, distinguishing it from earlier red-and-white setters
+
+Temperament: Friendly, outgoing, energetic, intelligent, playful, affectionate
+Breed group: Sporting
+Origin: Ireland
+Life span: 12-15 years
+Weight: Male: 27-34; Female: 24-29 kg
+Height: Male: 66-74; Female: 61-69 cm

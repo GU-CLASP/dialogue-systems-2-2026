@@ -1,0 +1,15 @@
+Breed: Africanis
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic landrace dog indigenous to Southern Africa with variable appearance and short coat, naturally evolved through centuries of selection by African communities and adapted to harsh environments
+
+History:
+Ancient landrace breed indigenous to Southern Africa, naturally developed by African communities over thousands of years through natural selection rather than deliberate breeding. Recognized by the Kennel Union of Southern Africa as an emerging breed but not by major international kennel clubs.
+
+Temperament: Intelligent, loyal, alert, adaptable, independent
+Breed group: Primitive
+Origin: Southern Africa
+Life span: 10-15 years
+Weight: Male: 25-34; Female: 20-32 kg
+Height: Male: 50-60; Female: 48-60 cm

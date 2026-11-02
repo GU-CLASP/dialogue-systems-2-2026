@@ -1,0 +1,15 @@
+Breed: Tibetan Spaniel
+Source: https://thedogapi.com
+
+Description:
+Small, compact companion breed with a silky double coat and lion-like mane around the face, known as a 'little lion'. Originally bred by Buddhist monks as monastery watchdogs and companions, featuring an alert expression and confident demeanor.
+
+History:
+Ancient breed prized in Tibetan monasteries for over 2,000 years, developed by Buddhist monks to serve as companions and watchdogs on monastery walls. Often given as treasured gifts to royalty and dignitaries.
+
+Temperament: Intelligent, alert, independent, playful, confident, affectionate
+Breed group: Non-Sporting
+Origin: Tibet
+Life span: 12-15 years
+Weight: 4-7 kg
+Height: 24-28 cm

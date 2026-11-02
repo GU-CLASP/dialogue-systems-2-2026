@@ -1,0 +1,15 @@
+Breed: Bulldog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized muscular dog with loose wrinkled skin, distinctive wrinkled face, and pushed-in nose, known for its gentle but courageous disposition
+
+History:
+Originally developed in medieval England for bull-baiting, descended from ancient mastiff-type dogs. After blood sports were outlawed in 1835, refined into the gentle companion breed known today
+
+Temperament: Friendly, courageous, calm, docile, loyal
+Breed group: Non-Sporting
+Origin: England
+Life span: 8-10 years
+Weight: Male: 23-25; Female: 18-23 kg
+Height: 36-38 cm

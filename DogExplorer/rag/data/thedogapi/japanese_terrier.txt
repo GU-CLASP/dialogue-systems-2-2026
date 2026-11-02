@@ -1,0 +1,15 @@
+Breed: Japanese Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, compact terrier with distinctive short, smooth coat and lively, alert disposition. Characterized by its clean-cut, smart appearance and cheerful character, this breed combines typical terrier alertness with a friendly companion nature.
+
+History:
+Descended from Smooth Fox Terriers brought to Japan by Dutch traders in the 17th century, crossed with native Japanese dogs. Refined as companions in port cities like Kobe and Yokohama with planned breeding beginning around 1920 and official recognition by Japan Kennel Club in 1930.
+
+Temperament: Lively, alert, intelligent, playful, affectionate
+Breed group: Terrier
+Origin: Japan
+Life span: 12-15 years
+Weight: 2.5-4 kg
+Height: 30-33 cm

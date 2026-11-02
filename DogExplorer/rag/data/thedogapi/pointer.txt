@@ -1,0 +1,15 @@
+Breed: Pointer
+Source: https://thedogapi.com
+
+Description:
+An athletic and graceful medium-large sporting dog renowned for its speed, stamina, and keen nose. Known for its characteristic pointing stance and aristocratic demeanor, the Pointer is a hard-driving hunting companion with exceptional field abilities.
+
+History:
+The Pointer's ancestors are believed to have originated in Spain and were brought to England in the early 1700s. Developed by crossing Spanish Pointers with local scent and setter-type dogs, the breed was refined by British sportsmen into the premier bird-hunting gundog known for its iconic pointing stance.
+
+Temperament: Intelligent, loyal, energetic, affectionate, even-tempered, adaptable
+Breed group: Sporting
+Origin: England
+Life span: 12-17 years
+Weight: Male: 25-34; Female: 20-30 kg
+Height: Male: 64-71; Female: 58-66 cm

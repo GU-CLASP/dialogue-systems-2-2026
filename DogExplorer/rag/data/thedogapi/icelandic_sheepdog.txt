@@ -1,0 +1,15 @@
+Breed: Icelandic Sheepdog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized spitz-type herding dog with thick weatherproof double coat, prick ears, and curved bushy tail, known for its cheerful and inquisitive nature
+
+History:
+Iceland's only native dog breed, brought by Viking settlers around 874-930 AD and bred in isolation for centuries. Essential for herding sheep and livestock in harsh Icelandic conditions
+
+Temperament: Friendly, alert, energetic, intelligent, playful, confident, hardy
+Breed group: Herding
+Origin: Iceland
+Life span: 12-14 years
+Weight: Male: 14-16; Female: 11-14 kg
+Height: Male: 46-51; Female: 42-47 cm

@@ -1,0 +1,15 @@
+Breed: Cockapoo
+Source: https://thedogapi.com
+
+Description:
+Popular crossbreed between Cocker Spaniel and Poodle with soft, wavy or curly coat and friendly temperament. One of the oldest and most popular 'designer' breeds, known for intelligence, affectionate nature, and low-shedding coat.
+
+History:
+One of the first 'designer breeds' with intentional breeding starting in the United States in the 1960s. Goal was to combine the outgoing, loving personality of the Cocker Spaniel with the low-shedding, intelligent nature of the Poodle to create a healthy companion dog
+
+Temperament: Friendly, intelligent, affectionate, playful, outgoing
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 5-11 kg
+Height: 25-38 cm

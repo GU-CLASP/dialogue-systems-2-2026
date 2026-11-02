@@ -1,0 +1,15 @@
+Breed: Boerboel
+Source: https://thedogapi.com
+
+Description:
+Large, powerful mastiff-type guardian breed from South Africa with a muscular build, short dense coat, and confident temperament. Known as a family guardian, the name 'Boerboel' translates to 'farmer's dog' in Afrikaans.
+
+History:
+Developed by Dutch and other European settlers in South Africa starting in the 1600s from European mastiff breeds and native dogs. Bred as all-purpose farm dogs for protecting homesteads from predators.
+
+Temperament: Confident, intelligent, loyal, protective, calm
+Breed group: Working
+Origin: South Africa
+Life span: 9-11 years
+Weight: Male: 68-91; Female: 50-68 kg
+Height: Male: 61-69; Female: 56-64 cm

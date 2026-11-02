@@ -1,0 +1,14 @@
+Breed: Basenji
+Source: https://thedogapi.com
+
+Description:
+Small, elegant sighthound from Central Africa with a tightly curled tail, wrinkled forehead, and smooth coat. Known as the 'barkless dog' for its unique yodel-like vocalizations instead of traditional barking.
+
+History:
+Ancient breed originating in Central Africa, depicted in Egyptian and Babylonian art. Prized by Pygmy tribes and Congo region tribes as versatile hunters for their speed and silence. Brought to England in the 1930s and established in the West.
+
+Temperament: Independent, intelligent, alert, energetic, curious, affectionate
+Breed group: Hound
+Origin: Central Africa
+Weight: Male: 10-12; Female: 9-11 kg
+Height: Male: 41-44.5; Female: 38-42 cm

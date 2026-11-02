@@ -1,0 +1,15 @@
+Breed: German Shepherd
+Source: https://thedogapi.com
+
+Description:
+Large, athletic working dog with erect ears, noble expression, and confident bearing. Known for high intelligence, loyalty, courage, and versatility in herding and working roles.
+
+History:
+Developed in 1899 by Captain Max von Stephanitz to create the ideal herding dog, standardized from local shepherd dogs. Intelligence and trainability led to worldwide use in police and military roles.
+
+Temperament: Confident, courageous, intelligent, loyal, protective
+Breed group: Herding
+Origin: Germany
+Life span: 9-13 years
+Weight: Male: 29-41; Female: 23-32 kg
+Height: Male: 61-66; Female: 56-61 cm

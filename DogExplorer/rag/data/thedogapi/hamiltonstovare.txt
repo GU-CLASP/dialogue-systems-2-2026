@@ -1,0 +1,15 @@
+Breed: Hamiltonstövare
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Swedish tricolor scent hound with athletic build and noble appearance, bred for endurance and skill in hunting fox and hare over challenging terrain
+
+History:
+Developed in the late 19th century by Count Adolf Patrick Hamilton using English Foxhounds, Harriers, and German hounds including Holsteiner Hounds to create a dedicated Swedish hunting breed
+
+Temperament: Friendly, energetic, intelligent, alert, independent
+Breed group: Hound
+Origin: Sweden
+Life span: 10-14 years
+Weight: 23-34 kg
+Height: Male: 52-61; Female: 48-57 cm

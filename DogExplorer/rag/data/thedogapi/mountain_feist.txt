@@ -1,0 +1,15 @@
+Breed: Mountain Feist
+Source: https://thedogapi.com
+
+Description:
+Small to medium-sized hunting dog with compact, muscular build and short coat, developed in the southern United States for treeing small game. Known for exceptional agility, alertness, and tenacious hunting ability.
+
+History:
+Developed by pioneers and settlers in the rural mountainous regions of the southern United States for hunting small game. Descended from various terriers and hunting dogs brought by European immigrants, bred for tenacity, intelligence, and treeing ability.
+
+Temperament: Energetic, alert, intelligent, courageous, loyal
+Breed group: Hound
+Origin: Southern United States (Appalachian and Ozark Mountains)
+Life span: 10-15 years
+Weight: 5-14 kg
+Height: 30-46 cm

@@ -1,0 +1,15 @@
+Breed: Thai Bangkaew Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized spitz-type dog with a fox-like face, thick double coat, pricked ears, and plumed tail, known for its loyalty and protective nature
+
+History:
+Originated from Wat Bangkaew monastery in early 20th century from a cross between a native domestic dog and wild canid. Developed as guard dog and companion in rural Thailand, traditionally kept as watchdogs. Recognized by FCI in Group 5.
+
+Temperament: Alert, loyal, protective, intelligent, independent
+Breed group: Spitz and Primitive Types
+Origin: Bangkaew, Phitsanulok Province, Thailand
+Life span: 12-14 years
+Weight: Male: 16-20.5; Female: 14-18 kg
+Height: Male: 46-53; Female: 41-51 cm

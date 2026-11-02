@@ -1,0 +1,15 @@
+Breed: Alpine Dachsbracke
+Source: https://thedogapi.com
+
+Description:
+Sturdy, short-legged Austrian scent hound with dense double coat, originally bred for tracking wounded game in high-altitude Alpine terrain. Built low-to-the-ground with a robust, weather-resistant build designed for rugged mountainous conditions.
+
+History:
+Developed in the Austrian Alps during the mid-19th century as a durable scent hound for tracking wounded deer, boar, and hare over rugged terrain. Descended from larger Austrian hounds crossed with Dachshunds, it was a favorite of Crown Prince Rudolf of Habsburg and is officially recognized by the FCI.
+
+Temperament: Intelligent, courageous, loyal, work-focused, energetic
+Breed group: Hound
+Origin: Austria
+Life span: 12-14 years
+Weight: 15-18 kg
+Height: 34-42 cm

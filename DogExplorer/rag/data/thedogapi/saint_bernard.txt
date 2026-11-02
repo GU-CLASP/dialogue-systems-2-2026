@@ -1,0 +1,15 @@
+Breed: Saint Bernard
+Source: https://thedogapi.com
+
+Description:
+A powerful, giant-sized working breed from the Swiss Alps with distinctive markings and massive head, originally bred for mountain rescue. Known for its gentle, patient nature and calm temperament.
+
+History:
+Developed by monks at the Great St. Bernard Hospice on the border of Switzerland and Italy for rescue work in treacherous Alpine conditions. Used to locate and rescue travelers lost in snow and fog of dangerous Alpine passes
+
+Temperament: Gentle, friendly, calm, patient, loyal, protective
+Breed group: Working
+Origin: Switzerland
+Life span: 8-10 years
+Weight: Male: 64-82; Female: 54-64 kg
+Height: Male: 71-76; Female: 66-71 cm

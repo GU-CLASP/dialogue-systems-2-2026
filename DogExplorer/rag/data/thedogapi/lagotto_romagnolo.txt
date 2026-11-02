@@ -1,0 +1,14 @@
+Breed: Lagotto Romagnolo
+Source: https://thedogapi.com
+
+Description:
+Medium-sized rustic water retriever with dense, curly, waterproof coat and exceptional sense of smell, specialized as the world's premier truffle-hunting dog
+
+History:
+Ancient breed from the Romagna region of Italy, originally used as a water retriever in the marshlands. When the marshes were drained, the breed was adapted and became the world's premier truffle-hunting dog.
+
+Temperament: Affectionate, intelligent, energetic, loyal, alert, work-focused
+Breed group: Sporting
+Origin: Romagna region, Italy
+Weight: Male: 13-16; Female: 11-14 kg
+Height: Male: 43-48; Female: 41-46 cm

@@ -1,0 +1,15 @@
+Breed: Basset Artésien Normand
+Source: https://thedogapi.com
+
+Description:
+A French short-legged scenthound with a long back, noble head, very long ears, and tricolour or bicolour coat, known for its tenacity on the trail and affectionate nature at home
+
+History:
+Developed in France from the older Basset d'Artois and Basset Normand breeds, standardized around 1924 by Léon Verrier for hunting small game like rabbit and hare either alone or in packs
+
+Temperament: Affectionate, calm, gentle, intelligent, friendly
+Breed group: Hound
+Origin: Artois and Normandy regions, France
+Life span: 12-15 years
+Weight: 15-20 kg
+Height: 30-36 cm

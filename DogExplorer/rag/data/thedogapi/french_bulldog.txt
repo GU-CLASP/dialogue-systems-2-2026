@@ -1,0 +1,15 @@
+Breed: French Bulldog
+Source: https://thedogapi.com
+
+Description:
+Small, compact muscular companion dog known for its distinctive large bat-like ears, flat smooshed face, and short smooth coat. Originally developed as a beloved companion breed with a playful, alert disposition.
+
+History:
+Developed in 19th century France when English lacemakers brought Toy Bulldogs to France and crossed them with local French ratters becoming highly fashionable in Parisian society
+
+Temperament: Affectionate, playful, alert, adaptable, smart
+Breed group: Non-Sporting
+Origin: France
+Life span: 10-12 years
+Weight: 7-13 kg
+Height: 28-33 cm

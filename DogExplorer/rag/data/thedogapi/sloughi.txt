@@ -1,0 +1,15 @@
+Breed: Sloughi
+Source: https://thedogapi.com
+
+Description:
+Ancient, elegant North African sighthound with lean athletic build and smooth short coat, bred by Berber and Bedouin tribes for hunting in desert terrain. Known for its noble, graceful appearance and reserved temperament.
+
+History:
+Ancient sighthound breed developed by Berber and Bedouin tribes in North Africa for hunting desert game such as gazelle, hare, fox, and jackal over vast distances. Highly prized for speed, endurance, and graceful gait in harsh desert conditions. Recognized by FCI and AKC.
+
+Temperament: Independent, gentle, loyal, intelligent, reserved
+Breed group: Hound
+Origin: North Africa
+Life span: 12-15 years
+Weight: Male: 23-32; Female: 16-23 kg
+Height: Male: 66-74; Female: 61-69 cm

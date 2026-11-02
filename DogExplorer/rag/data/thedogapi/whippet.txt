@@ -1,0 +1,15 @@
+Breed: Whippet
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, sleek sighthound known for its elegant athletic build with distinctive 'inverted S' shape, explosive bursts of speed, and gentle nature. Originally known as the 'poor man's racehorse'.
+
+History:
+Developed in Northern England during the 18th-19th centuries by working-class families, crossing small Greyhounds with fast terriers for rabbit coursing and racing. Recognized by AKC and The Kennel Club.
+
+Temperament: Gentle, affectionate, calm, intelligent, playful
+Breed group: Hound
+Origin: England
+Life span: 12-15 years
+Weight: 11-18 kg
+Height: Male: 48-56; Female: 46-53 cm

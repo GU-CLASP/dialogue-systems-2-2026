@@ -1,0 +1,15 @@
+Breed: Lurcher
+Source: https://thedogapi.com
+
+Description:
+Athletic, lean sighthound crossbreed combining speed, agility, and stamina, traditionally used for hunting and coursing. Known for versatility as a cross between sighthounds and pastoral or terrier breeds.
+
+History:
+Traditional British and Irish crossbreed combining sighthounds (primarily Greyhounds) with terriers, pastoral, or herding breeds. Developed by traveling communities and poachers who needed fast, silent, and efficient hunting dogs for coursing and poaching.
+
+Temperament: Intelligent, gentle, loyal, affectionate, athletic, independent
+Breed group: Mixed
+Origin: Great Britain and Ireland
+Life span: 12-15 years
+Weight: Male: 27-36; Female: 23-32 kg
+Height: Male: 66-76; Female: 61-71 cm

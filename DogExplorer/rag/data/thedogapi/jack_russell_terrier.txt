@@ -1,0 +1,15 @@
+Breed: Jack Russell Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, energetic earth-working terrier with a predominantly white coat and sturdy build, known for its bold, athletic nature and lively temperament, originally bred for fox hunting
+
+History:
+Developed in southern England during the mid-1800s by Reverend John Russell for fox hunting, bred to bolt foxes from dens. The shorter-legged variety standard was primarily developed in Australia.
+
+Temperament: Energetic, intelligent, alert, courageous, confident, playful
+Breed group: Terrier
+Origin: England
+Life span: 12-14 years
+Weight: 6-8 kg
+Height: 25-30 cm

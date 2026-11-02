@@ -1,0 +1,15 @@
+Breed: Sapsali
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Korean breed with long, shaggy coat covering the eyes and robust build, originally kept as a spiritual guardian believed to dispel evil spirits and bring good fortune
+
+History:
+Ancient Korean breed traditionally believed to dispel evil spirits and bring good fortune. Nearly extinct during Japanese occupation but saved through dedicated preservation efforts by professors at Kyungpook National University, leading to designation as National Treasure
+
+Temperament: Loyal, gentle, friendly, protective, intelligent, patient
+Breed group: Non-Sporting
+Origin: Korea
+Life span: 10-14 years
+Weight: Male: 16-28; Female: 14-25 kg
+Height: Male: 48-58; Female: 46-56 cm

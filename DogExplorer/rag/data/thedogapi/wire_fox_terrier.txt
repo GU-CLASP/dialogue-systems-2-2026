@@ -1,0 +1,15 @@
+Breed: Wire Fox Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, compact terrier with distinctive dense wiry coat, beard, and alert expression. This bold, energetic breed was developed for fox hunting and combines confidence with an independent spirit.
+
+History:
+Developed in England in the 18th-19th century for fox hunting, working to bolt foxes above and below ground alongside hounds. One of the oldest terrier breeds recognized by major kennel clubs.
+
+Temperament: Alert, confident, energetic, intelligent, playful
+Breed group: Terrier
+Origin: England
+Life span: 12-15 years
+Weight: Male: 7.7-8.6; Female: 6.8-7.7 kg
+Height: Male: 38-39; Female: 36-39 cm

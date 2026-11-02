@@ -1,0 +1,15 @@
+Breed: Braque d'Auvergne
+Source: https://thedogapi.com
+
+Description:
+Medium-sized French pointing breed with distinctive black and white ticked coat marked with patches and speckles, noble head, and athletic build
+
+History:
+Ancient French pointing breed from Auvergne region with history predating the French Revolution, refined in 18th-19th centuries with modern standard established in 20th century, recognized by FCI
+
+Temperament: Gentle, intelligent, affectionate, devoted, work-focused
+Breed group: Sporting
+Origin: Auvergne region, France
+Life span: 12-15 years
+Weight: Male: 22-30; Female: 20-28 kg
+Height: Male: 56-63; Female: 53-61 cm

@@ -1,0 +1,15 @@
+Breed: Australian Shepherd
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, agile herding dog with striking multicolored coat, expressive eyes, and keen herding instincts. Known for their intense work drive and weather-resistant double coat.
+
+History:
+Despite its name, the Australian Shepherd was developed in the American West in the 19th century from Basque shepherd dogs brought by immigrants from the Pyrenees region. The breed's intelligence and versatility made it popular on the rodeo circuit and for ranching work.
+
+Temperament: Intelligent, energetic, work-focused, loyal, devoted, athletic
+Breed group: Herding
+Origin: Western United States
+Life span: 12-15 years
+Weight: Male: 23-29; Female: 18-25 kg
+Height: Male: 51-58; Female: 46-53 cm

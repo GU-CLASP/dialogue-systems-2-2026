@@ -1,0 +1,15 @@
+Breed: Welsh Hound
+Source: https://thedogapi.com
+
+Description:
+Medium to large-sized, powerful and athletic scent hound with strong pack hunting instincts, built for stamina and endurance over rough Welsh terrain. Known for its distinct, ringing voice and rugged, weatherproof coat.
+
+History:
+Ancient breed descended from Celtic hounds, developed over centuries in Wales for fox hunting over difficult terrain. A distinct strain of British Foxhound adapted for Welsh conditions, officially recognized by the Kennel Club in 1922.
+
+Temperament: Energetic, intelligent, independent, alert, loyal, gentle
+Breed group: Hound
+Origin: Wales
+Life span: 10-13 years
+Weight: Male: 25-32; Female: 23-29 kg
+Height: Male: 58-61; Female: 56-58 cm

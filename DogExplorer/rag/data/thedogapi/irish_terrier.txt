@@ -1,0 +1,14 @@
+Breed: Irish Terrier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized terrier with a distinctive wiry, fiery red coat and bold, spirited temperament. Known for its courage and loyalty, it is one of the oldest terrier breeds.
+
+History:
+One of the oldest terrier breeds, developed in County Cork, Ireland as all-purpose farm dogs for hunting vermin and guarding homes. Their courage was proven in World War I where they served as messenger dogs and sentinels.
+
+Temperament: Courageous, loyal, intelligent, energetic, spirited
+Breed group: Terrier
+Origin: Ireland
+Weight: Male: 11-13; Female: 11-12 kg
+Height: Male: 46-48; Female: 43-48 cm

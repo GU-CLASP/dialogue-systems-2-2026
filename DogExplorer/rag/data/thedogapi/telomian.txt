@@ -1,0 +1,15 @@
+Breed: Telomian
+Source: https://thedogapi.com
+
+Description:
+Medium-sized primitive spitz-type dog from Malaysia with distinctive upright ears, curled tail, and compact athletic build. Known for its unique climbing ability and originally developed by the Orang Asli people for hunting and pest control.
+
+History:
+Originated among the Orang Asli indigenous people of Malaysia as a vermin hunter and camp watchdog. Their unique climbing ability evolved from entering raised stilt houses. First documented pair brought to United States in 1963 by anthropologist Dr. Orville Elliot.
+
+Temperament: Intelligent, alert, independent, loyal, energetic
+Breed group: Pariah
+Origin: Malaysia
+Life span: 12-15 years
+Weight: 8-13 kg
+Height: 38-48 cm

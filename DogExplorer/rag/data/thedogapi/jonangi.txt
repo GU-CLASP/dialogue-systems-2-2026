@@ -1,0 +1,15 @@
+Breed: Jonangi
+Source: https://thedogapi.com
+
+Description:
+Medium-sized agile Indian spitz-type dog with short smooth coat, webbed feet, and pricked ears. Known for its unique yodel-like vocalization and traditionally used for duck herding, hunting, and fishing activities.
+
+History:
+Ancient landrace from coastal Andhra Pradesh traditionally used by fishermen and shepherding communities for duck herding, hunting small game, and fishing activities. Faced near-extinction but recent preservation efforts are underway.
+
+Temperament: Energetic, intelligent, loyal, alert, independent
+Breed group: Primitive
+Origin: Andhra Pradesh, India
+Life span: 12-15 years
+Weight: Male: 13-23; Female: 13-20 kg
+Height: Male: 43-53; Female: 41-51 cm

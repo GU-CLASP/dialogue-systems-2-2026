@@ -1,0 +1,15 @@
+Breed: Patagonian Sheepdog
+Source: https://thedogapi.com
+
+Description:
+A medium-to-large, hardy herding dog developed in the harsh climate of Patagonia, known for its dense, weather-resistant double coat, strong work ethic, and unwavering loyalty to its handlers
+
+History:
+Developed in the late 19th and early 20th centuries from various European sheepdogs brought by settlers to the Patagonian regions of Chile and Argentina. Through natural selection in the harsh environment, it evolved into a distinct landrace uniquely suited for herding sheep in the region's challenging climate. Not recognized by major kennel clubs but established in Patagonian ranching communities
+
+Temperament: Intelligent, loyal, work-focused, protective, energetic, independent
+Breed group: Herding
+Origin: Patagonia (Chile/Argentina)
+Life span: 12-15 years
+Weight: Male: 22-30; Female: 21-29 kg
+Height: Male: 52-58; Female: 48-54 cm

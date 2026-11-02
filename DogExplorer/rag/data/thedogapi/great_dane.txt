@@ -1,0 +1,15 @@
+Breed: Great Dane
+Source: https://thedogapi.com
+
+Description:
+Giant, regal breed known as the 'Apollo of Dogs' with a powerful, well-muscled body, sleek coat, and dignified presence combined with noble bearing despite imposing size
+
+History:
+Originally bred by German nobility from Mastiff-type dogs to hunt wild boar and deer, later refined as estate guardians and companions. Declared national dog of Germany in 1876 and standardized as 'Deutsche Dogge'
+
+Temperament: Friendly, gentle, confident, loyal, affectionate
+Breed group: Working
+Origin: Germany
+Life span: 7-10 years
+Weight: Male: 64-79; Female: 50-64 kg
+Height: Male: 76-81; Female: 71-76 cm

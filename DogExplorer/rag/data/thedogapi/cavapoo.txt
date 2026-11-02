@@ -1,0 +1,15 @@
+Breed: Cavapoo
+Source: https://thedogapi.com
+
+Description:
+Small companion crossbreed combining Cavalier King Charles Spaniel and Poodle traits, known for its soft wavy or curly coat, friendly nature, and affectionate temperament
+
+History:
+Modern designer crossbreed first intentionally developed in Australia in the 1990s by crossing Cavalier King Charles Spaniel with Poodle, aiming to create a friendly family companion with low-shedding coat suitable for allergy sufferers
+
+Temperament: Affectionate, intelligent, friendly, playful, gentle, outgoing
+Breed group: Mixed
+Origin: Australia
+Life span: 10-15 years
+Weight: 5-11 kg
+Height: 23-36 cm

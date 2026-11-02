@@ -1,0 +1,15 @@
+Breed: Harrier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized athletic scent hound bred for pack hunting hare, resembling a smaller English Foxhound with sturdy build, short dense coat, and excellent stamina
+
+History:
+Developed in medieval England for hare hunting in packs, documented since at least the 13th century. Likely descended from English Foxhound, Talbot Hounds, and other French hounds
+
+Temperament: Friendly, outgoing, energetic, intelligent, gentle
+Breed group: Hound
+Origin: England
+Life span: 12-15 years
+Weight: 20-27 kg
+Height: 48-53 cm

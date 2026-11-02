@@ -1,0 +1,15 @@
+Breed: Staffordshire Bull Terrier
+Source: https://thedogapi.com
+
+Description:
+Compact, muscular, and stocky terrier with broad head and strong build, known for great strength, agility, courage, and affectionate nature with family
+
+History:
+Developed in 19th-century Staffordshire, England by crossing bulldogs with local terriers for bull-baiting and dog fighting. After these sports were banned, breeders refined the breed into the affectionate and reliable family companion known today
+
+Temperament: Courageous, intelligent, affectionate, loyal, confident, energetic
+Breed group: Terrier
+Origin: Staffordshire, England
+Life span: 12-14 years
+Weight: Male: 13-17; Female: 11-15 kg
+Height: 36-41 cm

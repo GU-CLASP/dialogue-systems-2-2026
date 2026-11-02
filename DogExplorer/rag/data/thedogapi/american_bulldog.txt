@@ -1,0 +1,15 @@
+Breed: American Bulldog
+Source: https://thedogapi.com
+
+Description:
+A powerful, athletic, short-coated dog of the molosser type with a broad head and muscular build, known for its confidence, strength, and loyalty as a family companion and guardian. Originally bred for farm work and protection.
+
+History:
+Descended from Old English Bulldogs brought by working-class immigrants to the American South. Developed as versatile all-around farm utility dogs for guarding property, catching livestock, and protection. The breed was preserved from near extinction after WWII by breeders John D. Johnson and Alan Scott.
+
+Temperament: Confident, loyal, protective, energetic, affectionate, courageous
+Breed group: Working
+Origin: United States
+Life span: 10-12 years
+Weight: Male: 34-45; Female: 27-36 kg
+Height: Male: 56-64; Female: 51-58 cm

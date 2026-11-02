@@ -1,0 +1,15 @@
+Breed: Landseer
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and agile dog of the molossoid type, distinguished by its striking white coat with black patches. Known for exceptional swimming ability and gentle nature, the Landseer (European Continental Type) is taller and more athletic than its Newfoundland cousin, bred specifically for water rescue work.
+
+History:
+Named after 19th-century painter Sir Edwin Landseer who frequently depicted these dogs in his work. Developed as a distinct breed in Germany and Switzerland from Newfoundland dogs to preserve the taller, more agile structure. Recognized as separate breed by FCI in 1960.
+
+Temperament: Gentle, calm, intelligent, loyal, devoted, protective
+Breed group: Working
+Origin: Germany/Switzerland
+Life span: 8-11 years
+Weight: Male: 50-68; Female: 45-59 kg
+Height: Male: 71-80; Female: 66-72 cm

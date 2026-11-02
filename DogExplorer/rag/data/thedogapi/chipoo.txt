@@ -1,0 +1,15 @@
+Breed: Chipoo
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining the sassy, spirited personality of the Chihuahua with the intelligence and low-shedding coat of the Toy Poodle, resulting in a compact, alert companion with varied coat types
+
+History:
+Modern designer crossbreed developed in the United States by crossing a Chihuahua with a Toy Poodle to combine the Poodle's intelligence and low-shedding coat with the Chihuahua's spirited personality and compact companion size
+
+Temperament: Intelligent, alert, playful, affectionate, energetic, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 2-7 kg
+Height: 13-30 cm

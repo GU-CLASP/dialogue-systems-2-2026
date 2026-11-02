@@ -1,0 +1,15 @@
+Breed: Greenland Dog
+Source: https://thedogapi.com
+
+Description:
+A powerful, heavy-built spitz-type dog of ancient origin with thick double coat, bred for endurance as a sled dog in harsh Arctic conditions. One of the world's oldest dog breeds with erect ears and a tail that curls over the back.
+
+History:
+One of the world's oldest dog breeds, descended from dogs brought to Greenland by the Thule people over 1,000 years ago. Kept in purest form by the Inuit as essential partner for sled pulling and hunting in harsh Arctic environment.
+
+Temperament: Independent, energetic, courageous, loyal, athletic, confident
+Breed group: Working
+Origin: Greenland
+Life span: 10-14 years
+Weight: 30-32 kg
+Height: Male: 58-70; Female: 50-61 cm

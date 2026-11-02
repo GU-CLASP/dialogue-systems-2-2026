@@ -1,0 +1,15 @@
+Breed: Pekingese
+Source: https://thedogapi.com
+
+Description:
+Small, compact toy dog of Chinese nobility with a long, profuse double coat, distinctive flat-faced expression, rolling gait, and regal bearing originally bred for Chinese royalty
+
+History:
+Ancient breed developed in Chinese imperial court and held sacred in the Imperial Palace in Peking (now Beijing). Exclusively owned by royalty for over 1000 years until Western dogs were brought to England after British troops entered the Forbidden City in 1860 during the Opium Wars.
+
+Temperament: Loyal, independent, confident, courageous, affectionate, alert
+Breed group: Toy
+Origin: China
+Life span: 12-14 years
+Weight: 3.2-6.4 kg
+Height: 15-23 cm

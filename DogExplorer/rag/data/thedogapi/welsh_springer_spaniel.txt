@@ -1,0 +1,15 @@
+Breed: Welsh Springer Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, compact gundog with a distinctive red and white coat and straight, silky feathering. Known for its happy disposition, boundless energy, and versatility in the field as a sporting spaniel built for endurance.
+
+History:
+Ancient Welsh breed developed as a versatile gundog to flush and retrieve game birds, mentioned in Welsh laws dating to 300 AD. Officially recognized as distinct from other land spaniels by The Kennel Club in 1902 and AKC in 1906.
+
+Temperament: Friendly, loyal, energetic, intelligent, affectionate, eager to please
+Breed group: Sporting
+Origin: Wales
+Life span: 12-15 years
+Weight: Male: 18-25; Female: 16-23 kg
+Height: Male: 46-48; Female: 43-46 cm

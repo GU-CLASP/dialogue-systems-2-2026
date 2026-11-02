@@ -1,0 +1,15 @@
+Breed: Bearded Collie
+Source: https://thedogapi.com
+
+Description:
+Medium-sized herding dog with long, shaggy double coat and animated expression, known for its boisterous, charismatic personality and distinctive bouncing gait
+
+History:
+Ancient Scottish herding breed developed to drive sheep and cattle in harsh Highland conditions, bred for hardiness, intelligence, and ability to work independently. Nearly extinct after World War II but revived through careful breeding programs. Recognized by Kennel Club in 1959 and AKC in 1977.
+
+Temperament: Intelligent, energetic, playful, affectionate, alert, confident, outgoing
+Breed group: Herding
+Origin: Scotland
+Life span: 12-14 years
+Weight: 20-25 kg
+Height: Male: 53-56; Female: 51-53 cm

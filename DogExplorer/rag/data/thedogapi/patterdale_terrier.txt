@@ -1,0 +1,15 @@
+Breed: Patterdale Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, compact, and tough working terrier developed in the Lake District of England for hunting and dispatching vermin. Known for its strong build, endurance, and confident, work-focused nature with smooth or broken coat.
+
+History:
+Developed in the Lake District of Northern England in the early 20th century as a tough, game working terrier for fox hunting and vermin control in rocky fells. Bred for stamina, courage, and ability to work in tight burrows. Not currently recognized by major kennel clubs.
+
+Temperament: Energetic, courageous, confident, independent, alert, work-focused
+Breed group: Terrier
+Origin: England (Lake District)
+Life span: 10-13 years
+Weight: 5-6 kg
+Height: 25-38 cm

@@ -1,0 +1,15 @@
+Breed: Basset Hound
+Source: https://thedogapi.com
+
+Description:
+Low-slung, heavy-boned scent hound with distinctive long, velvety ears, mournful expression, and loose skin. Known for powerful tracking ability and calm demeanor.
+
+History:
+Developed by French aristocrats from hounds bred at the Abbey of St. Hubert for hunting small game in dense cover. Low-slung body perfected for trailing rabbits and hare, later refined in England for pack hunting.
+
+Temperament: Friendly, calm, gentle, loyal, independent, devoted
+Breed group: Hound
+Origin: France
+Life span: 12-13 years
+Weight: 18-30 kg
+Height: 33-38 cm

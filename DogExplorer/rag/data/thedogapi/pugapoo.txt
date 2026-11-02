@@ -1,0 +1,15 @@
+Breed: Pugapoo
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Pug and Poodle traits, featuring a compact build with wavy or curly coat and lively, affectionate temperament. Appearance varies significantly depending on genetic inheritance from parent breeds.
+
+History:
+Modern designer crossbreed developed in late 20th century by crossing Pug with Poodle to combine affectionate comical Pug temperament with Poodle intelligence and potentially lower-shedding coat. Not recognized by major kennel clubs.
+
+Temperament: Affectionate, playful, intelligent, outgoing, adaptable
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 6-14 kg
+Height: 25-38 cm

@@ -1,0 +1,15 @@
+Breed: Poochon
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Toy Poodle intelligence with Bichon Frisé cheerfulness, featuring a hypoallergenic curly coat and playful, affectionate personality
+
+History:
+Modern designer crossbreed developed in the late 1990s and early 2000s to combine the hypoallergenic qualities and intelligence of the Toy Poodle with the cheerful, friendly temperament of the Bichon Frisé
+
+Temperament: Friendly, intelligent, playful, affectionate, outgoing, adaptable
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 3-8 kg
+Height: 23-38 cm

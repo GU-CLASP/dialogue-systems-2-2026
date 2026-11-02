@@ -1,0 +1,15 @@
+Breed: Rottsky
+Source: https://thedogapi.com
+
+Description:
+Large, athletic mixed breed with well-muscled build and thick double coat, combining the strength and loyalty of the Rottweiler with the endurance and independent spirit of the Siberian Husky. Physical appearance and temperament can vary significantly.
+
+History:
+Modern designer crossbreed created by breeding Rottweiler with Siberian Husky, aiming to blend guarding instincts and loyalty with stamina and intelligence. Not recognized by major kennel clubs.
+
+Temperament: Intelligent, loyal, energetic, protective, athletic, confident
+Breed group: Mixed
+Origin: United States
+Life span: 10-14 years
+Weight: Male: 25-61; Female: 23-50 kg
+Height: Male: 53-69; Female: 51-64 cm

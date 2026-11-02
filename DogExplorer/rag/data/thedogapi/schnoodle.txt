@@ -1,0 +1,15 @@
+Breed: Schnoodle
+Source: https://thedogapi.com
+
+Description:
+A crossbreed between a Poodle and a Schnauzer, combining intelligence, charming personality, and low-shedding coat. This mixed breed companion dog is known for its playful nature, with size and appearance varying significantly depending on the parent breeds used.
+
+History:
+Developed in the United States starting in the 1980s as a designer crossbreed created to combine the Poodle's intelligence and low-shedding coat with the Schnauzer's sturdiness and alert nature for companion and family purposes
+
+Temperament: Intelligent, loyal, playful, alert, affectionate, devoted, energetic
+Breed group: Mixed
+Origin: United States
+Life span: 10-16 years
+Weight: 4.5-36 kg
+Height: 25-66 cm

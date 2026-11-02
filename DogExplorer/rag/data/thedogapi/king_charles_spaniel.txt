@@ -1,0 +1,15 @@
+Breed: King Charles Spaniel
+Source: https://thedogapi.com
+
+Description:
+Small, compact toy spaniel with distinctive domed head, flat face, short nose, large dark eyes, long ears, and silky coat available in four color varieties (Blenheim, Tricolour, Ruby, and Black and Tan). Known as the English Toy Spaniel in the USA.
+
+History:
+Descended from toy spaniels popular with European nobility since the 16th century, famously associated with King Charles II who favored companion spaniels. Modern flat-faced appearance developed through crossings with short-nosed Asian toy breeds in the 18th-19th centuries. The four color varieties were once considered separate breeds.
+
+Temperament: Gentle, affectionate, intelligent, friendly, happy, playful
+Breed group: Toy
+Origin: England
+Life span: 10-12 years
+Weight: 3.6-6.3 kg
+Height: 23-28 cm

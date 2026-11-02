@@ -1,0 +1,15 @@
+Breed: Bakharwal Dog
+Source: https://thedogapi.com
+
+Description:
+Large, powerful mountain dog bred for guarding livestock in the Himalayas, featuring a dense double coat and strong protective instincts
+
+History:
+Ancient livestock guardian of the Bakharwal and Gujjar tribes, used for centuries in the Himalayas for flock protection
+
+Temperament: Loyal, protective, intelligent, courageous, independent
+Breed group: Working
+Origin: Jammu and Kashmir, India
+Life span: 9-13 years
+Weight: 35-60 kg
+Height: Male: 61-76; Female: 56-71 cm

@@ -1,0 +1,15 @@
+Breed: Schipperke
+Source: https://thedogapi.com
+
+Description:
+Small, compact, tailless spitz-type dog with a distinctive fox-like face, thick double coat, and abundant ruff around the neck. Known as the 'little captain', this agile black dog has a confident demeanor and alert expression.
+
+History:
+Developed in the Flemish regions of Belgium as a canal barge watchdog and ratter. The name means 'little captain' and the breed served as an adept guardian and vermin hunter on Belgian waterways for centuries.
+
+Temperament: Alert, confident, energetic, intelligent, independent, curious
+Breed group: Non-Sporting
+Origin: Belgium
+Life span: 12-14 years
+Weight: 4.5-7 kg
+Height: 25-33 cm

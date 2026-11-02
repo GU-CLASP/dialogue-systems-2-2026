@@ -1,0 +1,15 @@
+Breed: Miniature Bull Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, muscular terrier with distinctive egg-shaped head and spirited, mischievous personality. A strongly built breed known for its playful and comical nature.
+
+History:
+Developed in 19th-century England as a smaller version of the Bull Terrier by selecting for smaller size while maintaining distinctive characteristics. Initially used for ratting and vermin control, evolved into companion dogs prized for courage and comical nature. Recognized by AKC in 1991.
+
+Temperament: Playful, energetic, courageous, loyal, mischievous, outgoing
+Breed group: Terrier
+Origin: England
+Life span: 11-13 years
+Weight: 8-13 kg
+Height: 25-36 cm

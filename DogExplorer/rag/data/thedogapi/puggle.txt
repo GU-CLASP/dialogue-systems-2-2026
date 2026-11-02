@@ -1,0 +1,15 @@
+Breed: Puggle
+Source: https://thedogapi.com
+
+Description:
+Small to medium-sized mixed breed crossbreed between a Pug and Beagle, known for its wrinkled, hound-like face, sturdy body, and energetic, affectionate nature
+
+History:
+Designer crossbreed first bred in the 1980s in the United States, gaining significant popularity in the early 2000s. Intentionally created by crossing Pug with Beagle to combine the affectionate nature of the Pug with the energetic traits of the Beagle
+
+Temperament: Friendly, playful, affectionate, outgoing, energetic, intelligent
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 6-14 kg
+Height: 25-38 cm

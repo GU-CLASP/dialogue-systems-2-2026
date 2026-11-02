@@ -1,0 +1,15 @@
+Breed: Bluetick Coonhound
+Source: https://thedogapi.com
+
+Description:
+Large, athletic, and muscular scenthound with distinctive blue-ticked coat pattern and renowned 'cold nose' trailing ability, bred specifically for tracking and treeing raccoons
+
+History:
+Developed in Louisiana from French Grand Bleu de Gascogne hounds crossed with English Foxhounds, American Foxhounds, and other local coonhound breeds, perfected for raccoon hunting in American terrain
+
+Temperament: Friendly, intelligent, loyal, devoted, work-focused
+Breed group: Hound
+Origin: United States
+Life span: 11-12 years
+Weight: Male: 25-36; Female: 20-29 kg
+Height: Male: 56-69; Female: 53-64 cm

@@ -1,0 +1,15 @@
+Breed: Chortai
+Source: https://thedogapi.com
+
+Description:
+Rare, elegant sighthound from Central Asia with athletic build and short coat, bred for exceptional speed and endurance when coursing game across harsh steppe terrain
+
+History:
+Ancient sighthound breed developed in the steppe regions of Kazakhstan and southern Russia for hunting hare, fox, and larger game. Bred purely for function—speed, stamina, and hunting ability—across vast steppes. Nearly extinct after Russian Revolution but preserved by enthusiasts.
+
+Temperament: Independent, intelligent, loyal, athletic, calm
+Breed group: Hound
+Origin: Southern Russia/Central Asia
+Life span: 11-13 years
+Weight: Male: 25-35; Female: 23-32 kg
+Height: Male: 64-74; Female: 61-71 cm

@@ -1,0 +1,15 @@
+Breed: Dingo
+Source: https://thedogapi.com
+
+Description:
+An ancient, primitive wild canid native to Australia with a lean, medium-sized build, wolf-like appearance, pricked ears, and bushy tail. Recognized for its reddish-tan coat and high intelligence, it is considered a wild dog rather than a domesticated breed.
+
+History:
+Ancient wild canid that arrived in Australia approximately 3,500-4,000 years ago, establishing itself as the continent's apex predator and adapting to diverse harsh Australian environments
+
+Temperament: Independent, alert, intelligent, adaptable
+Breed group: Primitive/Wild Canid
+Origin: Australia
+Life span: 10-15 years
+Weight: Male: 13-20; Female: 11-18 kg
+Height: Male: 48-60; Female: 45-58 cm

@@ -1,0 +1,15 @@
+Breed: Eurasier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Spitz-type dog with balanced proportions and thick, plush double coat that comes in a variety of colors. Known for its calm, devoted nature and confident temperament.
+
+History:
+Developed in Germany in the 1960s by Julius Wipfel by crossing Chow Chow, Wolfspitz (Keeshond), and Samoyed to create an ideal Spitz-type family companion dog. Recognized by the FCI.
+
+Temperament: Calm, confident, loyal, intelligent, gentle, reserved
+Breed group: Non-Sporting
+Origin: Germany
+Life span: 12-14 years
+Weight: Male: 23-32; Female: 18-26 kg
+Height: Male: 52-60; Female: 48-56 cm

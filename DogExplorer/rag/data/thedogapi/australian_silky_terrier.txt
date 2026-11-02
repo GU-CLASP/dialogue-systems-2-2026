@@ -1,0 +1,14 @@
+Breed: Australian Silky Terrier
+Source: https://thedogapi.com
+
+Description:
+A small, spirited toy terrier with a refined but substantial build, characterized by its long, straight, glossy blue-and-tan silky coat that is parted down the middle and lively, alert demeanor
+
+History:
+Developed in Australia in the late 19th century by crossing Yorkshire Terriers with Australian Terriers to create a small companion dog with a long, silky coat, combining hardiness with refined features and vermin hunting ability
+
+Temperament: Friendly, intelligent, alert, energetic, confident
+Breed group: Toy
+Origin: Australia
+Weight: 3.5-5 kg
+Height: 23-25 cm

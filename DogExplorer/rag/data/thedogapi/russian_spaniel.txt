@@ -1,0 +1,15 @@
+Breed: Russian Spaniel
+Source: https://thedogapi.com
+
+Description:
+Small to medium-sized sporting dog with long, silky coat and feathered ears, known for its energetic, friendly nature. The only gundog breed developed in Russia, this sturdy flushing spaniel was created for hunting game birds in Russian terrain.
+
+History:
+Developed in the Soviet Union after World War II by crossing English Cocker Spaniels, English Springer Spaniels, and other European spaniels to create a versatile gundog suited to the vast and varied terrain of Russia. The first official breed standard was established in 1951.
+
+Temperament: Energetic, friendly, intelligent, devoted, loyal
+Breed group: Sporting
+Origin: Russia
+Life span: 12-14 years
+Weight: Male: 13-16; Female: 11-14 kg
+Height: Male: 38-43; Female: 36-41 cm

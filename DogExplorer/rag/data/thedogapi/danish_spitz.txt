@@ -1,0 +1,15 @@
+Breed: Danish Spitz
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, compact spitz-type dog with a dense white double coat, pricked ears, and curled tail carried over the back. Known for its friendly, lively disposition and wedge-shaped head with alert expression.
+
+History:
+An old Danish landrace breed used on farms as an all-purpose companion, watchdog, and vermin catcher. The breed faced near extinction in the 20th century but was revived by dedicated breeders and officially recognized by the Danish Kennel Club in 1988
+
+Temperament: Friendly, alert, intelligent, energetic, loyal
+Breed group: Non-Sporting
+Origin: Denmark
+Life span: 12-15 years
+Weight: Male: 12-18; Female: 10-15 kg
+Height: Male: 40-49; Female: 39-46 cm

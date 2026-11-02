@@ -1,0 +1,15 @@
+Breed: Tang Dog
+Source: https://thedogapi.com
+
+Description:
+A medium-sized, ancient Chinese landrace dog with athletic build, thick double coat, and curled tail. Known for its primitive appearance, loyalty, intelligence, and protective temperament.
+
+History:
+An ancient, indigenous Chinese landrace dog that has served for centuries as a versatile farm and family dog in southern China, especially in Hong Kong and the Pearl River Delta. Valued for guarding, hunting, and companionship, this breed is closely related to other primitive East Asian breeds and is currently the subject of preservation efforts to standardize and protect it.
+
+Temperament: Loyal, intelligent, independent, protective, alert
+Breed group: Non-Sporting
+Origin: China
+Life span: 12-16 years
+Weight: Male: 15-25; Female: 12-20 kg
+Height: Male: 45-55; Female: 40-50 cm

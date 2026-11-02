@@ -1,0 +1,15 @@
+Breed: Drever
+Source: https://thedogapi.com
+
+Description:
+Short-legged, long-bodied Swedish scent hound with distinctive white markings, known for endurance, keen nose, and even-tempered nature. Built for tracking deer and game over difficult terrain with robust, agile construction.
+
+History:
+Developed in early 20th century Sweden from German Westphalian Dachsbracke imported around 1910, refined to be slower and better suited for driving deer toward hunters. Name 'Drever' officially adopted in 1947 by Swedish Kennel Club.
+
+Temperament: Alert, calm, friendly, intelligent, loyal, even-tempered, courageous
+Breed group: Hound
+Origin: Sweden
+Life span: 12-15 years
+Weight: 14-18 kg
+Height: 30-38 cm

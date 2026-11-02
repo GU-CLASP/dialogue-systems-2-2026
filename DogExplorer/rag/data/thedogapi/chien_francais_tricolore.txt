@@ -1,0 +1,15 @@
+Breed: Chien Français Tricolore
+Source: https://thedogapi.com
+
+Description:
+Large, elegant, and powerful French scenthound with distinctive tricolor coat, built for speed and endurance while pack hunting large game, particularly deer
+
+History:
+Created in the mid-20th century by Henri de Falandre by crossing the Poitevin and the Gascon-Saintongeois for large game hunting particularly deer. Officially recognized by the FCI in 1957
+
+Temperament: Work-focused, intelligent, energetic, loyal, athletic, alert
+Breed group: Hound
+Origin: France
+Life span: 10-12 years
+Weight: Male: 28-35; Female: 25-30 kg
+Height: Male: 62-72; Female: 60-68 cm

@@ -1,0 +1,15 @@
+Breed: Kangal Shepherd Dog
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and heavy-boned livestock guardian dog with distinctive fawn coat, black mask and ears, and curled tail, bred for protecting flocks from predators
+
+History:
+Ancient livestock guardian breed originating from the Kangal district in the Sivas province of Turkey. For centuries used by shepherds to protect flocks from wolves, bears, and jackals. Considered a national treasure in Turkey and valued for strength, loyalty, and independence.
+
+Temperament: Loyal, protective, independent, calm, intelligent, alert
+Breed group: Working
+Origin: Sivas, Turkey
+Life span: 12-15 years
+Weight: Male: 50-66; Female: 41-54 kg
+Height: Male: 76-81; Female: 71-76 cm

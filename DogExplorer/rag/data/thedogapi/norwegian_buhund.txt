@@ -1,0 +1,15 @@
+Breed: Norwegian Buhund
+Source: https://thedogapi.com
+
+Description:
+An ancient Nordic spitz-type herding dog with a compact, square build, dense double coat, curled tail, and alert expression. Known for their cheerful disposition and intelligence, this energetic breed combines sturdy construction with an agile, confident demeanor.
+
+History:
+An ancient Nordic spitz-type breed from Norway with roots tracing back to the Viking age, where their skeletons have been found in Viking graves. They served as versatile farm dogs, primarily for herding sheep and cattle, and as loyal watchdogs and companions.
+
+Temperament: Intelligent, energetic, friendly, confident, alert, loyal, playful
+Breed group: Herding
+Origin: Norway
+Life span: 12-15 years
+Weight: Male: 14-18; Female: 12-16 kg
+Height: Male: 43-47; Female: 41-45 cm

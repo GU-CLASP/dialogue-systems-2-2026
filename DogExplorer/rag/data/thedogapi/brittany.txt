@@ -1,0 +1,15 @@
+Breed: Brittany
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, compact and leggy sporting dog with an athletic build and distinctive orange and white feathered coat. Known for its versatility in pointing and retrieving, this agile gundog combines high energy for hunting and field work with an intelligent and happy-go-lucky disposition.
+
+History:
+Developed in the 17th-18th century in the Brittany province of France as a versatile hunting dog capable of pointing and retrieving on various terrain. Refined through crosses with English Setters and recognized by AKC in 1934.
+
+Temperament: Intelligent, energetic, eager to please, friendly, athletic, happy
+Breed group: Sporting
+Origin: Brittany (Bretagne), France
+Life span: 12-15 years
+Weight: 14-18 kg
+Height: 44-52 cm

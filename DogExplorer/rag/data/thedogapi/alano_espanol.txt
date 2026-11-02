@@ -1,0 +1,15 @@
+Breed: Alano Español
+Source: https://thedogapi.com
+
+Description:
+A large, athletic Molosser-type dog with a powerful, agile build and brachycephalic head. This robust Spanish breed has a short coat, serious expression, and strong working instincts, historically used as a catch dog for large game and cattle work.
+
+History:
+Ancient Spanish Molosser breed tied to dogs brought by Alani tribes in 5th century. Traditionally used for hunting large game, cattle herding, and guard work. Nearly extinct but recovered in late 20th century from remaining specimens in rural Spain.
+
+Temperament: Loyal, courageous, protective, intelligent, confident
+Breed group: Working
+Origin: Spain
+Life span: 10-14 years
+Weight: Male: 34-40; Female: 30-38 kg
+Height: Male: 58-65; Female: 55-61 cm

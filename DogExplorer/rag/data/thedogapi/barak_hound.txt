@@ -1,0 +1,15 @@
+Breed: Barak Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized rough-coated scent hound with distinctive tricolor coat, bred for hunting in mountainous terrain across the Balkans
+
+History:
+Descended from local hounds in the Balkans, developed for hunting wild boar and game in mountainous terrain. Recognized by FCI as the Bosnian Coarse-haired Hound (Bosanski Oštrodlaki Gonič – Barak)
+
+Temperament: Energetic, intelligent, alert, independent, courageous
+Breed group: Hound
+Origin: Bosnia and Herzegovina
+Life span: 12-14 years
+Weight: 17-25 kg
+Height: Male: 51-56; Female: 48-53 cm

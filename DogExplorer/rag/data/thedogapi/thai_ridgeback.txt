@@ -1,0 +1,15 @@
+Breed: Thai Ridgeback
+Source: https://thedogapi.com
+
+Description:
+An ancient, medium-sized hound known for the distinctive ridge of hair running along its back, with a muscular, athletic build and an independent, protective nature
+
+History:
+An ancient, primitive breed native to eastern Thailand, developed for hunting small game, vermin control, and serving as a guard dog. Its isolation in the region preserved its unique characteristics, including the dorsal ridge, for centuries. One of only three breeds with hair ridge.
+
+Temperament: Intelligent, loyal, independent, protective, athletic, alert
+Breed group: Hound
+Origin: Thailand
+Life span: 12-13 years
+Weight: Male: 23-34; Female: 16-25 kg
+Height: Male: 56-61; Female: 51-56 cm

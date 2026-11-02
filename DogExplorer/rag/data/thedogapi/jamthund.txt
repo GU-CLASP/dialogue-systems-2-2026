@@ -1,0 +1,15 @@
+Breed: Jämthund
+Source: https://thedogapi.com
+
+Description:
+Large, athletic spitz-type hunting dog from Sweden with wolf-like appearance and strong build, known for its endurance and courageous nature in hunting large game under harsh Nordic conditions
+
+History:
+Developed over centuries in Jämtland province of Sweden as versatile hunter of large game like moose and bear, officially recognized as distinct breed in 1946 by Swedish Kennel Club and FCI
+
+Temperament: Courageous, intelligent, calm, independent, alert, loyal, devoted
+Breed group: Hound
+Origin: Jämtland, Sweden
+Life span: 12-13 years
+Weight: Male: 30-40; Female: 25-35 kg
+Height: Male: 57-65; Female: 52-60 cm

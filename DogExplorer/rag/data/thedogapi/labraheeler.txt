@@ -1,0 +1,15 @@
+Breed: Labraheeler
+Source: https://thedogapi.com
+
+Description:
+Medium to large athletic crossbreed combining the loyal, hard-working nature of the Australian Cattle Dog with the friendly, outgoing temperament of the Labrador Retriever. This intelligent and energetic mixed breed features a short double coat and strong work ethic.
+
+History:
+Modern designer crossbreed developed in recent decades, primarily in North America and Australia. Created to combine the intelligence, work ethic, and sturdiness of the Australian Cattle Dog with the friendly and trainable nature of the Labrador Retriever.
+
+Temperament: Intelligent, energetic, loyal, alert, friendly, work-focused
+Breed group: Mixed
+Origin: United States, Australia
+Life span: 12-15 years
+Weight: Male: 18-36; Female: 16-32 kg
+Height: Male: 46-62; Female: 43-60 cm

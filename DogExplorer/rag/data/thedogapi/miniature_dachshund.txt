@@ -1,0 +1,15 @@
+Breed: Miniature Dachshund
+Source: https://thedogapi.com
+
+Description:
+A small, elongated scent hound breed originating from Germany. Originally bred to flush out rabbits and small quarry from burrows, the Miniature Dachshund is clever, playful, and courageous, known for its distinct long-backed and short-legged silhouette.
+
+History:
+Developed in Germany during the 18th and 19th centuries by breeding standard Dachshunds down to a smaller size to pursue smaller quarry like rabbits. Recognized as a distinct size variety by kennel clubs worldwide.
+
+Temperament: Clever, playful, courageous, loyal, independent, alert
+Breed group: Hound
+Origin: Germany
+Life span: 12-16 years
+Weight: up to 5 kg
+Height: 13-15 cm

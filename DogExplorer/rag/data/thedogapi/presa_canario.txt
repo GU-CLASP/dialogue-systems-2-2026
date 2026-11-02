@@ -1,0 +1,15 @@
+Breed: Presa Canario
+Source: https://thedogapi.com
+
+Description:
+Large, powerfully built mastiff-type dog with robust frame, calm attentive expression, and imposing presence as a confident guardian
+
+History:
+Ancient breed native to the Canary Islands, originally developed as versatile farm and guard dog for guarding livestock and property, used for catching and holding cattle. Nearly extinct by the 1960s but revived through careful breeding programs in the 1970s
+
+Temperament: Confident, calm, protective, intelligent, loyal, courageous
+Breed group: Working
+Origin: Canary Islands, Spain
+Life span: 9-11 years
+Weight: Male: 50-59; Female: 39-50 kg
+Height: Male: 58-66; Female: 56-64 cm

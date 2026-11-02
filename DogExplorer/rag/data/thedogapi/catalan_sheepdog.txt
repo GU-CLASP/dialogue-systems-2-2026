@@ -1,0 +1,15 @@
+Breed: Catalan Sheepdog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, agile herding dog from the Catalan Pyrenees with long shaggy coat, distinctive beard and mustache, and alert expression. Known for intelligence, courage, and watchful nature as a versatile herding breed.
+
+History:
+Ancient herding breed developed in the Catalan Pyrenees for managing sheep and goats. Used as messengers and sentinels during Spanish Civil War. Nearly extinct afterward but restored through dedicated breeding programs in the 1970s.
+
+Temperament: Intelligent, loyal, energetic, protective, courageous
+Breed group: Herding
+Origin: Catalonia, Spain
+Life span: 12-14 years
+Weight: Male: 20-28; Female: 17-21 kg
+Height: Male: 47-55; Female: 45-53 cm

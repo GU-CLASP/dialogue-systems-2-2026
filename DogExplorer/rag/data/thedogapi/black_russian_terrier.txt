@@ -1,0 +1,15 @@
+Breed: Black Russian Terrier
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and robust working dog with a distinctive dense black double coat and confident demeanor. Bred for military and guard work, this hardy breed combines courage with intelligence.
+
+History:
+Developed in the Soviet Union in the late 1940s by the state-run Red Star Kennel for military use. Created by crossing Giant Schnauzer, Airedale Terrier, Rottweiler, and other breeds to produce a large, trainable, and hardy guard dog.
+
+Temperament: Confident, courageous, intelligent, protective, calm, loyal
+Breed group: Working
+Origin: Russia
+Life span: 10-12 years
+Weight: 36-59 kg
+Height: Male: 68-76; Female: 66-74 cm

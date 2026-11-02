@@ -1,0 +1,15 @@
+Breed: Dogue de Bordeaux
+Source: https://thedogapi.com
+
+Description:
+Massive, powerful French mastiff with distinctive short, wrinkled muzzle and red mask. This imposing molossoid dog combines a muscular build with a calm, loyal disposition and protective temperament.
+
+History:
+One of the oldest French breeds and ancient molossoid type dating to 14th century. Traditionally used for guarding, pulling carts, and big game hunting. Nearly extinct after World Wars but restored by dedicated breeders and standardized in 19th century.
+
+Temperament: Loyal, affectionate, courageous, calm, protective, devoted
+Breed group: Working
+Origin: Bordeaux, France
+Life span: 5-8 years
+Weight: Male: 50-64; Female: 45-55 kg
+Height: Male: 60-69; Female: 58-66 cm

@@ -1,0 +1,15 @@
+Breed: Broholmer
+Source: https://thedogapi.com
+
+Description:
+Large, powerful mastiff-type dog with distinctive rectangular build and calm, confident demeanor. Known for its imposing presence and steady, powerful gait, this Danish guardian breed combines strength with a gentle nature.
+
+History:
+Ancient Danish breed descended from mastiffs of the Middle Ages, originally used for stag hunting and later as estate guardian for large farms and manors. Standardized and named in 18th century by Count Sehested of Broholm. Nearly extinct after WWII but revived in 1970s through dedicated effort by Danish enthusiasts.
+
+Temperament: Calm, friendly, confident, protective, loyal, gentle
+Breed group: Working
+Origin: Denmark
+Life span: 8-10 years
+Weight: Male: 50-68; Female: 41-59 kg
+Height: Male: 75-76; Female: 70-71 cm

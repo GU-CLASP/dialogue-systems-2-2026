@@ -1,0 +1,15 @@
+Breed: Shiloh Shepherd
+Source: https://thedogapi.com
+
+Description:
+Large, well-balanced shepherd breed developed from German Shepherds with a plush double coat, bred specifically for a calmer, gentler temperament and improved health compared to traditional German Shepherds
+
+History:
+Developed in the 1970s in New York by Tina Barber, who crossed larger old-style German Shepherds with Alaskan Malamutes and other breeds to create a larger, calmer shepherd with focus on sound hips, stable temperament, reduced hip dysplasia, and family companionship
+
+Temperament: Calm, gentle, intelligent, loyal, confident, affectionate
+Breed group: Herding
+Origin: New York, United States
+Life span: 9-14 years
+Weight: Male: 45-59; Female: 36-45 kg
+Height: Male: 71-76; Female: 66-71 cm

@@ -1,0 +1,15 @@
+Breed: Frug
+Source: https://thedogapi.com
+
+Description:
+Small, charming companion crossbreed resulting from a cross between a French Bulldog and Pug, known for its playful personality, distinctive flat-faced (brachycephalic) appearance, and compact build
+
+History:
+Modern designer crossbreed developed in late 20th century by crossing French Bulldog and Pug to combine the desirable companion traits of both parent breeds
+
+Temperament: Playful, affectionate, outgoing, adaptable, alert, happy
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 6-13 kg
+Height: 25-33 cm

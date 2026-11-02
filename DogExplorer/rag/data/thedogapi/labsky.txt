@@ -1,0 +1,15 @@
+Breed: Labsky
+Source: https://thedogapi.com
+
+Description:
+Medium to large energetic crossbreed combining Labrador Retriever and Siberian Husky traits, known for its athletic build, striking appearance, and friendly yet independent nature. Physical appearance and temperament can vary significantly between individuals.
+
+History:
+Modern designer crossbreed developed by combining Labrador Retriever and Siberian Husky, aiming to blend the friendly, trainable nature of the Labrador with the striking looks, athleticism and stamina of the Husky. Not recognized by major kennel clubs.
+
+Temperament: Friendly, energetic, intelligent, loyal, outgoing, playful
+Breed group: Mixed
+Origin: United States
+Life span: 10-14 years
+Weight: Male: 20-36; Female: 16-32 kg
+Height: Male: 53-64; Female: 51-61 cm

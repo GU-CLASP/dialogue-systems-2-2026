@@ -1,0 +1,15 @@
+Breed: Shorkie
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Shih Tzu and Yorkshire Terrier traits, known for its big personality, silky coat, and spirited yet affectionate nature in a compact companion dog
+
+History:
+Modern designer crossbreed developed in the United States during the 21st century by crossing Shih Tzu and Yorkshire Terrier to create a small companion dog with low-shedding coat and lively, affectionate temperament. Not recognized by major kennel clubs.
+
+Temperament: Affectionate, playful, intelligent, alert, loyal, confident
+Breed group: Mixed
+Origin: United States
+Life span: 11-16 years
+Weight: 3-7 kg
+Height: 18-28 cm

@@ -1,0 +1,14 @@
+Breed: Bichon Frisé
+Source: https://thedogapi.com
+
+Description:
+A small, sturdy, and cheerful companion dog with a soft, curly white double coat, black eyes, and a lively, playful disposition
+
+History:
+Descended from the Barbet, a Mediterranean water spaniel. The breed was developed in France and became a popular companion dog for European nobility. The modern breed standard was established in France after World War I.
+
+Temperament: Happy, playful, affectionate, intelligent, gentle, energetic
+Breed group: Non-Sporting
+Origin: France / Belgium
+Weight: 5-8 kg
+Height: 24-29 cm

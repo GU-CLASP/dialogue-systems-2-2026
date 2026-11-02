@@ -1,0 +1,14 @@
+Breed: Standard Schnauzer
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, robust dog with distinctive beard and eyebrows, square build and wiry coat. An intelligent, high-spirited breed that serves as both a versatile working dog and loyal companion.
+
+History:
+The original Schnauzer breed dating back to the Middle Ages in Germany, developed as versatile farm dogs for guarding property, herding livestock, ratting and exterminating vermin. Recognized by AKC since 1904.
+
+Temperament: Intelligent, alert, energetic, loyal, protective, devoted
+Breed group: Working
+Origin: Germany
+Weight: Male: 16-23; Female: 14-20 kg
+Height: Male: 47-50; Female: 44-47 cm

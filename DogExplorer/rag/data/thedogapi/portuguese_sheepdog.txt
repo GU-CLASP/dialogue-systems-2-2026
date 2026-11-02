@@ -1,0 +1,15 @@
+Breed: Portuguese Sheepdog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized herding dog with long, shaggy wavy coat and lively intelligent expression, known for its monkey-like gait and rustic appearance
+
+History:
+Developed in the Serra de Aires region of Portugal, likely from Briards brought in the early 1900s. Used extensively for herding sheep, goats, and cattle. Known locally as 'cão macaco' (monkey dog) for its lively antics.
+
+Temperament: Intelligent, loyal, energetic, alert, devoted
+Breed group: Herding
+Origin: Serra de Aires, Portugal
+Life span: 12-14 years
+Weight: Male: 17-27; Female: 16-25 kg
+Height: Male: 43-55; Female: 41-52 cm

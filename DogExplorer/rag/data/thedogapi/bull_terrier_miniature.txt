@@ -1,0 +1,15 @@
+Breed: Bull Terrier (Miniature)
+Source: https://thedogapi.com
+
+Description:
+Small, upstanding, and muscular terrier with a distinctive egg-shaped head and triangular eyes. This compact version of the Bull Terrier is known for being comical, mischievous, and lively with a squarely built frame.
+
+History:
+Developed in 19th-century England as a scaled-down version of the standard Bull Terrier, which was standardized by James Hinks. Created for fanciers who wanted a smaller companion version while maintaining the same characteristics and recognized as a separate breed by the AKC in 1991.
+
+Temperament: Playful, energetic, courageous, confident, affectionate, outgoing
+Breed group: Terrier
+Origin: England
+Life span: 11-13 years
+Weight: 9-15 kg
+Height: 25-36 cm

@@ -1,0 +1,15 @@
+Breed: Ibizan Hound
+Source: https://thedogapi.com
+
+Description:
+Elegant sighthound with distinctive large erect ears, lean athletic build, and deer-like grace. Known for remarkable jumping ability and bred for hunting rabbit by sight, this ancient breed comes in both smooth and wire-coated varieties.
+
+History:
+Ancient breed whose origins trace back to Phoenician traders who brought Egyptian hunting dogs to the Balearic Islands around the 8th century BC. Developed in isolation on Ibiza and neighboring islands for hunting rabbits on rocky terrain.
+
+Temperament: Independent, intelligent, athletic, gentle, alert, playful
+Breed group: Hound
+Origin: Balearic Islands, Spain
+Life span: 11-14 years
+Weight: Male: 23-29; Female: 20-25 kg
+Height: Male: 60-70; Female: 57-66 cm

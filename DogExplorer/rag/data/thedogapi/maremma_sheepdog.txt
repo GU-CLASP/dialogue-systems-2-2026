@@ -1,0 +1,15 @@
+Breed: Maremma Sheepdog
+Source: https://thedogapi.com
+
+Description:
+Large, well-balanced livestock guardian with thick white coat and confident demeanour. Also known as 'Maremmano-Abruzzese Sheepdog'
+
+History:
+Ancient livestock guardian from central Italy, developed to protect sheep from predators in the regions of Maremma and Abruzzo. Recognized by FCI as Cane da Pastore Maremmano-Abruzzese.
+
+Temperament: Protective, independent, loyal, alert, calm
+Breed group: Working
+Origin: Italy (Maremma and Abruzzo regions)
+Life span: 11-13 years
+Weight: Male: 35-45; Female: 30-40 kg
+Height: Male: 65-73; Female: 61-68 cm

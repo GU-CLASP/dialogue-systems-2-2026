@@ -1,0 +1,15 @@
+Breed: Tibetan Terrier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, squarely built dog with profuse double coat and snowshoe-like feet, known as the 'Holy Dog of Tibet.' Originally bred as companions, watchdogs, and herders in Tibetan monasteries with expressive eyes and protective long coat.
+
+History:
+Ancient breed developed over 2,000 years ago by Buddhist monasteries in Tibet as cherished companions, watchdogs, and herders. Known as 'Holy Dogs' and 'luck bringers,' they were never sold but only given as gifts. Introduced to the Western world in the 1920s.
+
+Temperament: Affectionate, intelligent, loyal, alert, playful
+Breed group: Non-Sporting
+Origin: Tibet
+Life span: 12-16 years
+Weight: 8-14 kg
+Height: 36-43 cm

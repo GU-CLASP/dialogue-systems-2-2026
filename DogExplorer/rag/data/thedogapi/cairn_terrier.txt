@@ -1,0 +1,14 @@
+Breed: Cairn Terrier
+Source: https://thedogapi.com
+
+Description:
+A small, sturdy working terrier with weather-resistant shaggy coat and alert expression, originating from the Scottish Highlands and known for its plucky, cheerful nature
+
+History:
+Developed on the Isle of Skye in Scotland, one of the oldest terrier breeds. Originally used by farmers in the Scottish Highlands to hunt and flush out foxes and vermin from rock piles (cairns), which gave the breed its name. Recognized by the AKC in 1913.
+
+Temperament: Alert, confident, friendly, intelligent, courageous, energetic
+Breed group: Terrier
+Origin: Scotland
+Weight: Male: 6-7.5; Female: 6-7 kg
+Height: Male: 25-28; Female: 24-27 cm

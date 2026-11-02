@@ -1,0 +1,15 @@
+Breed: Yorkshire Terrier
+Source: https://thedogapi.com
+
+Description:
+Small toy terrier with long, silky steel blue and golden tan coat and confident, spirited personality. Despite their tiny size, these feisty dogs possess the bold terrier temperament in a compact package.
+
+History:
+Developed during the Industrial Revolution in Yorkshire and Lancashire by Scottish weavers and mill workers. Bred to catch rats in textile mills and mines, combining various terrier breeds including the now-extinct Paisley and Clydesdale Terriers.
+
+Temperament: Confident, courageous, energetic, affectionate, alert, intelligent
+Breed group: Toy
+Origin: Yorkshire, England
+Life span: 12-16 years
+Weight: 1.8-3.2 kg
+Height: 18-20 cm

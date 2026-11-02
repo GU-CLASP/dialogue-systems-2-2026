@@ -1,0 +1,15 @@
+Breed: Saarloos Wolfdog
+Source: https://thedogapi.com
+
+Description:
+Large, strongly built wolf-like dog with reserved temperament and strong pack instincts, originally created by crossing a German Shepherd with a Eurasian wolf
+
+History:
+Created in the 1930s by Dutch breeder Leendert Saarloos by crossing a German Shepherd Dog with a female Eurasian wolf, aiming to create a more natural, robust working dog. Officially recognized by the Dutch Kennel Club in 1975.
+
+Temperament: Independent, alert, loyal, reserved, intelligent
+Breed group: Working
+Origin: Netherlands
+Life span: 10-12 years
+Weight: Male: 36-41; Female: 30-35 kg
+Height: Male: 65-75; Female: 60-70 cm

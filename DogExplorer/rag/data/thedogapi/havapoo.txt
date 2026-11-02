@@ -1,0 +1,15 @@
+Breed: Havapoo
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed between Havanese and Toy Poodle, known for its intelligent, affectionate personality and soft, low-shedding coat that ranges from wavy to curly
+
+History:
+Modern designer crossbreed developed in the United States in recent decades, combining Cuban Havanese with Toy Poodle to create a small companion dog with intelligence, low-shedding coat, and gentle disposition. Not recognized by major kennel clubs.
+
+Temperament: Friendly, intelligent, playful, affectionate, outgoing
+Breed group: Mixed
+Origin: United States
+Life span: 12-16 years
+Weight: 1.8-5.9 kg
+Height: 20-29 cm

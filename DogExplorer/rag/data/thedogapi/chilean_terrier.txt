@@ -1,0 +1,15 @@
+Breed: Chilean Terrier
+Source: https://thedogapi.com
+
+Description:
+A small, well-balanced, short-coated terrier known for its elegant yet sturdy build and lively, alert disposition. Often called the 'Fox Terrier Chileno' in its native country, this compact and agile breed combines intelligence with typical terrier energy.
+
+History:
+Descended from Fox Terriers and other European terrier breeds brought to Chile by immigrants in the 18th and 19th centuries. Developed as a distinct breed for hunting vermin on farms and estates, becoming Chile's first recognized native breed, though not yet recognized by major international kennel clubs.
+
+Temperament: Alert, energetic, loyal, intelligent, adaptable
+Breed group: Terrier
+Origin: Chile
+Life span: 12-15 years
+Weight: Male: 6-8; Female: 4-7 kg
+Height: Male: 32-38; Female: 28-36 cm

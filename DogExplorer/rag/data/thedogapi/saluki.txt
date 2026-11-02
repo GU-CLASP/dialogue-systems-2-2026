@@ -1,0 +1,15 @@
+Breed: Saluki
+Source: https://thedogapi.com
+
+Description:
+Ancient, elegant sighthound of the Middle East with graceful build, feathered ears and tail, known for extraordinary speed, endurance, and dignified nature. Bred for hunting gazelle across desert terrain.
+
+History:
+One of the most ancient domesticated dog breeds, treasured by royalty and Bedouin tribes for thousands of years. Considered sacred by Muslims and revered throughout the Middle East for hunting gazelle and swift prey across desert terrain.
+
+Temperament: Gentle, independent, intelligent, devoted, calm, reserved
+Breed group: Hound
+Origin: Middle East (Fertile Crescent)
+Life span: 10-17 years
+Weight: Male: 18-29; Female: 16-25 kg
+Height: 58-71 cm

@@ -1,0 +1,14 @@
+Breed: Belgian Malinois
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic herding dog that is squarely built with a proud carriage. Known for its intense intelligence and strong work ethic, particularly suited for police and military roles. Features a short fawn-to-mahogany coat with distinctive black mask and ears.
+
+History:
+Developed in the area around Malines, Belgium, in the late 19th century as one of four varieties of Belgian Shepherd dogs. Originally bred for herding ability and strong work ethic, quickly adopted by police forces and militaries worldwide. AKC recognized as distinct breed in 1959.
+
+Temperament: Intelligent, confident, energetic, loyal, alert, work-focused, protective
+Breed group: Herding
+Origin: Belgium
+Weight: Male: 27-36; Female: 18-27 kg
+Height: Male: 61-66; Female: 56-61 cm

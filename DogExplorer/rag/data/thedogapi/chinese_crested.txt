@@ -1,0 +1,14 @@
+Breed: Chinese Crested
+Source: https://thedogapi.com
+
+Description:
+Small, elegant toy dog with fine-boned build that comes in two distinctive varieties: the Hairless with soft skin and tufts of hair, and the Powderpuff with a soft, straight double coat
+
+History:
+Ancient breed believed to have descended from African or Mexican hairless dogs and refined in China. Chinese mariners kept them on ships to hunt vermin and traded them among port cities worldwide. Served as companions to Chinese nobility and were believed to possess magical healing powers
+
+Temperament: Affectionate, alert, playful, lively, intelligent, gentle
+Breed group: Toy
+Origin: China
+Weight: 3.6-5.4 kg
+Height: 28-33 cm

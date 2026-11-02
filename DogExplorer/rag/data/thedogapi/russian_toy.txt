@@ -1,0 +1,15 @@
+Breed: Russian Toy
+Source: https://thedogapi.com
+
+Description:
+Very small, elegant toy breed with fine bone structure and lively expression, available in both smooth and long coat varieties. Known for their cheerful disposition and fragile build.
+
+History:
+Developed in Russia from English Toy Terriers in the early 20th century. Nearly extinct after the Russian Revolution but rebuilt from remaining dogs post-WWII, leading to standardization of both smooth and long-coated varieties. Recently recognized by AKC in 2022.
+
+Temperament: Alert, intelligent, loyal, playful, affectionate, energetic, outgoing
+Breed group: Toy
+Origin: Russia
+Life span: 12-14 years
+Weight: 1.4-3 kg
+Height: 20-28 cm

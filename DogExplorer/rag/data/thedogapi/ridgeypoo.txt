@@ -1,0 +1,15 @@
+Breed: Ridgeypoo
+Source: https://thedogapi.com
+
+Description:
+A large, athletic mixed breed created by crossing a Rhodesian Ridgeback with a Standard Poodle, combining the Poodle's intelligence and low-shedding coat with the Ridgeback's strength, loyalty, and distinctive athletic build
+
+History:
+Modern designer crossbreed developed by combining the Rhodesian Ridgeback and Standard Poodle to create a large, athletic, intelligent companion dog with a lower-shedding coat
+
+Temperament: Intelligent, loyal, athletic, confident, affectionate, energetic
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 23-41; Female: 20-34 kg
+Height: Male: 56-69; Female: 51-66 cm

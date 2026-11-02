@@ -1,0 +1,15 @@
+Breed: Labrador Retriever
+Source: https://thedogapi.com
+
+Description:
+Medium to large, strong athletic retriever with short dense coat and friendly outgoing temperament. Consistently one of the most popular breeds worldwide.
+
+History:
+Originated from St. John's Water Dogs used by fishermen in Newfoundland for retrieving nets and escaped fish. Further developed and standardized in England during the 1800s by English nobles for waterfowl retrieving
+
+Temperament: Friendly, outgoing, energetic, intelligent, gentle, eager to please
+Breed group: Sporting
+Origin: Newfoundland, Canada
+Life span: 10-12 years
+Weight: Male: 29-36; Female: 25-32 kg
+Height: Male: 57-62; Female: 55-60 cm

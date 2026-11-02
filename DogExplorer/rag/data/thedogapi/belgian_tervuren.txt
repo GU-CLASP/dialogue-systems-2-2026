@@ -1,0 +1,15 @@
+Breed: Belgian Tervuren
+Source: https://thedogapi.com
+
+Description:
+Elegant, athletic medium-sized herding dog with a long double coat ranging from rich fawn to mahogany with black overlay, known for intelligence, versatility and strong work drive
+
+History:
+One of four distinct Belgian sheepdog varieties developed in the late 1800s, named after the village of Tervuren. Originally used as a versatile herding and guard dog for flocks, prized for intelligence, trainability and work ethic
+
+Temperament: Intelligent, courageous, alert, loyal, energetic
+Breed group: Herding
+Origin: Belgium
+Life span: 12-14 years
+Weight: Male: 25-34; Female: 20-27 kg
+Height: Male: 61-66; Female: 56-61 cm

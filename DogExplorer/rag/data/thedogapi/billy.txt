@@ -1,0 +1,15 @@
+Breed: Billy
+Source: https://thedogapi.com
+
+Description:
+Large, elegant French scent hound with a predominantly white coat and orange or lemon markings, known for speed, stamina and light-framed build bred for pack hunting
+
+History:
+Developed in 19th century France by Gaston Hublot du Rivault at Château de Billy by crossing Montaimboeuf, Céris, and Larye breeds (now extinct). Nearly vanished after World War II but was revived by du Rivault's son. Recognized by FCI in Group 6.
+
+Temperament: Energetic, intelligent, courageous, gentle, independent
+Breed group: Hound
+Origin: Haut-Poitou, France
+Life span: 10-12 years
+Weight: Male: 25-33; Female: 23-30 kg
+Height: Male: 60-70; Female: 58-66 cm

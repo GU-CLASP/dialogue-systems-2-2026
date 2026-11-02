@@ -1,0 +1,15 @@
+Breed: Maltese
+Source: https://thedogapi.com
+
+Description:
+An ancient toy breed from the Mediterranean with a long, silky white coat and charming, playful personality combined with a fearless nature despite their diminutive size
+
+History:
+One of the world's oldest known breeds dating back over 2000 years, originating from the island of Malta. Historically known as 'Ye Ancient Dogge of Malta' and prized as companions to royalty and aristocracy throughout Mediterranean civilizations and European nobility
+
+Temperament: Playful, gentle, affectionate, charming, fearless, alert, adaptable
+Breed group: Toy
+Origin: Malta, Mediterranean Basin
+Life span: 12-15 years
+Weight: 1.8-3.2 kg
+Height: 18-23 cm

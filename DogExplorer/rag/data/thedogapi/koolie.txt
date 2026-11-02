@@ -1,0 +1,15 @@
+Breed: Koolie
+Source: https://thedogapi.com
+
+Description:
+Medium-sized versatile Australian working dog known for herding ability, intelligence, high energy levels, and often striking merle coat. Athletic and agile with strong stamina, developed specifically for Australian livestock work.
+
+History:
+Developed in 19th century Australia from imported British working dogs including smooth collies and other herding breeds, possibly with German herding dog influence. Bred for endurance, versatility and stamina to work livestock in harsh Australian landscape. Not recognized by major kennel clubs but has established breed standards by Koolie breed societies.
+
+Temperament: Energetic, intelligent, loyal, work-focused, alert, devoted
+Breed group: Herding
+Origin: Australia
+Life span: 12-18 years
+Weight: Male: 15-25; Female: 14-24 kg
+Height: Male: 43-58; Female: 41-56 cm

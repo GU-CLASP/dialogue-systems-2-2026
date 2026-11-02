@@ -1,0 +1,15 @@
+Breed: Pyrenean Mountain Dog
+Source: https://thedogapi.com
+
+Description:
+Large, majestic, and immensely powerful livestock guardian with thick white double coat and natural guardian instincts developed for mountain work
+
+History:
+Ancient breed used for centuries by shepherds in the Pyrenees Mountains of France and Spain to guard flocks against predators like wolves and bears. Known as 'Chien de Montagne des Pyrénées' and standardized by the FCI.
+
+Temperament: Gentle, confident, protective, independent, calm, loyal
+Breed group: Working
+Origin: Pyrenees Mountains, France
+Life span: 10-12 years
+Weight: Male: 45-73; Female: 39-52 kg
+Height: Male: 69-81; Female: 63-74 cm

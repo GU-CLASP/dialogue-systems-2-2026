@@ -1,0 +1,15 @@
+Breed: Dogo Argentino
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, all-white mastiff-type dog with massive head and athletic build, originally developed for big-game hunting with exceptional courage and strength
+
+History:
+Developed in Argentina in the 1920s by Dr. Antonio Nores Martinez who systematically crossed the now-extinct Cordoba Fighting Dog with Great Dane, Boxer, Bull Terrier, and Pointer to create a versatile big-game hunter for wild boar and puma
+
+Temperament: Courageous, loyal, protective, confident, intelligent, energetic
+Breed group: Working
+Origin: Argentina
+Life span: 9-15 years
+Weight: Male: 40-45; Female: 40-43 kg
+Height: Male: 61-67; Female: 61-65 cm

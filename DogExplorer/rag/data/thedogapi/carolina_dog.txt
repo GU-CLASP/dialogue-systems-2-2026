@@ -1,0 +1,15 @@
+Breed: Carolina Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic primitive breed with sand-colored coat and erect ears, resembling a dingo or small wolf with ancient pariah dog characteristics
+
+History:
+Primitive landrace breed descended from ancient dogs that accompanied early human migrations across the Bering land bridge. Discovered living as free-roaming population in cypress swamps of South Carolina and Georgia by Dr. I. Lehr Brisbin Jr. Recognized by UKC and seeking AKC recognition.
+
+Temperament: Alert, intelligent, independent, loyal, adaptable, gentle
+Breed group: Hound
+Origin: Southeastern United States
+Life span: 12-15 years
+Weight: 14-25 kg
+Height: Male: 46-51; Female: 43-48 cm

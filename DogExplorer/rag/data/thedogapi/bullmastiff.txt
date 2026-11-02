@@ -1,0 +1,15 @@
+Breed: Bullmastiff
+Source: https://thedogapi.com
+
+Description:
+Large, powerful guardian breed with short coat and calm, confident demeanor, originally bred to guard estates and known as 'The Gamekeeper's Night-Dog'
+
+History:
+Developed in mid-19th century England by gamekeepers crossing English Mastiff with Old English Bulldog to create an effective estate guard dog for tracking poachers
+
+Temperament: Loyal, protective, calm, courageous, affectionate, confident
+Breed group: Working
+Origin: England
+Life span: 7-9 years
+Weight: Male: 50-59; Female: 45-54 kg
+Height: Male: 64-69; Female: 61-66 cm

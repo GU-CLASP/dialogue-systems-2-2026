@@ -1,0 +1,15 @@
+Breed: Cavapom
+Source: https://thedogapi.com
+
+Description:
+Small, lively companion dog created by crossing a Cavalier King Charles Spaniel and Pomeranian, known for its affectionate nature, fluffy plush coat, and friendly demeanor that combines the gentle nature of the Cavalier with the compact size of the Pomeranian
+
+History:
+A modern designer crossbreed developed in the United States by crossing a Cavalier King Charles Spaniel with Pomeranian to create a small companion dog combining the gentle nature of the Cavalier with the lively, fluffy appearance of the Pomeranian. Gained popularity in the late 20th and early 21st centuries
+
+Temperament: Friendly, affectionate, playful, intelligent, outgoing, alert
+Breed group: Mixed
+Origin: United States
+Life span: 12-16 years
+Weight: 3-9 kg
+Height: 18-33 cm

@@ -1,0 +1,15 @@
+Breed: Clumber Spaniel
+Source: https://thedogapi.com
+
+Description:
+A long, low, and substantial flushing spaniel with a massive head, heavy bone structure, pensive expression, and predominantly white coat with lemon or orange markings
+
+History:
+Developed in the 18th century, associated with the French Duc de Noailles and Duke of Newcastle's Clumber Park estate in Nottinghamshire. Likely developed from Alpine Spaniel, Basset Hound crosses. Prized by British royalty and nobility as gentleman's hunting spaniels for game flushing
+
+Temperament: Gentle, loyal, calm, intelligent, playful
+Breed group: Sporting
+Origin: England
+Life span: 10-12 years
+Weight: Male: 32-39; Female: 25-32 kg
+Height: Male: 43-51; Female: 43-48 cm

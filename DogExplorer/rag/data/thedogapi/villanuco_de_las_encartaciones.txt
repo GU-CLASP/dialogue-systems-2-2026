@@ -1,0 +1,15 @@
+Breed: Villanuco de Las Encartaciones
+Source: https://thedogapi.com
+
+Description:
+Small, primitive-type Spanish ratter dog from the Basque Country, known for its agile, alert, and rustic nature, traditionally used for vermin control
+
+History:
+Traditional primitive breed from the Las Encartaciones region of Biscay province, used on farms as guard dog and adept hunter of rats and vermin. The breed faced near-extinction but has been revived through dedicated conservation efforts. Recognized by regional Spanish breed registries but not by major international kennel clubs
+
+Temperament: Intelligent, alert, courageous, energetic, loyal
+Breed group: Primitive
+Origin: Las Encartaciones, Basque Country, Spain
+Life span: 12-14 years
+Weight: Male: 8-10; Female: 7-9 kg
+Height: Male: 40-45; Female: 38-43 cm

@@ -1,0 +1,15 @@
+Breed: Corgipoo
+Source: https://thedogapi.com
+
+Description:
+A designer crossbreed between a Cardigan Welsh Corgi and Miniature Poodle, known for its compact size, intelligence, and friendly nature. Coat type, size, and temperament can vary significantly based on genetic inheritance from the parent breeds.
+
+History:
+Modern designer crossbreed developed in the United States by combining the Cardigan Welsh Corgi with a Miniature Poodle. The aim was to create an intelligent companion dog with the low-shedding coat of the Poodle and the sturdy, affectionate nature of the Corgi. Not formally recognized by major kennel clubs.
+
+Temperament: Intelligent, friendly, playful, affectionate, energetic, alert
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 5-14 kg
+Height: 25-38 cm

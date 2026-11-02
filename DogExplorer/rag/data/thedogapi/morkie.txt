@@ -1,0 +1,15 @@
+Breed: Morkie
+Source: https://thedogapi.com
+
+Description:
+Small mixed breed companion dog combining the gentle nature of the Maltese with the spirited personality of the Yorkshire Terrier. Known for its long, silky, low-shedding coat and toy-sized stature.
+
+History:
+Modern designer crossbreed that became popular in the late 1990s and early 2000s in North America. Developed by crossing purebred Maltese with Yorkshire Terrier to create a small, low-shedding companion dog. Not recognized by major kennel clubs but popular with designer breed enthusiasts.
+
+Temperament: Affectionate, playful, alert, energetic, intelligent
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 1.8-4 kg
+Height: 15-23 cm

@@ -1,0 +1,15 @@
+Breed: Pomeranian
+Source: https://thedogapi.com
+
+Description:
+Small, compact, active toy spitz breed with abundant fluffy double coat, fox-like expression, and plumed tail carried over the back
+
+History:
+Descended from larger Arctic spitz-type sled dogs and bred down to current small size in the Pomerania region. Popularity greatly increased by Queen Victoria who became a breeder and established distinct breed standards
+
+Temperament: Alert, intelligent, playful, confident, outgoing
+Breed group: Toy
+Origin: Pomerania region (now parts of Germany and Poland)
+Life span: 12-16 years
+Weight: 1.4-3.2 kg
+Height: 15-18 cm

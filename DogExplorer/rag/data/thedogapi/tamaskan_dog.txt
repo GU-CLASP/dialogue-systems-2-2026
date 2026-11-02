@@ -1,0 +1,14 @@
+Breed: Tamaskan Dog
+Source: https://thedogapi.com
+
+Description:
+Large, athletic wolf-like breed developed to resemble wolves while maintaining a friendly, trainable domestic dog temperament. Features a thick double coat and striking wolf-like appearance created through selective breeding of Nordic breeds.
+
+History:
+Developed in Finland in the 1980s by crossing Siberian Huskies, Alaskan Malamutes, and German Shepherds to create a dog with distinctive wolf-like appearance combined with gentle, family-oriented temperament. Part of AKC Foundation Stock Service but not fully recognized by major kennel clubs.
+
+Temperament: Intelligent, loyal, friendly, athletic, alert, energetic
+Breed group: Working
+Origin: Finland
+Weight: Male: 30-45; Female: 23-39 kg
+Height: Male: 63-71; Female: 61-69 cm

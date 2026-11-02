@@ -1,0 +1,15 @@
+Breed: Bugg
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy crossbreed combining Boston Terrier athleticism with Pug charm, featuring a compact build, expressive short-muzzled face, and friendly disposition
+
+History:
+Designer crossbreed developed in the late 20th/early 21st century by crossing Boston Terrier and Pug to create a compact companion dog combining the friendly alertness of the Boston Terrier with the charming affectionate personality of the Pug
+
+Temperament: Friendly, playful, affectionate, alert, intelligent
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 7-11; Female: 6-10 kg
+Height: 25-43 cm

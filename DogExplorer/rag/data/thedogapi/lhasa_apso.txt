@@ -1,0 +1,15 @@
+Breed: Lhasa Apso
+Source: https://thedogapi.com
+
+Description:
+Small, hardy, and sturdy ancient Tibetan breed known for its floor-length coat of hair that parts down the back and alert, confident expression, originally bred as palace and monastery sentinel
+
+History:
+Ancient breed developed in Tibetan monasteries and palaces over a thousand years ago as indoor sentinel dogs, alerting monks to intruders. Highly prized and rarely left the country until brought to England in 1920s
+
+Temperament: Confident, independent, alert, loyal, smart, protective
+Breed group: Non-Sporting
+Origin: Tibet
+Life span: 12-15 years
+Weight: Male: 5.4-8.2; Female: 5.0-8.2 kg
+Height: Male: 25-28; Female: 23-28 cm

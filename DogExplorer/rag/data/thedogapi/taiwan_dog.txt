@@ -1,0 +1,15 @@
+Breed: Taiwan Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized spitz-type dog with triangular erect ears, wedge-shaped head, and sickle tail. This athletic, ancient hunting breed is characterized by its keen senses, strong hunting instincts, and unwavering loyalty to family.
+
+History:
+Ancient indigenous breed descended from hunting dogs of Taiwanese aboriginal tribes in the central mountain regions. Originally used for hunting wild boar and as guard dogs. Nearly extinct but revived through dedicated breeding program in the 1970s. Recognized by FCI (Standard No. 348).
+
+Temperament: Alert, loyal, courageous, intelligent, independent
+Breed group: Spitz and Primitive Types
+Origin: Taiwan
+Life span: 12-15 years
+Weight: Male: 13-18; Female: 11-16 kg
+Height: Male: 46-52; Female: 43-47 cm

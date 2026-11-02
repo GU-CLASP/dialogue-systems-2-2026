@@ -1,0 +1,15 @@
+Breed: Pitsky
+Source: https://thedogapi.com
+
+Description:
+A powerful and energetic mixed breed combining the athleticism and striking appearance of the Siberian Husky with the strength of the American Pit Bull Terrier, known for its athletic build and energetic temperament
+
+History:
+Modern designer crossbreed developed in recent decades by crossing the American Pit Bull Terrier with the Siberian Husky to create a dog with the Terrier's strength and the Husky's endurance and appearance. No formal breed club or standard exists.
+
+Temperament: Energetic, loyal, intelligent, confident, playful
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 16-32; Female: 14-27 kg
+Height: Male: 48-61; Female: 46-56 cm

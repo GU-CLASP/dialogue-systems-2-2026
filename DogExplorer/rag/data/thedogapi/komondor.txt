@@ -1,0 +1,15 @@
+Breed: Komondor
+Source: https://thedogapi.com
+
+Description:
+Large, muscular Hungarian livestock guardian dog with distinctive heavy coat of white cords resembling a mop. Built for endurance and protection, this imposing breed possesses a dignified, courageous demeanor.
+
+History:
+Ancient breed descended from Tibetan dogs brought to Hungary by nomadic Magyar tribes over a thousand years ago around 1000 AD. Developed to be formidable independent livestock guardian protecting sheep and cattle from wolves bears and harsh weather.
+
+Temperament: Loyal, protective, independent, courageous, calm
+Breed group: Working
+Origin: Hungary
+Life span: 10-12 years
+Weight: Male: 45-59; Female: 36-50 kg
+Height: Male: 70-80; Female: 65-70 cm

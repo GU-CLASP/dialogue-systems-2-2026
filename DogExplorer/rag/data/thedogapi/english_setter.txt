@@ -1,0 +1,15 @@
+Breed: English Setter
+Source: https://thedogapi.com
+
+Description:
+Elegant and athletic gundog distinguished by its unique speckled (belton) coat, feathered markings, and graceful movement, known for gentle hunting instincts and friendly disposition
+
+History:
+Developed in England over 400 years ago from spaniel stock, refined in the 19th century by Edward Laverack and R. Purcell Llewellin to create a specialized bird dog for locating and setting game birds
+
+Temperament: Friendly, gentle, affectionate, intelligent, energetic
+Breed group: Sporting
+Origin: England
+Life span: 12-14 years
+Weight: Male: 29-36; Female: 20-32 kg
+Height: Male: 64-69; Female: 58-64 cm

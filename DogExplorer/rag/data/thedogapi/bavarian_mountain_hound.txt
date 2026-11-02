@@ -1,0 +1,15 @@
+Breed: Bavarian Mountain Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, lean and muscular scent hound with exceptional tracking abilities and endurance, developed for following wounded game in mountainous terrain. Known for its calm and poised demeanor combined with courage and devotion.
+
+History:
+Developed in 19th century Bavaria by crossing Hanoverian Scenthounds with Alpine hunting dogs and local mountain dogs to create a lighter, more agile dog capable of tracking wounded game on cold trails through difficult mountainous terrain
+
+Temperament: Calm, loyal, intelligent, devoted, courageous, work-focused
+Breed group: Hound
+Origin: Bavaria, Germany
+Life span: 12-15 years
+Weight: Male: 20-25; Female: 17-25 kg
+Height: Male: 47-52; Female: 43-48 cm

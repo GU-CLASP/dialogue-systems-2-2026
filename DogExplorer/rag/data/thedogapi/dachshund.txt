@@ -1,0 +1,15 @@
+Breed: Dachshund
+Source: https://thedogapi.com
+
+Description:
+Long-bodied, short-legged hound with distinctive elongated build, available in three coat types (smooth, wirehaired, and longhaired). Originally bred for hunting badgers in burrows, this bold and lively scent hound is known for its courageous, intelligent, and playful personality.
+
+History:
+Developed in Germany over 300 years ago (records date to 15th century) specifically for hunting badgers in their burrows. The name 'Dachshund' translates to 'badger dog' in German. Wirehaired varieties were developed by crossing with terriers for work in thorny terrain, while longhaired varieties were created using spaniels for colder climates.
+
+Temperament: Courageous, intelligent, independent, alert, playful, devoted
+Breed group: Hound
+Origin: Germany
+Life span: 12-16 years
+Weight: 7-14.5 kg
+Height: 20-23 cm

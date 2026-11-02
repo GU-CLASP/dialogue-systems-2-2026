@@ -1,0 +1,15 @@
+Breed: Argentine Pila
+Source: https://thedogapi.com
+
+Description:
+An elegant and slender hairless dog native to Argentina, known for its soft, warm skin and lively, alert temperament. The breed comes in three size varieties and is prized as a companion dog.
+
+History:
+An ancient hairless breed native to Argentina, believed to have descended from dogs brought by pre-Incan peoples. Related to other South American hairless breeds and traditionally kept as a companion for perceived therapeutic warmth among indigenous peoples.
+
+Temperament: Affectionate, alert, playful, gentle, intelligent
+Breed group: Spitz and Primitive Types
+Origin: Argentina
+Life span: 12-15 years
+Weight: 4-25 kg
+Height: 25-51 cm

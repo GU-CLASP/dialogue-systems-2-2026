@@ -1,0 +1,15 @@
+Breed: Giant Schnauzer
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and robust working dog with a dense wiry, weather-resistant coat, distinctive beard and eyebrows, and commanding, imposing presence. Originally bred for driving cattle and guarding in Germany.
+
+History:
+Developed in Bavaria and Württemberg, Germany as a larger version of the Standard Schnauzer by crossing with larger breeds like the Great Dane. Originally used for driving cattle to market, guarding property, breweries and farms, and later as police and military working dogs.
+
+Temperament: Loyal, intelligent, alert, energetic, courageous, confident
+Breed group: Working
+Origin: Germany
+Life span: 12-15 years
+Weight: Male: 27-39; Female: 25-34 kg
+Height: Male: 65-70; Female: 60-65 cm

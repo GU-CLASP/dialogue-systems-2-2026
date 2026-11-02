@@ -1,0 +1,15 @@
+Breed: Chug
+Source: https://thedogapi.com
+
+Description:
+A small companion dog resulting from a cross between a Pug and a Chihuahua, known for its compact build, expressive face, and spirited yet affectionate nature
+
+History:
+A modern crossbreed developed in North America in the late 20th century by crossing a Pug with a Chihuahua. The goal was to create a small companion dog combining the affectionate nature of the Pug with the spirited personality of the Chihuahua. Not recognized by major kennel clubs.
+
+Temperament: Playful, affectionate, loyal, alert, confident
+Breed group: Mixed
+Origin: United States
+Life span: 10-13 years
+Weight: 4.5-9 kg
+Height: 25-36 cm

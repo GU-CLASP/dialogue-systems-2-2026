@@ -1,0 +1,15 @@
+Breed: Cardigan Welsh Corgi
+Source: https://thedogapi.com
+
+Description:
+Low-set, sturdily built herding dog with a long body, fox-like brushy tail, and rounded ears, known for intelligence and versatility
+
+History:
+One of the oldest herding breeds, believed brought to Wales by Celtic tribes around 1200 BC, developed as versatile farm dogs for cattle herding and property guarding
+
+Temperament: Affectionate, loyal, intelligent, alert, adaptable
+Breed group: Herding
+Origin: Cardiganshire, Wales
+Life span: 12-15 years
+Weight: Male: 14-17; Female: 11-15 kg
+Height: 27-32 cm

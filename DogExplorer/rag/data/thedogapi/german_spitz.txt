@@ -1,0 +1,14 @@
+Breed: German Spitz
+Source: https://thedogapi.com
+
+Description:
+Compact, lively spitz-type dog with abundant double coat, fox-like expression, and characteristic plumed tail carried over the back. Available in multiple size varieties with alert, attentive demeanor.
+
+History:
+Descended from ancient Stone Age 'Peat Dogs', considered the oldest dog breed in Central Europe. Developed in various sizes throughout Germany as vigilant farm watchdogs and companions, with FCI recognizing multiple size varieties sharing common ancestry.
+
+Temperament: Alert, intelligent, confident, lively, devoted
+Breed group: Non-Sporting
+Origin: Germany
+Weight: Male: 3.6-12; Female: 3.6-11 kg
+Height: 23-38 cm

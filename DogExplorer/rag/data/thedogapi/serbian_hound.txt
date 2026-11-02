@@ -1,0 +1,15 @@
+Breed: Serbian Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, robust scent hound with a distinctive short, dense red coat and black saddle (mantle), known for stamina, determination, and endurance in mountainous hunting terrain
+
+History:
+Ancient Balkan scenthound believed descended from Phoenician hounds, developed in Serbia for hunting hare, fox, and wild boar in mountainous terrain. First standard dates to 1924, formerly known as the Balkan Hound, recognized by FCI
+
+Temperament: Energetic, loyal, intelligent, courageous, devoted, tenacious
+Breed group: Hound
+Origin: Serbia
+Life span: 12-14 years
+Weight: Male: 20-25; Female: 18-22 kg
+Height: Male: 46-56; Female: 44-54 cm

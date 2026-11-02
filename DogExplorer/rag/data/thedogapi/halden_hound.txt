@@ -1,0 +1,15 @@
+Breed: Halden Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, rectangular Norwegian scenthound with distinctive short, dense coat, built for speed and endurance as a hare hunter in challenging terrain. Features a proud yet gentle expression with the stamina and resilience needed for Norwegian hunting conditions.
+
+History:
+Developed in Halden, Norway in the late 19th and early 20th centuries by crossing local scenthounds with English, Swedish, and German hounds to create a swift, resilient hare hunter suited for Norwegian terrain. Recognized by FCI.
+
+Temperament: Gentle, alert, intelligent, confident, energetic
+Breed group: Hound
+Origin: Halden, Norway
+Life span: 12-14 years
+Weight: Male: 23-29; Female: 20-26 kg
+Height: Male: 51-60; Female: 48-58 cm

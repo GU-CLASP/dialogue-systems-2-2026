@@ -1,0 +1,15 @@
+Breed: Golden Retriever
+Source: https://thedogapi.com
+
+Description:
+Large, athletic sporting dog with a dense, lustrous, flowing golden coat and friendly disposition, known for their versatility as family companions and working dogs
+
+History:
+Developed in the Scottish Highlands during the mid-to-late 19th century by Dudley Marjoribanks (Lord Tweedmouth), who crossed a yellow retriever with the now-extinct Tweed Water Spaniel, with later additions of Irish Setter and Bloodhound for hunting and retrieving in rugged terrain and cold water
+
+Temperament: Friendly, intelligent, devoted, confident, loyal, eager to please
+Breed group: Sporting
+Origin: Scotland
+Life span: 10-12 years
+Weight: Male: 29-34; Female: 25-29 kg
+Height: Male: 58-61; Female: 55-57 cm

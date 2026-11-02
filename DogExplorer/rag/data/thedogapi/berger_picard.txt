@@ -1,0 +1,15 @@
+Breed: Berger Picard
+Source: https://thedogapi.com
+
+Description:
+Medium-sized herding dog with distinctive shaggy fawn or brindle coat, expressive upright ears, and lively expression. An ancient French breed known for its rustic appearance and intelligent, observant nature.
+
+History:
+Ancient French herding breed from Picardy region, considered one of the oldest French sheepdogs. Nearly extinct after World Wars but restored by dedicated breeders.
+
+Temperament: Intelligent, loyal, energetic, alert, affectionate
+Breed group: Herding
+Origin: Picardy, France
+Life span: 12-13 years
+Weight: 23-32 kg
+Height: Male: 60-65; Female: 55-60 cm

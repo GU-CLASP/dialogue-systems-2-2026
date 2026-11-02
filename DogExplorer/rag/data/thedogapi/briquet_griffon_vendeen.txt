@@ -1,0 +1,15 @@
+Breed: Briquet Griffon Vendéen
+Source: https://thedogapi.com
+
+Description:
+Medium-sized rough-coated French scenthound known for its courage, determination, and stamina in the hunt, with a sturdy build designed for hunting in dense terrain and a friendly, energetic disposition
+
+History:
+Developed in the Vendée region of France before World War I from the larger Grand Griffon Vendéen. Selectively bred down in size by the Comte d'Elva to create a smaller faster hound for hunting medium game like hare and fox. Nearly decimated by World Wars but carefully restored
+
+Temperament: Courageous, energetic, independent, friendly, alert, intelligent
+Breed group: Hound
+Origin: Vendée, France
+Life span: 12-14 years
+Weight: 22-24 kg
+Height: 48-56 cm

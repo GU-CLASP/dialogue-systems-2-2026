@@ -1,0 +1,15 @@
+Breed: Greyhound
+Source: https://thedogapi.com
+
+Description:
+An ancient sighthound with tall, lean, elegant build designed for exceptional speed. Known for their gentle temperament and often described as a '45-mph couch potato', combining incredible athleticism with calm, affectionate nature.
+
+History:
+Ancient sighthound breed dating back thousands of years, depicted in Egyptian, Greek, and Roman art. The modern Greyhound was standardized in Great Britain for coursing game and later racing. Famed as the fastest dog breed.
+
+Temperament: Gentle, calm, intelligent, affectionate, independent
+Breed group: Hound
+Origin: Ancient Egypt/Middle East
+Life span: 10-13 years
+Weight: Male: 29-32; Female: 27-29 kg
+Height: Male: 71-76; Female: 68-71 cm

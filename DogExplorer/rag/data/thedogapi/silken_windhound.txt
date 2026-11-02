@@ -1,0 +1,15 @@
+Breed: Silken Windhound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized graceful sighthound with a silky, moderately long coat and elegant athletic build, combining the speed of a sighthound with a trainable, affectionate temperament and gentle nature
+
+History:
+Developed in the 1980s by Francie Stull crossing Borzoi, Whippets, and small amount of Shetland Sheepdog to create a medium-sized sighthound with longer coat and biddable temperament
+
+Temperament: Friendly, gentle, affectionate, intelligent, playful, calm
+Breed group: Hound
+Origin: United States
+Life span: 12-18 years
+Weight: Male: 15-25; Female: 9-20 kg
+Height: 46-60 cm

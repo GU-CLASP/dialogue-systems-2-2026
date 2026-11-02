@@ -1,0 +1,15 @@
+Breed: Miniature Schnauzer
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy terrier-type dog with distinctive wiry coat, bushy eyebrows, and characteristic beard, known for its alert, friendly nature and square build
+
+History:
+Developed in late 19th century Germany by crossing Standard Schnauzers with smaller breeds like Affenpinschers and Poodles to create an all-purpose farm dog and efficient ratter for vermin control and companionship
+
+Temperament: Friendly, intelligent, alert, outgoing, energetic
+Breed group: Terrier
+Origin: Germany
+Life span: 12-15 years
+Weight: 5-9 kg
+Height: Male: 30-36; Female: 28-36 cm

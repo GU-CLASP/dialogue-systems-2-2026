@@ -1,0 +1,15 @@
+Breed: Bouvier des Ardennes
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, hardy and rustic herding dog from the Belgian Ardennes, characterized by a harsh, shaggy double coat, robust build, and impressive endurance with a courageous temperament
+
+History:
+Ancient Belgian herding breed from the Ardennes region, traditionally used to drove cattle and pigs. Nearly extinct after the World Wars due to mechanization of farming but successfully revived by enthusiasts in the late 1980s
+
+Temperament: Courageous, loyal, intelligent, energetic, work-focused, adaptable
+Breed group: Herding
+Origin: Ardennes region, Belgium
+Life span: 10-12 years
+Weight: Male: 27-34; Female: 23-29 kg
+Height: Male: 56-61; Female: 52-56 cm

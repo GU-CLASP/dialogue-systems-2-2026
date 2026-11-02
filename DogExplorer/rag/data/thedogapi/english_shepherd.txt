@@ -1,0 +1,15 @@
+Breed: English Shepherd
+Source: https://thedogapi.com
+
+Description:
+Exceptionally intelligent and versatile medium-sized herding dog with a dense double coat and strong work ethic, developed as an all-purpose farm dog with devotion to family and adaptable temperament
+
+History:
+Developed in the United States from British and Scottish collie-type farm dogs brought by early settlers, bred as versatile all-purpose farm dogs for herding livestock, guarding property, and hunting vermin
+
+Temperament: Intelligent, loyal, energetic, alert, devoted, adaptable
+Breed group: Herding
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 20-27; Female: 16-23 kg
+Height: Male: 48-58; Female: 46-56 cm

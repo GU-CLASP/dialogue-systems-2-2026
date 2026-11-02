@@ -1,0 +1,15 @@
+Breed: American Staffordshire Terrier
+Source: https://thedogapi.com
+
+Description:
+A muscular, stocky, but agile medium-sized terrier of remarkable strength with a broad head, strong build, smooth coat and confident, good-natured personality
+
+History:
+Developed in the 19th century from crosses of bulldogs and terriers brought to America in the 1800s. Originally bred for bull-baiting and pit fighting, later refined to be larger than English Staffordshire Bull Terriers and developed into all-purpose farm dogs and family companions. Recognized by the AKC in 1936.
+
+Temperament: Confident, courageous, loyal, intelligent, smart
+Breed group: Terrier
+Origin: United States
+Life span: 12-16 years
+Weight: Male: 25-32; Female: 18-25 kg
+Height: Male: 46-48; Female: 43-46 cm

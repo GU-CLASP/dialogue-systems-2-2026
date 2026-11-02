@@ -1,0 +1,15 @@
+Breed: Peekapoo
+Source: https://thedogapi.com
+
+Description:
+Small companion mixed breed with soft curled or wavy coat combining the Pekingese and Toy Poodle
+
+History:
+Peekapoo originated in the United States in the 1950s as a deliberate cross between a Pekingese and Toy Poodle, valued for companionship and hypoallergenic potential. Not recognized by major kennel clubs.
+
+Temperament: Affectionate, intelligent, alert, playful
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 4-8 kg
+Height: 20-30 cm

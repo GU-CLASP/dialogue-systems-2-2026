@@ -1,0 +1,15 @@
+Breed: Sporting Lucas Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy, and active working terrier developed for hunting ability with a harsh weatherproof double coat and compact build, known for its friendly and game nature
+
+History:
+Developed in the late 1940s by Sir Jocelyn Lucas in England, crossing Sealyham Terriers with Norfolk Terriers to create a smaller, more agile working terrier capable of accompanying hounds
+
+Temperament: Alert, intelligent, friendly, energetic, courageous
+Breed group: Terrier
+Origin: England
+Life span: 12-15 years
+Weight: Male: 6.5-8; Female: 5-6.5 kg
+Height: Male: 28-33; Female: 25-30 cm

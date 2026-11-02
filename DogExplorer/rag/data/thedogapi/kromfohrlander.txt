@@ -1,0 +1,14 @@
+Breed: Kromfohrländer
+Source: https://thedogapi.com
+
+Description:
+Medium-sized German companion dog with distinctive white coat and brown markings, available in both rough-coated (tousled) and smooth-coated varieties, known for its happy disposition and lively temperament
+
+History:
+Developed in Germany after World War II by Ilse Schleifenbaum from a stray terrier-type dog (Original Peter) found by American soldiers, believed to be crossed with Wire Fox Terriers and Grand Griffon Vendéen. Officially recognized by the FCI in 1955 and named after the local landscape 'krom Fohr' (crooked furrow)
+
+Temperament: Friendly, intelligent, loyal, playful, adaptable, alert
+Breed group: Companion
+Origin: Siegen, Germany
+Weight: 10-16 kg
+Height: 38-46 cm

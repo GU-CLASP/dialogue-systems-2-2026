@@ -1,0 +1,15 @@
+Breed: Tosa
+Source: https://thedogapi.com
+
+Description:
+Large, powerful mastiff-type breed originally developed for dog fighting, characterized by a calm, dignified demeanor and imposing physical presence. Known for its stately manner, patience, and courage with a naturally quiet temperament.
+
+History:
+Developed in mid-to-late 19th century Japan by crossing native Shikoku dogs with Western breeds including Mastiffs, Bulldogs, Bull Terriers, and Great Danes to create a formidable fighting dog with increased size and power.
+
+Temperament: Calm, courageous, loyal, protective, confident
+Breed group: Working
+Origin: Tosa Province, Japan
+Life span: 10-12 years
+Weight: Male: 45-91; Female: 36-73 kg
+Height: Male: 60-66; Female: 55-61 cm

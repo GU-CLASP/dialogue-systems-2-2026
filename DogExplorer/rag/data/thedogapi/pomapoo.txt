@@ -1,0 +1,15 @@
+Breed: Pomapoo
+Source: https://thedogapi.com
+
+Description:
+A small designer crossbreed between a Pomeranian and Toy or Miniature Poodle, featuring a soft, fluffy coat and expressive face. This intelligent, affectionate companion dog often inherits the Poodle's low-shedding coat with a lively, adaptable personality.
+
+History:
+Modern designer crossbreed developed in the United States by crossing Pomeranian with Toy or Miniature Poodle. Primary goal was to create a small, intelligent companion dog with reduced-shedding coat suitable for allergy sufferers.
+
+Temperament: Intelligent, affectionate, playful, alert, adaptable
+Breed group: Mixed
+Origin: United States
+Life span: 12-16 years
+Weight: 2-7 kg
+Height: 20-25 cm

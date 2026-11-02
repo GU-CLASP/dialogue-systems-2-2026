@@ -1,0 +1,15 @@
+Breed: Akbash
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, all-white livestock guardian dog from Turkey with lean athletic build, known for its independent nature and strong protective instincts. The distinctive white coat helped shepherds distinguish it from predators at a distance.
+
+History:
+Ancient breed developed over 3,000 years ago in western Turkey for guarding livestock, particularly in the Akbash region. The white coat helped shepherds distinguish the dogs from predators. Introduced to North America in the 1970s for predator control programs.
+
+Temperament: Independent, protective, calm, alert, loyal, intelligent
+Breed group: Guardian
+Origin: Western Turkey
+Life span: 10-12 years
+Weight: Male: 41-64; Female: 34-48 kg
+Height: Male: 71-86; Female: 69-81 cm

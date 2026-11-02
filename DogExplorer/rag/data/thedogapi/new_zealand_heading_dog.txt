@@ -1,0 +1,15 @@
+Breed: New Zealand Heading Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, agile working dog renowned for its intelligence and strong herding instinct, specifically developed for controlling sheep with keen eyes, quick movement, and exceptional responsiveness in New Zealand's rugged terrain
+
+History:
+Developed in New Zealand during the late 19th and early 20th centuries from imported Border Collies and other British herding breeds, selectively bred for 'heading' ability using strong eye and silent, agile movements to cast out and bring sheep towards the shepherd
+
+Temperament: Intelligent, energetic, work-focused, loyal, alert
+Breed group: Herding
+Origin: New Zealand
+Life span: 12-16 years
+Weight: Male: 16-25; Female: 14-25 kg
+Height: Male: 46-56; Female: 43-53 cm

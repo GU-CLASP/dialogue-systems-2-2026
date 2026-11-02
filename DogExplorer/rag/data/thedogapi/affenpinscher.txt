@@ -1,0 +1,15 @@
+Breed: Affenpinscher
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy toy breed with a distinctive monkey-like expression and shaggy, wiry coat. Known for its confident, terrier-like personality despite its small size.
+
+History:
+Originating in 17th-century Germany, bred down from larger terriers to be skilled ratters in homes, kitchens and stables. Refined in Munich and Berlin, recognized by AKC in 1936. Name translates to 'monkey-like terrier'.
+
+Temperament: Confident, alert, playful, loyal, courageous
+Breed group: Toy
+Origin: Germany
+Life span: 12-15 years
+Weight: 3.2-4.5 kg
+Height: 23-29 cm

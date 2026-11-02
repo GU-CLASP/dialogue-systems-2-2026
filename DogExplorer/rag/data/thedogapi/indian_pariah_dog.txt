@@ -1,0 +1,14 @@
+Breed: Indian Pariah Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized primitive landrace breed native to the Indian subcontinent with erect ears, short coat, and naturally hardy constitution developed through thousands of years of natural selection
+
+History:
+Ancient aboriginal landrace breed native to the Indian subcontinent, among the world's oldest and most natural dog breeds. Developed as a free-ranging village dog over thousands of years, adapted to local climate and conditions through natural selection.
+
+Temperament: Alert, intelligent, loyal, adaptable, independent
+Breed group: Primitive
+Origin: Indian subcontinent
+Weight: Male: 15-30; Female: 15-25 kg
+Height: Male: 51-64; Female: 46-58 cm

@@ -1,0 +1,15 @@
+Breed: Austrian Black and Tan Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic scent hound with a smooth black coat and distinctive rich tan markings, renowned for its stamina, keen sense of smell, and elegant build. Developed specifically for tracking game in mountainous Alpine terrain.
+
+History:
+Descended from ancient Celtic Hounds (Keltenbracke), developed over centuries in Austria from Celtic Hounds and local hunting breeds. Modern form established in mid-19th century as a versatile and durable scenthound for tracking wounded game, primarily hare and fox, in high-altitude Alpine terrain.
+
+Temperament: Intelligent, friendly, energetic, work-focused, independent, loyal
+Breed group: Hound
+Origin: Austria
+Life span: 12-14 years
+Weight: Male: 22-27; Female: 20-25 kg
+Height: 48-56 cm

@@ -1,0 +1,15 @@
+Breed: Goldendoodle
+Source: https://thedogapi.com
+
+Description:
+Medium to large crossbreed between a Golden Retriever and Poodle, known for its friendly temperament, intelligent nature, and low-shedding wavy or curly coat. As a mixed breed, appearance and temperament can vary by generation.
+
+History:
+Designer crossbreed first developed in the late 20th century, becoming popular in the 1990s. Originally created to produce a guide dog for individuals with allergies by combining the low-shedding coat of the Poodle with the gentle, trainable nature of the Golden Retriever.
+
+Temperament: Friendly, intelligent, gentle, affectionate, outgoing, playful
+Breed group: Mixed
+Origin: United States, Australia
+Life span: 10-15 years
+Weight: 23-41 kg
+Height: 51-61 cm

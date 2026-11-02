@@ -1,0 +1,15 @@
+Breed: Saint Berdoodle
+Source: https://thedogapi.com
+
+Description:
+Large and powerful mixed breed combining the gentle, patient nature of the Saint Bernard with the intelligence and often low-shedding coat of the Standard Poodle. Traits can vary significantly based on genetic inheritance, often featuring wavy or curly coats.
+
+History:
+Modern designer crossbreed developed in the United States in the late 20th century as part of the 'designer dog' movement. The goal was to combine Saint Bernard's gentle temperament with Standard Poodle's intelligence and hypoallergenic qualities to create a large, family-friendly companion.
+
+Temperament: Gentle, intelligent, friendly, loyal, affectionate, calm, protective
+Breed group: Mixed
+Origin: United States
+Life span: 8-12 years
+Weight: Male: 50-82; Female: 41-68 kg
+Height: Male: 61-76; Female: 56-71 cm

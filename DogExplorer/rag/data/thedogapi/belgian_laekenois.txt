@@ -1,0 +1,15 @@
+Breed: Belgian Laekenois
+Source: https://thedogapi.com
+
+Description:
+Medium-sized herding dog with distinctive rough, wiry, tousled coat and alert, intelligent expression. The oldest and rarest of the four Belgian Shepherd varieties, known for its unique fawn-colored wire coat.
+
+History:
+One of four Belgian Shepherd varieties and the rarest, developed in late 1800s around Laeken near the Royal Castle of Laeken. Originally bred to guard flocks and the drying linen fields near Antwerp. Nearly extinct after WWII but preserved by dedicated breeders.
+
+Temperament: Alert, intelligent, protective, loyal, energetic, affectionate
+Breed group: Herding
+Origin: Belgium
+Life span: 10-14 years
+Weight: Male: 25-30; Female: 20-27 kg
+Height: Male: 61-66; Female: 56-61 cm

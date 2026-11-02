@@ -1,0 +1,15 @@
+Breed: Sussex Spaniel
+Source: https://thedogapi.com
+
+Description:
+A long, low, and muscular spaniel with a distinctive rich golden liver coat and rolling gait, bred for hunting in dense undergrowth. Known for its calm and affectionate nature, this massive spaniel moves with deliberate purpose and steady temperament.
+
+History:
+Developed in Sussex County England in the 18th-19th centuries by landowners specifically for hunting in dense forests and undergrowth. Nearly extinct after WWII but saved by dedicated breeders. Recognized by Kennel Club in 1872 and AKC in 1884.
+
+Temperament: Calm, gentle, friendly, loyal, alert
+Breed group: Sporting
+Origin: Sussex, England
+Life span: 12-15 years
+Weight: 16-20 kg
+Height: 33-38 cm

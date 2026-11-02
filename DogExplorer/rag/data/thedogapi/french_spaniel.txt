@@ -1,0 +1,15 @@
+Breed: French Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium to large versatile pointing dog with elegant silky brown and white coat and gentle expression, known for hunting ability and calm temperament. One of the oldest spaniel-type pointing breeds.
+
+History:
+One of the oldest pointing breeds, descending from longhaired setting spaniels used since the Middle Ages. Described by Gaston Fébus in the 14th century, standardized in the 19th century, and revived in early 20th century after near extinction
+
+Temperament: Gentle, intelligent, calm, adaptable, eager to please
+Breed group: Sporting
+Origin: France
+Life span: 10-12 years
+Weight: Male: 23-27; Female: 20-27 kg
+Height: Male: 56-61; Female: 53-58 cm

@@ -1,0 +1,15 @@
+Breed: Portuguese Water Dog
+Source: https://thedogapi.com
+
+Description:
+Athletic, medium-sized working dog with a robust build and webbed feet, known for its single coat of curly or wavy waterproof hair. Originally bred as an all-around fisherman's helper.
+
+History:
+Ancient breed from Portuguese coast, developed as fisherman's helper for herding fish into nets, retrieving tackle, and carrying messages between ships and shore. Nearly extinct in 20th century but saved through dedicated breeding efforts.
+
+Temperament: Intelligent, loyal, energetic, athletic, eager to please
+Breed group: Working
+Origin: Portugal
+Life span: 11-13 years
+Weight: Male: 19-27; Female: 16-23 kg
+Height: Male: 51-58; Female: 43-53 cm

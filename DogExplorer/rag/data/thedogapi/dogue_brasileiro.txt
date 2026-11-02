@@ -1,0 +1,15 @@
+Breed: Dogue Brasileiro
+Source: https://thedogapi.com
+
+Description:
+Medium to large, powerful mastiff-type breed developed in Brazil with strong guarding instincts, athletic build, and short coat. Known for its devotion to family and protective temperament.
+
+History:
+Developed in Brazil in the 1970s and 1980s by crossing various breeds including Boxers, Bullmastiffs, and local breeds to create a versatile family guardian and protection dog. Not recognized by major international kennel clubs but has official breed standard in Brazil.
+
+Temperament: Protective, loyal, intelligent, courageous, calm, devoted
+Breed group: Working
+Origin: Brazil
+Life span: 9-12 years
+Weight: Male: 36-50; Female: 31-45 kg
+Height: Male: 56-66; Female: 54-64 cm

@@ -1,0 +1,15 @@
+Breed: Pudelpointer
+Source: https://thedogapi.com
+
+Description:
+Medium to large versatile hunting dog combining Poodle intelligence with Pointer field abilities, featuring a distinctive dense wiry coat and keen, energetic temperament bred for exceptional performance in both field and water
+
+History:
+Developed in Germany in the late 19th century by Baron von Zedlitz, who crossed German Poodles (Pudel) with English Pointers to create the ideal versatile gundog for field and water work
+
+Temperament: Intelligent, loyal, eager to please, work-focused, energetic, playful
+Breed group: Sporting
+Origin: Germany
+Life span: 11-14 years
+Weight: Male: 25-32; Female: 20-29 kg
+Height: Male: 56-69; Female: 53-64 cm

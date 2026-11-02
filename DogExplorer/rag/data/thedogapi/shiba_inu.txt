@@ -1,0 +1,14 @@
+Breed: Shiba Inu
+Source: https://thedogapi.com
+
+Description:
+An ancient Japanese spitz breed with a small, compact, well-muscled frame and distinctive fox-like appearance. Known for its spirited personality, confident bearing, and agile movement.
+
+History:
+One of Japan's six oldest native breeds, originally developed for hunting small game in mountainous terrain. Nearly extinct after WWII but saved through dedicated breeding programs. First brought to the United States in 1954.
+
+Temperament: Alert, confident, intelligent, independent, loyal, courageous
+Breed group: Non-Sporting
+Origin: Japan
+Weight: Male: 8-11; Female: 7-9 kg
+Height: Male: 37-42; Female: 34-39 cm

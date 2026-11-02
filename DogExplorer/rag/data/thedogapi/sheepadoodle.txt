@@ -1,0 +1,15 @@
+Breed: Sheepadoodle
+Source: https://thedogapi.com
+
+Description:
+Large crossbreed combining the Old English Sheepdog's gentle herding nature with the Poodle's intelligence and low-shedding coat. Known for a shaggy coat and family-friendly disposition, with characteristics varying depending on genetic inheritance from parent breeds
+
+History:
+Designer crossbreed developed in the United States in the 1980s, gaining popularity in the late 20th century. Created by crossing Old English Sheepdog with Standard Poodle for a large, family-oriented dog with low-shedding coat qualities
+
+Temperament: Intelligent, playful, gentle, energetic, friendly, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 29-39; Female: 20-29 kg
+Height: Male: 56-69; Female: 53-64 cm

@@ -1,0 +1,14 @@
+Breed: McNab
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, agile herding dog with athletic build and exceptional working ability, known for intelligence, stamina, and versatility. Developed for ranch work in Northern California
+
+History:
+Developed in the late 1800s by Scottish immigrant Alexander McNab on his Mendocino County ranch, crossing Scottish Collies and local working collies with other herding dogs to create a versatile ranch dog suited to California terrain
+
+Temperament: Intelligent, energetic, loyal, alert, work-focused
+Breed group: Herding
+Origin: California, United States
+Weight: Male: 16-29; Female: 14-27 kg
+Height: Male: 46-64; Female: 41-58 cm

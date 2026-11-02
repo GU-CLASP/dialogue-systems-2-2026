@@ -1,0 +1,15 @@
+Breed: Bull Terrier
+Source: https://thedogapi.com
+
+Description:
+A muscular, well-built terrier best known for its distinctive long, egg-shaped head that slopes down to the nose. This confident breed combines a playful, mischievous personality with a courageous temperament.
+
+History:
+Developed in 19th-century England by crossing old English Bulldogs with various terriers, originally for bull-baiting and dog fighting. James Hinks is credited with standardizing the breed and creating the distinctive egg-shaped head, earning them the nickname 'The White Cavalier'.
+
+Temperament: Playful, courageous, energetic, loyal, mischievous
+Breed group: Terrier
+Origin: England
+Life span: 12-13 years
+Weight: 23-32 kg
+Height: 53-56 cm

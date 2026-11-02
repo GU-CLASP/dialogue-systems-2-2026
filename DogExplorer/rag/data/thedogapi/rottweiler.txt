@@ -1,0 +1,15 @@
+Breed: Rottweiler
+Source: https://thedogapi.com
+
+Description:
+Large, robust, muscular working dog with black coat and tan markings, known for great strength, protective instincts, and confident temperament. A loyal and loving guardian breed.
+
+History:
+Descended from Roman drover dogs, developed in the German town of Rottweil as cattle herders and guard dogs. Known as the 'Butcher's Dog of Rottweil', they protected butchers' money to and from market. Numbers declined with advent of railroads but was revived in early 20th century. Later used for protection and police work
+
+Temperament: Confident, loyal, courageous, calm, protective, affectionate
+Breed group: Working
+Origin: Rottweil, Germany
+Life span: 9-10 years
+Weight: Male: 43-61; Female: 36-45 kg
+Height: Male: 61-69; Female: 56-64 cm

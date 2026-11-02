@@ -1,0 +1,15 @@
+Breed: Gordon Setter
+Source: https://thedogapi.com
+
+Description:
+Large, athletic bird dog with distinctive glistening black-and-tan coat. Built sturdily for work in rugged terrain, it is the heaviest and most substantial of the setter breeds, known for endurance and loyalty with an alert expression.
+
+History:
+Developed in Scotland by Alexander the fourth Duke of Gordon in the late 18th and early 19th centuries from black and tan setters. Established as a durable one-man bird dog capable of working long days in rugged Scottish Highland terrain.
+
+Temperament: Confident, loyal, affectionate, intelligent, eager to please, alert
+Breed group: Sporting
+Origin: Scotland
+Life span: 12-13 years
+Weight: Male: 25-36; Female: 20-32 kg
+Height: Male: 61-69; Female: 58-66 cm

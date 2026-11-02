@@ -1,0 +1,15 @@
+Breed: Bassador
+Source: https://thedogapi.com
+
+Description:
+Medium-to-large crossbreed with a long, sturdy body, short legs, and distinctive droopy ears of the Basset Hound combined with the friendly face and temperament of a Labrador Retriever
+
+History:
+Modern designer crossbreed developed in recent decades in North America by crossing Basset Hound and Labrador Retriever to combine friendly family-oriented traits with unique appearance and scenting abilities
+
+Temperament: Friendly, loyal, gentle, intelligent, outgoing
+Breed group: Mixed
+Origin: United States
+Life span: 10-13 years
+Weight: 20-34 kg
+Height: 33-51 cm

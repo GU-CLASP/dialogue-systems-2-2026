@@ -1,0 +1,15 @@
+Breed: Dandie Dinmont Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, long, low-bodied terrier with distinctive topknot of silky hair, large soulful eyes, and unique pepper or mustard colored crisp double coat. Originally bred for hunting badgers and otters with a gentle expression despite their tenacious nature.
+
+History:
+Developed in the 18th century in the border region between Scotland and England for hunting badgers and otters. Named after a character in Sir Walter Scott's 1815 novel 'Guy Mannering'. Recognized by The Kennel Club (UK) in 1875 and AKC in 1886.
+
+Temperament: Independent, intelligent, loyal, affectionate, confident, gentle
+Breed group: Terrier
+Origin: Scottish Borders
+Life span: 12-15 years
+Weight: 8-11 kg
+Height: 20-28 cm

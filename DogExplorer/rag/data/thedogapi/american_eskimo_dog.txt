@@ -1,0 +1,14 @@
+Breed: American Eskimo Dog
+Source: https://thedogapi.com
+
+Description:
+Compact spitz-type companion dog with distinctive dense white double coat, black points on lips, nose, and eye rims, wedge-shaped head, and plumed tail carried over the back. Available in three sizes (toy, miniature, standard) with an alert expression and striking appearance.
+
+History:
+Descended from white German Spitz dogs brought to America by German immigrants. Name changed from German Spitz to American Eskimo Dog during World War I due to anti-German sentiment. Became popular circus performers in the 19th and early 20th centuries, recognized by AKC in 1994
+
+Temperament: Intelligent, alert, friendly, playful, energetic, eager to please
+Breed group: Non-Sporting
+Origin: United States
+Weight: 3-16 kg
+Height: 23-48 cm

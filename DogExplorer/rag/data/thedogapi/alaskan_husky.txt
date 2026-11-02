@@ -1,0 +1,15 @@
+Breed: Alaskan Husky
+Source: https://thedogapi.com
+
+Description:
+Medium-sized athletic sled dog bred for performance rather than appearance, with variable coat colors and exceptional endurance. Built for speed and arctic conditions, this working dog represents a blend of various Northern breeds and pointers optimized for sled racing.
+
+History:
+Developed in Alaska as a purpose-bred sled dog through selective breeding of various northern breeds (Siberian Husky, Alaskan Malamute, Inuit dogs) with European breeds like Pointers, Greyhounds, and Salukis to create the ideal combination of speed, endurance, and work ethic for sled racing
+
+Temperament: Energetic, intelligent, work-focused, athletic, friendly, independent
+Breed group: Mixed
+Origin: Alaska, United States
+Life span: 10-15 years
+Weight: Male: 17-27; Female: 16-25 kg
+Height: Male: 53-66; Female: 51-64 cm

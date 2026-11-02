@@ -1,0 +1,15 @@
+Breed: Maltshi
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed resulting from crossing a Maltese and Shih Tzu, known for their affectionate nature, low-shedding silky coat, and charming companion temperament
+
+History:
+Modern designer crossbreed developed in the United States in the late 20th century by crossing the Maltese and Shih Tzu breeds. The goal was to create a small, affectionate companion dog with a low-shedding coat. Not recognized by major kennel clubs.
+
+Temperament: Affectionate, playful, friendly, gentle, outgoing, intelligent
+Breed group: Mixed
+Origin: United States
+Life span: 10-16 years
+Weight: 2.7-6.8 kg
+Height: 20-28 cm

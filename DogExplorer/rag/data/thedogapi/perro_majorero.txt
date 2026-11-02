@@ -1,0 +1,15 @@
+Breed: Perro Majorero
+Source: https://thedogapi.com
+
+Description:
+Medium-sized primitive-type molossoid dog with a distinctive brindle coat, originating from Fuerteventura in the Canary Islands. This rustic livestock guardian dog combines the sturdy build of a working breed with the alert temperament needed for protecting goats and cattle.
+
+History:
+Ancient indigenous breed from Fuerteventura in the Canary Islands, descended from dogs brought in pre-Hispanic times. Traditionally used by the Majorero people (natives of Fuerteventura) for herding goats and cattle and guarding livestock. Recognized by Spanish breed clubs and the Real Sociedad Canina de España.
+
+Temperament: Loyal, protective, intelligent, alert, confident, calm, courageous
+Breed group: Working
+Origin: Fuerteventura, Canary Islands, Spain
+Life span: 11-14 years
+Weight: Male: 30-40; Female: 25-35 kg
+Height: Male: 56-63; Female: 53-61 cm

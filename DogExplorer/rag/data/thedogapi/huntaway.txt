@@ -1,0 +1,15 @@
+Breed: Huntaway
+Source: https://thedogapi.com
+
+Description:
+Large, sturdily-built herding dog from New Zealand, known for its deep, powerful bark used to drive sheep over large distances using voice and physical presence
+
+History:
+Developed in late 19th and early 20th century New Zealand by farmers who crossed various British sheepdogs, collies, and herding breeds to create a dog that could move large flocks of sheep over vast distances using its powerful voice and stamina
+
+Temperament: Intelligent, energetic, work-focused, loyal, adaptable
+Breed group: Herding
+Origin: New Zealand
+Life span: 12-14 years
+Weight: Male: 29-40; Female: 25-35 kg
+Height: Male: 61-66; Female: 56-63 cm

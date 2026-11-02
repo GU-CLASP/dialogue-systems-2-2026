@@ -1,0 +1,15 @@
+Breed: Australian Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy terrier with harsh double coat and distinctive topknot, known for its spirited, alert expression and courageous personality
+
+History:
+Developed in Australia during the 19th century from British terrier breeds including Cairn, Skye, and Yorkshire Terriers. Bred as all-purpose exterminators of rodents and snakes, as well as loyal watchdogs and companions. Recognized by AKC in 1960.
+
+Temperament: Courageous, alert, friendly, loyal, intelligent
+Breed group: Terrier
+Origin: Australia
+Life span: 11-15 years
+Weight: 7-9 kg
+Height: 25-28 cm

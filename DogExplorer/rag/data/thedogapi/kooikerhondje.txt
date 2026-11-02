@@ -1,0 +1,15 @@
+Breed: Kooikerhondje
+Source: https://thedogapi.com
+
+Description:
+Small, agile spaniel-type dog of Dutch origin with a distinctive flowing orange-red and white particolored coat and feathered ears, originally bred for luring ducks into traps
+
+History:
+Ancient Dutch breed developed as early as the 16th century to work as duck decoy dogs, luring ducks into traps called 'eendenkooien'. Nearly extinct after World War II but saved and re-established by Baroness van Hardenbroek van Ammerstol from remaining bloodlines. Recognized by AKC in 2018.
+
+Temperament: Friendly, intelligent, alert, energetic, cheerful, adaptable
+Breed group: Sporting
+Origin: Netherlands
+Life span: 12-15 years
+Weight: 9-14 kg
+Height: Male: 38-43; Female: 36-41 cm

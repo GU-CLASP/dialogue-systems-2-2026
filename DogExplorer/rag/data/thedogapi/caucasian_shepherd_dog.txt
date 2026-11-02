@@ -1,0 +1,15 @@
+Breed: Caucasian Shepherd Dog
+Source: https://thedogapi.com
+
+Description:
+Giant, powerfully built livestock guardian breed with dense, weather-resistant double coat and imposing presence. Bred to be a formidable guardian in harsh mountain conditions with a courageous, confident demeanor.
+
+History:
+Ancient breed originating in the Caucasus Mountain region, used for centuries to protect livestock from large predators like wolves and bears. Standardized by Soviet cynologists and used as military and prison guard dogs.
+
+Temperament: Protective, independent, courageous, loyal, confident
+Breed group: Working
+Origin: Caucasus Mountains
+Life span: 10-12 years
+Weight: Male: 50-77; Female: 45-68 kg
+Height: Male: 68-76; Female: 64-71 cm

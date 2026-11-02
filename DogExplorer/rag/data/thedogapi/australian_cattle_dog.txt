@@ -1,0 +1,15 @@
+Breed: Australian Cattle Dog
+Source: https://thedogapi.com
+
+Description:
+Compact, muscular working dog with distinctive coat markings and exceptional endurance for cattle herding; known as the Heeler
+
+History:
+Developed in 19th century Australia by crossing British herding dogs including blue merle Collies with native Dingo, with later infusions of Dalmatian and Black and Tan Kelpie to create a hardy cattle herding dog for harsh Australian conditions
+
+Temperament: Intelligent, alert, loyal, energetic, courageous
+Breed group: Herding
+Origin: Australia
+Life span: 12-16 years
+Weight: 16-23 kg
+Height: Male: 46-51; Female: 43-48 cm

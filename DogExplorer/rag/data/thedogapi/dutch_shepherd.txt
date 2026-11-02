@@ -1,0 +1,15 @@
+Breed: Dutch Shepherd
+Source: https://thedogapi.com
+
+Description:
+Medium-sized herding dog with athletic, muscular build and distinctive brindle coat pattern. An intelligent, versatile, and work-focused breed of Dutch origin that served as an all-purpose farm dog.
+
+History:
+Developed in the Netherlands as an all-purpose farm dog for herding sheep and cattle, cart-pulling, and guarding. Nearly extinct after WWII but preserved through dedicated breeding efforts. Known for its brindle coat in three varieties: short, long, and wire-haired.
+
+Temperament: Intelligent, loyal, alert, energetic, athletic, work-focused, independent
+Breed group: Herding
+Origin: Netherlands
+Life span: 11-14 years
+Weight: Male: 23-34; Female: 19-30 kg
+Height: Male: 57-64; Female: 55-61 cm

@@ -1,0 +1,15 @@
+Breed: Flat-Coated Retriever
+Source: https://thedogapi.com
+
+Description:
+Large, elegant sporting dog with a lustrous, sleek flat coat in solid black or liver, known for their cheerful, perpetually youthful 'Peter Pan' personality and optimistic temperament
+
+History:
+Developed in mid-19th century England by crossing St. John's Water Dog with various retrievers, setters, spaniels and sheepdogs to create a versatile gundog for work on both land and water
+
+Temperament: Friendly, outgoing, optimistic, intelligent, energetic, playful, devoted
+Breed group: Sporting
+Origin: England
+Life span: 8-10 years
+Weight: Male: 27-32; Female: 25-29 kg
+Height: Male: 58-62; Female: 56-60 cm

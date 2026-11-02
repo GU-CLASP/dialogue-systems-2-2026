@@ -1,0 +1,15 @@
+Breed: Goberian
+Source: https://thedogapi.com
+
+Description:
+Medium to large energetic crossbreed combining the Golden Retriever's friendly, affable nature with the Siberian Husky's striking looks and athleticism. Known for their intelligence, dense double coat, and friendly expression.
+
+History:
+Modern designer crossbreed first intentionally bred in the early 2000s, combining Golden Retriever and Siberian Husky traits for an active family companion. Not recognized by major kennel clubs.
+
+Temperament: Friendly, energetic, intelligent, loyal, outgoing, affectionate
+Breed group: Mixed
+Origin: United States
+Life span: 10-14 years
+Weight: Male: 20-36; Female: 16-32 kg
+Height: Male: 53-61; Female: 51-57 cm

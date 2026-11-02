@@ -1,0 +1,15 @@
+Breed: Brazilian Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, compact, and agile terrier with a short, smooth tri-color coat, known for intelligence, alertness, and energetic spirit, native to Brazil
+
+History:
+Developed in the 19th and early 20th centuries from various European terriers, such as the Jack Russell and Fox Terrier, brought to Brazil by immigrants. These dogs were crossed with local Brazilian farm dogs, creating a unique breed adapted to the country's environment and standardized as a farm and small game terrier, recognized by the FCI.
+
+Temperament: Alert, friendly, energetic, intelligent, playful, loyal
+Breed group: Terrier
+Origin: Brazil
+Life span: 12-14 years
+Weight: Male: 7-10; Female: 6-10 kg
+Height: Male: 35-40; Female: 33-38 cm

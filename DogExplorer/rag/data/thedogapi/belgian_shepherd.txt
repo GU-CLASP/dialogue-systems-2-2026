@@ -1,0 +1,15 @@
+Breed: Belgian Shepherd
+Source: https://thedogapi.com
+
+Description:
+Versatile medium to large herding dog from Belgium known for intelligence, athleticism, and strong work ethic. The FCI recognizes four distinct varieties based on coat type and color: Groenendael (long-haired, black), Tervuren (long-haired, fawn/mahogany), Malinois (short-haired, fawn/mahogany), and Laekenois (rough-haired, fawn).
+
+History:
+Developed in late 1800s in Belgium as all-purpose herding and guard dogs. Professor Adolphe Reul of the Belgian School of Veterinary Science established the breed type in 1891, categorizing native dogs into four distinct varieties based on coat type and color
+
+Temperament: Intelligent, loyal, energetic, alert, protective, work-focused
+Breed group: Herding
+Origin: Belgium
+Life span: 12-14 years
+Weight: Male: 25-34; Female: 20-27 kg
+Height: Male: 61-66; Female: 56-61 cm

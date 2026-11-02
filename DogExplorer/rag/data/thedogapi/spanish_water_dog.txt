@@ -1,0 +1,15 @@
+Breed: Spanish Water Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized rustic water dog with distinctive curly woolly coat, athletic build, and versatile multi-purpose working ability
+
+History:
+Ancient all-purpose farm dog from the Iberian Peninsula, used for centuries in Spain for herding livestock, retrieving waterfowl for hunters, and assisting fishermen. Nearly extinct but successfully revived in the 1970s
+
+Temperament: Loyal, intelligent, work-focused, athletic, energetic, alert
+Breed group: Herding
+Origin: Spain
+Life span: 12-14 years
+Weight: Male: 18-22; Female: 14-18 kg
+Height: Male: 44-50; Female: 40-46 cm

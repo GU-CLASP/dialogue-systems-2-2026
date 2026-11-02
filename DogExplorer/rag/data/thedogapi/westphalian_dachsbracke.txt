@@ -1,0 +1,15 @@
+Breed: Westphalian Dachsbracke
+Source: https://thedogapi.com
+
+Description:
+Short-legged, sturdy German scent hound with tricolor coat, developed for hunting in dense terrain and tracking wounded game
+
+History:
+Developed in Westphalia region of Germany by crossing Deutsche Bracke with Dachshunds to create a short-legged tracking hound for dense terrain hunting and tracking wounded game
+
+Temperament: Alert, intelligent, friendly, work-focused, loyal
+Breed group: Hound
+Origin: Westphalia, Germany
+Life span: 10-15 years
+Weight: Male: 15-18; Female: 14-17 kg
+Height: 30-38 cm

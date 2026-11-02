@@ -1,0 +1,15 @@
+Breed: Doberman Pinscher
+Source: https://thedogapi.com
+
+Description:
+Medium-large, sleek, athletic and powerful dog known for exceptional loyalty and intelligence. This elegant working breed combines strength with agility and has a confident, alert demeanor.
+
+History:
+Created in late 19th century by Karl Friedrich Louis Dobermann using breeds such as the Rottweiler, German Pinscher, and others for protection and companionship
+
+Temperament: Intelligent, alert, loyal, energetic, confident
+Breed group: Working
+Origin: Germany
+Life span: 10-12 years
+Weight: Male: 34-45; Female: 27-41 kg
+Height: Male: 66-71; Female: 61-66 cm

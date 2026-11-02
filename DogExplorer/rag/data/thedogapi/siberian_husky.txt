@@ -1,0 +1,15 @@
+Breed: Siberian Husky
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic working sled dog with thick double coat, striking wolf-like appearance, and erect triangular ears, bred for endurance sledding in harsh arctic conditions
+
+History:
+Developed by the Chukchi people of Siberia as an endurance sled dog for transportation in harsh arctic conditions. Brought to Alaska in 1908 for sled dog racing, gained fame during the 1925 serum run to Nome, and recognized by AKC in 1930.
+
+Temperament: Friendly, outgoing, intelligent, alert, gentle, independent, energetic
+Breed group: Working
+Origin: Siberia, Russia
+Life span: 12-14 years
+Weight: Male: 20-27; Female: 16-23 kg
+Height: Male: 53-60; Female: 51-56 cm

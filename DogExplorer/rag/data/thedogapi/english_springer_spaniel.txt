@@ -1,0 +1,15 @@
+Breed: English Springer Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium-sized athletic sporting dog with long ears, feathered silky coat, and enthusiastic, eager-to-please personality. Known for their compact body, gentle intelligent expression, and versatile gundog abilities.
+
+History:
+Developed in 19th century England as a versatile gundog to find and 'spring' game for the net, falcon, or gun. Originally separated from smaller 'cocker' spaniels by size and hunting use. Officially recognized by The Kennel Club in 1902 and AKC in 1910.
+
+Temperament: Friendly, intelligent, energetic, eager to please, playful
+Breed group: Sporting
+Origin: England
+Life span: 12-14 years
+Weight: Male: 20-25; Female: 16-23 kg
+Height: Male: 48-53; Female: 46-51 cm

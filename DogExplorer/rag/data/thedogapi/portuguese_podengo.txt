@@ -1,0 +1,15 @@
+Breed: Portuguese Podengo
+Source: https://thedogapi.com
+
+Description:
+Ancient multi-purpose hound from Portugal that comes in three sizes (Pequeno, Medio, Grande) and two coat types (smooth and wire). Medium-sized, agile breed with erect ears, wedge-shaped head, and keen sight and scent abilities developed for hunting rabbits and small game
+
+History:
+Ancient breed dating back over 2000 years, likely descended from dogs brought by Phoenician and Roman traders. Developed in three distinct sizes to hunt different game across various Portuguese terrains, primarily rabbits and small game
+
+Temperament: Alert, intelligent, energetic, loyal, independent
+Breed group: Hound
+Origin: Portugal
+Life span: 12-15 years
+Weight: 16-20 kg
+Height: 40-55 cm

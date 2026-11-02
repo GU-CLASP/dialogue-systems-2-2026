@@ -1,0 +1,15 @@
+Breed: Pyrenean Mastiff
+Source: https://thedogapi.com
+
+Description:
+A giant, powerful, and noble livestock guardian breed from the Spanish Pyrenees, known for its calm demeanor, thick white double coat with darker patches, and courageous yet gentle protective nature
+
+History:
+Ancient livestock guardian breed from the Pyrenees mountains of Spain, developed to protect flocks from wolves and bears. The breed faced near extinction after the Spanish Civil War but was revived by dedicated breeders in the 1970s
+
+Temperament: Calm, gentle, courageous, protective, intelligent, loyal
+Breed group: Working
+Origin: Aragonese Pyrenees, Spain
+Life span: 8-13 years
+Weight: Male: 64-100; Female: 55-81 kg
+Height: Male: 77-81; Female: 72-75 cm

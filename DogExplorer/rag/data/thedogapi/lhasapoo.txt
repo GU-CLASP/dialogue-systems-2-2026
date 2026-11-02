@@ -1,0 +1,15 @@
+Breed: Lhasapoo
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed between Lhasa Apso and Poodle, combining the intelligence and low-shedding coat of the Poodle with the loyal, alert nature of the Lhasa Apso. Features a fluffy, wavy or curly coat and affectionate, friendly temperament.
+
+History:
+Developed in the United States during the designer dog trend of the late 20th century by crossing the Lhasa Apso and Poodle. The goal was to create a small, intelligent companion dog with a low-shedding coat. Not recognized by major kennel clubs.
+
+Temperament: Intelligent, affectionate, playful, alert, confident
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 4.5-9 kg
+Height: 23-33 cm

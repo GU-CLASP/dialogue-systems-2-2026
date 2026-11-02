@@ -1,0 +1,15 @@
+Breed: American Foxhound
+Source: https://thedogapi.com
+
+Description:
+A sleek, powerful scenthound with a long, fine-boned body and athletic build, known for incredible stamina, speed, and melodious baying voice. One of the oldest American-bred dogs, developed for endurance and pack hunting.
+
+History:
+Developed from English Foxhounds imported to Colonial America in the 1650s, refined for American terrain and fox hunting. George Washington was a key figure in the breed's development, breeding them to be lighter, taller, and faster for hunting American red fox over varied terrain.
+
+Temperament: Independent, friendly, gentle, energetic, intelligent
+Breed group: Hound
+Origin: United States
+Life span: 11-13 years
+Weight: Male: 29-32; Female: 27-29 kg
+Height: Male: 56-64; Female: 53-61 cm

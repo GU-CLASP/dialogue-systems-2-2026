@@ -1,0 +1,15 @@
+Breed: Basset Bleu de Gascogne
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, low-slung French scent hound with distinctive blue-mottled coat, long drooping ears, and exceptional tracking abilities. Known for its noble expression and remarkable sense of smell.
+
+History:
+Descended from the larger Grand Bleu de Gascogne developed in medieval Gascony region for hunting small game. Nearly extinct but revived in early 20th century by breeder Alain Bourbon
+
+Temperament: Gentle, friendly, alert, loyal, independent
+Breed group: Hound
+Origin: Gascony, France
+Life span: 10-14 years
+Weight: 16-18 kg
+Height: 33-38 cm

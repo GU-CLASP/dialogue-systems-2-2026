@@ -1,0 +1,15 @@
+Breed: Tosa Ken
+Source: https://thedogapi.com
+
+Description:
+Large, powerful Japanese mastiff-type breed developed for dog fighting, known for its imposing presence, calm and dignified temperament, and loyalty to family
+
+History:
+Developed in Japan during the latter half of the 19th century by crossing native Shikoku dogs with Western breeds including Mastiffs, Great Danes, Bulldogs, and German Pointers to create a larger, more powerful fighting dog. Later bred for calmness and self-control.
+
+Temperament: Calm, courageous, loyal, protective, confident
+Breed group: Working
+Origin: Tosa Province, Shikoku Island, Japan
+Life span: 10-12 years
+Weight: Male: 45-91; Female: 41-73 kg
+Height: Male: 55-69; Female: 55-64 cm

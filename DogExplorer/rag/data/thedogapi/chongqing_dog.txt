@@ -1,0 +1,15 @@
+Breed: Chongqing Dog
+Source: https://thedogapi.com
+
+Description:
+Medium-sized ancient Chinese spitz-type dog with distinctive bamboo-like tail, short reddish-brown coat, upright ears, and muscular build with protective temperament
+
+History:
+Ancient Chinese breed from Chongqing and Sichuan provinces, traditionally used for hunting and guard work. Nearly extinct but undergoing revival efforts, with breed standards established by regional Chinese registries.
+
+Temperament: Loyal, protective, alert, confident, independent
+Breed group: Utility
+Origin: Chongqing, China
+Life span: 10-13 years
+Weight: Male: 15-25; Female: 12-20 kg
+Height: Male: 38-50; Female: 35-46 cm

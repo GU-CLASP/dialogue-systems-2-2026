@@ -1,0 +1,15 @@
+Breed: Bolognese
+Source: https://thedogapi.com
+
+Description:
+A small, stocky, and compact white toy breed with a long, fluffy, pure-white cotton-like coat, belonging to the Bichon family. Known for its calm, devoted temperament and affectionate nature as a companion dog.
+
+History:
+An ancient noble breed of the Bichon family, originating in Bologna, Italy, dating to 11th-12th centuries. Prized companions to royalty and aristocracy from the Roman era through the Renaissance, favored as palace companions.
+
+Temperament: Calm, devoted, intelligent, playful, gentle, loyal
+Breed group: Toy
+Origin: Bologna, Italy
+Life span: 12-14 years
+Weight: 2.5-4 kg
+Height: 25-30 cm

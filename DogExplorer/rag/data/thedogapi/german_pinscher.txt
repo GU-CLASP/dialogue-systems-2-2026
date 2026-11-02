@@ -1,0 +1,15 @@
+Breed: German Pinscher
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, well-muscled working dog with elegant, athletic build and smooth coat. Known for its high-spirited, alert, and confident demeanor, this is one of Germany's oldest breeds.
+
+History:
+Ancient German breed developed for vermin control, ratting, and farm work. Ancestor to the Doberman Pinscher and Miniature Pinscher. Nearly faced extinction after World War II but was revived by Werner Jung in West Germany in the late 1950s. Recognized by AKC in 2003.
+
+Temperament: Alert, courageous, intelligent, energetic, confident, loyal
+Breed group: Working
+Origin: Germany
+Life span: 12-14 years
+Weight: 11-20 kg
+Height: 43-51 cm

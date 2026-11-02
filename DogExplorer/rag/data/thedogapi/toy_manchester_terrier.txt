@@ -1,0 +1,14 @@
+Breed: Toy Manchester Terrier
+Source: https://thedogapi.com
+
+Description:
+Compact, elegant small terrier with distinctive jet-black coat and rich mahogany tan markings, possessing a spirited and alert terrier nature in a sleek frame
+
+History:
+Developed in 19th-century Manchester, England by crossing Black and Tan Terrier with Whippet to create expert ratter. The Toy variety was selectively bred down from Standard Manchester Terrier for companionship while retaining ratting ability
+
+Temperament: Alert, intelligent, spirited, devoted, playful
+Breed group: Toy
+Origin: Manchester, England
+Weight: 3-5 kg
+Height: 25-30 cm

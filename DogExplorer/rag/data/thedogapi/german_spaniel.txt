@@ -1,0 +1,15 @@
+Breed: German Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, muscular hunting spaniel known as the Deutscher Wachtelhund in its native Germany, with a dense wavy double coat featuring feathering and strong tracking abilities developed for versatile forest hunting
+
+History:
+Developed in Germany in the 1890s from older German landrace dogs known as Stöberhund, crossing various spaniels to create a versatile hunting dog capable of tracking, flushing, and retrieving game in dense forests and water. FCI-recognized and bred primarily for hunting ability and versatility rather than appearance.
+
+Temperament: Intelligent, loyal, energetic, adaptable, confident, work-focused
+Breed group: Sporting
+Origin: Germany
+Life span: 12-14 years
+Weight: 20-25 kg
+Height: Male: 47-55; Female: 44-52 cm

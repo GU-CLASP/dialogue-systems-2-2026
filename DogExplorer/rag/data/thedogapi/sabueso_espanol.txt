@@ -1,0 +1,15 @@
+Breed: Sabueso Español
+Source: https://thedogapi.com
+
+Description:
+A medium-sized, ancient Spanish scenthound characterized by its long, pendulous ears, noble expression, and exceptional scenting ability, bred for tracking game across varied terrain of the Iberian Peninsula
+
+History:
+Believed to be the oldest of the Iberian scenthound breeds, with descriptions dating back to the 14th century in writings by King Alfonso XI. Developed for tracking wild boar and other game across the Iberian Peninsula, recognized by the FCI
+
+Temperament: Loyal, intelligent, calm, devoted, courageous
+Breed group: Hound
+Origin: Iberian Peninsula, Spain
+Life span: 10-13 years
+Weight: Male: 23-25; Female: 20-25 kg
+Height: Male: 52-57; Female: 48-53 cm

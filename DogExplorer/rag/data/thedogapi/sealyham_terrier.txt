@@ -1,0 +1,15 @@
+Breed: Sealyham Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy white terrier with rectangular body shape, long hard wiry coat, and distinctive beard and furnishings on face and legs
+
+History:
+Developed in the mid-19th century by Captain John Edwardes at his Sealy Ham estate in Wales for hunting badgers foxes and otters. Recognized by The Kennel Club in 1910 and AKC in 1911
+
+Temperament: Friendly, alert, confident, outgoing, courageous
+Breed group: Terrier
+Origin: Wales, United Kingdom
+Life span: 12-14 years
+Weight: Male: 10-11; Female: 9.5-10 kg
+Height: 27-28 cm

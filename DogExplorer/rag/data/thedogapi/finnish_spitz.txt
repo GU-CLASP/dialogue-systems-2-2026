@@ -1,0 +1,15 @@
+Breed: Finnish Spitz
+Source: https://thedogapi.com
+
+Description:
+Medium-sized fox-like spitz hunting dog with dense golden-red double coat, erect ears, curled plumed tail, and alert expression. Known as Finland's national dog and called the 'barking pointer' for their distinctive hunting style.
+
+History:
+Ancient Finnish breed developed through centuries of selective breeding to hunt all types of game from squirrels to bears. Nearly extinct in late 1800s before restoration efforts. Became Finland's national dog in 1979, bred specifically for barking ability and stamina in harsh climates.
+
+Temperament: Friendly, alert, intelligent, independent, playful, courageous
+Breed group: Non-Sporting
+Origin: Finland
+Life span: 12-15 years
+Weight: Male: 11-15; Female: 9-13 kg
+Height: Male: 44.5-51; Female: 39-46 cm

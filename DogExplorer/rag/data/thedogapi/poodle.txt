@@ -1,0 +1,15 @@
+Breed: Poodle
+Source: https://thedogapi.com
+
+Description:
+An exceptionally intelligent, proud, and elegant dog with athletic bearing and curly hypoallergenic coat. Originally bred as a water retriever, this athletic breed excels as a companion and in various dog sports.
+
+History:
+Originated in Germany as a water retrieving dog, with name derived from German 'pudelin' meaning 'to splash in the water.' Later standardized and refined in France where it became a popular companion. One of the oldest hunting dogs recognized globally for intelligence and versatility.
+
+Temperament: Intelligent, athletic, alert, confident, loyal, eager to please
+Breed group: Non-Sporting
+Origin: Germany, France
+Life span: 10-18 years
+Weight: Male: 20-32; Female: 18-27 kg
+Height: 45-61 cm

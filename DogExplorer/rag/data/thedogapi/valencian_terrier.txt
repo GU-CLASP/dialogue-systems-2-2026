@@ -1,0 +1,15 @@
+Breed: Valencian Terrier
+Source: https://thedogapi.com
+
+Description:
+A small to medium-sized, agile terrier from the Valencian Community in Spain with a lean, well-proportioned body, smooth coat, and alert, intelligent expression. Known for its history as a proficient hunter of rats and other vermin.
+
+History:
+Also known as Gos Rater Valencià or Ratonero Valenciano, developed in the Valencian region of Spain for vermin control on farms and stables. Recognized by Real Sociedad Canina de España and provisionally recognized by FCI in 2022 in Group 3.
+
+Temperament: Intelligent, energetic, alert, loyal, affectionate
+Breed group: Terrier
+Origin: Valencia, Spain
+Life span: 12-15 years
+Weight: 6-8 kg
+Height: Male: 30-40; Female: 29-40 cm

@@ -1,0 +1,15 @@
+Breed: Lancashire Heeler
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy herding dog with short legs and a low-set build. Features a short black and tan weatherproof double coat and distinctive foxlike expression with alert nature.
+
+History:
+Developed in Lancashire, England as an all-purpose farm dog for herding cattle by nipping at heels and for ratting. Believed to be developed from crosses between Welsh Corgis and Manchester Terriers. Nearly extinct by the 1960s but saved through dedicated breeding programs. Recognized by The Kennel Club (UK) in 1981 and AKC in 2024.
+
+Temperament: Intelligent, alert, energetic, friendly, playful, courageous
+Breed group: Herding
+Origin: Lancashire, England
+Life span: 12-15 years
+Weight: 4-8 kg
+Height: 25-30 cm

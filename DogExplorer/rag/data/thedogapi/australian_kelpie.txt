@@ -1,0 +1,15 @@
+Breed: Australian Kelpie
+Source: https://thedogapi.com
+
+Description:
+Medium-sized athletic herding dog with exceptional energy and intelligence, developed for working sheep over vast distances in harsh Australian conditions. Known for their lithe, agile build and inexhaustible work ethic.
+
+History:
+Developed in Australia during the late 19th century from crosses of imported Scottish Collies with Dingoes and other working dogs to create the ultimate sheep herding dog capable of working independently over vast distances in harsh climates
+
+Temperament: Intelligent, energetic, loyal, work-focused, alert
+Breed group: Herding
+Origin: Australia
+Life span: 12-16 years
+Weight: Male: 14-21; Female: 12-18 kg
+Height: Male: 43-51; Female: 41-48 cm

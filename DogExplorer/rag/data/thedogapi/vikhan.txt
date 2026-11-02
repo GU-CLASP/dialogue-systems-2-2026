@@ -1,0 +1,15 @@
+Breed: Vikhan
+Source: https://thedogapi.com
+
+Description:
+A rare, medium to large landrace dog from Pakistan's mountainous regions, combining sighthound speed with guardian instincts. Athletic build with wiry coat, bred for both hunting and livestock protection. Not recognized by major kennel clubs.
+
+History:
+An ancient landrace dog originating from Pakistan's mountainous regions including Punjab and Chitral areas. Developed by local tribes for hunting, livestock protection, and companionship. Valued for speed, resilience in harsh terrain, and ability to guard against predators like wolves and leopards. Not currently recognized by major international kennel clubs and lacks formal breed standards.
+
+Temperament: Alert, courageous, independent, protective, loyal
+Breed group: Guardian
+Origin: Punjab and Chitral regions (Pakistan)
+Life span: 10-12 years
+Weight: 25-35 kg
+Height: 56-69 cm

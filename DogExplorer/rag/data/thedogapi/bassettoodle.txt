@@ -1,0 +1,15 @@
+Breed: Bassettoodle
+Source: https://thedogapi.com
+
+Description:
+Medium-sized mixed breed with long ears, short legs, and a wavy or curly coat, combining the Basset Hound's laid-back nature with Poodle intelligence and low-shedding coat
+
+History:
+Modern designer crossbreed developed in the United States by combining Basset Hound and Standard Poodle, aiming to create a companion dog with the Poodle's intelligence and hypoallergenic coat combined with the Basset's friendly, easygoing temperament
+
+Temperament: Friendly, intelligent, gentle, playful, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 10-14 years
+Weight: Male: 11-32; Female: 9-32 kg
+Height: Male: 30-41; Female: 30-38 cm

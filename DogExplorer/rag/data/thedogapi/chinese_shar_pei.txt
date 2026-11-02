@@ -1,0 +1,15 @@
+Breed: Chinese Shar-Pei
+Source: https://thedogapi.com
+
+Description:
+An ancient Chinese breed known for its distinctive deep wrinkles, hippopotamus-like muzzle, blue-black tongue, and compact, medium-sized build with a calm, independent temperament
+
+History:
+Ancient Chinese breed from southern provinces dating back to the Han Dynasty, originally used as all-purpose farm dog for hunting, herding, guarding, and farm work. Nearly extinct in mid-20th century but revived from very small population by dedicated breeders in 1970s
+
+Temperament: Loyal, independent, calm, alert, protective, intelligent
+Breed group: Non-Sporting
+Origin: China
+Life span: 8-12 years
+Weight: 20-27 kg
+Height: 46-51 cm

@@ -1,0 +1,15 @@
+Breed: Scottish Deerhound
+Source: https://thedogapi.com
+
+Description:
+Large, athletic sighthound with rough, wiry coat and dignified bearing, often called the 'Royal Dog of Scotland', bred for coursing giant red deer in the Scottish Highlands
+
+History:
+Ancient sighthound breed developed in Scottish Highlands to hunt giant wild red deer. Once so prized that ownership was restricted to nobility, nearly went extinct with decline of clan system but was revived in 19th century. Recognized by AKC in 1886.
+
+Temperament: Gentle, dignified, calm, loyal, friendly
+Breed group: Hound
+Origin: Scotland
+Life span: 8-11 years
+Weight: Male: 39-50; Female: 34-43 kg
+Height: Male: 76-81; Female: 71-76 cm

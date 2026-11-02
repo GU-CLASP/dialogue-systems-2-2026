@@ -1,0 +1,15 @@
+Breed: Cocker Spaniel
+Source: https://thedogapi.com
+
+Description:
+Compact sporting breed with silky coat, merry expression, and affectionate nature
+
+History:
+Descended from English Cocker Spaniels, developed in the US for smaller size and specialized for woodcock hunting; officially recognized as a distinct breed by the AKC in 1946
+
+Temperament: Friendly, affectionate, playful, intelligent, outgoing
+Breed group: Sporting
+Origin: United States
+Life span: 10-14 years
+Weight: Male: 11-14; Female: 9-11 kg
+Height: Male: 34-39; Female: 32-37 cm

@@ -1,0 +1,15 @@
+Breed: Beagle
+Source: https://thedogapi.com
+
+Description:
+Compact, merry scent hound with sturdy build, distinctive tri-color or bi-color coat pattern, and cheerful disposition. Originally bred for hunting hare in packs with a distinctive baying voice.
+
+History:
+The modern Beagle was developed in Great Britain around the 1830s from various English hounds. Bred as 'foot hounds' for hare hunting, with hunters following on foot rather than horseback.
+
+Temperament: Friendly, gentle, alert, outgoing, curious, energetic
+Breed group: Hound
+Origin: England
+Life span: 10-15 years
+Weight: 9-14 kg
+Height: Male: 33-41; Female: 33-38 cm

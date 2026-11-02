@@ -1,0 +1,15 @@
+Breed: Weimaraner
+Source: https://thedogapi.com
+
+Description:
+Large, sleek, athletic sporting dog with distinctive silver-gray coat and striking amber or blue-gray eyes, known for speed, stamina, and intelligence. Originally bred for hunting large game, earning the nickname 'Gray Ghost' for its coat and stealth.
+
+History:
+Developed at the court of Weimar, Germany, in the early 19th century by German nobility who sought to create an all-around hunting dog for large game. The breed's parentage was a closely guarded secret for many years.
+
+Temperament: Energetic, intelligent, loyal, friendly, alert, courageous, athletic
+Breed group: Sporting
+Origin: Weimar, Germany
+Life span: 10-13 years
+Weight: Male: 32-41; Female: 25-34 kg
+Height: Male: 64-69; Female: 58-64 cm

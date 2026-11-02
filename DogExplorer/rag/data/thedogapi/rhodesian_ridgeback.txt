@@ -1,0 +1,15 @@
+Breed: Rhodesian Ridgeback
+Source: https://thedogapi.com
+
+Description:
+Large, muscular, and athletic hound with a distinctive ridge of hair running along its back, originally bred to hunt lions in Africa. Known for their dignified, even-tempered nature and loyal disposition.
+
+History:
+Developed in Southern Africa by crossing native ridged Khoikhoi dogs with European breeds like Mastiffs and Greyhounds. Bred by farmers and hunters for tracking and holding big game, notably lions, at bay. Recognized by South African Kennel Union in the 1920s.
+
+Temperament: Loyal, intelligent, confident, independent, affectionate
+Breed group: Hound
+Origin: Southern Africa
+Life span: 10-12 years
+Weight: Male: 36-41; Female: 29-34 kg
+Height: Male: 64-69; Female: 61-66 cm

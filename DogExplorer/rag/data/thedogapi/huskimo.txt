@@ -1,0 +1,15 @@
+Breed: Huskimo
+Source: https://thedogapi.com
+
+Description:
+Medium to large mixed breed combining Siberian Husky and American Eskimo Dog traits, featuring a wolf-like appearance with Spitz-type characteristics, thick double coat, and energetic, intelligent temperament
+
+History:
+Modern designer crossbreed developed by crossing Siberian Husky with American Eskimo Dog, aiming to create a Husky-like appearance in a more adaptable package while combining working heritage with companion traits. Not recognized by major kennel clubs
+
+Temperament: Intelligent, energetic, playful, friendly, alert, loyal
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: Male: 16-32; Female: 14-27 kg
+Height: Male: 46-61; Female: 41-58 cm

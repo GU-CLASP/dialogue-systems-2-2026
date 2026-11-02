@@ -1,0 +1,15 @@
+Breed: Hällefors Elkhound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized spitz-type hunting dog developed in Sweden for elk and large game hunting, featuring a dense double coat and rectangular build designed for persistence and courage in dense forests
+
+History:
+Developed in the Hällefors region of Sweden during the 20th century for moose hunting. Created by crossing Finnish Spitz with Ostiak Laika in the 1930s to produce a sturdy, single-minded hound for baying at moose in dense forests. Recognized by the Swedish Kennel Club.
+
+Temperament: Courageous, alert, independent, intelligent, loyal
+Breed group: Hound
+Origin: Sweden
+Life span: 12-14 years
+Weight: Male: 22-30; Female: 20-28 kg
+Height: Male: 51-57; Female: 47-53 cm

@@ -1,0 +1,15 @@
+Breed: Tornjak
+Source: https://thedogapi.com
+
+Description:
+Large, powerful, and well-proportioned livestock guardian dog with a profuse, dense double coat and weather-resistant qualities. Known for its calm demeanor, strong protective instincts, and confident, sturdy build suited for mountainous terrain.
+
+History:
+Ancient livestock guardian breed descended from dogs of nomadic peoples in the mountainous regions of Bosnia and Herzegovina and Croatia. Traditionally used to protect sheep and cattle from wolves and bears. Nearly extinct by the 1970s when systematic revival program began. Recognized by FCI in 2007.
+
+Temperament: Calm, protective, loyal, intelligent, confident, alert
+Breed group: Working
+Origin: Bosnia and Herzegovina, Croatia
+Life span: 12-14 years
+Weight: Male: 35-50; Female: 28-45 kg
+Height: Male: 63.5-71; Female: 58.4-69 cm

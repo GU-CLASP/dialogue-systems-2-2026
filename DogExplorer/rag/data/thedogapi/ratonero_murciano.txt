@@ -1,0 +1,15 @@
+Breed: Ratonero Murciano
+Source: https://thedogapi.com
+
+Description:
+Small, agile, and athletic Spanish terrier breed from the Murcia region, historically developed for ratting and farm work with a compact build and alert expression
+
+History:
+Traditional landrace terrier developed in the agricultural region of Murcia in southeastern Spain, essential for controlling rodent populations in farms, wineries, and stables. Refined over centuries from small terriers brought to the area for their specific hunting purpose. Officially recognized by the Real Sociedad Canina de España (RSCE) in 2011.
+
+Temperament: Alert, energetic, intelligent, loyal, courageous
+Breed group: Terrier
+Origin: Murcia, Spain
+Life span: 12-15 years
+Weight: Male: 6-8; Female: 5-7 kg
+Height: Male: 33-38; Female: 30-36 cm

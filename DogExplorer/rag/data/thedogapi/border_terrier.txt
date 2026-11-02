@@ -1,0 +1,15 @@
+Breed: Border Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy working terrier with weather-resistant wiry coat and distinctive otter-like head, bred for fox hunting with a plucky and affectionate nature
+
+History:
+Developed in the 18th century in the Cheviot Hills along the English-Scottish border by farmers and shepherds to hunt fox alongside foxhounds. Needed to be small enough to follow quarry into dens and burrows but tough enough to keep up with horses and work independently.
+
+Temperament: Affectionate, intelligent, alert, energetic, courageous, adaptable
+Breed group: Terrier
+Origin: Border regions between England and Scotland
+Life span: 12-15 years
+Weight: Male: 6-7; Female: 5-6.5 kg
+Height: Male: 33-41; Female: 28-36 cm

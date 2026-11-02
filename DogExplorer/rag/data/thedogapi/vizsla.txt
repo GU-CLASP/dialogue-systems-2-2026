@@ -1,0 +1,15 @@
+Breed: Vizsla
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, energetic and graceful gundog of Hungarian origin with a sleek, golden-rust colored coat and athletic build. Known for their affectionate, gentle nature, they are versatile hunters and eager companions with high energy drive.
+
+History:
+Ancient Hungarian sporting breed descended from hunting dogs of the Magyar tribes who settled in Hungary over a thousand years ago. Developed as a versatile pointer-retriever by Hungarian nobility, the breed nearly faced extinction after World War II but was preserved and re-established by dedicated enthusiasts.
+
+Temperament: Energetic, affectionate, gentle, intelligent, athletic
+Breed group: Sporting
+Origin: Hungary
+Life span: 12-14 years
+Weight: Male: 25-27; Female: 20-25 kg
+Height: Male: 56-61; Female: 53-58 cm

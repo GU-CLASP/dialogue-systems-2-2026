@@ -1,0 +1,15 @@
+Breed: Kunming Dog
+Source: https://thedogapi.com
+
+Description:
+Medium to large, wolf-like working dog from China resembling a German Shepherd, developed specifically for military and police duties with strong protective instincts and high intelligence
+
+History:
+Developed in the 1950s in Kunming, China, by crossing German Shepherd Dogs with local Chinese dogs and wolfdogs. Bred specifically as a military working dog for the People's Liberation Army, suited for high-altitude conditions, and officially recognized in China in 1988. Not recognized by major international kennel clubs.
+
+Temperament: Intelligent, loyal, courageous, alert, protective, work-focused
+Breed group: Working
+Origin: Kunming, Yunnan Province, China
+Life span: 12-14 years
+Weight: Male: 30-38; Female: 25-34 kg
+Height: Male: 64-68; Female: 60-66 cm

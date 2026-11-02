@@ -1,0 +1,14 @@
+Breed: West Highland White Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy, and confident terrier from Scotland, characterized by its distinctive dense white double coat, bright inquisitive expression, and lively personality
+
+History:
+Developed in the Scottish Highlands to hunt fox, badger, and other vermin. Colonel Edward Donald Malcolm of Poltalloch is credited with developing the modern white breed after one of his reddish terriers was mistaken for a fox and shot, leading him to breed only for white dogs to avoid future hunting accidents
+
+Temperament: Confident, alert, playful, loyal, independent
+Breed group: Terrier
+Origin: Scotland
+Weight: Male: 7-10; Female: 6-7 kg
+Height: Male: 25-28; Female: 23-26 cm

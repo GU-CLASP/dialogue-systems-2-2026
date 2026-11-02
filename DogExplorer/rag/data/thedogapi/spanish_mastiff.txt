@@ -1,0 +1,15 @@
+Breed: Spanish Mastiff
+Source: https://thedogapi.com
+
+Description:
+A massive, powerful livestock guardian dog with loose skin, thick double coat, and noble demeanor. Known for its deep bark and protective nature, this giant breed combines calm temperament with strong guardian instincts.
+
+History:
+Ancient livestock guardian breed from the Iberian Peninsula, used for centuries to protect migrating Merino sheep flocks from wolves and other predators. Documented since medieval times and recognized by the FCI.
+
+Temperament: Protective, calm, loyal, intelligent, independent, affectionate
+Breed group: Working
+Origin: Spain
+Life span: 10-12 years
+Weight: Male: 64-100; Female: 50-77 kg
+Height: Male: 71-89; Female: 72-84 cm

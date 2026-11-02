@@ -1,0 +1,15 @@
+Breed: Tyrolean Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, athletic scent hound with a strong, sinewy build and dense double coat, developed for endurance and tracking ability in mountainous terrain
+
+History:
+Descended from Celtic Hounds, systematically bred in the Tyrol region starting around 1860 for hunting hare, fox, and larger game in mountainous terrain. Emperor Maximilian I used these hounds as early as the 1500s. Officially recognized in 1896 by the FCI
+
+Temperament: Intelligent, independent, energetic, alert, work-focused, devoted
+Breed group: Hound
+Origin: Austria (Tyrol region)
+Life span: 12-14 years
+Weight: 15-22 kg
+Height: Male: 44-50; Female: 42-48 cm

@@ -1,0 +1,15 @@
+Breed: Beagle-Harrier
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, sturdily built French scent hound created by crossing Beagles and Harriers, known for its balanced build, short dense coat, and energetic disposition with a passion for hunting
+
+History:
+Developed in 19th century France by Baron Gérard, crossing English Beagles with French Harriers to create a medium-sized pack hound for hunting hare and other small game. Recognized by the FCI.
+
+Temperament: Energetic, intelligent, friendly, courageous, devoted
+Breed group: Hound
+Origin: France
+Life span: 12-14 years
+Weight: 19-27 kg
+Height: 45-50 cm

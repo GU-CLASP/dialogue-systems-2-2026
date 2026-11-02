@@ -1,0 +1,15 @@
+Breed: Field Spaniel
+Source: https://thedogapi.com
+
+Description:
+Medium-sized sporting dog with silky, glossy coat in black, liver, or roan colors, built for endurance and agility in the field with an adaptable, noble temperament
+
+History:
+Developed in England during the late 19th century from Cocker Spaniels and other spaniel varieties, initially for show but later redeveloped for field work. The breed faced near extinction after World War II but was revived by dedicated breeders.
+
+Temperament: Docile, intelligent, affectionate, gentle, sensitive
+Breed group: Sporting
+Origin: England
+Life span: 12-13 years
+Weight: 16-23 kg
+Height: 43-46 cm

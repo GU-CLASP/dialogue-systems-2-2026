@@ -1,0 +1,15 @@
+Breed: Posavac Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Croatian scenthound of robust, noble build with distinctive reddish coat and white markings. Known for exceptional stamina, scenting ability, and sonorous voice when tracking.
+
+History:
+Ancient Croatian scenthound from the Posavina region with ancestry depicted in 15th-century frescoes. Formally documented in 18th century with first FCI standard published in 1955.
+
+Temperament: Calm, devoted, energetic, intelligent, independent
+Breed group: Hound
+Origin: Sava River Valley, Croatia
+Life span: 12-14 years
+Weight: 16-25 kg
+Height: 46-58 cm

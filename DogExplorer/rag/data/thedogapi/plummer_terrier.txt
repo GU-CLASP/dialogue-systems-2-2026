@@ -1,0 +1,15 @@
+Breed: Plummer Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, energetic working terrier with a distinctive smooth red and white coat, bred specifically for vermin control and known for its tenacious, fearless nature and athletic build
+
+History:
+Developed in the 1960s by Dr. David Brian Plummer in the UK by crossing Jack Russell Terriers, Beagles, Fell Terriers, and Bull Terriers to create a hardy, versatile working terrier specialized for fox control and vermin hunting
+
+Temperament: Intelligent, courageous, energetic, alert, work-focused
+Breed group: Terrier
+Origin: United Kingdom
+Life span: 12-15 years
+Weight: Male: 5-8; Female: 4-7 kg
+Height: Male: 28-36; Female: 25-33 cm

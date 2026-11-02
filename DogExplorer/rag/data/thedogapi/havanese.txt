@@ -1,0 +1,14 @@
+Breed: Havanese
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy companion dog with long, silky double coat and cheerful temperament. Cuba's national dog, known for its intelligent disposition and making an ideal city companion.
+
+History:
+Developed from Bichon-type ancestors brought by Spanish settlers, became companions to Cuban aristocracy. Nearly extinct after Cuban Revolution but preserved by Cuban families who fled to the United States.
+
+Temperament: Outgoing, intelligent, friendly, playful, affectionate, adaptable
+Breed group: Toy
+Origin: Cuba
+Weight: 3-6 kg
+Height: 22-29 cm

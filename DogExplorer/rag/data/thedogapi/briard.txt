@@ -1,0 +1,15 @@
+Breed: Briard
+Source: https://thedogapi.com
+
+Description:
+Large, powerful French herding dog with a luxurious long wavy double coat, distinctive beard and eyebrows creating a peek-a-boo hairdo, and a loyal, intelligent disposition
+
+History:
+Ancient French herding breed developed for centuries to herd and guard flocks. Served as sentries, messengers, and pack animals for the French army during World War I. Nearly extinct after World War II but successfully revived. Recognized by the AKC in 1928.
+
+Temperament: Loyal, intelligent, protective, confident, courageous, devoted
+Breed group: Herding
+Origin: France
+Life span: 10-12 years
+Weight: Male: 32-45; Female: 23-29 kg
+Height: Male: 58-69; Female: 56-65 cm

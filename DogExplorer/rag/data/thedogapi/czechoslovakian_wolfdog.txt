@@ -1,0 +1,15 @@
+Breed: Czechoslovakian Wolfdog
+Source: https://thedogapi.com
+
+Description:
+Athletic, wolf-like working breed with a powerful build and primitive appearance, developed from German Shepherds and Carpathian wolves. Known for high energy, endurance, and independent nature with distinctive wolf-like features.
+
+History:
+Developed in 1955 in Czechoslovakia through biological experiment crossing German Shepherd Dogs with Carpathian wolves. Goal was to blend trainability of German Shepherd with stamina and pack instinct of wolf for military border patrol use. Officially recognized by FCI in 1989.
+
+Temperament: Loyal, intelligent, energetic, courageous, alert, independent
+Breed group: Working
+Origin: Czechoslovakia
+Life span: 12-16 years
+Weight: Male: 25-34; Female: 20-27 kg
+Height: Male: 61-71; Female: 60-66 cm

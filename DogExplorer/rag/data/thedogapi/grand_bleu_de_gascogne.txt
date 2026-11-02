@@ -1,0 +1,15 @@
+Breed: Grand Bleu de Gascogne
+Source: https://thedogapi.com
+
+Description:
+Large, noble French scenthound with distinctive blue-mottled coat and pendulous ears, known for its powerful nose, deep sonorous voice, and noble bearing. Bred for hunting large game in packs.
+
+History:
+Ancient French scenthound descended from original Gallic hounds, developed in Gascony region for hunting wild boar, deer, and wolves in packs. Foundational breed for many other hound types, recognized by FCI and The Kennel Club (UK)
+
+Temperament: Gentle, calm, independent, intelligent, loyal, devoted
+Breed group: Hound
+Origin: Gascony, France
+Life span: 10-12 years
+Weight: Male: 36-50; Female: 32-50 kg
+Height: Male: 65-71; Female: 61-68 cm

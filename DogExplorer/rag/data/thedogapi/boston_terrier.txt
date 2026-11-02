@@ -1,0 +1,15 @@
+Breed: Boston Terrier
+Source: https://thedogapi.com
+
+Description:
+Compact, short-tailed dog with distinctive flat face, erect ears, and smooth 'tuxedo' coat markings. Known as 'The American Gentleman' for its friendly and intelligent demeanor.
+
+History:
+Developed in Boston in the 1870s from crossing English Bulldog with the now-extinct White English Terrier. Refined in the late 19th century and became one of the first American-developed breeds recognized by the AKC.
+
+Temperament: Friendly, intelligent, outgoing, playful
+Breed group: Non-Sporting
+Origin: Boston, Massachusetts, United States
+Life span: 11-13 years
+Weight: 5-11 kg
+Height: 38-43 cm

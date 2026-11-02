@@ -1,0 +1,14 @@
+Breed: American Hairless Terrier
+Source: https://thedogapi.com
+
+Description:
+Small to medium-sized, active and inquisitive terrier that comes in both hairless and coated varieties, notable for its alert expression, compact build, and friendly, intelligent nature
+
+History:
+Originated in Louisiana in 1972 when a hairless puppy named Josephine was born in a litter of Rat Terriers. Developed by Edwin and Willie Scott, recognized by UKC in 1999 and AKC in 2016
+
+Temperament: Alert, energetic, intelligent, friendly, playful, curious
+Breed group: Terrier
+Origin: United States
+Weight: 5-7 kg
+Height: 30-41 cm

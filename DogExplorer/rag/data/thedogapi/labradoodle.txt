@@ -1,0 +1,15 @@
+Breed: Labradoodle
+Source: https://thedogapi.com
+
+Description:
+Energetic medium-to-large crossbreed between Labrador Retriever and Poodle with curly or wavy coat, originally developed as a hypoallergenic companion and guide dog. Size and coat type can vary significantly based on generation and Poodle parent size.
+
+History:
+First intentionally developed in Australia in the late 1980s by Wally Conron for the Royal Guide Dog Association of Australia. Created by crossing Labrador Retrievers with Poodles to produce a hypoallergenic guide dog combining the low-shedding coat of the Poodle with the temperament and trainability of the Labrador Retriever. Not recognized by major kennel clubs.
+
+Temperament: Friendly, intelligent, energetic, gentle, outgoing, affectionate
+Breed group: Mixed
+Origin: Australia
+Life span: 12-14 years
+Weight: Male: 23-29; Female: 20-29 kg
+Height: 53-61 cm

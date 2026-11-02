@@ -1,0 +1,15 @@
+Breed: Golden Mountain Dog
+Source: https://thedogapi.com
+
+Description:
+Large, friendly mixed breed combining the sociable, eager-to-please nature of the Golden Retriever with the sturdy frame, calm loyalty, and potential tri-color coat of the Bernese Mountain Dog
+
+History:
+Modern designer crossbreed developed in North America to combine Golden Retriever friendliness with Bernese Mountain Dog calm temperament and sturdy build, with goals of improved health and longevity through hybrid vigor
+
+Temperament: Friendly, gentle, intelligent, loyal, calm, affectionate
+Breed group: Mixed
+Origin: United States
+Life span: 8-12 years
+Weight: Male: 34-50; Female: 27-41 kg
+Height: Male: 61-70; Female: 56-66 cm

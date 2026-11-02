@@ -1,0 +1,15 @@
+Breed: Borzoi
+Source: https://thedogapi.com
+
+Description:
+Large, elegant sighthound with long, silky flowing coat and aristocratic bearing, known for grace, speed, and gentle nature. Originally bred by Russian nobility for coursing wolves and game.
+
+History:
+Developed by Russian aristocracy in the 17th century for coursing wolves and other game. Also known as Russian Wolfhound until 1936. Numbers dwindled after the Russian Revolution but were preserved by fanciers outside Russia.
+
+Temperament: Gentle, independent, calm, intelligent, affectionate
+Breed group: Hound
+Origin: Russia
+Life span: 9-14 years
+Weight: Male: 34-48; Female: 27-39 kg
+Height: Male: 71-81; Female: 66-76 cm

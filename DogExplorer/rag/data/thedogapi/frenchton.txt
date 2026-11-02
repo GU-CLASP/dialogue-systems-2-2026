@@ -1,0 +1,15 @@
+Breed: Frenchton
+Source: https://thedogapi.com
+
+Description:
+Small, compact crossbreed combining French Bulldog and Boston Terrier traits with distinctive bat ears, muscular build, and expressive features. Known for its sturdy build with a slightly longer snout than the French Bulldog parent.
+
+History:
+Modern designer crossbreed developed in the United States starting in the 1990s, combining French Bulldog and Boston Terrier to create a healthier companion with fewer respiratory issues while retaining the friendly, compact nature of both parent breeds
+
+Temperament: Friendly, playful, intelligent, affectionate, adaptable
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 7-11; Female: 6-10 kg
+Height: Male: 36-41; Female: 33-38 cm

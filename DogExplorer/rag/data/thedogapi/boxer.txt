@@ -1,0 +1,15 @@
+Breed: Boxer
+Source: https://thedogapi.com
+
+Description:
+Medium to large, powerful and athletic working dog with a distinctive short-muzzled, flat face and short coat. Known for their fun-loving, bright temperament and expressive face, combining energy with loyalty.
+
+History:
+Developed in late 19th century Germany from the now-extinct German Bullenbeisser (used for hunting large game like boar and bear) and English Bulldog, originally for bull-baiting and hunting, later refined for working and companion roles
+
+Temperament: Playful, energetic, loyal, intelligent, friendly, alert
+Breed group: Working
+Origin: Germany
+Life span: 10-12 years
+Weight: Male: 29-36; Female: 23-29 kg
+Height: Male: 58-64; Female: 55-60 cm

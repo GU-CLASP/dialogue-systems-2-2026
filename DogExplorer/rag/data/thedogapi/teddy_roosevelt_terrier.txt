@@ -1,0 +1,14 @@
+Breed: Teddy Roosevelt Terrier
+Source: https://thedogapi.com
+
+Description:
+A low-set, compact, muscular terrier with short legs and sturdy build, slightly longer than tall with a lively, alert expression. Developed as a small-to-medium-sized hunting and farm terrier for ratting and vermin control duties.
+
+History:
+Developed in the United States from Rat Terriers and other small terriers, bred for farm work, hunting, and vermin control abilities. Named in honor of President Theodore Roosevelt, who was associated with similar terrier types. Recognized by the AKC in 2022.
+
+Temperament: Alert, loyal, intelligent, courageous, energetic, playful, friendly
+Breed group: Terrier
+Origin: United States
+Weight: 4-11 kg
+Height: 20-38 cm

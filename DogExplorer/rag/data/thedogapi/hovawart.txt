@@ -1,0 +1,15 @@
+Breed: Hovawart
+Source: https://thedogapi.com
+
+Description:
+Large, powerful working dog with a long, dense, slightly wavy coat and strong protective instincts, originally bred as a farmyard guardian but known for its balanced temperament as both devoted family companion and vigilant watchdog
+
+History:
+Ancient German working breed meaning 'yard' or 'farm watcher', nearly extinct after WWI but reconstructed in the 1920s by selectively breeding dogs with similar characteristics found on farms in the Black Forest region to restore the original type
+
+Temperament: Loyal, protective, intelligent, confident, devoted, alert
+Breed group: Working
+Origin: Germany
+Life span: 10-14 years
+Weight: Male: 30-40; Female: 25-35 kg
+Height: Male: 63-70; Female: 58-65 cm

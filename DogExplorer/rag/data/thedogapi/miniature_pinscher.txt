@@ -1,0 +1,15 @@
+Breed: Miniature Pinscher
+Source: https://thedogapi.com
+
+Description:
+Small, compact, and elegant toy breed with a distinctive high-stepping 'hackney' gait and spirited personality. Despite resembling a miniature Doberman, this is an older, distinct German breed with a proud carriage and 'big dog' attitude in a small package.
+
+History:
+An old German breed (Zwergpinscher) developed centuries ago to hunt rats in homes and stables. Not a miniaturized Doberman Pinscher, but a distinct older breed likely descended from German Pinschers with contributions from Italian Greyhounds and Dachshunds.
+
+Temperament: Energetic, alert, confident, intelligent, courageous, fearless
+Breed group: Toy
+Origin: Germany
+Life span: 12-16 years
+Weight: 3.5-4.5 kg
+Height: 25-32 cm

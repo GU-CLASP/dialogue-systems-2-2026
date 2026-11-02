@@ -1,0 +1,15 @@
+Breed: Dunker
+Source: https://thedogapi.com
+
+Description:
+Medium-sized Norwegian scenthound with athletic build and distinctive harlequin, blue-merle, or marbled coat pattern, known for endurance and bred specifically for hare hunting
+
+History:
+Developed in Norway during the early 19th century by Captain Wilhelm Dunker, crossing Russian Harlequin Hounds with reliable local Norwegian scenthounds to create a superior hound for hunting hare on foot in challenging terrain
+
+Temperament: Friendly, calm, gentle, intelligent, energetic
+Breed group: Hound
+Origin: Norway
+Life span: 12-15 years
+Weight: 16-22 kg
+Height: Male: 50-55; Female: 47-52 cm

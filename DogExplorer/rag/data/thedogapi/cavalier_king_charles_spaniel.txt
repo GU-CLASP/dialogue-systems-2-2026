@@ -1,0 +1,15 @@
+Breed: Cavalier King Charles Spaniel
+Source: https://thedogapi.com
+
+Description:
+Small, elegant toy spaniel with silky coat, large expressive eyes, and noble appearance, known for its gentle expression and affectionate temperament, equally at home as a lap dog or active companion
+
+History:
+Named after King Charles II who favored the breed, descended from toy spaniels depicted in 16th-18th century British court paintings. The modern breed was revived in the 1920s by enthusiasts seeking to restore the longer-nosed type seen in old portraits
+
+Temperament: Affectionate, gentle, friendly, playful, eager to please, adaptable
+Breed group: Toy
+Origin: United Kingdom
+Life span: 12-15 years
+Weight: 6-8 kg
+Height: 30-33 cm

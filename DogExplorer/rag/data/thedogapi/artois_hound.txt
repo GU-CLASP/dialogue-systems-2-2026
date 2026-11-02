@@ -1,0 +1,15 @@
+Breed: Artois Hound
+Source: https://thedogapi.com
+
+Description:
+Medium-sized French scent hound with distinctive short, dense tricolor coat and powerful build. Known for its endurance, strong hunting instincts, and calm yet energetic temperament.
+
+History:
+Ancient French scenthound from the Artois region dating back to the 15th century, descended from the St. Hubert Hound. Used by nobility for hunting, the breed faced near extinction after World War II but was revived in the 1970s by dedicated breeders following historical standards
+
+Temperament: Energetic, loyal, alert, courageous, calm, affectionate
+Breed group: Hound
+Origin: Artois, France
+Life span: 12-15 years
+Weight: Male: 25-30; Female: 23-30 kg
+Height: Male: 53-61; Female: 51-58 cm

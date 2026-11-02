@@ -1,0 +1,15 @@
+Breed: Shih Tzu
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy toy breed with a distinctive short snout, large dark eyes, and luxurious long flowing double coat. Known for their charming, affectionate companion temperament
+
+History:
+Ancient breed developed in Tibetan monasteries and refined by imperial breeders in Chinese palace courts. Believed to descend from Tibetan breeds, possibly crosses between Lhasa Apso and Pekingese, prized as house pets for centuries
+
+Temperament: Affectionate, playful, outgoing, loyal
+Breed group: Toy
+Origin: Tibet/China
+Life span: 10-18 years
+Weight: 4-7 kg
+Height: 23-27 cm

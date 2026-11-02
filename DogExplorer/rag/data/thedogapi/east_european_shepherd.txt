@@ -1,0 +1,15 @@
+Breed: East European Shepherd
+Source: https://thedogapi.com
+
+Description:
+Large, powerful working dog developed in Soviet Union from German Shepherds and local breeds. Similar to German Shepherd but larger and more cold-resistant, with a slightly elongated body built for strength and endurance in harsh climates. Possesses a noble, confident demeanor.
+
+History:
+Developed in Soviet Union during 1930s-1950s from German Shepherds and local breeds for military, police, and border patrol duties in harsh climates
+
+Temperament: Loyal, protective, confident, intelligent, work-focused
+Breed group: Working
+Origin: Soviet Union
+Life span: 10-14 years
+Weight: Male: 34-50; Female: 29-45 kg
+Height: Male: 66-76; Female: 61-71 cm

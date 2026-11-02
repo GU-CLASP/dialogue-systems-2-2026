@@ -1,0 +1,15 @@
+Breed: Maltipoo
+Source: https://thedogapi.com
+
+Description:
+Small affectionate crossbreed between a Maltese and a Poodle, known for its soft, wavy or curly, low-shedding coat and playful companion nature
+
+History:
+Popular designer crossbreed developed in the United States in the late 20th century, gaining popularity in the 1990s by crossing Maltese with Toy or Miniature Poodle to create a small, low-shedding companion dog
+
+Temperament: Affectionate, friendly, intelligent, playful, gentle
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 2-9 kg
+Height: 20-36 cm

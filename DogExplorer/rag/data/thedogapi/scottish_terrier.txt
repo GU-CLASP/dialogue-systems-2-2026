@@ -1,0 +1,15 @@
+Breed: Scottish Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, compact, and sturdy terrier with a distinctive wiry coat, erect ears, beard and eyebrows, and dignified, confident presence
+
+History:
+One of Scotland's oldest Highland terrier breeds, developed in the Scottish Highlands for hunting vermin in difficult terrain. Recognized by The Kennel Club (UK) in 1883 and the AKC in 1885.
+
+Temperament: Confident, independent, alert, intelligent, loyal
+Breed group: Terrier
+Origin: Scotland
+Life span: 12-15 years
+Weight: Male: 8.5-10; Female: 8-9.5 kg
+Height: 25-28 cm

@@ -1,0 +1,15 @@
+Breed: German Shorthaired Pointer
+Source: https://thedogapi.com
+
+Description:
+A versatile, athletic, and noble all-purpose hunting dog with a distinctive short, dense liver and white coat, known for its intelligence, energy, and friendly disposition
+
+History:
+Developed in 19th-century Germany by crossing Spanish Pointers, Bloodhound, and local German hunting dogs to create a versatile pointer-retriever capable of working on land and water. Recognized by AKC in 1930.
+
+Temperament: Friendly, intelligent, energetic, eager to please, athletic
+Breed group: Sporting
+Origin: Germany
+Life span: 10-12 years
+Weight: Male: 25-32; Female: 20-27 kg
+Height: Male: 58-64; Female: 53-58 cm

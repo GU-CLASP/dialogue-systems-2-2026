@@ -1,0 +1,15 @@
+Breed: Pumi
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, agile Hungarian herding dog known for its whimsical, terrier-like expression, distinctive corkscrew-curled coat, and high-set semi-erect ears with an alert, lively attitude
+
+History:
+Developed in Hungary during the 17th-18th centuries from crossbreeding the native Puli with German and French herding dogs and terriers. Used as versatile farm dogs for herding cattle, sheep, and swine
+
+Temperament: Intelligent, energetic, alert, playful, loyal, confident
+Breed group: Herding
+Origin: Hungary
+Life span: 12-13 years
+Weight: 10-13 kg
+Height: Male: 41-47; Female: 38-44 cm

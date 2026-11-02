@@ -1,0 +1,15 @@
+Breed: Norwich Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, sturdy, and compact terrier with distinctive prick ears, wiry double coat, and lively disposition. Known for its hardy constitution and fearless but affectionate nature.
+
+History:
+Developed in East Anglia, England in the 1880s as a rugged earth-dog for ratting and fox bolting. Originally grouped with Norfolk Terrier until official separation in 1964 based on ear carriage (Norwich has prick ears). Recognized by AKC in 1979.
+
+Temperament: Alert, energetic, affectionate, courageous, outgoing
+Breed group: Terrier
+Origin: East Anglia, England
+Life span: 12-15 years
+Weight: 5-5.5 kg
+Height: 23-25 cm

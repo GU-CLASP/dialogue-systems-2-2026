@@ -1,0 +1,15 @@
+Breed: Afghan Hound
+Source: https://thedogapi.com
+
+Description:
+Ancient, elegant sighthound with dramatic, flowing silky coat and aristocratic bearing, bred for hunting large prey in mountainous terrain
+
+History:
+Ancient sighthound originating in the mountainous regions of Afghanistan, where they were prized for hunting large prey like gazelles and leopards. Valued for their speed, stamina, and problem-solving intelligence over rugged terrain. Introduced to the Western world by British officers in the early 20th century.
+
+Temperament: Independent, dignified, aloof, loyal, confident
+Breed group: Hound
+Origin: Afghanistan
+Life span: 12-15 years
+Weight: Male: 25-30; Female: 20-25 kg
+Height: Male: 69-74; Female: 63-69 cm

@@ -1,0 +1,15 @@
+Breed: Chorkie
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Chihuahua and Yorkshire Terrier traits, known for having a big personality in a tiny body with spirited and affectionate temperament
+
+History:
+Popular designer crossbreed developed in the late 20th century (likely 1990s) in the United States by intentionally crossing Chihuahua and Yorkshire Terrier to create a small, loyal companion dog with spirited temperament
+
+Temperament: Alert, loyal, energetic, confident, affectionate, playful, intelligent
+Breed group: Mixed
+Origin: United States
+Life span: 12-15 years
+Weight: 1.8-4.5 kg
+Height: 15-23 cm

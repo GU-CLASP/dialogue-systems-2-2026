@@ -1,0 +1,14 @@
+Breed: Toy Fox Terrier
+Source: https://thedogapi.com
+
+Description:
+Small, athletic, elegant terrier with short, fine coat and alert, lively demeanor, combining toy breed size with true terrier temperament and the spirit of a larger dog
+
+History:
+Developed in the early 20th century in the United States by crossing small Smooth Fox Terriers with toy breeds including Chihuahuas, Manchester Terriers, and Italian Greyhounds to create a smaller, versatile companion and ratter. Recognized by the AKC in 2003.
+
+Temperament: Alert, intelligent, energetic, friendly, playful, loyal, outgoing
+Breed group: Toy
+Origin: United States
+Weight: 1.6-3.2 kg
+Height: 22-29 cm

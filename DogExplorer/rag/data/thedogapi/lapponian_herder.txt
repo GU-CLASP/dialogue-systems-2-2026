@@ -1,0 +1,15 @@
+Breed: Lapponian Herder
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, spitz-type herding dog with a strong but agile build, slightly longer than tall, developed for managing reindeer in arctic conditions with a dense double coat and alert expression
+
+History:
+Developed by the indigenous Sami people in Finland's Lapland region for herding and managing reindeer. The breed was formally standardized in the mid-20th century, bred from local spitz-type dogs and possibly German Shepherd crosses in the 1960s.
+
+Temperament: Alert, energetic, intelligent, loyal, work-focused, calm, friendly
+Breed group: Herding
+Origin: Finland (Lapland region)
+Life span: 10-14 years
+Weight: Male: 30-35; Female: 25-30 kg
+Height: Male: 46-54; Female: 42-49 cm

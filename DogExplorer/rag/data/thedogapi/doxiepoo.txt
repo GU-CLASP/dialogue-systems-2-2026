@@ -1,0 +1,15 @@
+Breed: Doxiepoo
+Source: https://thedogapi.com
+
+Description:
+Small to medium designer crossbreed between a Dachshund and a Poodle, known for its variable appearance and intelligent, playful nature combining traits from both parent breeds
+
+History:
+Modern designer crossbreed developed in the United States by crossing a Dachshund and typically a Miniature Poodle to create a low-shedding companion dog combining traits from both parent breeds. Not recognized by major kennel clubs as a standardized breed
+
+Temperament: Intelligent, playful, affectionate, loyal, alert
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: 4.5-14 kg
+Height: 20-38 cm

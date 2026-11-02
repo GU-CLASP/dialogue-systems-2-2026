@@ -1,0 +1,15 @@
+Breed: Mudi
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, versatile Hungarian herding dog with a wavy to curly coat, known for its intelligence, agility, and energetic nature. This all-purpose farm dog excels in various dog sports and herding activities.
+
+History:
+Developed in Hungary during the 19th and early 20th centuries as a versatile all-purpose herding and farm dog, likely from spontaneous crosses of Puli, Pumi, and German Spitz-type dogs. Nearly extinct after WWII but preserved by dedicated breeders. Officially recognized by FCI and AKC.
+
+Temperament: Energetic, intelligent, alert, loyal, adaptable, work-focused
+Breed group: Herding
+Origin: Hungary
+Life span: 12-14 years
+Weight: 8-13 kg
+Height: Male: 41-47; Female: 38-44 cm

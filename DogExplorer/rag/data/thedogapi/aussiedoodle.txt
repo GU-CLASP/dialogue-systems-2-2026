@@ -1,0 +1,15 @@
+Breed: Aussiedoodle
+Source: https://thedogapi.com
+
+Description:
+Designer crossbreed combining Australian Shepherd and Poodle traits, known for high intelligence, energetic nature, and often a low-shedding coat with varied coat types
+
+History:
+Modern designer crossbreed developed in the late 20th century/1990s in the United States by crossing Australian Shepherd and Poodle to create a highly intelligent low-shedding companion dog
+
+Temperament: Intelligent, energetic, friendly, loyal, affectionate, playful
+Breed group: Mixed
+Origin: United States
+Life span: 10-15 years
+Weight: Male: 20-32; Female: 16-27 kg
+Height: Male: 51-64; Female: 46-58 cm

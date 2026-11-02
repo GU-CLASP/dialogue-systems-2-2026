@@ -1,0 +1,15 @@
+Breed: Bernedoodle
+Source: https://thedogapi.com
+
+Description:
+A crossbreed between a Bernese Mountain Dog and a Standard Poodle, resulting in a medium to large-sized intelligent companion with a wavy or curly low-shedding coat and friendly disposition. Size and appearance can vary significantly depending on the generation and the Poodle parent's size.
+
+History:
+Developed in Canada in 2003, the Bernedoodle is a recent designer crossbreed created by crossing Bernese Mountain Dogs with Standard Poodles to combine the calm, loyal nature of the Bernese Mountain Dog with the high intelligence and low-shedding coat of the Poodle
+
+Temperament: Intelligent, friendly, gentle, playful, affectionate, loyal
+Breed group: Mixed
+Origin: Canada
+Life span: 10-15 years
+Weight: Male: 32-41; Female: 27-36 kg
+Height: Male: 58-74; Female: 53-69 cm

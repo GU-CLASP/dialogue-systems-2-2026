@@ -1,0 +1,14 @@
+Breed: Xoloitzcuintli
+Source: https://thedogapi.com
+
+Description:
+Ancient hairless breed from Mexico available in three sizes (toy, miniature, and standard) and two coat varieties (hairless and coated), known for its loyal, calm, and alert temperament
+
+History:
+Ancient breed dating back over 3,000 years with archaeological evidence of existence in Mexico. Highly prized by Aztecs, Maya, and other ancient cultures as companions, healers, guards, and ceremonial dogs. According to myth, believed to guide souls to the afterlife. Nearly extinct but revived in 1950s and recognized by AKC in three sizes.
+
+Temperament: Calm, loyal, alert, intelligent, affectionate, protective
+Breed group: Non-Sporting
+Origin: Mexico
+Weight: 4.5-25 kg
+Height: 25-60 cm

@@ -1,0 +1,15 @@
+Breed: Kombai
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, powerful and athletic Indian hunting dog from Southern India with a distinctive tan coat and muscular build, known for its courage in hunting large game like wild boar, bison, and deer
+
+History:
+Ancient Indian breed from Tamil Nadu, believed to have been used by the armies of the Marudhu brothers in the 18th century. Nearly extinct but preservation efforts ongoing, recognized by the Indian Kennel Club.
+
+Temperament: Courageous, loyal, protective, intelligent, alert, independent
+Breed group: Hound
+Origin: Tamil Nadu, India
+Life span: 12-15 years
+Weight: Male: 25-30; Female: 20-25 kg
+Height: Male: 56-61; Female: 51-56 cm

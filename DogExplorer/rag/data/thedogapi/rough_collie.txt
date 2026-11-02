@@ -1,0 +1,15 @@
+Breed: Rough Collie
+Source: https://thedogapi.com
+
+Description:
+An elegant and graceful large herding dog with a long, profuse double coat and intelligent expression, known for unwavering loyalty and gentle nature
+
+History:
+Developed in the Scottish Highlands and Northern England as a versatile sheep-herding dog. The breed's popularity soared after Queen Victoria became an enthusiast in the 19th century. The fictional character 'Lassie' made the Rough Collie a global icon.
+
+Temperament: Intelligent, loyal, devoted, gentle, protective, alert, athletic
+Breed group: Herding
+Origin: Scotland
+Life span: 12-14 years
+Weight: Male: 27-34; Female: 23-30 kg
+Height: Male: 61-66; Female: 56-61 cm

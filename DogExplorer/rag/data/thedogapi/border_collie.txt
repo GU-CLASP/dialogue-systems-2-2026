@@ -1,0 +1,15 @@
+Breed: Border Collie
+Source: https://thedogapi.com
+
+Description:
+Medium-sized, highly intelligent, and athletic herding dog with keen expression and intense work drive, renowned for its instinctual ability to control livestock with its signature stare
+
+History:
+Developed by shepherds on the border of England and Scotland for herding sheep in hilly terrain, refined through selective breeding for working ability. The breed's lineage can be traced back to a single dog named Old Hemp, born in 1893.
+
+Temperament: Intelligent, energetic, alert, work-focused, loyal, eager to please
+Breed group: Herding
+Origin: Anglo-Scottish border region
+Life span: 12-15 years
+Weight: 14-25 kg
+Height: Male: 48-56; Female: 46-53 cm

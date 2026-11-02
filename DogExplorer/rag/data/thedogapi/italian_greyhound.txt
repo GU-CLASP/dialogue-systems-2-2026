@@ -1,0 +1,14 @@
+Breed: Italian Greyhound
+Source: https://thedogapi.com
+
+Description:
+Elegant small sighthound with slender, delicate build and graceful movement, combining the look of a large hound with the size of a lap dog and fine, smooth coat
+
+History:
+Ancient breed with origins tracing back over 2,000 years to the Mediterranean basin, favored by nobility in ancient Greece, Rome, and Italian Renaissance, AKC recognized since 1886
+
+Temperament: Affectionate, gentle, playful, alert, intelligent
+Breed group: Toy
+Origin: Italy
+Weight: 3-6.5 kg
+Height: 33-38 cm

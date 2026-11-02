@@ -1,0 +1,15 @@
+Breed: Dorkie
+Source: https://thedogapi.com
+
+Description:
+Small designer crossbreed combining Dachshund and Yorkshire Terrier traits with compact body and variable coat type. Known for spirited and affectionate personality, though appearance can vary significantly depending on traits inherited from each parent.
+
+History:
+Modern designer crossbreed developed in the late 20th century by intentionally breeding Dachshunds and Yorkshire Terriers in the United States to create a small companion dog combining traits from both parents. Not recognized by major kennel clubs like AKC or FCI.
+
+Temperament: Affectionate, intelligent, playful, alert, loyal, courageous
+Breed group: Mixed
+Origin: United States
+Life span: 11-16 years
+Weight: 2-5.5 kg
+Height: 13-23 cm
