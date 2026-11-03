@@ -88,7 +88,7 @@ export const dme = setup({
       let ruleName = params.name;
       let newIS = rules[ruleName](context)!(); // we assume that this is never called without a guard
       console.info(`[ISU ${ruleName}]`);
-      console.dir(newIS, { depth: null, colors: true });
+      /*console.dir(newIS, { depth: null, colors: true });*/
       return { is: newIS };
     }),
     updateLatestMoves: assign(({ context, event }) => {
@@ -97,7 +97,7 @@ export const dme = setup({
       console.log("[DME] Incoming moves:",JSON.stringify(
         (event as SaysMovesEvent | BirdsRetrievedEvent).value.moves, null, 2));
       console.info("[DM updateLatestMoves]");
-      console.dir(event, { depth: null, colors: true });
+      /*console.dir(event, { depth: null, colors: true });*/
       return {
         latest_moves: (event as SaysMovesEvent|BirdsRetrievedEvent).value.moves,
         latest_speaker: (event as SaysMovesEvent|BirdsRetrievedEvent).value.speaker,
@@ -115,30 +115,6 @@ export const dme = setup({
         retrievedBirds: event.value.birds,
       };
     }),
-    /*storeDescription: assign(({ context, event }) => {
-      if (event.type !== "BIRDS_RETRIEVED") {
-        return {};
-      }
-      const move = event.value.moves.find(
-        (move) =>
-          move.type === "answer" &&
-          typeof move.content === "object" &&
-          move.content.predicate === "bird_description"
-      );
-      if (move && move.type === "answer" && typeof move.content == "object") {
-        const description = move.content.argument
-        return {
-          is: {
-            ...context.is,
-            totalDescription: [
-              ...context.is.totalDescription,
-              description,
-            ],
-          },
-        };
-      }
-      return {};
-    }),*/
     storeBirdQuestion: assign(({ event }) => {
       if (event.type !== "BIRD_QUESTION_GENERATED") {
         return {};
@@ -166,7 +142,7 @@ export const dme = setup({
           always: [
             isuTransition("SelectMove", "select_respond"),
             isuTransition("SelectMove", "select_from_plan"),
-            { target: "SelectMove" }, // TODO check it -- needed for greeting
+            { target: "SelectMove" }, 
           ],
         },
         SelectMove: {
@@ -194,7 +170,6 @@ export const dme = setup({
         },
         Grounding: {
           entry: () => console.log("[DME] Entered Update.Grounding"),
-          // TODO: rename to Perception?
           on: {
             SAYS: {
               target: "Integrate",
@@ -212,7 +187,6 @@ export const dme = setup({
                 target: "AwaitBirdQuestion",
                 actions: [
                   { type: "storeBirdRetrieval" },
-                  //{ type: "storeDescription" },
                   { type: "updateLatestMoves" },
                   { type: "isu", params: { name: "get_latest_move" } },
                 ],
@@ -221,7 +195,6 @@ export const dme = setup({
                 target: "Integrate",
                 actions: [
                   { type: "storeBirdRetrieval" },
-                  //{ type: "storeDescription" },
                   {
                     type: "updateLatestMoves",
                   },

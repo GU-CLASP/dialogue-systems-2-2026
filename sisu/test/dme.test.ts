@@ -37,10 +37,7 @@ describe("DME tests", () => {
     actions: {
       notify: assign(
         ({ context }, params: { speaker: string; message: string }) => {
-          console.log("[TEST] notify called:", params);
-          console.log("[TEST] Dialogue length before:", context.dialogue.length)
           const dialogue = [...context.dialogue, params];
-          console.log("[TEST] Dialogue length after:", dialogue.length);
           return { dialogue: [...context.dialogue, params] };
         }
       ),
@@ -124,8 +121,6 @@ describe("DME tests", () => {
               },
               NO_INPUT: {
                 actions: [
-                  () => console.log("[TEST] NO_INPUT transition entered"),
-                  ()=> console.log("[TEST] Preparing no-input notification"),
                   {
                     type: "notify",
                     params: () => ({
@@ -134,8 +129,6 @@ describe("DME tests", () => {
                       message: "*noinput*",
                     }),
                   },
-                  () => console.log("[TEST] notify action completed"),
-                  () => console.log("[TEST] Forwarding SAYS to DME"),
                   sendTo("dmeTestID", {
                     type: "SAYS",
                     value: {
@@ -148,7 +141,6 @@ describe("DME tests", () => {
                       ],
                     },
                   }),
-                  () => console.log("[TEST] SAYS event sent to dmeTestID")
                 ],
               },
               
@@ -338,73 +330,22 @@ describe("DME tests", () => {
       expectedSoFar.push(turn);
       if (turn.speaker === "usr") {
         console.info("user input: ", turn.message);
-        if (turn.message === '*noinput*') {
-  console.log("[TEST] Before NO_INPUT");
-
-  console.log(
-    "[TEST] Current state:",
-    JSON.stringify(actor.getSnapshot().value, null, 2)
-  );
-
-  console.log(
-    "[TEST] Current dialogue length:",
-    actor.getSnapshot().context.dialogue.length
-  );
-
-  console.log("[TEST] Sending NO_INPUT");
-
-  actor.send({ type: "NO_INPUT" });
-
-  console.log("[TEST] After NO_INPUT");
-
-  console.log(
-    "[TEST] State after NO_INPUT:",
-    JSON.stringify(actor.getSnapshot().value, null, 2)
-  );
-
-  console.log(
-    "[TEST] Dialogue after NO_INPUT:",
-    JSON.stringify(actor.getSnapshot().context.dialogue, null, 2)
-  );
-} else {
-  actor.send({ type: "INPUT", value: turn.message });
-}
-
-        
+        actor.send({ type: "INPUT", value: turn.message });
       }
-      console.log(
-  "[TEST] Expected:",
-  JSON.stringify(expectedSoFar, null, 2)
-);
-
-/*console.log(
-  "[TEST] Actual:",
-  JSON.stringify(actor.getSnapshot().context.dialogue, null, 2)
-);*/
-
-console.log(
-  "[TEST] Expected length:",
-  expectedSoFar.length
-);
-
-console.log(
-  "[TEST] Actual length:",
-  actor.getSnapshot().context.dialogue.length
-);
       const snapshot = await waitFor(
         actor,
         (snapshot) => snapshot.context.dialogue.length === expectedSoFar.length,
         {
-          timeout: 30000 // allowed time to transition to the expected state ,
+          timeout: 30000 // allowed time to transition to the expected state
         }
       );
       expect(snapshot.context.dialogue).toEqual(expectedSoFar);
     },
     35000 // Vitest test timeout
-  );
+    );
   };
 
-
+/*
   describe("bird observation - blue tit", () => {
     runTest([
       { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
@@ -424,48 +365,56 @@ console.log(
       { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
       { speaker: "usr", message: "I want help to identify some bird" },
       { speaker: "sys", message: "Where are you birdwatching today?" },
-      { speaker: "usr", message: "I'm in Gothenburg close to a lake" },
+      { speaker: "usr", message: "I'm south of France, in some wetlands" },
       { speaker: "sys", message: "Please describe the bird." },
       { speaker: "usr", message: "It's a big bird with a long neck and long legs, and it is white and grey" },
       { speaker: "sys", message: "I think I've identified the species: grey heron" },
     ]);
   });
 
-  describe("bird observation - house sparrow", () => {
+  describe("bird observation - northern shoveler", () => {
     runTest([
-      { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?!" },
+      { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
       { speaker: "usr", message: "Please assist me in identifying a bird" },
       { speaker: "sys", message: "Where are you birdwatching today?" },
-      { speaker: "usr", message: "I'm in my garden in Linköping" },
+      { speaker: "usr", message: "I'm nearby the sea in Stockholm" },
       { speaker: "sys", message: "Please describe the bird." },
-      { speaker: "usr", message: "The bird is quite small and brown, reddish on the head" },
-      { speaker: "sys", message: "I think I've identified the species: house sparrow" },
+      { speaker: "usr", message: "It looks like a duck, with a green head, but a big spatulated beak." },
+      { speaker: "sys", message: "What colour is the bird's speculum?" },
+      { speaker: "usr", message: "the speculum is green" },
+      { speaker: "sys", message: "I think I've identified the species: northern shoveler" },
+    ]);
+  });
+*/
+  describe("bird observation - european green woodpecker", () => {
+    runTest([
+      { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
+      { speaker: "usr", message: "I'm birdwatching and want to know which species is this bird." },
+      { speaker: "sys", message: "Where are you birdwatching today?" },
+      { speaker: "usr", message: "In the woods, near Linköping" },
+      { speaker: "sys", message: "Please describe the bird." },
+      { speaker: "usr", message: "The bird resembles a woodpecker, but bigger, with a green back, and a red crown" },
+      { speaker: "sys", message: "What colour is the bird's nape?" },
+      { speaker: "usr", message: "the nape is red" },
+      { speaker: "sys", message: "What pattern do the bird's wings have?" },
+      { speaker: "usr", message: "the wings are green" },
+      { speaker: "sys", message: "What colour is the bird's bill?" },
+      { speaker: "usr", message: "the bill is greyish" },
+      { speaker: "sys", message: "How long is the bird's tail?"},
+      { speaker: "usr", message: "the tail is relatively short" },
+      { speaker: "sys", message: "I think I've identified the species: european green woodpecker." },
     ]);
   });
 /*
-  describe("bird observation - house sparrow", () => {
+  describe("bird observation - eurasian oystercatcher", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr", message: "Please assist me in identifying a bird" },
-      { speaker: "sys", message: "Where are you?" },
-      { speaker: "usr", message: "I'm in Sweden" },
-      { speaker: "sys", message: "What do you see?" },
-      { speaker: "usr", message: "The bird is quite small and brown, reddish on the head" },
-      { speaker: "sys", message: "What do you see?" },
-    ]);
-  });
-/*
-  describe("bird observation + negative contact feedback + repeated question", () => {
-    runTest([
-      { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr", message: "What is this bird?" },
-      { speaker: "sys", message: "Where are you?" },
-      { speaker: "usr", message: "*noinput*" },
-      { speaker: "sys", message: "Sorry, I didn't hear you. Where are you?" },
-      { speaker: "usr", message: "Sweden" },
-      { speaker: "sys", message: "What do you see?" },
-      { speaker: "usr", message: "I see a small bird with a blue crown" },
-      { speaker: "sys", message: "I think it's a blue tit." },
+      { speaker: "usr", message: "I want to know species name of some bird I'm watching" },
+      { speaker: "sys", message: "Where are you birdwatching today?" },
+      { speaker: "usr", message: "I'm on the beach in Normandie" },
+      { speaker: "sys", message: "Please describe the bird." },
+      { speaker: "usr", message: "It's medium size, with  black and white plumage, a very long thin orange bill" },
+      { speaker: "sys", message: "I think I've identified the species: eurasian oystercatcher." },
     ]);
   });
 */

@@ -82,22 +82,23 @@ export async function getBird(
   totalDescription: Proposition[],
   location: string,
   environment: string,
-  retrievedBirds?: bird[],
+  reducedBirds?: bird[],
   ): Promise<bird[]> {
   console.log("[BIRD RETRIEVAL] Getting bird query");
   
-  const utterance = totalDescription.map(i => i.argument).join('. ')
+  const utterance = totalDescription.map(i => i.argument).join('. ').toLowerCase().trim()
   if (!utterance) {
     console.warn("[BIRD RETRIEVAL] No bird description available for retrieval");
     return [];
   }
   let filter;
-  if (retrievedBirds) {
-    const retrieved_ids = retrievedBirds.map(bird => bird.id)
+  if (reducedBirds) {
+    const reduced_ids = reducedBirds.map(bird => bird.id)
+    console.log("reducedBirds ids:", reduced_ids )
     filter = {
       must: [
         {
-          has_id: retrieved_ids
+          has_id: reduced_ids
         },
         {
           key: "distribution",
@@ -146,7 +147,7 @@ export async function getBird(
     })
     .then((result) => result.data[0].embedding);
   
-  const points = (await client.query("birdsDB", {
+  const candidatePoints = (await client.query("birdsDB", {
     prefetch: [
       {
         query: embedding,
@@ -163,39 +164,80 @@ export async function getBird(
     ],
     query: {
       rrf: {
-        weights: [4.0, 0.0]
+        weights: [4.0, 1.0]
       }
     },
     with_payload: true,
-    limit: 5,
+    limit: 10,
   })).points;
-  if (points.length === 0) {
-    console.log("[BIRD RETRIEVAL] No bird retrieved")
+  if (candidatePoints.length === 0) {
+    console.log("[BIRD RETRIEVAL] No bird candidate")
   };
-  let retrieved_birds : bird[] = points.map((item) => ({
+  let candidateBirds : bird[] = candidatePoints.map((item) => ({
     id: item.id as number,
     commonName: item.payload!.commonName as string,
     scientificName: item.payload!.scientificName as string,
     distribution: item.payload!.distribution as distributionCat[],
     habitat: item.payload!.habitat as habitatCat[],
-    //size: 'M',
     conservationStatus: item.payload!.conservationStatus as conservationStatusCat,
     description: item.payload!.description as string,
     wikiImageURL: item.payload!.wikiImageURL as string
   }));
-  const birds_scores = points.map((item) => ({
+  const rrfScores = new Map (
+    candidatePoints.map((item) => [
+    item.payload!.commonName,
+    item.score
+  ]))
+  const candidates_ids = candidateBirds.map(bird => bird.id)
+  const filterCandidates = {
+      must: [
+        {
+          has_id: candidates_ids
+        }
+      ],
+    }
+  const retrievedPoints = (await client.query("birdsDB", {
+    query: embedding,
+    using: "dense",
+    filter: filterCandidates,
+    with_payload: true,
+    limit: 10
+  })).points;
+  if (retrievedPoints.length === 0) {
+    console.log("[BIRD RETRIEVAL] No bird retrieved")
+  };
+  let retrievedBirds : bird[] = retrievedPoints.map((item) => ({
+    id: item.id as number,
+    commonName: item.payload!.commonName as string,
+    scientificName: item.payload!.scientificName as string,
+    distribution: item.payload!.distribution as distributionCat[],
+    habitat: item.payload!.habitat as habitatCat[],
+    conservationStatus: item.payload!.conservationStatus as conservationStatusCat,
+    description: item.payload!.description as string,
+    wikiImageURL: item.payload!.wikiImageURL as string
+  }));
+  const birdsScores = retrievedPoints.map((item) => ({
     bird: item.payload!.commonName,
-    score: item.score
+    rrfScore: rrfScores.get(item.payload!.commonName),
+    denseScore: item.score
   }))
-  if (birds_scores[0].score >= 0.8) {
-    const retrieved_bird = [retrieved_birds[0]]
+  const topDenseScore = birdsScores[0].denseScore
+  const secondDenseScore = birdsScores[1].denseScore
+  const maxRRFScore = [...rrfScores.values()][0]
+  const secondRRFScore = [...rrfScores.values()][1]
+  
+  if (topDenseScore >= 0.605
+    && (topDenseScore - secondDenseScore > 0.03 || 
+      (birdsScores[0].rrfScore == maxRRFScore && maxRRFScore - secondRRFScore >= 0.3)
+    )) {
+    const retrievedBird = [retrievedBirds[0]]
     console.log("[BIRD RETRIEVAL] Getting Bird result:")
-    console.table(birds_scores)
-    return retrieved_bird
+    console.table(birdsScores)
+    return retrievedBird
   }
   console.log("[BIRD RETRIEVAL] Getting Bird result:")
-  console.table(birds_scores)
-  return retrieved_birds
+  console.table(birdsScores)
+  return retrievedBirds
 }
 
 
@@ -785,7 +827,6 @@ export async function nluLLM(utterance: string, predicates: string[], lastSysMov
     messages:[{ role:  "user" , content: prompt }],
     model:'llama3.1:latest',
     temperature: 0.2,
-    //response_format: { type: "json_object" },
   })
   .then((result) => result.choices[0].message.content)
   if (!response) {
