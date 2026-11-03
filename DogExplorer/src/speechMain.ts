@@ -2,13 +2,14 @@ import "./style.css";
 import { setupButton } from "./dm.ts";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
+  <div class="card">
+    <div class="paw">🐾</div>
     <h1>Dog Breed Explorer</h1>
-    <p>Explore dog breeds through conversation.</p>
+    <p class="subtitle">Explore dog breeds through conversation.</p>
 
-    <div class="card">
-      <button id="start" type="button">Start conversation</button>
-    </div>
+    <button id="start" type="button">Start conversation</button>
+
+    <p class="hint">Try: "I want a small, calm dog" or "Tell me about Beagles"</p>
   </div>
 `;
 
