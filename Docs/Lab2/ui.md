@@ -1,27 +1,35 @@
 # `sisu/src/ui.ts`
 
-页面入口。`index.html` 用 `<script type="module" src="/src/ui.ts">` 加载它。整个文件只做两件事。
+页面入口。`index.html` 用这一行把它加载进来：
+
+```html
+<script type="module" src="/src/ui.ts"></script>
+```
+
+整个文件只做两件事。
 
 ## 折叠大纲
 
 ```text
 ui.ts
-├─ 1     从 isu.ts 引入 setupButton
-└─ 3–11  画一个按钮并交给语音外壳
+├─ 1     从 isu.ts 拿 setupButton
+└─ 3–11  画一个按钮，交给语音那一层
 ```
 
-## 1 行
+## 第 1 行
 
-入口接的是 `isu.ts`，不是 `dipper/main.ts`。改对话策略不需要改这个文件。
+入口接的是 `isu.ts`，不是 `dipper/main.ts`。改「下一句说什么」不用改这个文件。
 
 ## 3–11 行
 
 ```text
-把 #app 的内容换成一个按钮 #counter
+把 #app 换成一个按钮，id 是 counter
 找到这个按钮
 setupButton(按钮)
 ```
 
-`setupButton` 负责点击后发送 `CLICK`，并在识别或朗读状态变化时改按钮上的字。按钮的 id 叫 `counter`，是 Vite 模板留下来的名字，这里并没有计数器。
+`setupButton` 负责：点击后发送 `CLICK`，并在听或说的状态变化时改按钮上的字。
 
-`index.html` 本身没有对话标记。标题仍是 `Vite + TS`。样式在 `src/style.css`，只影响字体和按钮外观。
+id 叫 `counter`，是 Vite 模板留下来的名字。这里没有计数器。
+
+`index.html` 里没有对话内容。网页标题还是 `Vite + TS`。`src/style.css` 只改字体和按钮外观。
