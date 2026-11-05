@@ -2,10 +2,12 @@
   "name": "xstate-backend",
   "packageManager": "yarn@3.6.3",
   "dependencies": {
-    "@types/node": "^22.7.2",
+    "@qdrant/js-client-rest": "^1.18.0",
+    "openai": "^6.49.0",
     "xstate": "^5.22.0"
   },
   "devDependencies": {
+    "@types/node": "^26.6.4",
     "esbuild": "^0.25.10",
     "tsx": "^4.20.5",
     "typescript": "^5.2.2",
