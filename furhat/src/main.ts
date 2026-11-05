@@ -285,7 +285,7 @@ const dmMachine = setup({
       invoke: {
         src: "fhGreet",
         input: null,
-        onDone: "Speaking",
+        onDone: "Ask", // greeting already spoken, so go straight to listening (not Speaking, which would read the system prompt)
         onError: {
           target: "Fail",
           actions: ({ event }) => console.error(event)
@@ -307,7 +307,11 @@ const dmMachine = setup({
         onDone: [
           {
             target: "NoInput",
-            guard: ({ event }) => !event.output, 
+            guard: ({ event }) => !event.output,
+          },
+          {
+            target: "Bye", // user ends the conversation -> surprise gesture with sound + goodbye
+            guard: ({ event }) => /\b(bye|goodbye|stop)\b/i.test(event.output),
           },
           {
             target: "Retrieve",
@@ -362,7 +366,15 @@ const dmMachine = setup({
           })),
           target: "Speaking",
         },
-        onError: { target: "Speaking", actions: ({ event }) => console.error(event) },
+        onError: {
+          target: "Speaking",
+          actions: [
+            ({ event }) => console.error(event),
+            assign(({ context }) => ({
+              messages: [...context.messages, { role: "assistant" as const, content: "Sorry, I could not reach my language model. Please try again." }],
+            })),
+          ],
+        },
       },
     },
     Done: {
