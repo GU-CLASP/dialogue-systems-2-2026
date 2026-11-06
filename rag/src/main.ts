@@ -2,13 +2,16 @@
 
 import { Command } from "commander";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { join, basename } from "node:path";
 import { QdrantClient } from "@qdrant/js-client-rest";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
 
+/** 连本机 Docker 里的 Qdrant（端口 6333） */
 const client = new QdrantClient({ host: "localhost", port: 6333 });
 
+/** 连 Ollama，用来算向量 embedding（以及以后若需要也可聊天） */
 const openai = new OpenAI({
   baseURL: "http://localhost:11434/v1/",
   apiKey: "ollama",
@@ -23,6 +26,7 @@ export function hello(name: string, options: any) {
   return options.uppercase ? message.toUpperCase() : message;
 }
 
+/** 把一段文字变成 384 维向量（须与 createCollection 的 size 一致） */
 const embed = async (input: string) =>
   openai.embeddings
     .create({
@@ -40,7 +44,10 @@ program
     console.log(hello(name, options));
   });
 
-/** Chunking a document */
+/**
+ * 读一个文件并切成小块（chunks）
+ * 优先按 \n\n\n（爬虫导出的章节分隔）切开，便于检索更准
+ */
 const makeChunksFromFile = async (filepath: string) => {
   const splitter = new RecursiveCharacterTextSplitter({
     chunkSize: 500,
@@ -51,6 +58,57 @@ const makeChunksFromFile = async (filepath: string) => {
   const document = await readFile(filepath, "utf8");
   const chunks = await splitter.splitText(document);
   return chunks;
+};
+
+/**
+ * 简易进度条（类似 tqdm），同一行刷新：
+ *   [ 3/21] 14% |███░░░░░░░░░░░░░░░░░| page-002-....txt
+ */
+const renderProgress = (
+  current: number,
+  total: number,
+  label: string,
+  width = 20,
+) => {
+  const ratio = total === 0 ? 1 : current / total;
+  const filled = Math.round(ratio * width);
+  const bar = "█".repeat(filled) + "░".repeat(width - filled);
+  const pct = String(Math.floor(ratio * 100)).padStart(3, " ");
+  const cur = String(current).padStart(String(total).length, " ");
+  // \r 回到行首覆盖；process.stdout 才能做单行刷新
+  process.stdout.write(
+    `\r[${cur}/${total}] ${pct}% |${bar}| ${label}`.padEnd(100),
+  );
+  if (current >= total) process.stdout.write("\n");
+};
+
+/**
+ * 把若干文本块变成 Qdrant points：
+ * - vector: embedding
+ * - payload.text: 原文（检索后给 LLM 用）
+ * - payload.source: 来源文件名（metadata，方便调试/过滤）
+ * 顺序处理 chunk，才能稳定刷新进度条
+ */
+const chunksToPoints = async (
+  chunks: string[],
+  sourcePath: string,
+  onChunk?: (done: number, total: number) => void,
+) => {
+  const source = basename(sourcePath);
+  const points = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const embedding = await embed(chunks[i]);
+    points.push({
+      id: uuidv4(),
+      vector: embedding,
+      payload: {
+        text: chunks[i],
+        source,
+      },
+    });
+    onChunk?.(i + 1, chunks.length);
+  }
+  return points;
 };
 
 program
@@ -73,6 +131,7 @@ program
     console.log(`Succesfully created collection: ${name}`);
   });
 
+/** 导入单个文件 */
 program
   .command("addData")
   .description("Chunk data at <path> and add it to a collection.")
@@ -80,16 +139,7 @@ program
   .argument("<path>", "file path")
   .action(async (collection, path) => {
     const chunks = await makeChunksFromFile(path);
-    const points = await Promise.all(
-      chunks.map(async (chunk) => {
-        const embedding = await embed(chunk);
-        return {
-          id: uuidv4(),
-          vector: embedding,
-          payload: { text: chunk },
-        };
-      }),
-    );
+    const points = await chunksToPoints(chunks, path);
     console.log(
       `Done chunking into ${chunks.length} documents. Adding them into collection: ${collection}...`,
     );
@@ -99,19 +149,69 @@ program
     );
   });
 
+/**
+ * Lab 建议的批量导入：扫描文件夹里所有 .txt，逐个入库
+ * 用法：npx tsx src/main.ts addFolder gu_support_all ../labs/lab1/data
+ */
+program
+  .command("addFolder")
+  .description("Add all .txt files from a folder into a collection.")
+  .argument("<collection>", "collection name")
+  .argument("<folder>", "folder path")
+  .action(async (collection, folder) => {
+    // 1) 列出文件夹中的 .txt
+    const files = (await readdir(folder))
+      .filter((name) => name.endsWith(".txt"))
+      .map((name) => join(folder, name));
+
+    console.log(`Found ${files.length} .txt files in ${folder}`);
+
+    // 2) 逐个文件：切块 → embedding → upsert（顺序处理，避免一次打爆 Ollama）
+    for (let i = 0; i < files.length; i++) {
+      const filePath = files[i];
+      const name = basename(filePath);
+      console.log(`\nFile ${i + 1}/${files.length}: ${name}`);
+
+      const chunks = await makeChunksFromFile(filePath);
+      const points = await chunksToPoints(chunks, filePath, (done, total) => {
+        renderProgress(done, total, `embed ${name}`);
+      });
+
+      process.stdout.write("  upserting to Qdrant...");
+      await client.upsert(collection, { wait: true, points });
+      process.stdout.write(" done.\n");
+
+      // 文件级总进度
+      renderProgress(i + 1, files.length, "files complete");
+    }
+
+    console.log(`\nDone. Added ${files.length} files into ${collection}`);
+  });
+
+/** 用自然语言查询：先 embed 问题，再在 collection 里找最相似的若干块 */
 program
   .command("queryCollection")
   .description("Query the collection")
   .argument("<collection>", "collection name")
   .argument("<query>", "text of the query")
-  .action(async (collection, query) => {
+  .option("-k, --limit <n>", "number of results to return", "5")
+  .action(async (collection, query, options) => {
+    const limit = Number(options.limit) || 5;
     const embedding = await embed(query);
     const results = await client.query(collection, {
       with_payload: true,
       query: embedding,
-      limit: 5,
+      limit,
     });
-    console.log(results.points);
+    // Compact print for VG top-k experiments
+    console.log(`limit=${limit}, hits=${results.points?.length ?? 0}`);
+    for (const [i, p] of (results.points ?? []).entries()) {
+      const payload = p.payload as { text?: string; source?: string } | null;
+      const text = (payload?.text ?? "").replace(/\s+/g, " ").slice(0, 120);
+      console.log(
+        `#${i + 1} score=${p.score?.toFixed(4)} source=${payload?.source ?? "?"} | ${text}`,
+      );
+    }
   });
 
 program.parse();
