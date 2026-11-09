@@ -71,8 +71,14 @@ export const dme = setup({
   initial: "Select",
   states: {
     Select: {
-      initial: "SelectAction",
+      initial: "SelectFeedback",
       states: {
+        SelectFeedback: {
+          always: [
+            isuTransition("SelectAction", "select_neg_understanding"),
+            { target: "SelectAction" }, // TODO check it -- needed for greeting
+          ],
+        },
         SelectAction: {
           always: [
             isuTransition("SelectMove", "select_respond"),
@@ -122,7 +128,6 @@ export const dme = setup({
             isuTransition("DowndateQUD", "integrate_usr_ask"),
             isuTransition("DowndateQUD", "integrate_answer"),
             isuTransition("DowndateQUD", "integrate_greet"),
-            isuTransition("DowndateQUD", "integrate_confusion"),
             { target: "DowndateQUD" },
           ],
         },

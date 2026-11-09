@@ -133,15 +133,6 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database", () => {
-    runTest([
-      { speaker: "sys", message: "Hello! You can ask me anything!" },
-      { speaker: "usr", message: "Where is the lecture?" },
-      { speaker: "sys", message: "Which course?" },
-      { speaker: "usr", message: "Dialogue Systems 2" },
-      { speaker: "sys", message: "The lecture is in G212." },
-    ]);
-  });
 
   // Test Tuesday
   describe("system answer from database (task 1: Tuesday)", () => {
@@ -183,7 +174,7 @@ describe("DME tests", () => {
   });
 
   // Test repeated questions
-  describe("system answer from database (task 1: Friday)", () => {
+  describe("negative feedback (task 2c)", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
@@ -197,9 +188,6 @@ describe("DME tests", () => {
       { speaker: "usr", message: "What's for dinner?" },
       { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
-      /* note: the below line failes in the test because it comes out as empty ...
-      Not sure why that happens, but in the browser it will take several tries before returning the right output.
-      */
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
   });
