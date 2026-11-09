@@ -40,7 +40,12 @@ interface AskMove {
   content: Question;
 }
 
-export type Move = OtherMove | AnswerMove | AskMove;
+interface Confusion {
+  type: "confusion";
+  content: null;
+}
+
+export type Move = OtherMove | AnswerMove | AskMove | Confusion;
 
 export type Action = {
   type:

@@ -69,6 +69,10 @@ export const rules: Rules = {
       for (const move of is.shared.lu!.moves) {
         if (move.type === "ask") {
           const q = move.content;
+          // check if QUD already exists
+          if (is.shared.qud.some((x) => objectsEqual(x, q))) {
+            continue;
+          }
           return () => ({
             ...is,
             shared: {
@@ -239,6 +243,18 @@ export const rules: Rules = {
   /**
    * Select
    */
+
+  // new select rule for negative understanding
+  select_neg_understanding: ({ is }) => {
+    const lu = is.shared.lu;
+    if (lu && lu.speaker === "usr" && Array.isArray(lu.moves) && lu.moves.length === 0) {
+      return () => ({
+        ...is,
+        next_moves: [...is.next_moves, { type: "confusion", content: null}],
+      });
+    }
+  },
+
   /** rule 2.12 */
   select_from_plan: ({ is }) => {
     if (is.private.agenda.length === 0 && !!is.private.plan[0]) {

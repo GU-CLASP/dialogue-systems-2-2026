@@ -9,9 +9,11 @@ import { initialIS } from "./is";
 
 const inspector = createBrowserInspector();
 
+const REGION = "swedencentral";
+
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    `https://${REGION}.api.cognitive.microsoft.com/sts/v1.0/issuetoken`,
   key: KEY,
 };
 
@@ -20,8 +22,8 @@ const settings: Settings = {
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
-  azureRegion: "northeurope",
-  ttsDefaultVoice: "en-US-DavisNeural",
+  azureRegion: REGION,
+  ttsDefaultVoice: "en-US-AvaNeural",
   bargeIn: false
 };
 

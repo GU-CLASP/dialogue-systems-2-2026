@@ -133,11 +133,60 @@ describe("DME tests", () => {
     ]);
   });
 
-  describe("system answer from database", () => {
+
+  // Test Tuesday
+  describe("system answer from database (task 1: Tuesday)", () => {
     runTest([
       { speaker: "sys", message: "Hello! You can ask me anything!" },
       { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Tuesday" },
       { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  // Test Thursday
+  describe("system answer from database (task 1: Thursday)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Thursday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in J440." },
+    ]);
+  });
+
+  // Test Friday
+  describe("system answer from database (task 1: Friday)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "Dialogue Systems 2" },
+      { speaker: "sys", message: "The lecture is in G212." },
+    ]);
+  });
+
+  // Test repeated questions
+  describe("negative feedback (task 2c)", () => {
+    runTest([
+      { speaker: "sys", message: "Hello! You can ask me anything!" },
+      { speaker: "usr", message: "Where is the lecture?" },
+      { speaker: "sys", message: "Which day?" },
+      { speaker: "usr", message: "I don't know" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Saturday" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which day?" },
+      { speaker: "usr", message: "Friday" },
+      { speaker: "sys", message: "Which course?" },
+      { speaker: "usr", message: "What's for dinner?" },
+      { speaker: "sys", message: "Sorry, I don't understand. Which course?" },
       { speaker: "usr", message: "Dialogue Systems 2" },
       { speaker: "sys", message: "The lecture is in G212." },
     ]);
