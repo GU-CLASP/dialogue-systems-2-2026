@@ -7,7 +7,7 @@ const inspector = createBrowserInspector();
 
 const azureCredentials = {
   endpoint:
-    "https://northeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    "https://germanywestcentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
   // key: KEY,
 };
 
@@ -17,7 +17,7 @@ const settings = {
   asrDefaultNoInputTimeout: 5000,
   locale: "en-US",
   ttsDefaultVoice: "en-US-DavisNeural",
-  azureRegion: "northeurope",
+  azureRegion: "germanywestcentral",
 };
 
 const dmMachine = setup({
@@ -87,6 +87,7 @@ const dmMachine = setup({
     };
   },
 }).createMachine({
+  /** @xstate-layout N4IgpgJg5mDOIC5QBECyA6ACgJzABwENcBiAQQGUAlAFWvIH1KBRU5ATQG0AGAXUVDwB7WAEsALiMEA7fiAAeiAExcAjOi4BmFYoAsGjToCshnUZ0AaEAE9EKrjvSGuz5060bDADkMBfH5bR0AHUCcWpBcjEiMWIAYQAZAElYgGluPiQQIVEJaVkFBBUATkN0bR0iosVdADZPLmNLGwQalU90DU8izwr6ypUNIr8AjFRQqSxsQQBjOFhickwWFPpYgHlUTHimaiZ02WzxSRlMgsNO9CKjRSKuTw1FTramxBrddDeDLl0dNtNhkCBMYiCY4GZzYj7TKHXInUAFADsrUcigRWmMhgRVwRFmsrxK6E82icNRM5yMNQBQPGk3BsHmHBUGQEwiOeVOiBxpS0uhxPVuCIRLwQmJqH0Mbx0jwMKnKVNGNLBs3pkMUzKyrNh+U5RkJxlMZJ03w8wqMCPQFUqCKJ1U8WMU8vQwImpFgAGtiMx1gBxAByiXITGQUJZOWO2oQFTF90MVUe9TtumFNQRpW0Mr0pj5jud6FdHoolHovrWiV9mAAqtQQxqw+z4Ygo4SPHHOncEUm8QhBWoEaoJQ83j1FL4AVJBBA4LI0AdNeGOQgALQ1YXLx04fBEMCzutw+SNxTComOFwDCVo+qkx0hMIRKLYMQ7tl7s5CrutdqeLpEpyPVo4nNxifLUF0UHoPiND8VBqHQ3kMQ8uw0GoikuSo0JlLEnFHEYnUVKZlXgaE53rfcECJLgOljAwvxTJDGi7e1CVuGoNAaeoVB0DtAJBPN3WA+cGwQfRFAgrgoJguCEOaFMRJqSUSiKaCvE8Pw-CAA */
   context: ({ spawn }) => {
     return {
       ssRef: spawn(speechstate, { input: settings }),
