@@ -104,10 +104,14 @@ const dmMachine = setup({
     fhAttendUser: fromPromise<any, null>(async () => {
       return fhAttend();
     }),
+    fhSpeak: fromPromise<any, { text: string }>(async ({ input }) => {
+      return fhSay(input.text);
+    }),
   },
 }).createMachine({
   id: "root",
   initial: "Start",
+  context: { lastResult: "" },
   states: {
     Start: { after: { 1000: "Attend" } },
     Attend: {
@@ -139,7 +143,33 @@ const dmMachine = setup({
       },
     },
     Listen: {
+      invoke: {
+        src: "fhL",
+        input: null,
+        onDone: {
+          target: "Echo",
+          actions: assign({ lastResult: ({ event }) => event.output }),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
     },
+    Echo: {
+      invoke: {
+        src: "fhSpeak",
+        input: ({ context }) => ({ text: `You said ${context.lastResult}` }),
+        onDone: {
+          target: "Done",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Done: {},
     Fail: {},
   },
 });
