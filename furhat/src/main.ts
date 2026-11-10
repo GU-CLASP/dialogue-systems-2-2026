@@ -34,6 +34,18 @@ async function fhAttend() {
   });
 }
 
+async function fhLED(red: number, green: number, blue: number) {
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "application/json");
+  return fetch(
+    `http://${FURHATURI}/furhat/led?red=${red}&green=${green}&blue=${blue}`,
+    {
+      method: "POST",
+      headers: myHeaders,
+      body: "",
+    },
+  );
+}
 async function newGesture() {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
@@ -142,6 +154,7 @@ const dmMachine = setup({
       },
     },
     Next: {
+      entry: () => fhLED(255, 0, 0),
       invoke: {
         src: "fhHello",
         input: null,
@@ -156,6 +169,7 @@ const dmMachine = setup({
       },
     },
     Listen: {
+      entry: () => fhLED(0, 0, 0),
       invoke: {
         src: "fhL",
         input: null,
@@ -170,6 +184,7 @@ const dmMachine = setup({
       },
     },
     Echo: {
+      entry: () => fhLED(255, 0, 0),
       invoke: {
         src: "fhSpeak",
         input: ({ context }) => ({ text: `You said ${context.lastResult}` }),
@@ -182,7 +197,9 @@ const dmMachine = setup({
         },
       },
     },
-    Done: {},
+    Done: {
+      entry: () => fhLED(0, 0, 0),
+    },
     Fail: {},
   },
 });
