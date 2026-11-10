@@ -93,7 +93,7 @@ async function fhListen() {
 const dmMachine = setup({
   actors: {
     fhVoice: fromPromise<any, null>(async () => {
-      return fhVoice("en-US-EchoMultilingualNeural");
+      return fhVoice("JennyNeural");
     }),
     fhHello: fromPromise<any, null>(async () => {
       return fhSay("Hi");
@@ -113,7 +113,20 @@ const dmMachine = setup({
   initial: "Start",
   context: { lastResult: "" },
   states: {
-    Start: { after: { 1000: "Attend" } },
+    Start: { after: { 1000: "SetVoice" } },
+      SetVoice: {
+      invoke: {
+        src: "fhVoice",
+        input: null,
+        onDone: {
+          target: "Attend",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
     Attend: {
       invoke: {
         src: "fhAttendUser",
