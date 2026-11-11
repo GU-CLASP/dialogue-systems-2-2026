@@ -49,27 +49,42 @@ async function fhLED(red: number, green: number, blue: number) {
 async function newGesture() {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
-  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=false`, {
+  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=true`, {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({
-      name: "newGesture",
+      name: "CheekyWink",
       frames: [
         {
-          time: [], //ADD THE TIME FRAME OF YOUR LIKING
-          persist: true,
+          time: [0.3],
+          persist: false,
           params: {
-            //ADD PARAMETERS HERE IN ORDER TO CREATE A GESTURE
+            SMILE_CLOSED: 0.6,
+            NECK_ROLL: 8.0,
           },
         },
         {
-          time: [], //ADD TIME FRAME IN WHICH YOUR GESTURE RESETS
-          persist: true,
+          time: [0.5],
+          persist: false,
+          params: {
+            BLINK_LEFT: 1.0,
+            BROW_UP_RIGHT: 0.7,
+          },
+        },
+        {
+          time: [0.8],
+          persist: false,
+          params: {
+            BLINK_LEFT: 0.0,
+          },
+        },
+        {
+          time: [1.5],
+          persist: false,
           params: {
             reset: true,
           },
         },
-        //ADD MORE TIME FRAMES IF YOUR GESTURE REQUIRES THEM
       ],
       class: "furhatos.gestures.Gesture",
     }),
@@ -118,6 +133,9 @@ const dmMachine = setup({
     }),
     fhSpeak: fromPromise<any, { text: string }>(async ({ input }) => {
       return fhSay(input.text);
+    }),
+    fhCheekyWink: fromPromise<any, null>(async () => {
+      return newGesture();
     }),
   },
 }).createMachine({
@@ -174,8 +192,21 @@ const dmMachine = setup({
         src: "fhL",
         input: null,
         onDone: {
-          target: "Echo",
+          target: "Wink",
           actions: assign({ lastResult: ({ event }) => event.output }),
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Wink: {
+      invoke: {
+        src: "fhCheekyWink",
+        input: null,
+        onDone: {
+          target: "Echo",
         },
         onError: {
           target: "Fail",
