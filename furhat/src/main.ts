@@ -91,6 +91,38 @@ async function newGesture() {
   });
 }
 
+async function grumpyGesture() {
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "application/json");
+  const soundPath = `file://${process.cwd()}/sounds/noway.wav`;
+  return fetch(`http://${FURHATURI}/furhat/gesture?blocking=true`, {
+    method: "POST",
+    headers: myHeaders,
+    body: JSON.stringify({
+      name: "Grumpy",
+      frames: [
+        {
+          time: [0.3],
+          persist: false,
+          audio: soundPath,
+          params: {
+            BROW_DOWN_LEFT: 1.0,
+            BROW_DOWN_RIGHT: 1.0,
+            NECK_PAN: 20.0,
+          },
+        },
+        {
+          time: [1.5],
+          persist: false,
+          params: {
+            reset: true,
+          },
+        },
+      ],
+      class: "furhatos.gestures.Gesture",
+    }),
+  });
+}
 async function fhGesture(text: string) {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
@@ -136,6 +168,9 @@ const dmMachine = setup({
     }),
     fhCheekyWink: fromPromise<any, null>(async () => {
       return newGesture();
+    }),
+    fhGrumpy: fromPromise<any, null>(async () => {
+      return grumpyGesture();
     }),
   },
 }).createMachine({
@@ -219,6 +254,19 @@ const dmMachine = setup({
       invoke: {
         src: "fhSpeak",
         input: ({ context }) => ({ text: `You said ${context.lastResult}` }),
+        onDone: {
+          target: "Grumpy",
+        },
+        onError: {
+          target: "Fail",
+          actions: ({ event }) => console.error(event),
+        },
+      },
+    },
+    Grumpy: {
+      invoke: {
+        src: "fhGrumpy",
+        input: null,
         onDone: {
           target: "Done",
         },
