@@ -46,6 +46,7 @@ async function fhLED(red: number, green: number, blue: number) {
     },
   );
 }
+
 async function newGesture() {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
@@ -123,6 +124,7 @@ async function grumpyGesture() {
     }),
   });
 }
+
 async function fhGesture(text: string) {
   const myHeaders = new Headers();
   myHeaders.append("accept", "application/json");
@@ -179,7 +181,7 @@ const dmMachine = setup({
   context: { lastResult: "" },
   states: {
     Start: { after: { 1000: "SetVoice" } },
-      SetVoice: {
+    SetVoice: {
       invoke: {
         src: "fhVoice",
         input: null,
@@ -237,6 +239,7 @@ const dmMachine = setup({
       },
     },
     Wink: {
+      entry: () => fhLED(255, 0, 0),
       invoke: {
         src: "fhCheekyWink",
         input: null,
