@@ -1,6 +1,26 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { checkNumbers, parseNumbers, randomNumbers, spokenList } from "../src/numbers.ts";
+import { checkNumbers, correctedNumbers, parseNumbers, randomNumbers, repairChosen, spokenList } from "../src/numbers.ts";
+
+// Both from a real user session (2 Nov): the system kept the first number.
+test("self-corrections in the same utterance", () => {
+  assert.deepEqual(correctedNumbers("50 no 54"), [54]);
+  assert.deepEqual(correctedNumbers("21 know it's 22"), [22]);
+  assert.deepEqual(correctedNumbers("thirty, not thirteen"), [30]);
+  assert.deepEqual(correctedNumbers("not 13 but 30"), [30]);
+  assert.deepEqual(correctedNumbers("seven, no wait, eight, 23 and 61"), [8, 23, 61]);
+  assert.deepEqual(correctedNumbers("7, 23 and 61"), [7, 23, 61]);
+  assert.deepEqual(correctedNumbers("no idea"), []);
+});
+
+test("a correction at the confirmation keeps the other numbers", () => {
+  assert.deepEqual(repairChosen([3, 21, 50], "no it's 54"), [3, 21, 54]);
+  assert.deepEqual(repairChosen([13, 42, 50], "thirty, not thirteen"), [30, 42, 50]);
+  assert.deepEqual(repairChosen([13, 42, 50], "not 13 but 30"), [30, 42, 50]);
+  assert.deepEqual(repairChosen([13, 42, 50], "no, thirty, forty two and fifty"), [30, 42, 50]);
+  assert.equal(repairChosen([3, 21, 50], "no, 90"), undefined); // out of range: checked from scratch
+  assert.equal(repairChosen([3, 21, 50], "no, 21"), undefined); // would repeat a number
+});
 
 test("digits and words", () => {
   assert.deepEqual(parseNumbers("7, 23 and 61"), [7, 23, 61]);

@@ -5,7 +5,7 @@
 import { appendFileSync, mkdirSync } from "node:fs";
 import { assign, createActor, fromPromise, setup } from "xstate";
 import { advise, classifyFollowUp, describeCard, interpretCard, positionName, summarise, warmUp, type FollowUpIntent } from "./llm.ts";
-import { checkNumbers, parseNumbers, randomNumbers, spokenList, type NumberCheck } from "./numbers.ts";
+import { checkNumbers, correctedNumbers, parseNumbers, randomNumbers, repairChosen, spokenList, type NumberCheck } from "./numbers.ts";
 import { followUpIntent, isGoodbye, isNo, isVague, isYes, sensitiveTopic, topicOf, wantsRandom, type Sensitive } from "./nlu.ts";
 import {
   CRISIS_REPLY, IS_IT_REAL, SENSITIVE_REPLY, TOPIC_QUESTION,
@@ -195,10 +195,27 @@ const machine = setup({
         },
         // "Tell me about my life": ask which area first.
         { guard: ({ context }) => isVague(context.heard), target: "AskTopic", actions: assign({ silences: 0 }) },
-        { target: "Shuffle", actions: assign({ question: ({ context }) => context.heard, silences: 0 }) },
+        { target: "ConfirmQuestion", actions: assign({ question: ({ context }) => context.heard, silences: 0 }) },
       ],
     },
     NoQuestion: say(() => "Take your time. Tell me what is on your mind, or ask for a general reading.", "HearQuestion"),
+
+    // Grounding the question: the whole reading depends on it, and ASR errors happen
+    // (a real user's "Spanish guy" was heard as "Danish guy").
+    ConfirmQuestion: say((c) => `I heard: ${c.question.replace(/[.?!]*$/, "")}. Is that your question?`, "HearQuestionConfirm"),
+    HearQuestionConfirm: hear("ProcessQuestionConfirm"),
+    ProcessQuestionConfirm: {
+      always: [
+        // Silence: take it as a yes rather than stall.
+        { guard: ({ context }) => !context.heard, target: "Shuffle" },
+        { guard: ({ context }) => isGoodbye(context.heard), target: "Goodbye" },
+        { guard: ({ context }) => isYes(context.heard) && !isNo(context.heard), target: "Shuffle" },
+        { guard: ({ context }) => isNo(context.heard), target: "AskQuestionAgain" },
+        // Anything else is the question said again: check it like a new one.
+        { target: "ProcessQuestion" },
+      ],
+    },
+    AskQuestionAgain: say(() => "Sorry, I must have misheard. Please tell me your question again.", "HearQuestion"),
 
     Crisis: say(() => CRISIS_REPLY, "HearQuestion"),
 
@@ -267,7 +284,7 @@ const machine = setup({
         if (wantsRandom(context.heard)) {
           return { chosen: [...context.chosen, ...randomNumbers(3 - context.chosen.length, context.chosen)], silences: 0 };
         }
-        const heard = parseNumbers(context.heard);
+        const heard = correctedNumbers(context.heard);
         const check = checkNumbers(heard, context.chosen);
         return { chosen: [...context.chosen, ...check.accepted], lastCheck: { ...check, parsed: heard.length }, silences: 0 };
       }),
@@ -324,7 +341,13 @@ const machine = setup({
         { guard: ({ context }) => !context.heard && context.silences >= 1, target: "Goodbye" },
         { guard: ({ context }) => !context.heard, target: "ConfirmAgain", actions: assign({ silences: ({ context }) => context.silences + 1 }) },
         { guard: ({ context }) => isYes(context.heard) && !isNo(context.heard), target: "Draw", actions: assign({ silences: 0 }) },
-        // "No, thirty, not thirteen" — start over with whatever numbers came with the correction.
+        // "No, it's 54" or "thirty, not thirteen": fix only what was corrected, then confirm again.
+        {
+          guard: ({ context }) => repairChosen(context.chosen, context.heard) !== undefined,
+          target: "Confirm",
+          actions: assign({ chosen: ({ context }) => repairChosen(context.chosen, context.heard)!, silences: 0 }),
+        },
+        // Other numbers (e.g. out of range): start over with them, so they get checked.
         { guard: ({ context }) => parseNumbers(context.heard).length > 0, target: "ProcessNumbers", actions: assign({ chosen: [] }) },
         { guard: ({ context }) => isNo(context.heard), target: "Rechoose", actions: assign({ chosen: [] }) },
         { target: "ConfirmAgain" },

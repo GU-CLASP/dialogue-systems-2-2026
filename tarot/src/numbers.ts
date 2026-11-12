@@ -88,6 +88,51 @@ export function parseNumbers(text: string): number[] {
   return out;
 }
 
+// Words that start a self-correction: "50, no, 54". "know" is how the ASR often hears "no".
+const CORRECTION = /\b(no|know|sorry|wait|actually|i mean|rather|but)\b/g;
+
+/**
+ * The numbers the user means, after any correction in the same utterance:
+ * "50 no 54" -> [54], "21 know it's 22" -> [22], "thirty, not thirteen" -> [30].
+ */
+export function correctedNumbers(text: string): number[] {
+  const lower = text.toLowerCase();
+  // Only what follows the last correction counts (if it holds a number).
+  let start = 0;
+  for (const m of lower.matchAll(CORRECTION)) {
+    const end = m.index + m[0].length;
+    if (parseNumbers(lower.slice(end)).length > 0) start = end;
+  }
+  // "X not Y": the first number after "not" is the one the user rejects.
+  const [first, ...rest] = lower.slice(start).split(/\bnot\b/);
+  return [...parseNumbers(first), ...rest.flatMap((r) => parseNumbers(r).slice(1))];
+}
+
+const valid = (nums: number[]) =>
+  nums.length === 3 && new Set(nums).size === 3 && nums.every((n) => n >= 1 && n <= DECK_SIZE) ? nums : undefined;
+
+/**
+ * A correction at the confirmation, fixing only what the user corrects:
+ * "thirty, not thirteen" or "not 13 but 30" swaps one number in place;
+ * "no, it's 54" replaces the last number; three numbers replace all.
+ * Undefined if the result would not be three valid, different numbers.
+ */
+export function repairChosen(chosen: number[], text: string): number[] | undefined {
+  const lower = text.toLowerCase();
+  const [before, after] = lower.split(/\bnot\b/, 2);
+  if (after !== undefined) {
+    const [wrongPart, butPart] = after.split(/\bbut\b/, 2);
+    const wrong = parseNumbers(wrongPart)[0];
+    const right = butPart !== undefined ? parseNumbers(butPart)[0] : parseNumbers(before).at(-1);
+    if (wrong !== undefined && right !== undefined && chosen.includes(wrong)) {
+      return valid(chosen.map((n) => (n === wrong ? right : n)));
+    }
+  }
+  const heard = correctedNumbers(text);
+  if (heard.length === 0 || heard.length > 3) return undefined;
+  return valid([...chosen.slice(0, 3 - heard.length), ...heard]);
+}
+
 export interface NumberCheck {
   accepted: number[]; // new valid numbers, in order
   outOfRange: number[];

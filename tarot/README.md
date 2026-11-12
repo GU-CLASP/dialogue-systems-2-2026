@@ -39,7 +39,9 @@ gives its meaning, and the LLM only phrases it for the user's question.
 
 `scenarios/` holds one user turn per line. 01–05 test the core flow and repairs.
 06–12 are based on what real clients most often ask tarot readers (love first, then work;
-yes/no and "when" questions; health, money and legal questions that ethical readers decline):
+yes/no and "when" questions; health, money and legal questions that ethical readers decline).
+13 replays corrections from a live user session. Every user question is confirmed before the
+reading ("I heard: … Is that your question?"), so each scenario answers "yes" after it:
 
 | Scenario | Tests |
 |---|---|
@@ -50,3 +52,4 @@ yes/no and "when" questions; health, money and legal questions that ethical read
 | 10 money | declined, offer refused, the user asks their own question |
 | 11 vague | "tell me about my life" → love / work / yourself?; "is this real?" |
 | 12 crisis | no reading; points to a support line |
+| 13 real user | corrections from a live session: "50 no 54", "twenty two, not twenty one" |
