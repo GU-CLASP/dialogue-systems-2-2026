@@ -1,3 +1,5 @@
 node_modules/
 data/
 transcripts/
+slides/
+demo-check.sh
