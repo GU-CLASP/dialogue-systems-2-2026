@@ -737,7 +737,7 @@ export async function nluLLM(utterance: string, predicates: string[], lastSysMov
       "type": "ask",
       "content": {
         "type": "whq",
-        "predicate": "bird_crown",
+        "predicate": "bird_crown_colour",
         "text": "what is the colour of the bird's crown?"
       }
   }
@@ -747,7 +747,7 @@ export async function nluLLM(utterance: string, predicates: string[], lastSysMov
     {
       "type": "answer",
       "content": {
-        "predicate": "bird_crown",
+        "predicate": "bird_crown_colour",
         "argument": "the crown is blue"
       }
     }
@@ -758,7 +758,7 @@ export async function nluLLM(utterance: string, predicates: string[], lastSysMov
       "type": "ask",
       "content": {
         "type": "whq",
-        "predicate": "bird_beak",
+        "predicate": "bird_beak_shape",
         "text": "what is the shape of the beak?"
       }
   }
@@ -768,8 +768,8 @@ export async function nluLLM(utterance: string, predicates: string[], lastSysMov
     {
       "type": "answer",
       "content": {
-        "predicate": "bird_beak",
-        "argument": "the bird has a pointed beak"
+        "predicate": "bird_beak_shape",
+        "argument": "the beak is pointed"
       }
     }
   ]

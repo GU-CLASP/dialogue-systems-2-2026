@@ -20,7 +20,7 @@ const settings: Settings = {
   azureCredentials: azureCredentials,
   asrDefaultCompleteTimeout: 0,
   asrDefaultNoInputTimeout: 5000,
-  locale: "en-US",
+  locale: "en-GB",
   azureRegion: "francecentral",
   ttsDefaultVoice: "en-US-DavisNeural",
   bargeIn: false
@@ -100,12 +100,6 @@ const dmMachine = setup({
             };
           }),
         },
-        /*BIRD_IDENTIFIED: {
-          actions: ({ event }) => {
-            console.log("[DM] Bird identified:", event.value.commonName);
-            displayBirdImage(event.value);
-          }
-        },*/
       },
       states: {
         Interpret: {
