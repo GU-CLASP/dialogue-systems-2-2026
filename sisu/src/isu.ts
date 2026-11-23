@@ -3,10 +3,10 @@ import { Settings, speechstate } from "speechstate";
 import { createBrowserInspector } from "@statelyai/inspect";
 import { KEY } from "./azure";
 import { DMContext, DMEvent, NextMovesEvent, Move, Question, Proposition, bird } from "./types";
-import { getBird, nlg, nluLLM, getBirdQuestion } from "./nlug";
+import { nlg, nluLLM,} from "./nlug";
 import { dme } from "./dme";
 import { initialIS } from "./is";
-import { displayBirdImage } from "./birds-image";
+import { getBird, getBirdQuestion, displayBirdImage } from "./birds";
 
 const {inspect} = createBrowserInspector();
 

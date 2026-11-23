@@ -2,7 +2,8 @@ import { setup, createActor, sendTo, assign, waitFor, fromPromise } from "xstate
 import { describe, expect, test } from "vitest";
 import { DMEContext, DMEEvent, NextMovesEvent, Move, bird, Proposition, Question } from "../src/types";
 import { dme } from "../src/dme";
-import { nlg, nluLLM, getBird, getBirdQuestion } from "../src/nlug";
+import { nlg, nluLLM } from "../src/nlug";
+import { getBird, getBirdQuestion } from "../src/birds"
 import { initialIS } from "../src/is";
 
 
@@ -345,7 +346,7 @@ describe("DME tests", () => {
     );
   };
 
-/*
+
   describe("bird observation - blue tit", () => {
     runTest([
       { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
@@ -385,7 +386,7 @@ describe("DME tests", () => {
       { speaker: "sys", message: "I think I've identified the species: northern shoveler" },
     ]);
   });
-*/
+/*
   describe("bird observation - european green woodpecker", () => {
     runTest([
       { speaker: "sys", message: "Hello and welcome to BirdyTalk! How can I help you?" },
