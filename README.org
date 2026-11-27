@@ -1,18 +1,7 @@
-#+TITLE: Dialogue Systems 2
+#+TITLE: Dialogue Systems 2 Project - BirdyTalk
 
-This repository contains:
-- ~starter/~ :: code for SpeechState that you can start with 
-- ~rag/~ :: code for RAG that you can start with 
-- ~sisu/~ :: code for SISU
-- ~labs/~ :: assignments for the course
-- ~tutorials/~ :: tutorials  
-
-#+begin_quote
-[!CAUTION]
-Never commit any API keys to the repository. Never deploy front-end application that uses API keys on a public resource.
-#+end_quote
-  
-* Useful information
-** TBD Tunnel ollama
-** TBD Azure Speech proxy
-
+To run the code:
+- run a tunnel Ollama 
+- run Qdrant
+- npm run dev
+- npm run test
